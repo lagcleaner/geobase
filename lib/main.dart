@@ -1,46 +1,11 @@
-import 'package:flutter/material.dart';
+import 'app.dart';
+import 'injection.dart';
+import 'src/core/utils/simple_bloc_observer.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = SimpleBlocObserver();
+  configureInjection(Environment.prod);
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GeoBase',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(title: 'Flutter Home Page'),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  final String title;
-
-  const HomePage({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Bienvenido',
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  runApp(GeoBaseApp());
 }
