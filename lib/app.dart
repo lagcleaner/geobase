@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'src/presentation/pages/home/home.dart';
+import 'src/presentation/pages/home/home_page.dart';
 
 export 'package:flutter/material.dart';
 
