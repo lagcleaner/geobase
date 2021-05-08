@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-import 'src/presentation/pages/home/home_page.dart';
+import 'src/core/constants/constants.dart';
+import 'src/presentation/router/router.dart';
+import 'src/presentation/theme/theme.dart';
 
 export 'package:flutter/material.dart';
 
 class GeoBaseApp extends StatelessWidget {
+  final GeobaseRouter _router = GeobaseRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GeoBase',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomePage(title: 'Flutter Home Page'),
+    return MaterialApp.router(
+      title: APP_NAME,
+      theme: themeLight,
+      routerDelegate: _router.delegate(),
+      routeInformationParser: _router.defaultRouteParser(),
     );
   }
 }
