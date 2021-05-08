@@ -45,7 +45,6 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
   }) = CategoryFieldType;
 
   // location (latitude, longitude)
-  @With(GetFieldTypeNameMixin)
   factory FieldType.latlong({bool nulleable = false}) => FieldType.category(
         categoryName: 'latlong',
         fieldTypes: {
