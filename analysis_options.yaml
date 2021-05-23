@@ -5,6 +5,7 @@ analyzer:
     - build/**
     - lib/generated_plugin_registrant.dart
     - lib/**/*.g.dart
+    - lib/**/*.gr.dart
     - lib/**/*.freezed.dart
     - lib/**/*.config.dart
   strong-mode:
