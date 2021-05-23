@@ -13,7 +13,7 @@ class GeoBaseApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: APP_NAME,
-      theme: themeLight,
+      theme: geobaseLightTheme,
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
     );
