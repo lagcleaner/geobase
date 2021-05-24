@@ -17,6 +17,7 @@ dependencies:
       url: https://github.com/fleaflet/flutter_map.git
       ref: issues/829-nullsafety
   latlong2: ^0.8.0
+  flutter_image: ^4.0.1
 
   # core
   dartz: ^0.9.2
@@ -42,6 +43,9 @@ dependencies:
   flash: ^1.5.1
   auto_route: ^1.0.2
 
+  # utils
+  # device_preview:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,10 +65,10 @@ dev_dependencies:
 
 dependency_overrides:
   # map/geolocation dependencies
-  flutter_image:
-    git:
-      url: https://github.com/flutter/flutter_image.git
-      ref: null-safety
+  # flutter_image:
+  #   git:
+  #     url: https://github.com/flutter/flutter_image.git
+  #     ref: null-safety
 
 flutter:
   uses-material-design: true

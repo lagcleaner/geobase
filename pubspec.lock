@@ -245,14 +245,12 @@ packages:
     source: hosted
     version: "7.0.0"
   flutter_image:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
-      path: "."
-      ref: null-safety
-      resolved-ref: b3d792066477efc57c7baa57098cfc3a0164de41
-      url: "https://github.com/flutter/flutter_image.git"
-    source: git
-    version: "4.0.0"
+      name: flutter_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   flutter_map:
     dependency: "direct main"
     description:
