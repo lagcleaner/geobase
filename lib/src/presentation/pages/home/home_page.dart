@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          const GeoBaseMap(),
+          GeoBaseMap(),
         ],
       ),
     );

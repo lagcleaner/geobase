@@ -375,6 +375,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  latlng:
+    dependency: transitive
+    description:
+      name: latlng
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   latlong2:
     dependency: "direct main"
     description:
@@ -403,6 +410,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.11.4"
+  map:
+    dependency: "direct main"
+    description:
+      name: map
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.0+2"
   matcher:
     dependency: transitive
     description:
