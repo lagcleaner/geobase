@@ -10,16 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_map:
-    git:
-      url: https://github.com/fleaflet/flutter_map.git
-      ref: issues/829-nullsafety
   auto_route: ^1.0.2
   cupertino_icons: ^1.0.2
   dartz: ^0.9.2
+  device_preview: ^0.7.4
   flash: ^1.5.1
-  flutter_bloc: ^7.0.0
+  flutter_bloc: ^7.1.0
   flutter_image: ^4.0.1
+  flutter_map: ^0.13.1
   formz: ^0.4.0
   freezed_annotation: ^0.14.1
   get_it: ^6.1.1
@@ -34,8 +32,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   auto_route_generator: ^1.0.1
-
-  # code generation
   build_runner: ^1.11.5
   freezed: ^0.14.1
   injectable_generator: ^1.2.0
@@ -46,12 +42,6 @@ dev_dependencies:
   # code checks
   lint: ^1.5.3
 
-dependency_overrides: null
-# map/geolocation dependencies
-# flutter_image:
-#   git:
-#     url: https://github.com/flutter/flutter_image.git
-#     ref: null-safety
 flutter:
   uses-material-design: true
 

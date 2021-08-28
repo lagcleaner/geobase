@@ -1,3 +1,6 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
+
 import 'app.dart';
 import 'injection.dart';
 import 'src/core/utils/simple_bloc_observer.dart';
@@ -5,7 +8,10 @@ import 'src/core/utils/simple_bloc_observer.dart';
 Future main() async {
   await initializeApp();
 
-  runApp(GeoBaseApp());
+  runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => GeoBaseApp(),
+  ));
 }
 
 Future initializeApp() async {

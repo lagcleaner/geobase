@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 import 'src/core/constants/constants.dart';
@@ -14,8 +15,12 @@ class GeoBaseApp extends StatelessWidget {
     return MaterialApp.router(
       title: APP_NAME,
       theme: geobaseLightTheme,
+      //AutoRoute
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
+      //DevicePreview
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
     );
   }
 }
