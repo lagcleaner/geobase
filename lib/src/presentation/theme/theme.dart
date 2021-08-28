@@ -18,7 +18,7 @@ const backgroundSecundaryColor = Color(0xfff2fff6);
 final ThemeData light = ThemeData.light();
 
 const TextStyle titleTextStyle = TextStyle(
-    fontFamily: 'Aller',
+    // fontFamily: 'Aller',
     color: titlesAndParagraphsColor,
     fontWeight: FontWeight.bold);
 
