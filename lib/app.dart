@@ -9,6 +9,9 @@ export 'package:flutter/material.dart';
 
 class GeoBaseApp extends StatelessWidget {
   final GeobaseRouter _router = GeobaseRouter();
+  final bool enabledDevicePreview;
+
+  GeoBaseApp([this.enabledDevicePreview = false]);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,8 @@ class GeoBaseApp extends StatelessWidget {
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
       //DevicePreview
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
+      locale: enabledDevicePreview ? DevicePreview.locale(context) : null,
+      builder: enabledDevicePreview ? DevicePreview.appBuilder : null,
     );
   }
 }

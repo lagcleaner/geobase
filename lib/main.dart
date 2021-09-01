@@ -10,8 +10,9 @@ Future main() async {
 
   runApp(DevicePreview(
     enabled: !kReleaseMode,
-    builder: (context) => GeoBaseApp(),
+    builder: (context) => GeoBaseApp(true),
   ));
+  // runApp(GeoBaseApp());
 }
 
 Future initializeApp() async {
@@ -19,5 +20,5 @@ Future initializeApp() async {
 
   Bloc.observer = SimpleBlocObserver();
 
-  configureInjection(Environment.prod);
+  configureInjection(Environment.dev);
 }
