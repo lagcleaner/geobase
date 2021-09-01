@@ -1,9 +1,9 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
-import 'src/core/constants/constants.dart';
-import 'src/presentation/router/router.dart';
-import 'src/presentation/theme/theme.dart';
+import 'constants/constants.dart';
+import 'router.dart';
+import 'theme.dart';
 
 export 'package:flutter/material.dart';
 
@@ -21,7 +21,7 @@ class GeoBaseApp extends StatelessWidget {
       //AutoRoute
       routerDelegate: _router.delegate(),
       routeInformationParser: _router.defaultRouteParser(),
-      //DevicePreview
+      // //DevicePreview
       locale: enabledDevicePreview ? DevicePreview.locale(context) : null,
       builder: enabledDevicePreview ? DevicePreview.appBuilder : null,
     );

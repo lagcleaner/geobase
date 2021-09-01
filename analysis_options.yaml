@@ -7,7 +7,7 @@ analyzer:
     - lib/**/*.g.dart
     - lib/**/*.gr.dart
     - lib/**/*.freezed.dart
-    - lib/**/*.config.dart
+    - lib/*.config.dart
   strong-mode:
     implicit-casts: false
 

@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
-
-import '../pages/home/home_page.dart';
+import 'package:geobase/src/presentation/views/home/home_page.dart';
 
 export 'router.gr.dart';
 

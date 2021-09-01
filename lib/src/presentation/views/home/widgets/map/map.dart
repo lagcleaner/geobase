@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:map/map.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlng/latlng.dart';
+import 'package:map/map.dart';
+
+import '../../blocs/marker/marker_bloc.dart';
 
 class GeoBaseMap extends StatefulWidget {
   @override
@@ -8,28 +13,27 @@ class GeoBaseMap extends StatefulWidget {
 }
 
 class _GeoBaseMapState extends State<GeoBaseMap> {
-  final controller = MapController(
-    location: LatLng(35.68, 51.41),
-  );
-
+  final controller =
+      MapController(location: LatLng(23.12, -82.38), zoom: 12, tileSize: 128);
+  bool showOptions =false;
+  
   final markers = [
-    LatLng(35.674, 51.41),
-    LatLng(35.676, 51.41),
-    LatLng(35.678, 51.41),
-    LatLng(35.68, 51.41),
-    LatLng(35.682, 51.41),
-    LatLng(35.684, 51.41),
-    LatLng(35.686, 51.41),
+    LatLng(23.124, -82.381),
+    LatLng(23.126, -82.38),
+    LatLng(23.128, -82.38),
+    LatLng(23.121, -82.38),
+    LatLng(23.122, -82.382),
+    LatLng(23.124, -82.38),
+    LatLng(23.126, -82.383),
   ];
 
   void _gotoDefault() {
-    controller.center = LatLng(35.68, 51.41);
+    controller.center = LatLng(23.12, -82.38);
     setState(() {});
   }
 
   void _onDoubleTap() {
     controller.zoom += 0.5;
-    setState(() {});
   }
 
   Offset? _dragStart;
@@ -60,8 +64,8 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
 
   Widget _buildMarkerWidget(Offset pos, Color color) {
     return Positioned(
-      left: pos.dx - 16,
-      top: pos.dy - 16,
+      left: pos.dx,
+      top: pos.dy,
       width: 24,
       height: 24,
       child: Icon(Icons.location_on, color: color),
@@ -99,17 +103,8 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
               onDoubleTap: _onDoubleTap,
               onScaleStart: _onScaleStart,
               onScaleUpdate: _onScaleUpdate,
-              onTapUp: (details) {
-                final location =
-                    transformer.fromXYCoordsToLatLng(details.localPosition);
-
-                final clicked = transformer.fromLatLngToXYCoords(location);
-
-                print('${location.longitude}, ${location.latitude}');
-                print('${clicked.dx}, ${clicked.dy}');
-                print(
-                    '${details.localPosition.dx}, ${details.localPosition.dy}');
-              },
+              onTapUp: _onTapUp(transformer),
+              onLongPressEnd: _onLongPressEnd(transformer),
               child: Stack(
                 children: [
                   Map(
@@ -127,11 +122,11 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
 
                       //Mapbox Streets
                       // final url =
-                      //     'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/$z/$x/$y?access_token=YOUR_MAPBOX_ACCESS_TOKEN';
+                      //     'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles///?access_token=YOUR_MAPBOX_ACCESS_TOKEN';
 
                       return Image.network(
                         url,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       );
                     },
                   ),
@@ -152,7 +147,32 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
             child: const Icon(Icons.my_location),
           ),
         ),
+        Positioned(
+          top: ,
+          right: 20,
+          child: FloatingActionButton(
+            onPressed: _gotoDefault,
+            tooltip: 'My Location',
+            child: const Icon(Icons.my_location),
+          ),
+        ),
       ],
     );
   }
+
+  Function(TapUpDetails) _onTapUp(MapTransformer transformer) =>
+      (TapUpDetails details) {
+        final location =
+            transformer.fromXYCoordsToLatLng(details.localPosition);
+
+        log('_onTapUp: ${location.longitude}, ${location.latitude}');
+      };
+
+  Function(LongPressEndDetails) _onLongPressEnd(MapTransformer transformer) =>
+      (LongPressEndDetails details) {
+        final location =
+            transformer.fromXYCoordsToLatLng(details.localPosition);
+
+        log('_onLongPressEnd: ${location.longitude}, ${location.latitude}');
+      };
 }

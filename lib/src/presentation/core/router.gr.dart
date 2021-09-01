@@ -6,7 +6,7 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 
-import '../pages/home/home_page.dart' as _i2;
+import '../views/home/home_page.dart' as _i2;
 
 class GeobaseRouter extends _i1.RootStackRouter {
   GeobaseRouter();

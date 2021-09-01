@@ -1,4 +1,4 @@
-import 'package:geobase/app.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 
 class SlideUpEditInfoBody extends StatelessWidget {
   @override
