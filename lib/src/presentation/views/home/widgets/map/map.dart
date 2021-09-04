@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:latlng/latlng.dart';
@@ -15,8 +14,10 @@ class GeoBaseMap extends StatefulWidget {
 class _GeoBaseMapState extends State<GeoBaseMap> {
   final controller =
       MapController(location: LatLng(23.12, -82.38), zoom: 12, tileSize: 128);
-  bool showOptions =false;
-  
+  bool showOptions = false;
+  Offset? _dragStart;
+  double _scaleStart = 1.0;
+
   final markers = [
     LatLng(23.124, -82.381),
     LatLng(23.126, -82.38),
@@ -26,51 +27,6 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
     LatLng(23.124, -82.38),
     LatLng(23.126, -82.383),
   ];
-
-  void _gotoDefault() {
-    controller.center = LatLng(23.12, -82.38);
-    setState(() {});
-  }
-
-  void _onDoubleTap() {
-    controller.zoom += 0.5;
-  }
-
-  Offset? _dragStart;
-  double _scaleStart = 1.0;
-  void _onScaleStart(ScaleStartDetails details) {
-    _dragStart = details.focalPoint;
-    _scaleStart = 1.0;
-  }
-
-  void _onScaleUpdate(ScaleUpdateDetails details) {
-    final scaleDiff = details.scale - _scaleStart;
-    _scaleStart = details.scale;
-
-    if (scaleDiff > 0) {
-      controller.zoom += 0.02;
-      setState(() {});
-    } else if (scaleDiff < 0) {
-      controller.zoom -= 0.02;
-      setState(() {});
-    } else {
-      final now = details.focalPoint;
-      final diff = now - _dragStart!;
-      _dragStart = now;
-      controller.drag(diff.dx, diff.dy);
-      setState(() {});
-    }
-  }
-
-  Widget _buildMarkerWidget(Offset pos, Color color) {
-    return Positioned(
-      left: pos.dx,
-      top: pos.dy,
-      width: 24,
-      height: 24,
-      child: Icon(Icons.location_on, color: color),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,10 +56,11 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
                 _buildMarkerWidget(centerLocation, Colors.purple);
 
             return GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onDoubleTap: _onDoubleTap,
               onScaleStart: _onScaleStart,
               onScaleUpdate: _onScaleUpdate,
-              onTapUp: _onTapUp(transformer),
+              onTapUp: _onTap(transformer),
               onLongPressEnd: _onLongPressEnd(transformer),
               child: Stack(
                 children: [
@@ -142,17 +99,15 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
           bottom: 20,
           right: 20,
           child: FloatingActionButton(
-            onPressed: _gotoDefault,
-            tooltip: 'My Location',
-            child: const Icon(Icons.my_location),
+            onPressed: _gotoSettings,
+            child: const Icon(Icons.settings),
           ),
         ),
         Positioned(
-          top: ,
+          top: 120,
           right: 20,
-          child: FloatingActionButton(
+          child: OutlinedButton(
             onPressed: _gotoDefault,
-            tooltip: 'My Location',
             child: const Icon(Icons.my_location),
           ),
         ),
@@ -160,7 +115,50 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
     );
   }
 
-  Function(TapUpDetails) _onTapUp(MapTransformer transformer) =>
+  Widget _buildMarkerWidget(Offset pos, Color color) {
+    return Positioned(
+      left: pos.dx - 16,
+      top: pos.dy - 24,
+      width: 24,
+      height: 24,
+      child: Icon(Icons.location_on, color: color),
+    );
+  }
+
+  void _gotoDefault() {
+    controller.center = LatLng(23.12, -82.38);
+    setState(() {});
+  }
+
+  void _onDoubleTap() {
+    controller.zoom += 0.5;
+  }
+
+  void _onScaleStart(ScaleStartDetails details) {
+    _dragStart = details.focalPoint;
+    _scaleStart = 1.0;
+  }
+
+  void _onScaleUpdate(ScaleUpdateDetails details) {
+    final scaleDiff = details.scale - _scaleStart;
+    _scaleStart = details.scale;
+
+    if (scaleDiff > 0) {
+      controller.zoom += 0.02;
+      setState(() {});
+    } else if (scaleDiff < 0) {
+      controller.zoom -= 0.02;
+      setState(() {});
+    } else {
+      final now = details.focalPoint;
+      final diff = now - _dragStart!;
+      _dragStart = now;
+      controller.drag(diff.dx, diff.dy);
+      setState(() {});
+    }
+  }
+
+  Function(TapUpDetails) _onTap(MapTransformer transformer) =>
       (TapUpDetails details) {
         final location =
             transformer.fromXYCoordsToLatLng(details.localPosition);
@@ -173,6 +171,14 @@ class _GeoBaseMapState extends State<GeoBaseMap> {
         final location =
             transformer.fromXYCoordsToLatLng(details.localPosition);
 
+        setState(() {
+          markers.add(location);
+        });
+
         log('_onLongPressEnd: ${location.longitude}, ${location.latitude}');
       };
+
+  void _gotoSettings() {
+    //
+  }
 }
