@@ -36,7 +36,7 @@ FieldType _$FieldTypeFromJson(Map<String, dynamic> json) {
       return MinuteFieldType.fromJson(json);
     case 'Second':
       return SecondFieldType.fromJson(json);
-    case 'Category':
+    case 'Composed':
       return CategoryFieldType.fromJson(json);
 
     default:
@@ -114,7 +114,7 @@ class _$FieldTypeTearOff {
     );
   }
 
-  CategoryFieldType category(
+  CategoryFieldType composed(
       {bool nulleable = false,
       required String categoryName,
       @JsonKey(name: 'field_types')
@@ -153,7 +153,7 @@ mixin _$FieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -171,7 +171,7 @@ mixin _$FieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -188,7 +188,7 @@ mixin _$FieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,7 +204,7 @@ mixin _$FieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -328,7 +328,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return bool(nulleable);
   }
@@ -349,7 +349,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -372,7 +372,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return bool(this);
   }
@@ -391,7 +391,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (bool != null) {
@@ -505,7 +505,7 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return int(nulleable);
   }
@@ -526,7 +526,7 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (int != null) {
@@ -549,7 +549,7 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return int(this);
   }
@@ -568,7 +568,7 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (int != null) {
@@ -683,7 +683,7 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return double(nulleable);
   }
@@ -704,7 +704,7 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (double != null) {
@@ -727,7 +727,7 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return double(this);
   }
@@ -746,7 +746,7 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (double != null) {
@@ -861,7 +861,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return string(nulleable);
   }
@@ -882,7 +882,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -905,7 +905,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return string(this);
   }
@@ -924,7 +924,7 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (string != null) {
@@ -1039,7 +1039,7 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return year(nulleable);
   }
@@ -1060,7 +1060,7 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (year != null) {
@@ -1083,7 +1083,7 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return year(this);
   }
@@ -1102,7 +1102,7 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (year != null) {
@@ -1217,7 +1217,7 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return month(nulleable);
   }
@@ -1238,7 +1238,7 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (month != null) {
@@ -1261,7 +1261,7 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return month(this);
   }
@@ -1280,7 +1280,7 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (month != null) {
@@ -1394,7 +1394,7 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return day(nulleable);
   }
@@ -1415,7 +1415,7 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (day != null) {
@@ -1438,7 +1438,7 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return day(this);
   }
@@ -1457,7 +1457,7 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (day != null) {
@@ -1574,7 +1574,7 @@ class _$WeekDayFieldType
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return weekDay(nulleable);
   }
@@ -1595,7 +1595,7 @@ class _$WeekDayFieldType
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (weekDay != null) {
@@ -1618,7 +1618,7 @@ class _$WeekDayFieldType
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return weekDay(this);
   }
@@ -1637,7 +1637,7 @@ class _$WeekDayFieldType
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (weekDay != null) {
@@ -1752,7 +1752,7 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return hour(nulleable);
   }
@@ -1773,7 +1773,7 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (hour != null) {
@@ -1796,7 +1796,7 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return hour(this);
   }
@@ -1815,7 +1815,7 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (hour != null) {
@@ -1930,7 +1930,7 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return minute(nulleable);
   }
@@ -1951,7 +1951,7 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (minute != null) {
@@ -1974,7 +1974,7 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return minute(this);
   }
@@ -1993,7 +1993,7 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (minute != null) {
@@ -2108,7 +2108,7 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
     return second(nulleable);
   }
@@ -2129,7 +2129,7 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
     if (second != null) {
@@ -2152,7 +2152,7 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
     return second(this);
   }
@@ -2171,7 +2171,7 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
     if (second != null) {
@@ -2274,7 +2274,7 @@ class _$CategoryFieldType
 
   @override
   String toString() {
-    return 'FieldType.category(nulleable: $nulleable, categoryName: $categoryName, fieldTypes: $fieldTypes)';
+    return 'FieldType.composed(nulleable: $nulleable, categoryName: $categoryName, fieldTypes: $fieldTypes)';
   }
 
   @override
@@ -2320,9 +2320,9 @@ class _$CategoryFieldType
     required TResult Function(bool nulleable) second,
     required TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        category,
+        composed,
   }) {
-    return category(nulleable, categoryName, fieldTypes);
+    return composed(nulleable, categoryName, fieldTypes);
   }
 
   @override
@@ -2341,11 +2341,11 @@ class _$CategoryFieldType
     TResult Function(bool nulleable)? second,
     TResult Function(bool nulleable, String categoryName,
             @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        category,
+        composed,
     required TResult orElse(),
   }) {
-    if (category != null) {
-      return category(nulleable, categoryName, fieldTypes);
+    if (composed != null) {
+      return composed(nulleable, categoryName, fieldTypes);
     }
     return orElse();
   }
@@ -2364,9 +2364,9 @@ class _$CategoryFieldType
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(CategoryFieldType value) category,
+    required TResult Function(CategoryFieldType value) composed,
   }) {
-    return category(this);
+    return composed(this);
   }
 
   @override
@@ -2383,18 +2383,18 @@ class _$CategoryFieldType
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(CategoryFieldType value)? category,
+    TResult Function(CategoryFieldType value)? composed,
     required TResult orElse(),
   }) {
-    if (category != null) {
-      return category(this);
+    if (composed != null) {
+      return composed(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$CategoryFieldTypeToJson(this)..['field_type'] = 'Category';
+    return _$_$CategoryFieldTypeToJson(this)..['field_type'] = 'Composed';
   }
 }
 

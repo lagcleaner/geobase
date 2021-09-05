@@ -35,17 +35,17 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
   @With(GetFieldTypeNameMixin)
   factory FieldType.second({@Default(false) bool nulleable}) = SecondFieldType;
 
-  // composed - category
+  // composed
   @With(GetFieldTypeNameMixin)
   @Implements(ICategoryFieldType)
-  factory FieldType.category({
+  factory FieldType.composed({
     @Default(false) bool nulleable,
     required String categoryName,
     @JsonKey(name: 'field_types') required Map<String, FieldType> fieldTypes,
   }) = CategoryFieldType;
 
   // location (latitude, longitude)
-  factory FieldType.latlong({bool nulleable = false}) => FieldType.category(
+  factory FieldType.latlong({bool nulleable = false}) => FieldType.composed(
         categoryName: 'latlong',
         fieldTypes: {
           'latitud': FieldType.double(),
@@ -55,7 +55,7 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
       );
 
   // datetime (composed)
-  factory FieldType.date({bool nulleable = false}) => FieldType.category(
+  factory FieldType.date({bool nulleable = false}) => FieldType.composed(
         categoryName: 'date',
         fieldTypes: {
           'year': FieldType.year(),
@@ -66,7 +66,7 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
         nulleable: nulleable,
       );
 
-  factory FieldType.time({bool nulleable = false}) => FieldType.category(
+  factory FieldType.time({bool nulleable = false}) => FieldType.composed(
         categoryName: 'time',
         fieldTypes: {
           'hours': FieldType.hour(),
@@ -76,7 +76,7 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
         nulleable: nulleable,
       );
 
-  factory FieldType.datetime({bool nulleable = false}) => FieldType.category(
+  factory FieldType.datetime({bool nulleable = false}) => FieldType.composed(
         categoryName: 'datetime',
         fieldTypes: {
           'year': FieldType.year(),
@@ -93,7 +93,7 @@ abstract class FieldType with _$FieldType, GetFieldTypeNameMixin {
   // media
   factory FieldType.media(
           {bool nulleable = false, String categoryName = 'file'}) =>
-      FieldType.category(
+      FieldType.composed(
         categoryName: categoryName,
         fieldTypes: {
           'remote_path': FieldType.string(nulleable: true),
