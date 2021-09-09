@@ -15,18 +15,18 @@ class MapFilterService
   MapFilterService();
 
   @override
-  Future<Either<Failure, FilterOptions>> loadFilterOptions() async {
+  Future<Either<Failure, FilterDataOptions>> loadFilterOptions() async {
     // TODO: implement loadFiltersInfo
-    return Right(FilterOptions.clean());
+    return Right(FilterDataOptions.clean());
   }
 
   @override
   // TODO: implement onFiltersInfoChanged
-  Stream<FilterOptions> get onFiltersOptionsChanged =>
+  Stream<FilterDataOptions> get onFiltersOptionsChanged =>
       throw UnimplementedError();
 
   @override
-  Future<Either<Failure, Unit>> setFilterOptions(FilterOptions filters) {
+  Future<Either<Failure, Unit>> setFilterOptions(FilterDataOptions filters) {
     // TODO: implement setFilterOptions
     throw UnimplementedError();
   }

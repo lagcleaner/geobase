@@ -3,11 +3,11 @@ import 'package:dartz/dartz.dart';
 import '../../../entities/entities.dart';
 
 abstract class IMapFiltersOptionsLoaderService {
-  Future<Either<Failure, FilterOptions>> loadFilterOptions();
+  Future<Either<Failure, FilterDataOptions>> loadFilterOptions();
 }
 
 abstract class IMapFiltersOptionsChangesListenerService {
-  Stream<FilterOptions> get onFiltersOptionsChanged;
+  Stream<FilterDataOptions> get onFiltersOptionsChanged;
 }
 
 abstract class IMapFiltersOptionsReaderService
@@ -16,5 +16,5 @@ abstract class IMapFiltersOptionsReaderService
         IMapFiltersOptionsChangesListenerService {}
 
 abstract class IMapFiltersOptionsWritterService {
-  Future<Either<Failure, Unit>> setFilterOptions(FilterOptions filters);
+  Future<Either<Failure, Unit>> setFilterOptions(FilterDataOptions filters);
 }
