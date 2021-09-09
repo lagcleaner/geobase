@@ -2,8 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../injection.dart';
-import '../../entities/failures/failures.dart';
-import 'interfaces/i_location.dart';
+import '../../entities/entities.dart';
+import '../services.dart';
 
 @LazySingleton(as: ILocationConfigurationService)
 @LazySingleton(as: ILocationGetterService)

@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:geobase/src/domain/services/map/interfaces/i_filters.dart';
 
 import '../../../../injection.dart';
-import '../../entities/failures/failures.dart';
-import '../../entities/filter_options.dart';
+import '../../entities/entities.dart';
+import '../services.dart';
 
 @LazySingleton(as: IMapFiltersOptionsLoaderService)
 @LazySingleton(as: IMapFiltersOptionsChangesListenerService)

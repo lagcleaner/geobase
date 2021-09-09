@@ -1,7 +1,3 @@
-import 'package:latlong2/latlong.dart';
-
-import '../filter_options.dart';
-
 class UserPreferences {
   final bool showLocation;
   final Duration updateInterval;

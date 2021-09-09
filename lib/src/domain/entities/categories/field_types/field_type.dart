@@ -3,6 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'composed_field_type.dart';
 import 'i_get_field_type_name.dart';
 
+export 'composed_field_type.dart';
+export 'i_get_field_type_name.dart';
+
 part 'field_type.freezed.dart';
 part 'field_type.g.dart';
 

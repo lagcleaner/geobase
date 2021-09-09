@@ -1,4 +1,4 @@
-import '../filter_options.dart';
+import '../filters/filter_options.dart';
 import 'source_configuration.dart';
 import 'user_preferences.dart';
 

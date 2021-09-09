@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:latlong2/latlong.dart';
 
-import '../../services/utils/field_types/field_type.dart';
+import 'field_types/field_type.dart';
 
 class Category {
   final String id;

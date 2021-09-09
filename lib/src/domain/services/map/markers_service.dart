@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:geobase/src/domain/entities/markers/marker_meta.dart';
-import 'package:geobase/src/domain/services/map/interfaces/i_markers.dart';
 
 import '../../../../injection.dart';
-import '../../entities/failures/failures.dart';
+import '../../entities/entities.dart';
+import '../services.dart';
 
 @LazySingleton(as: IMarkerGetterService)
 class GetMarkers implements IMarkerGetterService {
