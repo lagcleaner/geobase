@@ -1,16 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:latlong2/latlong.dart';
 
-class MarkerMeta {
+abstract class IMarkable {
   final Key? key;
   final LatLng point;
-  final String categoryId;
   final Color? color;
 
-  MarkerMeta({
+  IMarkable({
     this.key,
     required this.point,
-    required this.categoryId,
     this.color,
   });
 }

@@ -8,4 +8,5 @@ export 'filters/filter_categories_options.dart';
 export 'filters/filter_data_options.dart';
 export 'filters/nearby_area.dart';
 export 'geodata/geodata.dart';
-export 'markers/marker_meta.dart';
+export 'markers/i_markable.dart';
+export 'markers/temporal_marker.dart';

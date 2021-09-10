@@ -9,7 +9,7 @@ class GetMarkers implements IMarkerGetterService {
   GetMarkers();
 
   @override
-  Future<Either<Failure, List<MarkerMeta>>> getMarkers() async {
+  Future<Either<Failure, List<IMarkable>>> getMarkers() async {
     // TODO: automatic filter accordingly to saved FilterOptions
     // TODO: implement getMarkers
     return const Right([]);

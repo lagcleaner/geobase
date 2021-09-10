@@ -1,10 +1,12 @@
+import 'dart:ui';
+
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' hide Category;
 import 'package:latlong2/latlong.dart';
 
-import '../categories/field_types/field_type.dart';
+import '../entities.dart';
 
-class GeoData {
+class GeoData implements IMarkable {
   final String geoDataId;
 
   final String categoryId;
@@ -13,10 +15,20 @@ class GeoData {
 
   final LatLng location;
 
+  /// 'field_name': (FieldType(), value)
   final Map<String, Tuple2<FieldType, dynamic>> fields;
 
-  /// 'field_name': ('categoryId': value)
-  final Map<String, Tuple2<String, GeoData>> realtions;
+  /// 'field_name': (GeoData)
+  final Map<String, GeoData> realtions;
+
+  @override
+  Color? get color => category?.color ?? const Color(0xCC000000);
+
+  @override
+  Key? get key => Key(geoDataId);
+
+  @override
+  LatLng get point => location;
 
   GeoData({
     required this.geoDataId,
@@ -33,7 +45,7 @@ class GeoData {
     Category? category,
     LatLng? location,
     Map<String, Tuple2<FieldType, dynamic>>? fields,
-    Map<String, Tuple2<String, GeoData>>? realtions,
+    Map<String, GeoData>? realtions,
   }) {
     return GeoData(
       geoDataId: geoDataId ?? this.geoDataId,

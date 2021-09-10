@@ -3,5 +3,5 @@ import 'package:dartz/dartz.dart';
 import '../../../entities/entities.dart';
 
 abstract class IMarkerGetterService {
-  Future<Either<Failure, List<MarkerMeta>>> getMarkers();
+  Future<Either<Failure, List<IMarkable>>> getMarkers();
 }
