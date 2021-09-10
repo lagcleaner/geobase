@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../injection.dart';
 import '../../core/constants/constants.dart';
+import 'blocs/location/location_cubit.dart';
+import 'blocs/map/map_cubit.dart';
+import 'blocs/markers/marker_cubit.dart';
 import 'widgets/map/map.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,7 +25,20 @@ class HomePage extends StatelessWidget {
           ),
           body: Stack(
             children: [
-              GeoBaseMap(),
+              MultiBlocProvider(
+                providers: [
+                  BlocProvider<MapCubit>(
+                    create: (context) => getIt<MapCubit>(),
+                  ),
+                  BlocProvider<MarkerCubit>(
+                    create: (context) => getIt<MarkerCubit>(),
+                  ),
+                  BlocProvider<LocationCubit>(
+                    create: (context) => getIt<LocationCubit>(),
+                  ),
+                ],
+                child: GeoBaseMap(),
+              ),
             ],
           ),
         ),
