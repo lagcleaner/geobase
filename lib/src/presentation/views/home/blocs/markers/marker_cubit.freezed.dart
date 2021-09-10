@@ -16,16 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$MarkerStateTearOff {
   const _$MarkerStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _Filtering filtering() {
-    return const _Filtering();
-  }
-
-  _Failure failure() {
-    return const _Failure();
+  _Failure failure(Failure failure) {
+    return _Failure(
+      failure,
+    );
   }
 
   _Filtered filteredOut({required Set<MarkerMeta> markers}) {
@@ -42,33 +36,25 @@ const $MarkerState = _$MarkerStateTearOff();
 mixin _$MarkerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() filtering,
-    required TResult Function() failure,
+    required TResult Function(Failure failure) failure,
     required TResult Function(Set<MarkerMeta> markers) filteredOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? filtering,
-    TResult Function()? failure,
+    TResult Function(Failure failure)? failure,
     TResult Function(Set<MarkerMeta> markers)? filteredOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Filtering value) filtering,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Filtered value) filteredOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Filtering value)? filtering,
     TResult Function(_Failure value)? failure,
     TResult Function(_Filtered value)? filteredOut,
     required TResult orElse(),
@@ -93,190 +79,12 @@ class _$MarkerStateCopyWithImpl<$Res> implements $MarkerStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
-}
-
-/// @nodoc
-class _$_Initial implements _Initial {
-  const _$_Initial();
-
-  @override
-  String toString() {
-    return 'MarkerState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() filtering,
-    required TResult Function() failure,
-    required TResult Function(Set<MarkerMeta> markers) filteredOut,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? filtering,
-    TResult Function()? failure,
-    TResult Function(Set<MarkerMeta> markers)? filteredOut,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Filtering value) filtering,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Filtered value) filteredOut,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Filtering value)? filtering,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Filtered value)? filteredOut,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements MarkerState {
-  const factory _Initial() = _$_Initial;
-}
-
-/// @nodoc
-abstract class _$FilteringCopyWith<$Res> {
-  factory _$FilteringCopyWith(
-          _Filtering value, $Res Function(_Filtering) then) =
-      __$FilteringCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$FilteringCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
-    implements _$FilteringCopyWith<$Res> {
-  __$FilteringCopyWithImpl(_Filtering _value, $Res Function(_Filtering) _then)
-      : super(_value, (v) => _then(v as _Filtering));
-
-  @override
-  _Filtering get _value => super._value as _Filtering;
-}
-
-/// @nodoc
-class _$_Filtering implements _Filtering {
-  const _$_Filtering();
-
-  @override
-  String toString() {
-    return 'MarkerState.filtering()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Filtering);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() filtering,
-    required TResult Function() failure,
-    required TResult Function(Set<MarkerMeta> markers) filteredOut,
-  }) {
-    return filtering();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? filtering,
-    TResult Function()? failure,
-    TResult Function(Set<MarkerMeta> markers)? filteredOut,
-    required TResult orElse(),
-  }) {
-    if (filtering != null) {
-      return filtering();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Filtering value) filtering,
-    required TResult Function(_Failure value) failure,
-    required TResult Function(_Filtered value) filteredOut,
-  }) {
-    return filtering(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Filtering value)? filtering,
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Filtered value)? filteredOut,
-    required TResult orElse(),
-  }) {
-    if (filtering != null) {
-      return filtering(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Filtering implements MarkerState {
-  const factory _Filtering() = _$_Filtering;
-}
-
-/// @nodoc
 abstract class _$FailureCopyWith<$Res> {
   factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
       __$FailureCopyWithImpl<$Res>;
+  $Res call({Failure failure});
+
+  $FailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -287,47 +95,74 @@ class __$FailureCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
 
   @override
   _Failure get _value => super._value as _Failure;
+
+  @override
+  $Res call({
+    Object? failure = freezed,
+  }) {
+    return _then(_Failure(
+      failure == freezed
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+
+  @override
+  $FailureCopyWith<$Res> get failure {
+    return $FailureCopyWith<$Res>(_value.failure, (value) {
+      return _then(_value.copyWith(failure: value));
+    });
+  }
 }
 
 /// @nodoc
 class _$_Failure implements _Failure {
-  const _$_Failure();
+  const _$_Failure(this.failure);
+
+  @override
+  final Failure failure;
 
   @override
   String toString() {
-    return 'MarkerState.failure()';
+    return 'MarkerState.failure(failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Failure);
+    return identical(this, other) ||
+        (other is _Failure &&
+            (identical(other.failure, failure) ||
+                const DeepCollectionEquality().equals(other.failure, failure)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+
+  @JsonKey(ignore: true)
+  @override
+  _$FailureCopyWith<_Failure> get copyWith =>
+      __$FailureCopyWithImpl<_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() filtering,
-    required TResult Function() failure,
+    required TResult Function(Failure failure) failure,
     required TResult Function(Set<MarkerMeta> markers) filteredOut,
   }) {
-    return failure();
+    return failure(this.failure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? filtering,
-    TResult Function()? failure,
+    TResult Function(Failure failure)? failure,
     TResult Function(Set<MarkerMeta> markers)? filteredOut,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure();
+      return failure(this.failure);
     }
     return orElse();
   }
@@ -335,8 +170,6 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Filtering value) filtering,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Filtered value) filteredOut,
   }) {
@@ -346,8 +179,6 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Filtering value)? filtering,
     TResult Function(_Failure value)? failure,
     TResult Function(_Filtered value)? filteredOut,
     required TResult orElse(),
@@ -360,7 +191,12 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements MarkerState {
-  const factory _Failure() = _$_Failure;
+  const factory _Failure(Failure failure) = _$_Failure;
+
+  Failure get failure => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$FailureCopyWith<_Failure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -424,9 +260,7 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() filtering,
-    required TResult Function() failure,
+    required TResult Function(Failure failure) failure,
     required TResult Function(Set<MarkerMeta> markers) filteredOut,
   }) {
     return filteredOut(markers);
@@ -435,9 +269,7 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? filtering,
-    TResult Function()? failure,
+    TResult Function(Failure failure)? failure,
     TResult Function(Set<MarkerMeta> markers)? filteredOut,
     required TResult orElse(),
   }) {
@@ -450,8 +282,6 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Filtering value) filtering,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Filtered value) filteredOut,
   }) {
@@ -461,8 +291,6 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Filtering value)? filtering,
     TResult Function(_Failure value)? failure,
     TResult Function(_Filtered value)? filteredOut,
     required TResult orElse(),
