@@ -8,8 +8,8 @@ import '../services.dart';
 @LazySingleton(as: ILocationConfigurationService)
 @LazySingleton(as: ILocationGetterService)
 @LazySingleton(as: ILocationStreamerService)
-class GetCurrentLocation
-    implements ILocationGetterService, ILocationStreamerService {
+@LazySingleton(as: ILocationReaderService)
+class GetCurrentLocation implements ILocationReaderService {
   GetCurrentLocation();
 
   @override
@@ -19,7 +19,7 @@ class GetCurrentLocation
   }
 
   @override
-  Future<Either<Failure, Unit>> initialize(int refreshInterval) {
+  Future<Either<Failure, Unit>> initialize(Duration refreshInterval) {
     // TODO: implement initialize
     throw UnimplementedError();
   }

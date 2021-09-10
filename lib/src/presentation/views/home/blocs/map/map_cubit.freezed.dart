@@ -17,13 +17,11 @@ class _$MapStateTearOff {
   const _$MapStateTearOff();
 
   _MapState state(
-      {ConnectionState connection = ConnectionState.Online,
-      required MapController mapController,
+      {required MapController mapController,
       required MapSourceConfiguration sourceConfiguration,
       bool loadingConfigs = false,
       Failure? failure = null}) {
     return _MapState(
-      connection: connection,
       mapController: mapController,
       sourceConfiguration: sourceConfiguration,
       loadingConfigs: loadingConfigs,
@@ -37,7 +35,6 @@ const $MapState = _$MapStateTearOff();
 
 /// @nodoc
 mixin _$MapState {
-  ConnectionState get connection => throw _privateConstructorUsedError;
   MapController get mapController => throw _privateConstructorUsedError;
   MapSourceConfiguration get sourceConfiguration =>
       throw _privateConstructorUsedError;
@@ -47,7 +44,6 @@ mixin _$MapState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ConnectionState connection,
             MapController mapController,
             MapSourceConfiguration sourceConfiguration,
             bool loadingConfigs,
@@ -58,7 +54,6 @@ mixin _$MapState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            ConnectionState connection,
             MapController mapController,
             MapSourceConfiguration sourceConfiguration,
             bool loadingConfigs,
@@ -89,8 +84,7 @@ abstract class $MapStateCopyWith<$Res> {
   factory $MapStateCopyWith(MapState value, $Res Function(MapState) then) =
       _$MapStateCopyWithImpl<$Res>;
   $Res call(
-      {ConnectionState connection,
-      MapController mapController,
+      {MapController mapController,
       MapSourceConfiguration sourceConfiguration,
       bool loadingConfigs,
       Failure? failure});
@@ -109,17 +103,12 @@ class _$MapStateCopyWithImpl<$Res> implements $MapStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? connection = freezed,
     Object? mapController = freezed,
     Object? sourceConfiguration = freezed,
     Object? loadingConfigs = freezed,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      connection: connection == freezed
-          ? _value.connection
-          : connection // ignore: cast_nullable_to_non_nullable
-              as ConnectionState,
       mapController: mapController == freezed
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
@@ -165,8 +154,7 @@ abstract class _$MapStateCopyWith<$Res> implements $MapStateCopyWith<$Res> {
       __$MapStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {ConnectionState connection,
-      MapController mapController,
+      {MapController mapController,
       MapSourceConfiguration sourceConfiguration,
       bool loadingConfigs,
       Failure? failure});
@@ -188,17 +176,12 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? connection = freezed,
     Object? mapController = freezed,
     Object? sourceConfiguration = freezed,
     Object? loadingConfigs = freezed,
     Object? failure = freezed,
   }) {
     return _then(_MapState(
-      connection: connection == freezed
-          ? _value.connection
-          : connection // ignore: cast_nullable_to_non_nullable
-              as ConnectionState,
       mapController: mapController == freezed
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
@@ -222,15 +205,11 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
 /// @nodoc
 class _$_MapState implements _MapState {
   const _$_MapState(
-      {this.connection = ConnectionState.Online,
-      required this.mapController,
+      {required this.mapController,
       required this.sourceConfiguration,
       this.loadingConfigs = false,
       this.failure = null});
 
-  @JsonKey(defaultValue: ConnectionState.Online)
-  @override
-  final ConnectionState connection;
   @override
   final MapController mapController;
   @override
@@ -244,16 +223,13 @@ class _$_MapState implements _MapState {
 
   @override
   String toString() {
-    return 'MapState.state(connection: $connection, mapController: $mapController, sourceConfiguration: $sourceConfiguration, loadingConfigs: $loadingConfigs, failure: $failure)';
+    return 'MapState.state(mapController: $mapController, sourceConfiguration: $sourceConfiguration, loadingConfigs: $loadingConfigs, failure: $failure)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _MapState &&
-            (identical(other.connection, connection) ||
-                const DeepCollectionEquality()
-                    .equals(other.connection, connection)) &&
             (identical(other.mapController, mapController) ||
                 const DeepCollectionEquality()
                     .equals(other.mapController, mapController)) &&
@@ -270,7 +246,6 @@ class _$_MapState implements _MapState {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(connection) ^
       const DeepCollectionEquality().hash(mapController) ^
       const DeepCollectionEquality().hash(sourceConfiguration) ^
       const DeepCollectionEquality().hash(loadingConfigs) ^
@@ -285,22 +260,19 @@ class _$_MapState implements _MapState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            ConnectionState connection,
             MapController mapController,
             MapSourceConfiguration sourceConfiguration,
             bool loadingConfigs,
             Failure? failure)
         state,
   }) {
-    return state(connection, mapController, sourceConfiguration, loadingConfigs,
-        failure);
+    return state(mapController, sourceConfiguration, loadingConfigs, failure);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            ConnectionState connection,
             MapController mapController,
             MapSourceConfiguration sourceConfiguration,
             bool loadingConfigs,
@@ -309,8 +281,7 @@ class _$_MapState implements _MapState {
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(connection, mapController, sourceConfiguration,
-          loadingConfigs, failure);
+      return state(mapController, sourceConfiguration, loadingConfigs, failure);
     }
     return orElse();
   }
@@ -338,14 +309,11 @@ class _$_MapState implements _MapState {
 
 abstract class _MapState implements MapState {
   const factory _MapState(
-      {ConnectionState connection,
-      required MapController mapController,
+      {required MapController mapController,
       required MapSourceConfiguration sourceConfiguration,
       bool loadingConfigs,
       Failure? failure}) = _$_MapState;
 
-  @override
-  ConnectionState get connection => throw _privateConstructorUsedError;
   @override
   MapController get mapController => throw _privateConstructorUsedError;
   @override
