@@ -1,6 +1,7 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'injection.dart';
 import 'src/presentation/core/app.dart';
-import 'src/presentation/core/utils/simple_bloc_observer.dart';
 
 Future main() async {
   await initializeApp();
@@ -15,7 +16,7 @@ Future main() async {
 Future initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Bloc.observer = SimpleBlocObserver();
-
   configureInjection(Environment.dev);
+
+  Bloc.observer = getIt<BlocObserver>();
 }

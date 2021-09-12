@@ -22,7 +22,7 @@ class _$MarkerStateTearOff {
     );
   }
 
-  _Filtered filteredOut({required Set<MarkerMeta> markers}) {
+  _Filtered filteredOut({required Set<IMarkable> markers}) {
     return _Filtered(
       markers: markers,
     );
@@ -37,13 +37,13 @@ mixin _$MarkerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<MarkerMeta> markers) filteredOut,
+    required TResult Function(Set<IMarkable> markers) filteredOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<MarkerMeta> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers)? filteredOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,7 +149,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<MarkerMeta> markers) filteredOut,
+    required TResult Function(Set<IMarkable> markers) filteredOut,
   }) {
     return failure(this.failure);
   }
@@ -158,7 +158,7 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<MarkerMeta> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers)? filteredOut,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -203,7 +203,7 @@ abstract class _Failure implements MarkerState {
 abstract class _$FilteredCopyWith<$Res> {
   factory _$FilteredCopyWith(_Filtered value, $Res Function(_Filtered) then) =
       __$FilteredCopyWithImpl<$Res>;
-  $Res call({Set<MarkerMeta> markers});
+  $Res call({Set<IMarkable> markers});
 }
 
 /// @nodoc
@@ -223,7 +223,7 @@ class __$FilteredCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
       markers: markers == freezed
           ? _value.markers
           : markers // ignore: cast_nullable_to_non_nullable
-              as Set<MarkerMeta>,
+              as Set<IMarkable>,
     ));
   }
 }
@@ -233,7 +233,7 @@ class _$_Filtered implements _Filtered {
   const _$_Filtered({required this.markers});
 
   @override
-  final Set<MarkerMeta> markers;
+  final Set<IMarkable> markers;
 
   @override
   String toString() {
@@ -261,7 +261,7 @@ class _$_Filtered implements _Filtered {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<MarkerMeta> markers) filteredOut,
+    required TResult Function(Set<IMarkable> markers) filteredOut,
   }) {
     return filteredOut(markers);
   }
@@ -270,7 +270,7 @@ class _$_Filtered implements _Filtered {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<MarkerMeta> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers)? filteredOut,
     required TResult orElse(),
   }) {
     if (filteredOut != null) {
@@ -303,9 +303,9 @@ class _$_Filtered implements _Filtered {
 }
 
 abstract class _Filtered implements MarkerState {
-  const factory _Filtered({required Set<MarkerMeta> markers}) = _$_Filtered;
+  const factory _Filtered({required Set<IMarkable> markers}) = _$_Filtered;
 
-  Set<MarkerMeta> get markers => throw _privateConstructorUsedError;
+  Set<IMarkable> get markers => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FilteredCopyWith<_Filtered> get copyWith =>
       throw _privateConstructorUsedError;
