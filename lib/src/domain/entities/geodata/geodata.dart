@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:latlong2/latlong.dart';
 
@@ -15,8 +14,8 @@ class GeoData implements IMarkable {
 
   final LatLng location;
 
-  /// 'field_name': (FieldType(), value)
-  final Map<String, Tuple2<FieldType, dynamic>> fields;
+  /// 'field_name': FieldValue (FieldType, value)
+  final Map<String, dynamic> fields;
 
   /// 'field_name': (GeoData)
   final Map<String, GeoData> realtions;
@@ -39,12 +38,50 @@ class GeoData implements IMarkable {
     required this.realtions,
   });
 
+  /// from: -> 'field_name': {'type': FieldType, 'value': value or ...}
+  /// to:   -> 'field_name': {'type': FieldType, 'value': value or ...}
+  Map<String, dynamic> buildProperties(
+    ComposedFieldType type,
+    Map<String, dynamic> value,
+  ) {
+    final props = <String, dynamic>{};
+    for (final t in type.fieldTypes.entries) {
+      if (t.value is ComposedFieldType) {
+        props[t.key] = buildProperties(
+          t.value as ComposedFieldType,
+          value[t.key] as Map<String, dynamic>,
+        );
+      } else {
+        final typedValue = t.value.map(
+            tbool: (_) => value[t.key] as bool,
+            tint: (_) => value[t.key] as int,
+            tdouble: (_) => value[t.key] as double,
+            tstring: (_) => value[t.key] as String,
+            year: (_) => value[t.key] as int,
+            month: (_) => value[t.key] as int,
+            day: (_) => value[t.key] as int,
+            weekDay: (_) => value[t.key] as String,
+            // FIXME: some date type unexpecified value[t.key] type
+            hour: (_) => value[t.key] as int,
+            minute: (_) => value[t.key] as int,
+            second: (_) => value[t.key] as int,
+            composed: (_) => null);
+
+        props[t.key] = {
+          'type': t.value,
+          'value': typedValue,
+        };
+      }
+    }
+    return props;
+  }
+
   GeoData copyWith({
     String? geoDataId,
     String? categoryId,
     Category? category,
     LatLng? location,
-    Map<String, Tuple2<FieldType, dynamic>>? fields,
+    Map<String, Map>? fields,
     Map<String, GeoData>? realtions,
   }) {
     return GeoData(
