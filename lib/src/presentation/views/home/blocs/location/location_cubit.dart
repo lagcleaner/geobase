@@ -3,31 +3,36 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geobase/src/domain/entities/configurations/user_preferences.dart';
-import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'package:geobase/src/domain/services/configurations/interfaces/i_user_preferences_reader.dart';
-import 'package:geobase/src/domain/services/map/interfaces/i_location.dart';
+import '../../../../../domain/entities/configurations/user_preferences.dart';
+import '../../../../../domain/entities/entities.dart';
+import '../../../../../domain/services/configurations/interfaces/i_user_preferences_reader.dart';
+import '../../../../../domain/services/map/interfaces/i_location.dart';
 
 part 'location_cubit.freezed.dart';
 part 'location_state.dart';
 
 class LocationCubit extends Cubit<LocationState> {
+  final ILocationConfigurationChangedStreamerService
+      locationConfigurationChangedStreamerService;
+
   final IUserPreferencesReaderService userPreferencesReaderService;
+
   final ILocationReaderService locationService;
 
   late StreamSubscription userPrefsChangesSubscription;
   StreamSubscription? locationChangesSubscription;
 
-  LocationCubit(
-    this.userPreferencesReaderService,
-    this.locationService,
-  ) : super(const LocationState.loading()) {
+  LocationCubit({
+    required this.locationConfigurationChangedStreamerService,
+    required this.userPreferencesReaderService,
+    required this.locationService,
+  }) : super(const LocationState.loading()) {
     _loadInitialState();
-    userPrefsChangesSubscription = userPreferencesReaderService
-        .onUserPrefChanged
-        .listen(_updateStateWithEitherPrefs);
+    userPrefsChangesSubscription = locationConfigurationChangedStreamerService
+        .onUserSwitchOnOrOffLocationChanged
+        .listen(_handleNewPrefs);
   }
 
   @override
@@ -42,42 +47,27 @@ class LocationCubit extends Cubit<LocationState> {
 
     either.fold(
       (failure) => emit(LocationState.disable(failure)),
-      _updateStateWithEitherPrefs,
+      (prefs) => _handleNewPrefs(prefs.showLocation),
     );
   }
 
-  Future<void> _updateStateWithEitherPrefs(UserPreferences userPrefs) async {
-    if (userPrefs.showLocation) {
-      final result = await locationService.initialize(userPrefs.updateInterval);
-      if (result.isLeft()) {
-        final failure =
-            result.swap().getOrElse(() => const Failure.unhandled());
-        emit(LocationState.disable(failure));
-        await _disableStreamLocation();
-        return;
-      }
+  Future<void> _handleNewPrefs(bool switchedOnOrOff) async {
+    if (switchedOnOrOff) {
       final eitherLocation = await locationService.currentLocation();
-      await _updateLocationWithEither(eitherLocation);
-      _enableStreamLocation();
+      await __updateStateWithEitherLocation(eitherLocation);
+      locationChangesSubscription ??= locationService.onLocationChanged
+          .listen(__updateStateWithEitherLocation);
     } else {
+      await locationChangesSubscription?.cancel();
+      locationChangesSubscription = null;
       emit(const LocationState.disable());
-      await _disableStreamLocation();
     }
   }
 
-  Future<void> _updateLocationWithEither(Either<Failure, LatLng> eiter) async =>
+  Future<void> __updateStateWithEitherLocation(
+          Either<Failure, LatLng> eiter) async =>
       eiter.fold(
         (failure) => emit(LocationState.disable(failure)),
         (location) => emit(LocationState.enable(location: location)),
       );
-
-  void _enableStreamLocation() {
-    locationChangesSubscription ??=
-        locationService.onLocationChanged.listen(_updateLocationWithEither);
-  }
-
-  Future<void> _disableStreamLocation() async {
-    await locationChangesSubscription?.cancel();
-    locationChangesSubscription = null;
-  }
 }

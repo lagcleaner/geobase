@@ -13,13 +13,7 @@ class GetCurrentLocation implements ILocationReaderService {
   GetCurrentLocation();
 
   @override
-  Future<Either<Failure, Unit>> disable() {
-    // TODO: implement disable
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, Unit>> initialize(Duration refreshInterval) {
+  Future<Either<Failure, Unit>> changeRefreshDuration(Duration duration) {
     // TODO: implement initialize
     throw UnimplementedError();
   }
