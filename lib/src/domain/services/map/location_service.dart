@@ -1,16 +1,18 @@
 import 'package:dartz/dartz.dart';
+import 'package:geobase/injection.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/repositories/repositories.dart';
+import 'package:geobase/src/domain/services/services.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../../injection.dart';
-import '../../entities/entities.dart';
-import '../services.dart';
+@LazySingleton(as: ILocationService)
+class LocationService implements ILocationService {
+  LocationService({required this.repository});
 
-@LazySingleton(as: ILocationConfigurationService)
-@LazySingleton(as: ILocationGetterService)
-@LazySingleton(as: ILocationStreamerService)
-@LazySingleton(as: ILocationReaderService)
-class GetCurrentLocation implements ILocationReaderService {
-  GetCurrentLocation();
+  final IConfigurationRepository repository;
+  //
+  bool? _onOrOff;
+  int? _currentRefreshInterval;
 
   @override
   Future<Either<Failure, Unit>> changeRefreshDuration(Duration duration) {
@@ -28,4 +30,21 @@ class GetCurrentLocation implements ILocationReaderService {
     // TODO: implement currentLocation
     throw UnimplementedError();
   }
+
+  @override
+  Stream<bool> get onUserSwitchOnOrOffLocationChanged =>
+      repository.onUserPrefChanged
+          .where((prefs) => prefs.showLocation != _onOrOff)
+          .map((prefs) => _onOrOff = prefs.showLocation);
+
+  @override
+  Stream<int> get onRefreshIntervalChanged => repository.onUserPrefChanged
+      .where(
+        (prefs) =>
+            prefs.updateInterval.inMilliseconds != _currentRefreshInterval,
+      )
+      .map(
+        (prefs) =>
+            _currentRefreshInterval = prefs.updateInterval.inMilliseconds,
+      );
 }

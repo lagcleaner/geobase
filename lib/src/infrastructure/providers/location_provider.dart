@@ -2,22 +2,22 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/services.dart';
+import 'package:geobase/src/infrastructure/providers/interfaces/i_location_provider.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 
-import 'interfaces/i_location_provider.dart';
-
 @LazySingleton(as: ILocationProvider)
 class LocationProvider implements ILocationProvider {
+  LocationProvider();
+
   Location get _location => Location.instance;
+
   int _refreshInterval = 1000;
 
   Future<PermissionStatus> get permission async {
     return _location.requestPermission();
   }
-
-  LocationProvider();
 
   @override
   Future<bool> changeRefreshInterval(Duration refreshInterval) async {

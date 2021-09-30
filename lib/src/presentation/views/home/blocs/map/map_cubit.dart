@@ -1,33 +1,34 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../../../injection.dart';
-import '../../../../../domain/entities/entities.dart';
-import '../../../../../domain/services/services.dart';
-import '../../../../core/app.dart';
+import 'package:geobase/injection.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/services.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 
 part 'map_cubit.freezed.dart';
 part 'map_state.dart';
 
 @injectable
 class MapCubit extends Cubit<MapState> {
-  final IMapSourceConfigurationReaderService sourceConfReader;
-  late StreamSubscription mapSourceConfChangesSubscription;
-
   MapCubit({
     required this.sourceConfReader,
-  }) : super(MapState.state(
-          mapController: MapController(),
-          sourceConfiguration: const MapSourceConfiguration.empty(),
-        )) {
+  }) : super(
+          MapState.state(
+            mapController: MapController(),
+            sourceConfiguration: const MapSourceConfiguration.empty(),
+          ),
+        ) {
     mapSourceConfChangesSubscription =
         sourceConfReader.onSourceConfigChanged.listen((sourceConf) {
       emit(state.copyWith(sourceConfiguration: sourceConf));
     });
   }
+
+  final IMapSourceConfigurationReaderService sourceConfReader;
+  late StreamSubscription mapSourceConfChangesSubscription;
 
   @override
   Future<void> close() async {
@@ -35,30 +36,33 @@ class MapCubit extends Cubit<MapState> {
     await super.close();
   }
 
-  Stream<MapState> initialConfigurationsRequested() async* {
-    yield state.copyWith(loadingConfigs: true);
+  Future<void> initialConfigurationsRequested() async {
+    emit(state.copyWith(loadingConfigs: true));
 
     await Future.delayed(const Duration(seconds: 3));
 
     final result = await sourceConfReader.loadMapSourceConfigurations();
-    yield* result.fold(
-      (failure) async* {
-        yield state.copyWith(
-          failure: failure,
-          loadingConfigs: false,
+    await result.fold(
+      (failure) async {
+        emit(
+          state.copyWith(
+            failure: failure,
+            loadingConfigs: false,
+          ),
         );
       },
-      (entity) async* {
-        yield state.copyWith(
-          sourceConfiguration: entity,
-          loadingConfigs: false,
+      (entity) async {
+        emit(
+          state.copyWith(
+            sourceConfiguration: entity,
+            loadingConfigs: false,
+          ),
         );
       },
     );
   }
 
-  Stream<MapState> markerTouched(IMarkable marker) async* {
-    // make markerMeta and interface
+  Future<void> markerTouched(IMarkable marker) async {
     state.mapController.move(marker.point, state.mapController.zoom);
   }
 }

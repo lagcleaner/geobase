@@ -1,6 +1,6 @@
 import 'package:geobase/src/presentation/core/app.dart';
 
-class SlideUpEditInfoBody extends StatelessWidget {
+class SlideUpAddNewPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

@@ -1,15 +1,12 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../../../domain/entities/entities.dart';
-import '../../../../../domain/services/map/interfaces/i_markers.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/map/interfaces/i_markers.dart';
 
 part 'marker_cubit.freezed.dart';
 part 'marker_state.dart';
 
 class MarkerCubit extends Cubit<MarkerState> {
-  final IMarkerGetterService markerGetterService;
-
   MarkerCubit({
     required this.markerGetterService,
   }) : super(const MarkerState.filteredOut(markers: {}));
@@ -26,4 +23,6 @@ class MarkerCubit extends Cubit<MarkerState> {
       },
     );
   }
+
+  final IMarkerGetterService markerGetterService;
 }

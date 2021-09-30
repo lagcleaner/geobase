@@ -1,10 +1,9 @@
-import 'package:geobase/src/domain/entities/failures/failures.dart';
-import 'package:geobase/src/domain/entities/configurations/user_preferences.dart';
-import 'package:geobase/src/domain/entities/configurations/source_configuration.dart';
 import 'package:dartz/dartz.dart';
+import 'package:geobase/src/domain/entities/configurations/source_configuration.dart';
+import 'package:geobase/src/domain/entities/configurations/user_preferences.dart';
+import 'package:geobase/src/domain/entities/failures/failures.dart';
+import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../domain/repositories/repositories.dart';
 
 @Injectable(as: IConfigurationRepository)
 class ConfigurationRepository implements IConfigurationRepository {
@@ -16,7 +15,7 @@ class ConfigurationRepository implements IConfigurationRepository {
   }
 
   @override
-  Future<Either<Failure, UserPreferences>> loadUserPreferences() {
+  Future<Either<Failure, UserPreferencesGetEntity>> loadUserPreferences() {
     // TODO: implement loadUserPreferences
     throw UnimplementedError();
   }
@@ -28,18 +27,21 @@ class ConfigurationRepository implements IConfigurationRepository {
 
   @override
   // TODO: implement onUserPrefChanged
-  Stream<UserPreferences> get onUserPrefChanged => throw UnimplementedError();
+  Stream<UserPreferencesGetEntity> get onUserPrefChanged =>
+      throw UnimplementedError();
 
   @override
   Future<Either<Failure, Unit>> setMapSourceConfigurations(
-      MapSourceConfiguration configuration) {
+    MapSourceConfiguration configuration,
+  ) {
     // TODO: implement setMapSourceConfigurations
     throw UnimplementedError();
   }
 
   @override
   Future<Either<Failure, Unit>> setUserPreferences(
-      UserPreferences preferences) {
+    UserPreferencesUpdateEntity preferences,
+  ) {
     // TODO: implement setUserPreferences
     throw UnimplementedError();
   }

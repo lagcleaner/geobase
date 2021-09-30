@@ -18,8 +18,9 @@ class MapSourceConfiguration with _$MapSourceConfiguration {
   const factory MapSourceConfiguration.file({
     required String templateUrl,
   }) = _FileMapConfiguration;
-  const factory MapSourceConfiguration.custom(
-      {required String templateUrl,
-      List<String>? subdomains}) = _CustomSourceConfiguration;
+  const factory MapSourceConfiguration.custom({
+    required String templateUrl,
+    List<String>? subdomains,
+  }) = _CustomSourceConfiguration;
   const factory MapSourceConfiguration.empty() = _EmptySourceConfiguration;
 }

@@ -3,9 +3,6 @@ import 'dart:math' as math;
 import 'package:latlong2/latlong.dart';
 
 class NearbyArea {
-  final LatLng center;
-  final double radio;
-
   NearbyArea({
     required this.center,
     required this.radio,
@@ -14,10 +11,15 @@ class NearbyArea {
   factory NearbyArea.exactLatLng(LatLng center) =>
       NearbyArea(center: center, radio: 0);
 
+  final LatLng center;
+  final double radio;
+
   bool nearTo(LatLng coord) =>
       radio >=
-      math.sqrt(math.pow(coord.latitude - center.latitude, 2) +
-          math.pow(coord.longitude - center.longitude, 2));
+      math.sqrt(
+        math.pow(coord.latitude - center.latitude, 2) +
+            math.pow(coord.longitude - center.longitude, 2),
+      );
 
   @override
   bool operator ==(Object other) {

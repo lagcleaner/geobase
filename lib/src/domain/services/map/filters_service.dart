@@ -1,18 +1,12 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../injection.dart';
-import '../../entities/entities.dart';
-import '../services.dart';
+import 'package:geobase/injection.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/services.dart';
 
-@LazySingleton(as: IMapFiltersOptionsLoaderService)
-@LazySingleton(as: IMapFiltersOptionsChangesListenerService)
-@LazySingleton(as: IMapFiltersOptionsReaderService)
-@LazySingleton(as: IMapFiltersOptionsWritterService)
-class MapFilterService
-    implements
-        IMapFiltersOptionsReaderService,
-        IMapFiltersOptionsWritterService {
-  MapFilterService();
+@LazySingleton(as: IMapFiltersOptionsService)
+class MapFiltersService implements IMapFiltersOptionsService {
+  MapFiltersService();
 
   @override
   Future<Either<Failure, FilterDataOptions>> loadFilterOptions() async {

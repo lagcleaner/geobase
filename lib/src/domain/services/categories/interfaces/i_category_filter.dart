@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../entities/entities.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 
 abstract class ICategoryFiltersOptionsLoaderService {
   Future<Either<Failure, FilterCategoriesOptions>> loadFilterOptions();
@@ -17,5 +17,6 @@ abstract class ICategoryFiltersOptionsReaderService
 
 abstract class ICategoryFiltersOptionsWritterService {
   Future<Either<Failure, Unit>> setFilterOptions(
-      FilterCategoriesOptions filters);
+    FilterCategoriesOptions filters,
+  );
 }

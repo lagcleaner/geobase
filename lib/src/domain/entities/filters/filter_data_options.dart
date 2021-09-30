@@ -1,12 +1,8 @@
 import 'package:flutter/foundation.dart';
 
-import 'nearby_area.dart';
+import 'package:geobase/src/domain/entities/filters/nearby_area.dart';
 
 class FilterDataOptions {
-  final List<int> ids;
-  final NearbyArea? nearTo;
-  final int? categoryId;
-
   FilterDataOptions({
     this.ids = const [],
     this.nearTo,
@@ -14,6 +10,12 @@ class FilterDataOptions {
   });
 
   factory FilterDataOptions.clean() => FilterDataOptions();
+
+  final List<int> ids;
+
+  final NearbyArea? nearTo;
+
+  final int? categoryId;
 
   FilterDataOptions copyWith({
     List<int>? ids,

@@ -1,16 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart' show mapEquals;
-import 'field_types/field_type.dart';
+import 'package:geobase/src/domain/entities/categories/field_types/field_type.dart';
 
-class Category {
-  final String id;
-  final String name;
-  final Color? color;
-  final Map<String, FieldType> fields;
-  final Map<String, Category> relations;
-
-  Category({
+class CategoryEntity {
+  CategoryEntity({
     required this.id,
     required this.name,
     this.color,
@@ -18,14 +12,20 @@ class Category {
     required this.relations,
   });
 
-  Category copyWith({
+  final String id;
+  final String name;
+  final Color? color;
+  final Map<String, FieldType> fields;
+  final Map<String, CategoryEntity> relations;
+
+  CategoryEntity copyWith({
     String? id,
     String? name,
     Color? color,
     Map<String, FieldType>? fields,
-    Map<String, Category>? relations,
+    Map<String, CategoryEntity>? relations,
   }) {
-    return Category(
+    return CategoryEntity(
       id: id ?? this.id,
       name: name ?? this.name,
       color: color ?? this.color,
@@ -38,7 +38,7 @@ class Category {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Category &&
+    return other is CategoryEntity &&
         other.id == id &&
         other.name == name &&
         other.color == color &&

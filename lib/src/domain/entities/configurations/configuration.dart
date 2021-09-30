@@ -1,34 +1,14 @@
-import 'source_configuration.dart';
-import 'user_preferences.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Configuration {
-  final MapSourceConfiguration sourceConfiguration;
-  final UserPreferences preferences;
+import 'package:geobase/src/domain/entities/configurations/source_configuration.dart';
+import 'package:geobase/src/domain/entities/configurations/user_preferences.dart';
 
-  Configuration({
-    required this.sourceConfiguration,
-    required this.preferences,
-  });
+part 'configuration.freezed.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Configuration &&
-        other.sourceConfiguration == sourceConfiguration &&
-        other.preferences == preferences;
-  }
-
-  @override
-  int get hashCode => sourceConfiguration.hashCode ^ preferences.hashCode;
-
-  Configuration copyWith({
-    MapSourceConfiguration? sourceConfiguration,
-    UserPreferences? preferences,
-  }) {
-    return Configuration(
-      sourceConfiguration: sourceConfiguration ?? this.sourceConfiguration,
-      preferences: preferences ?? this.preferences,
-    );
-  }
+@freezed
+class ConfigurationEntity with _$ConfigurationEntity {
+  const factory ConfigurationEntity({
+    required MapSourceConfiguration sourceConfiguration,
+    required UserPreferencesEntity preferences,
+  }) = _ConfigurationEntity;
 }

@@ -1,17 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/services.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../entities/entities.dart';
-import '../services.dart';
-
-@LazySingleton(as: IGeodataFiltersOptionsLoaderService)
-@LazySingleton(as: IGeodataFiltersOptionsChangesListenerService)
-@LazySingleton(as: IGeodataFiltersOptionsReaderService)
-@LazySingleton(as: IGeodataFiltersOptionsWritterService)
-class GeodataFilterService
-    implements
-        IGeodataFiltersOptionsReaderService,
-        IGeodataFiltersOptionsWritterService {
+@LazySingleton(as: IGeodataFiltersOptionsService)
+class GeodataFilterService implements IGeodataFiltersOptionsService {
   GeodataFilterService();
 
   @override

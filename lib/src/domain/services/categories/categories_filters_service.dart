@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/services.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../entities/entities.dart';
-import '../services.dart';
 
 @LazySingleton(as: ICategoryFiltersOptionsLoaderService)
 @LazySingleton(as: ICategoryFiltersOptionsChangesListenerService)
@@ -27,7 +26,8 @@ class GeodataFilterService
 
   @override
   Future<Either<Failure, Unit>> setFilterOptions(
-      FilterCategoriesOptions filters) {
+    FilterCategoriesOptions filters,
+  ) {
     // TODO: implement setFilterOptions
     throw UnimplementedError();
   }

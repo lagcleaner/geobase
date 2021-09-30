@@ -26,24 +26,26 @@ const TextStyle titleTextStyle = TextStyle(
 const TextStyle bodyTextStyle = TextStyle(color: subtitlesColor);
 
 final TextTheme textTheme = light.textTheme.copyWith(
-    headline4: titleTextStyle.copyWith(fontSize: 24),
-    headline5: titleTextStyle.copyWith(fontSize: 22),
-    headline6: titleTextStyle.copyWith(fontSize: 20),
-    subtitle1: titleTextStyle.copyWith(fontSize: 17),
-    subtitle2: titleTextStyle.copyWith(fontSize: 16),
-    bodyText1: bodyTextStyle.copyWith(fontSize: 18),
-    bodyText2: bodyTextStyle.copyWith(fontSize: 15),
-    button: bodyTextStyle);
+  headline4: titleTextStyle.copyWith(fontSize: 24),
+  headline5: titleTextStyle.copyWith(fontSize: 22),
+  headline6: titleTextStyle.copyWith(fontSize: 20),
+  subtitle1: titleTextStyle.copyWith(fontSize: 17),
+  subtitle2: titleTextStyle.copyWith(fontSize: 16),
+  bodyText1: bodyTextStyle.copyWith(fontSize: 18),
+  bodyText2: bodyTextStyle.copyWith(fontSize: 15),
+  button: bodyTextStyle,
+);
 
 final TextTheme primaryTextTheme = textTheme.copyWith(
-    headline4: titleTextStyle.copyWith(color: Colors.white),
-    headline5: titleTextStyle.copyWith(color: Colors.white),
-    headline6: titleTextStyle.copyWith(color: Colors.white),
-    subtitle1: titleTextStyle.copyWith(color: Colors.white),
-    subtitle2: titleTextStyle.copyWith(color: Colors.white),
-    bodyText1: bodyTextStyle.copyWith(color: Colors.white),
-    bodyText2: bodyTextStyle.copyWith(color: Colors.white),
-    button: bodyTextStyle.copyWith(color: Colors.white));
+  headline4: titleTextStyle.copyWith(color: Colors.white),
+  headline5: titleTextStyle.copyWith(color: Colors.white),
+  headline6: titleTextStyle.copyWith(color: Colors.white),
+  subtitle1: titleTextStyle.copyWith(color: Colors.white),
+  subtitle2: titleTextStyle.copyWith(color: Colors.white),
+  bodyText1: bodyTextStyle.copyWith(color: Colors.white),
+  bodyText2: bodyTextStyle.copyWith(color: Colors.white),
+  button: bodyTextStyle.copyWith(color: Colors.white),
+);
 
 final ThemeData geobaseLightTheme = light.copyWith(
   dividerTheme: light.dividerTheme.copyWith(
@@ -58,11 +60,12 @@ final ThemeData geobaseLightTheme = light.copyWith(
   canvasColor: backgroundColor,
   backgroundColor: backgroundColor,
   buttonTheme: light.buttonTheme.copyWith(
-      buttonColor: primaryBrandColor,
-      textTheme: ButtonTextTheme.primary,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(50)),
-      )),
+    buttonColor: primaryBrandColor,
+    textTheme: ButtonTextTheme.primary,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(50)),
+    ),
+  ),
   textTheme: textTheme,
   primaryTextTheme: primaryTextTheme,
   accentTextTheme: primaryTextTheme,
@@ -112,26 +115,34 @@ final ThemeData geobaseLightTheme = light.copyWith(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: light.outlinedButtonTheme.style?.copyWith(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
           side: const BorderSide(color: primaryBrandColor),
-        )),
-        textStyle: MaterialStateProperty.all<TextStyle>(bodyTextStyle.copyWith(
+        ),
+      ),
+      textStyle: MaterialStateProperty.all<TextStyle>(
+        bodyTextStyle.copyWith(
           color: light.backgroundColor,
           fontWeight: FontWeight.w700,
-        ))),
+        ),
+      ),
+    ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: light.elevatedButtonTheme.style?.copyWith(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
           side: BorderSide(color: light.primaryColor),
-        )),
-        textStyle: MaterialStateProperty.all<TextStyle>(bodyTextStyle.copyWith(
+        ),
+      ),
+      textStyle: MaterialStateProperty.all<TextStyle>(
+        bodyTextStyle.copyWith(
           color: light.backgroundColor,
           fontWeight: FontWeight.w700,
-        ))),
+        ),
+      ),
+    ),
   ),
 );

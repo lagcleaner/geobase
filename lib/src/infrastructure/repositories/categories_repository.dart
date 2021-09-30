@@ -1,32 +1,32 @@
-import 'package:geobase/src/domain/entities/failures/failures.dart';
-import 'package:geobase/src/domain/entities/categories/category.dart';
 import 'package:dartz/dartz.dart';
+import 'package:geobase/src/domain/entities/categories/category.dart';
+import 'package:geobase/src/domain/entities/failures/failures.dart';
+import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../domain/repositories/repositories.dart';
 
 @Injectable(as: ICategoriesRepository)
 class CategoriesRepository implements ICategoriesRepository {
   @override
-  Future<Either<Failure, Category>> addCategory(Category newCategory) {
+  Future<Either<Failure, CategoryEntity>> addCategory(
+      CategoryEntity newCategory) {
     // TODO: implement addCategory
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, Category>> getCategory(int categoryId) {
+  Future<Either<Failure, CategoryEntity>> getCategory(int categoryId) {
     // TODO: implement getCategory
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, List<Category>>> loadAllCategories() {
+  Future<Either<Failure, List<CategoryEntity>>> loadAllCategories() {
     // TODO: implement loadAllCategories
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, List<Category>>> loadCategoriesWhere() {
+  Future<Either<Failure, List<CategoryEntity>>> loadCategoriesWhere() {
     // TODO: implement loadCategoriesWhere
     throw UnimplementedError();
   }
@@ -38,7 +38,8 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   @override
-  Future<Either<Failure, Category>> updateCategory(Category newCategory) {
+  Future<Either<Failure, CategoryEntity>> updateCategory(
+      CategoryEntity newCategory) {
     // TODO: implement updateCategory
     throw UnimplementedError();
   }

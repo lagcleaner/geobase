@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geobase/src/presentation/views/home/blocs/blocs.dart';
+import 'package:geobase/src/presentation/views/home/misc/cached_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../../../../../domain/entities/entities.dart';
-import '../../blocs/blocs.dart';
-import '../../misc/cached_tile_provider.dart';
-
 class GeoBaseMap extends StatelessWidget {
+  const GeoBaseMap({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Flexible(
@@ -15,16 +15,17 @@ class GeoBaseMap extends StatelessWidget {
         bloc: context.read<MapCubit>()..initialConfigurationsRequested(),
         builder: (context, state) {
           return FlutterMap(
-              options: MapOptions(
-                controller: state.mapController,
-                center: LatLng(51.5, -0.09),
-                zoom: 5.0,
-              ),
-              layers: [
-                tileLayerOptions(state),
-                markerLayerOptions(context),
-                liveLocationLayerOptions(context)
-              ]);
+            options: MapOptions(
+              controller: state.mapController,
+              center: LatLng(51.5, -0.09),
+              zoom: 5.0,
+            ),
+            layers: [
+              tileLayerOptions(state),
+              markerLayerOptions(context),
+              liveLocationLayerOptions(context)
+            ],
+          );
         },
       ),
     );
@@ -66,41 +67,48 @@ class GeoBaseMap extends StatelessWidget {
       context.watch<MarkerCubit>().state.map(
             failure: (failure) => EmptyLayerOptions(),
             filteredOut: (markerState) => MarkerLayerOptions(
-                // rotateAlignment: Alignment.center,
-                rotate: true,
-                markers: (markerState.markers as Iterable<IMarkable>)
-                    .map((e) => Marker(
-                          point: e.point,
-                          builder: (context) => IconButton(
-                              icon: Icon(
-                                Icons.blur_circular_outlined,
-                                color: e.color ?? Colors.black54,
-                              ),
-                              onPressed: () {
-                                context.read<MapCubit>().markerTouched(e);
-                                //todo: shwo the view of details in a sliding panel
-                              }),
-                        ))
-                    .toList()),
+              // rotateAlignment: Alignment.center,
+              rotate: true,
+              markers: (markerState.markers)
+                  .map(
+                    (e) => Marker(
+                      point: e.point,
+                      builder: (context) => IconButton(
+                        icon: Icon(
+                          Icons.blur_circular_outlined,
+                          color: e.color ?? Colors.black54,
+                        ),
+                        onPressed: () {
+                          context.read<MapCubit>().markerTouched(e);
+                          //todo: shwo the view of details in a sliding panel
+                        },
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
           );
 
   LayerOptions liveLocationLayerOptions(BuildContext context) =>
       context.watch<LocationCubit>().state.map(
             loading: (_) => EmptyLayerOptions(),
             disable: (_) => EmptyLayerOptions(),
-            enable: (enableState) => MarkerLayerOptions(rotate: true, markers: [
-              Marker(
-                point: enableState.location,
-                builder: (context) => IconButton(
-                  icon: const Icon(
-                    Icons.location_on_outlined,
-                    color: Colors.black,
+            enable: (enableState) => MarkerLayerOptions(
+              rotate: true,
+              markers: [
+                Marker(
+                  point: enableState.location,
+                  builder: (context) => IconButton(
+                    icon: const Icon(
+                      Icons.location_on_outlined,
+                      color: Colors.black,
+                    ),
+                    onPressed: () => null,
+                    //todo: show the view to add an new interest point, in a sliding panel
                   ),
-                  onPressed: () => null,
-                  //todo: show the view to add an new interest point, in a sliding panel
                 ),
-              ),
-            ]),
+              ],
+            ),
           );
 }
 

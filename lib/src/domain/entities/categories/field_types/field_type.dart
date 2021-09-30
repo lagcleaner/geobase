@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'composed_field_type.dart';
-import 'i_get_field_type_name.dart';
+import 'package:geobase/src/domain/entities/categories/field_types/composed_field_type.dart';
+import 'package:geobase/src/domain/entities/categories/field_types/i_get_field_type_name.dart';
 
 export 'composed_field_type.dart';
 export 'i_get_field_type_name.dart';
@@ -84,13 +84,14 @@ class FieldType with _$FieldType, GetFieldTypeNameMixin {
       );
 
   // media
-  factory FieldType.media(
-          {bool nulleable = false, required String composedTypeName}) =>
+  factory FieldType.media({
+    bool nulleable = false,
+    required String composedTypeName,
+  }) =>
       FieldType.composed(
         composedTypeName: 'file.$composedTypeName',
         fieldTypes: {
-          'remote_path': FieldType.tstring(nulleable: true),
-          'local_path': FieldType.tstring(nulleable: true)
+          'path': FieldType.tstring(nulleable: true),
         },
         nulleable: nulleable,
       );

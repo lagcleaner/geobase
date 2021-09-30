@@ -1,14 +1,6 @@
 import 'package:flutter/foundation.dart';
 
 class FilterCategoriesOptions {
-  /// contains in the name
-  final String? nameSubstring;
-
-  final List<int> ids;
-
-  /// exact name match
-  final List<String> names;
-
   FilterCategoriesOptions({
     this.nameSubstring,
     required this.ids,
@@ -21,6 +13,14 @@ class FilterCategoriesOptions {
         ids: [],
         names: [],
       );
+
+  /// contains in the name
+  final String? nameSubstring;
+
+  final List<int> ids;
+
+  /// exact name match
+  final List<String> names;
 
   FilterCategoriesOptions copyWith({
     String? nameSubstring,
