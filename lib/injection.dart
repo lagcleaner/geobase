@@ -1,7 +1,6 @@
+import 'package:geobase/injection.config.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
-import 'injection.config.dart';
 
 export 'package:get_it/get_it.dart';
 export 'package:injectable/injectable.dart';

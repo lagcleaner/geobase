@@ -14,18 +14,13 @@ class GeobaseRouter extends _i1.RootStackRouter {
   @override
   final Map<String, _i1.PageFactory> pagesMap = {
     HomeRoute.name: (entry) {
-      return _i1.MaterialPageX(
-          entry: entry,
-          child: const _i2.HomePage(),
-          maintainState: true,
-          fullscreenDialog: false);
+      return _i1.MaterialPageX(entry: entry, child: const _i2.HomePage());
     }
   };
 
   @override
   List<_i1.RouteConfig> get routes => [
-        _i1.RouteConfig(HomeRoute.name,
-            path: '/home', fullMatch: false, usesTabsRouter: false),
+        _i1.RouteConfig(HomeRoute.name, path: '/home'),
         _i1.RouteConfig('/#redirect',
             path: '/', redirectTo: '/home', fullMatch: true)
       ];
