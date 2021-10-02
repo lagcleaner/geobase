@@ -22,11 +22,7 @@ class CategoriesService implements ICategoryService {
   Future<Either<Failure, List<CategoryGetEntity>>> loadCategoriesWhere([
     FilterCategoriesOptions? filters,
   ]) async {
-    if (filters == null) {
-      return categoriesRepository.loadAllCategories();
-    } else {
-      return categoriesRepository.loadCategoriesWhere(filters);
-    }
+    return categoriesRepository.loadCategoriesWhere(filters);
   }
 
   @override

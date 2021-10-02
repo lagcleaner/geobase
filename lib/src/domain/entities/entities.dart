@@ -7,6 +7,7 @@ export 'failures/failures.dart';
 export 'filters/filter_categories_options.dart';
 export 'filters/filter_data_options.dart';
 export 'filters/nearby_area.dart';
+export 'geodata/field_value/field_value.dart';
 export 'geodata/geodata.dart';
 export 'markers/i_markable.dart';
 export 'markers/temporal_marker.dart';

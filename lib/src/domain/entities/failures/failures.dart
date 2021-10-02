@@ -4,8 +4,8 @@ part 'failures.freezed.dart';
 
 @freezed
 abstract class Failure with _$Failure {
-  const factory Failure.connection() = _ConnectionFailure;
+  const factory Failure.connection() = ConnectionFailure;
   const factory Failure.permissionDenied({String? message}) =
-      _PermissionDeniedFailure;
-  const factory Failure.unhandled({String? message}) = _UnhandledFailure;
+      PermissionDeniedFailure;
+  const factory Failure.unhandled({String? message}) = UnhandledFailure;
 }

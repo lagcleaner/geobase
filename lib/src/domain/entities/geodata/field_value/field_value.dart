@@ -1,15 +1,10 @@
 import 'package:geobase/src/domain/entities/categories/field_types/field_type.dart';
-import 'package:geobase/src/presentation/core/app.dart';
-import 'package:json_annotation/json_annotation.dart';
 
-part 'field_value.g.dart';
-
-@JsonSerializable()
 class FieldValueEntity {
-  FieldValueEntity({required this.type, this.value});
-
-  factory FieldValueEntity.fromJson(Map<String, dynamic> json) =>
-      _$FieldValueEntityFromJson(json);
+  FieldValueEntity({
+    required this.type,
+    required this.value,
+  });
 
   final FieldType type;
 
@@ -32,7 +27,7 @@ class FieldValueEntity {
           minute: (_) => (value as int?) != null,
           second: (_) => (value as int?) != null,
           date: (_) => (value as DateTime?) != null,
-          time: (_) => (value as TimeOfDay?) != null,
+          time: (_) => (value as DateTime?) != null,
           datetime: (_) => (value as DateTime?) != null,
           localPhoto: (_) => (value as String?) != null,
           localFile: (_) => (value as String?) != null,
@@ -43,5 +38,28 @@ class FieldValueEntity {
         );
   }
 
-  Map<String, dynamic> toJson() => _$FieldValueEntityToJson(this);
+  FieldValueEntity copyWith({
+    FieldType? type,
+    dynamic value,
+  }) {
+    return FieldValueEntity(
+      type: type ?? this.type,
+      value: value ?? this.value,
+    );
+  }
+
+  @override
+  String toString() => 'FieldValueEntity(type: $type, value: $value)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is FieldValueEntity &&
+        other.type == type &&
+        other.value == value;
+  }
+
+  @override
+  int get hashCode => type.hashCode ^ value.hashCode;
 }

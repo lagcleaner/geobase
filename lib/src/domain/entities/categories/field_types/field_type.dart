@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:geobase/src/domain/entities/categories/field_types/i_get_field_type_name.dart';
 
 export 'i_get_field_type_name.dart';

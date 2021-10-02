@@ -15,7 +15,7 @@ abstract class IConfigurationRepository {
 
   Future<Either<Failure, UserPreferencesGetEntity>> loadUserPreferences();
 
-  Future<Either<Failure, Unit>> setUserPreferences(
+  Future<Either<Failure, Unit>> editUserPreferences(
     UserPreferencesUpdateEntity preferences,
   );
 }

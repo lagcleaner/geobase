@@ -5,9 +5,9 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 import 'package:latlong2/latlong.dart';
 
-class TemporalMarkerEntity extends IMarkable {
-  TemporalMarkerEntity({
-    this.color = Colors.orange,
+class UserLocationMarkerEntity extends IMarkable {
+  UserLocationMarkerEntity({
+    this.color = Colors.blue,
     required this.location,
   });
 
