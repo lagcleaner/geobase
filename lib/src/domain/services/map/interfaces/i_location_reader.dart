@@ -2,9 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:latlong2/latlong.dart';
 
-abstract class ILocationService {
-  Future<Either<Failure, Unit>> changeRefreshDuration(Duration refreshInterval);
-
+abstract class ILocationReaderService {
   Future<Either<Failure, LatLng>> currentLocation();
 
   ///Stream Location info

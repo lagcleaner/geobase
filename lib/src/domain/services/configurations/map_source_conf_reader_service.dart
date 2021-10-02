@@ -1,18 +1,22 @@
 import 'package:dartz/dartz.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/configurations/source_configuration.dart';
-import 'package:geobase/src/domain/entities/failures/failures.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:geobase/src/domain/services/configurations/interfaces/i_map_source_conf_reader.dart';
 
 @LazySingleton(as: IMapSourceConfigurationReaderService)
 class MapSourceConfigurationReaderService
     implements IMapSourceConfigurationReaderService {
-  MapSourceConfigurationReaderService();
+  MapSourceConfigurationReaderService(
+    this.repository,
+  );
+
+  final IConfigurationRepository repository;
 
   @override
   Future<Either<Failure, MapSourceConfiguration>>
       loadMapSourceConfigurations() async {
-    // TODO: implement loadMapSourceConfigurations
     // wms
     return const Right(
       MapSourceConfiguration.wms(
@@ -21,10 +25,10 @@ class MapSourceConfigurationReaderService
         subdomains: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
       ),
     );
+    // return repository.loadMapSourceConfigurations();
   }
 
   @override
-  // TODO: implement onSourceConfigChanged
   Stream<MapSourceConfiguration> get onSourceConfigChanged =>
-      throw UnimplementedError();
+      repository.onSourceConfigChanged;
 }

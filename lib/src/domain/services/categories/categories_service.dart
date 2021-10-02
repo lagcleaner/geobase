@@ -2,47 +2,42 @@ import 'package:dartz/dartz.dart';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/repositories/i_categories_repository.dart';
 import 'package:geobase/src/domain/services/services.dart';
 
 @LazySingleton(as: ICategoryService)
 class CategoriesService implements ICategoryService {
+  CategoriesService(
+    this.categoriesRepository,
+  );
+
+  final ICategoriesRepository categoriesRepository;
+
   @override
-  Future<Either<Failure, CategoryEntity>> getCategory(int categoryId) {
-    // TODO: implement getCategory
-    throw UnimplementedError();
+  Future<Either<Failure, CategoryGetEntity>> getCategory(int categoryId) async {
+    return categoriesRepository.getCategory(categoryId);
   }
 
   @override
-  Future<Either<Failure, List<CategoryEntity>>> loadAllCategories() {
-    // TODO: implement loadCategories
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, CategoryEntity>> createCategory(
-      CategoryEntity newCategory) {
-    // TODO: implement createCategory
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, CategoryEntity>> editCategory(
-      CategoryEntity newCategory) {
-    // TODO: implement editCategory
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, Unit>> removeCategory(int categoryId) {
-    // TODO: implement removeCategory
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, List<CategoryEntity>>> loadCategoriesWhere([
+  Future<Either<Failure, List<CategoryGetEntity>>> loadCategoriesWhere([
     FilterCategoriesOptions? filters,
-  ]) {
-    // TODO: implement loadCategoriesWhere
-    throw UnimplementedError();
+  ]) async {
+    if (filters == null) {
+      return categoriesRepository.loadAllCategories();
+    } else {
+      return categoriesRepository.loadCategoriesWhere(filters);
+    }
+  }
+
+  @override
+  Future<Either<Failure, CategoryGetEntity>> createCategory(
+    CategoryPostEntity newCategory,
+  ) async {
+    return categoriesRepository.addCategory(newCategory);
+  }
+
+  @override
+  Future<Either<Failure, Unit>> removeCategory(int categoryId) async {
+    return categoriesRepository.removeCategory(categoryId);
   }
 }

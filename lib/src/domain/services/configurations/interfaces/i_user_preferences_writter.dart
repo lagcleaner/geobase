@@ -7,4 +7,5 @@ abstract class IUserPreferencesWritterService {
   Future<Either<Failure, Unit>> setUserPreferences(
     UserPreferencesUpdateEntity preferences,
   );
+  Future<Either<Failure, Unit>> changeRefreshInterval(Duration refreshInterval);
 }
