@@ -127,20 +127,113 @@ Map<String, dynamic> _$_$SecondFieldTypeToJson(_$SecondFieldType instance) =>
       'nulleable': instance.nulleable,
     };
 
-_$ComposedFieldType _$_$ComposedFieldTypeFromJson(Map<String, dynamic> json) {
-  return _$ComposedFieldType(
+_$DateFieldType _$_$DateFieldTypeFromJson(Map<String, dynamic> json) {
+  return _$DateFieldType(
     nulleable: json['nulleable'] as bool? ?? false,
-    composedTypeName: json['composedTypeName'] as String,
-    fieldTypes: (json['field_types'] as Map<String, dynamic>).map(
-      (k, e) => MapEntry(k, FieldType.fromJson(e as Map<String, dynamic>)),
-    ),
   );
 }
 
-Map<String, dynamic> _$_$ComposedFieldTypeToJson(
-        _$ComposedFieldType instance) =>
+Map<String, dynamic> _$_$DateFieldTypeToJson(_$DateFieldType instance) =>
     <String, dynamic>{
       'nulleable': instance.nulleable,
-      'composedTypeName': instance.composedTypeName,
-      'field_types': instance.fieldTypes,
+    };
+
+_$TimeFieldType _$_$TimeFieldTypeFromJson(Map<String, dynamic> json) {
+  return _$TimeFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$TimeFieldTypeToJson(_$TimeFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$DateTimeFieldType _$_$DateTimeFieldTypeFromJson(Map<String, dynamic> json) {
+  return _$DateTimeFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$DateTimeFieldTypeToJson(
+        _$DateTimeFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$LocalPhotoFieldType _$_$LocalPhotoFieldTypeFromJson(
+    Map<String, dynamic> json) {
+  return _$LocalPhotoFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$LocalPhotoFieldTypeToJson(
+        _$LocalPhotoFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$LocalFileFieldType _$_$LocalFileFieldTypeFromJson(Map<String, dynamic> json) {
+  return _$LocalFileFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$LocalFileFieldTypeToJson(
+        _$LocalFileFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$LocalAudioFieldType _$_$LocalAudioFieldTypeFromJson(
+    Map<String, dynamic> json) {
+  return _$LocalAudioFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$LocalAudioFieldTypeToJson(
+        _$LocalAudioFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$RemotePhotoFieldType _$_$RemotePhotoFieldTypeFromJson(
+    Map<String, dynamic> json) {
+  return _$RemotePhotoFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$RemotePhotoFieldTypeToJson(
+        _$RemotePhotoFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$RemoteFileFieldType _$_$RemoteFileFieldTypeFromJson(
+    Map<String, dynamic> json) {
+  return _$RemoteFileFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$RemoteFileFieldTypeToJson(
+        _$RemoteFileFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
+    };
+
+_$RemoteAudioFieldType _$_$RemoteAudioFieldTypeFromJson(
+    Map<String, dynamic> json) {
+  return _$RemoteAudioFieldType(
+    nulleable: json['nulleable'] as bool? ?? false,
+  );
+}
+
+Map<String, dynamic> _$_$RemoteAudioFieldTypeToJson(
+        _$RemoteAudioFieldType instance) =>
+    <String, dynamic>{
+      'nulleable': instance.nulleable,
     };

@@ -5,18 +5,18 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 import 'package:latlong2/latlong.dart';
 
-class TemporaryMarker implements IMarkable {
+class TemporaryMarker extends IMarkable {
   TemporaryMarker({
     this.color = Colors.orange,
-    required this.point,
+    required this.location,
   });
 
   @override
   final Color color;
 
   @override
-  final LatLng point;
+  final LatLng location;
 
   @override
-  Key? get key => UniqueKey();
+  final String? id = null;
 }

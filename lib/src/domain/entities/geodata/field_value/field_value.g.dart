@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'composed_property.dart';
+part of 'field_value.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ComposedProperty _$ComposedPropertyFromJson(Map<String, dynamic> json) {
-  return ComposedProperty(
+FieldValueEntity _$FieldValueEntityFromJson(Map<String, dynamic> json) {
+  return FieldValueEntity(
     type: FieldType.fromJson(json['type'] as Map<String, dynamic>),
-    subProperties: json['subProperties'] as Map<String, dynamic>,
+    value: json['value'],
   );
 }
 
-Map<String, dynamic> _$ComposedPropertyToJson(ComposedProperty instance) =>
+Map<String, dynamic> _$FieldValueEntityToJson(FieldValueEntity instance) =>
     <String, dynamic>{
       'type': instance.type,
-      'subProperties': instance.subProperties,
+      'value': instance.value,
     };

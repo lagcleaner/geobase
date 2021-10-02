@@ -1,9 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:geobase/src/domain/entities/categories/field_types/composed_field_type.dart';
 import 'package:geobase/src/domain/entities/categories/field_types/i_get_field_type_name.dart';
 
-export 'composed_field_type.dart';
 export 'i_get_field_type_name.dart';
 
 part 'field_type.freezed.dart';
@@ -37,73 +35,31 @@ class FieldType with _$FieldType, GetFieldTypeNameMixin {
   factory FieldType.minute({@Default(false) bool nulleable}) = MinuteFieldType;
   @With(GetFieldTypeNameMixin)
   factory FieldType.second({@Default(false) bool nulleable}) = SecondFieldType;
-
-  // composed
-  @With(GetComposedTypeNameMixin)
-  @Implements(IComposedFieldType)
-  factory FieldType.composed({
-    @Default(false) bool nulleable,
-    required String composedTypeName,
-    @JsonKey(name: 'field_types') required Map<String, FieldType> fieldTypes,
-  }) = ComposedFieldType;
-
-  // datetime (composed)
-  factory FieldType.date({bool nulleable = false}) => FieldType.composed(
-        composedTypeName: 'date',
-        fieldTypes: {
-          'year': FieldType.year(),
-          'month': FieldType.month(),
-          'day': FieldType.day(),
-          'week_day': FieldType.weekDay(nulleable: true),
-        },
-        nulleable: nulleable,
-      );
-
-  factory FieldType.time({bool nulleable = false}) => FieldType.composed(
-        composedTypeName: 'time',
-        fieldTypes: {
-          'hours': FieldType.hour(),
-          'minutes': FieldType.minute(),
-          'seconds': FieldType.second(),
-        },
-        nulleable: nulleable,
-      );
-
-  factory FieldType.datetime({bool nulleable = false}) => FieldType.composed(
-        composedTypeName: 'datetime',
-        fieldTypes: {
-          'year': FieldType.year(),
-          'month': FieldType.month(),
-          'day': FieldType.day(),
-          'week_day': FieldType.weekDay(nulleable: true),
-          'hour': FieldType.hour(),
-          'minute': FieldType.minute(),
-          'second': FieldType.second(),
-        },
-        nulleable: nulleable,
-      );
-
-  // media
-  factory FieldType.media({
-    bool nulleable = false,
-    required String composedTypeName,
-  }) =>
-      FieldType.composed(
-        composedTypeName: 'file.$composedTypeName',
-        fieldTypes: {
-          'path': FieldType.tstring(nulleable: true),
-        },
-        nulleable: nulleable,
-      );
-
-  factory FieldType.photo({bool nulleable = false}) =>
-      FieldType.media(composedTypeName: 'photo', nulleable: nulleable);
-
-  factory FieldType.video({bool nulleable = false}) =>
-      FieldType.media(composedTypeName: 'video', nulleable: nulleable);
-
-  factory FieldType.audio({bool nulleable = false}) =>
-      FieldType.media(composedTypeName: 'audio', nulleable: nulleable);
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.date({@Default(false) bool nulleable}) = DateFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.time({@Default(false) bool nulleable}) = TimeFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.datetime({@Default(false) bool nulleable}) =
+      DateTimeFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.localPhoto({@Default(false) bool nulleable}) =
+      LocalPhotoFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.localFile({@Default(false) bool nulleable}) =
+      LocalFileFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.localAudio({@Default(false) bool nulleable}) =
+      LocalAudioFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.remotePhoto({@Default(false) bool nulleable}) =
+      RemotePhotoFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.remoteFile({@Default(false) bool nulleable}) =
+      RemoteFileFieldType;
+  @With(GetFieldTypeNameMixin)
+  factory FieldType.remoteAudio({@Default(false) bool nulleable}) =
+      RemoteAudioFieldType;
 
   // de/serialization area
   factory FieldType.fromJson(Map<String, dynamic> json) =>

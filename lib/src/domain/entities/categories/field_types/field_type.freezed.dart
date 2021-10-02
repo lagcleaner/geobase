@@ -36,8 +36,24 @@ FieldType _$FieldTypeFromJson(Map<String, dynamic> json) {
       return MinuteFieldType.fromJson(json);
     case 'Second':
       return SecondFieldType.fromJson(json);
-    case 'Composed':
-      return ComposedFieldType.fromJson(json);
+    case 'Date':
+      return DateFieldType.fromJson(json);
+    case 'Time':
+      return TimeFieldType.fromJson(json);
+    case 'Datetime':
+      return DateTimeFieldType.fromJson(json);
+    case 'LocalPhoto':
+      return LocalPhotoFieldType.fromJson(json);
+    case 'LocalFile':
+      return LocalFileFieldType.fromJson(json);
+    case 'LocalAudio':
+      return LocalAudioFieldType.fromJson(json);
+    case 'RemotePhoto':
+      return RemotePhotoFieldType.fromJson(json);
+    case 'RemoteFile':
+      return RemoteFileFieldType.fromJson(json);
+    case 'RemoteAudio':
+      return RemoteAudioFieldType.fromJson(json);
 
     default:
       throw FallThroughError();
@@ -114,15 +130,57 @@ class _$FieldTypeTearOff {
     );
   }
 
-  ComposedFieldType composed(
-      {bool nulleable = false,
-      required String composedTypeName,
-      @JsonKey(name: 'field_types')
-          required Map<String, FieldType> fieldTypes}) {
-    return ComposedFieldType(
+  DateFieldType date({bool nulleable = false}) {
+    return DateFieldType(
       nulleable: nulleable,
-      composedTypeName: composedTypeName,
-      fieldTypes: fieldTypes,
+    );
+  }
+
+  TimeFieldType time({bool nulleable = false}) {
+    return TimeFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  DateTimeFieldType datetime({bool nulleable = false}) {
+    return DateTimeFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  LocalPhotoFieldType localPhoto({bool nulleable = false}) {
+    return LocalPhotoFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  LocalFileFieldType localFile({bool nulleable = false}) {
+    return LocalFileFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  LocalAudioFieldType localAudio({bool nulleable = false}) {
+    return LocalAudioFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  RemotePhotoFieldType remotePhoto({bool nulleable = false}) {
+    return RemotePhotoFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  RemoteFileFieldType remoteFile({bool nulleable = false}) {
+    return RemoteFileFieldType(
+      nulleable: nulleable,
+    );
+  }
+
+  RemoteAudioFieldType remoteAudio({bool nulleable = false}) {
+    return RemoteAudioFieldType(
+      nulleable: nulleable,
     );
   }
 
@@ -151,9 +209,15 @@ mixin _$FieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -169,9 +233,15 @@ mixin _$FieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -188,7 +258,15 @@ mixin _$FieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -204,7 +282,15 @@ mixin _$FieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -326,9 +412,15 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return tbool(nulleable);
   }
@@ -347,9 +439,15 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tbool != null) {
@@ -372,7 +470,15 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return tbool(this);
   }
@@ -391,7 +497,15 @@ class _$BoolFieldType with GetFieldTypeNameMixin implements BoolFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tbool != null) {
@@ -503,9 +617,15 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return tint(nulleable);
   }
@@ -524,9 +644,15 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tint != null) {
@@ -549,7 +675,15 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return tint(this);
   }
@@ -568,7 +702,15 @@ class _$IntFieldType with GetFieldTypeNameMixin implements IntFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tint != null) {
@@ -681,9 +823,15 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return tdouble(nulleable);
   }
@@ -702,9 +850,15 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tdouble != null) {
@@ -727,7 +881,15 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return tdouble(this);
   }
@@ -746,7 +908,15 @@ class _$DoubleFieldType with GetFieldTypeNameMixin implements DoubleFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tdouble != null) {
@@ -859,9 +1029,15 @@ class _$StringFieldType with GetFieldTypeNameMixin implements StringFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return tstring(nulleable);
   }
@@ -880,9 +1056,15 @@ class _$StringFieldType with GetFieldTypeNameMixin implements StringFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tstring != null) {
@@ -905,7 +1087,15 @@ class _$StringFieldType with GetFieldTypeNameMixin implements StringFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return tstring(this);
   }
@@ -924,7 +1114,15 @@ class _$StringFieldType with GetFieldTypeNameMixin implements StringFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (tstring != null) {
@@ -1037,9 +1235,15 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return year(nulleable);
   }
@@ -1058,9 +1262,15 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (year != null) {
@@ -1083,7 +1293,15 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return year(this);
   }
@@ -1102,7 +1320,15 @@ class _$YearFieldType with GetFieldTypeNameMixin implements YearFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (year != null) {
@@ -1215,9 +1441,15 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return month(nulleable);
   }
@@ -1236,9 +1468,15 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (month != null) {
@@ -1261,7 +1499,15 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return month(this);
   }
@@ -1280,7 +1526,15 @@ class _$MonthFieldType with GetFieldTypeNameMixin implements MonthFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (month != null) {
@@ -1392,9 +1646,15 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return day(nulleable);
   }
@@ -1413,9 +1673,15 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (day != null) {
@@ -1438,7 +1704,15 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return day(this);
   }
@@ -1457,7 +1731,15 @@ class _$DayFieldType with GetFieldTypeNameMixin implements DayFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (day != null) {
@@ -1572,9 +1854,15 @@ class _$WeekDayFieldType
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return weekDay(nulleable);
   }
@@ -1593,9 +1881,15 @@ class _$WeekDayFieldType
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (weekDay != null) {
@@ -1618,7 +1912,15 @@ class _$WeekDayFieldType
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return weekDay(this);
   }
@@ -1637,7 +1939,15 @@ class _$WeekDayFieldType
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (weekDay != null) {
@@ -1750,9 +2060,15 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return hour(nulleable);
   }
@@ -1771,9 +2087,15 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (hour != null) {
@@ -1796,7 +2118,15 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return hour(this);
   }
@@ -1815,7 +2145,15 @@ class _$HourFieldType with GetFieldTypeNameMixin implements HourFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (hour != null) {
@@ -1928,9 +2266,15 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return minute(nulleable);
   }
@@ -1949,9 +2293,15 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (minute != null) {
@@ -1974,7 +2324,15 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return minute(this);
   }
@@ -1993,7 +2351,15 @@ class _$MinuteFieldType with GetFieldTypeNameMixin implements MinuteFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (minute != null) {
@@ -2106,9 +2472,15 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
     return second(nulleable);
   }
@@ -2127,9 +2499,15 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
     if (second != null) {
@@ -2152,7 +2530,15 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
     return second(this);
   }
@@ -2171,7 +2557,15 @@ class _$SecondFieldType with GetFieldTypeNameMixin implements SecondFieldType {
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
     if (second != null) {
@@ -2201,108 +2595,74 @@ abstract class SecondFieldType implements FieldType, GetFieldTypeNameMixin {
 }
 
 /// @nodoc
-abstract class $ComposedFieldTypeCopyWith<$Res>
+abstract class $DateFieldTypeCopyWith<$Res>
     implements $FieldTypeCopyWith<$Res> {
-  factory $ComposedFieldTypeCopyWith(
-          ComposedFieldType value, $Res Function(ComposedFieldType) then) =
-      _$ComposedFieldTypeCopyWithImpl<$Res>;
+  factory $DateFieldTypeCopyWith(
+          DateFieldType value, $Res Function(DateFieldType) then) =
+      _$DateFieldTypeCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {bool nulleable,
-      String composedTypeName,
-      @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes});
+  $Res call({bool nulleable});
 }
 
 /// @nodoc
-class _$ComposedFieldTypeCopyWithImpl<$Res>
-    extends _$FieldTypeCopyWithImpl<$Res>
-    implements $ComposedFieldTypeCopyWith<$Res> {
-  _$ComposedFieldTypeCopyWithImpl(
-      ComposedFieldType _value, $Res Function(ComposedFieldType) _then)
-      : super(_value, (v) => _then(v as ComposedFieldType));
+class _$DateFieldTypeCopyWithImpl<$Res> extends _$FieldTypeCopyWithImpl<$Res>
+    implements $DateFieldTypeCopyWith<$Res> {
+  _$DateFieldTypeCopyWithImpl(
+      DateFieldType _value, $Res Function(DateFieldType) _then)
+      : super(_value, (v) => _then(v as DateFieldType));
 
   @override
-  ComposedFieldType get _value => super._value as ComposedFieldType;
+  DateFieldType get _value => super._value as DateFieldType;
 
   @override
   $Res call({
     Object? nulleable = freezed,
-    Object? composedTypeName = freezed,
-    Object? fieldTypes = freezed,
   }) {
-    return _then(ComposedFieldType(
+    return _then(DateFieldType(
       nulleable: nulleable == freezed
           ? _value.nulleable
           : nulleable // ignore: cast_nullable_to_non_nullable
               as bool,
-      composedTypeName: composedTypeName == freezed
-          ? _value.composedTypeName
-          : composedTypeName // ignore: cast_nullable_to_non_nullable
-              as String,
-      fieldTypes: fieldTypes == freezed
-          ? _value.fieldTypes
-          : fieldTypes // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldType>,
     ));
   }
 }
 
 @JsonSerializable()
-@With(GetComposedTypeNameMixin)
-@Implements(IComposedFieldType)
+@With(GetFieldTypeNameMixin)
 
 /// @nodoc
-class _$ComposedFieldType
-    with GetComposedTypeNameMixin
-    implements ComposedFieldType {
-  _$ComposedFieldType(
-      {this.nulleable = false,
-      required this.composedTypeName,
-      @JsonKey(name: 'field_types') required this.fieldTypes});
+class _$DateFieldType with GetFieldTypeNameMixin implements DateFieldType {
+  _$DateFieldType({this.nulleable = false});
 
-  factory _$ComposedFieldType.fromJson(Map<String, dynamic> json) =>
-      _$_$ComposedFieldTypeFromJson(json);
+  factory _$DateFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$DateFieldTypeFromJson(json);
 
   @JsonKey(defaultValue: false)
   @override
   final bool nulleable;
-  @override
-  final String composedTypeName;
-  @override
-  @JsonKey(name: 'field_types')
-  final Map<String, FieldType> fieldTypes;
 
   @override
   String toString() {
-    return 'FieldType.composed(nulleable: $nulleable, composedTypeName: $composedTypeName, fieldTypes: $fieldTypes)';
+    return 'FieldType.date(nulleable: $nulleable)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ComposedFieldType &&
+        (other is DateFieldType &&
             (identical(other.nulleable, nulleable) ||
                 const DeepCollectionEquality()
-                    .equals(other.nulleable, nulleable)) &&
-            (identical(other.composedTypeName, composedTypeName) ||
-                const DeepCollectionEquality()
-                    .equals(other.composedTypeName, composedTypeName)) &&
-            (identical(other.fieldTypes, fieldTypes) ||
-                const DeepCollectionEquality()
-                    .equals(other.fieldTypes, fieldTypes)));
+                    .equals(other.nulleable, nulleable)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(nulleable) ^
-      const DeepCollectionEquality().hash(composedTypeName) ^
-      const DeepCollectionEquality().hash(fieldTypes);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
 
   @JsonKey(ignore: true)
   @override
-  $ComposedFieldTypeCopyWith<ComposedFieldType> get copyWith =>
-      _$ComposedFieldTypeCopyWithImpl<ComposedFieldType>(this, _$identity);
+  $DateFieldTypeCopyWith<DateFieldType> get copyWith =>
+      _$DateFieldTypeCopyWithImpl<DateFieldType>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -2318,11 +2678,17 @@ class _$ComposedFieldType
     required TResult Function(bool nulleable) hour,
     required TResult Function(bool nulleable) minute,
     required TResult Function(bool nulleable) second,
-    required TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)
-        composed,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
   }) {
-    return composed(nulleable, composedTypeName, fieldTypes);
+    return date(nulleable);
   }
 
   @override
@@ -2339,13 +2705,19 @@ class _$ComposedFieldType
     TResult Function(bool nulleable)? hour,
     TResult Function(bool nulleable)? minute,
     TResult Function(bool nulleable)? second,
-    TResult Function(bool nulleable, String composedTypeName,
-            @JsonKey(name: 'field_types') Map<String, FieldType> fieldTypes)?
-        composed,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
     required TResult orElse(),
   }) {
-    if (composed != null) {
-      return composed(nulleable, composedTypeName, fieldTypes);
+    if (date != null) {
+      return date(nulleable);
     }
     return orElse();
   }
@@ -2364,9 +2736,17 @@ class _$ComposedFieldType
     required TResult Function(HourFieldType value) hour,
     required TResult Function(MinuteFieldType value) minute,
     required TResult Function(SecondFieldType value) second,
-    required TResult Function(ComposedFieldType value) composed,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
   }) {
-    return composed(this);
+    return date(this);
   }
 
   @override
@@ -2383,39 +2763,1712 @@ class _$ComposedFieldType
     TResult Function(HourFieldType value)? hour,
     TResult Function(MinuteFieldType value)? minute,
     TResult Function(SecondFieldType value)? second,
-    TResult Function(ComposedFieldType value)? composed,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
     required TResult orElse(),
   }) {
-    if (composed != null) {
-      return composed(this);
+    if (date != null) {
+      return date(this);
     }
     return orElse();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$ComposedFieldTypeToJson(this)..['field_type'] = 'Composed';
+    return _$_$DateFieldTypeToJson(this)..['field_type'] = 'Date';
   }
 }
 
-abstract class ComposedFieldType
-    implements FieldType, IComposedFieldType, GetComposedTypeNameMixin {
-  factory ComposedFieldType(
-      {bool nulleable,
-      required String composedTypeName,
-      @JsonKey(name: 'field_types')
-          required Map<String, FieldType> fieldTypes}) = _$ComposedFieldType;
+abstract class DateFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory DateFieldType({bool nulleable}) = _$DateFieldType;
 
-  factory ComposedFieldType.fromJson(Map<String, dynamic> json) =
-      _$ComposedFieldType.fromJson;
+  factory DateFieldType.fromJson(Map<String, dynamic> json) =
+      _$DateFieldType.fromJson;
 
   @override
   bool get nulleable => throw _privateConstructorUsedError;
-  String get composedTypeName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'field_types')
-  Map<String, FieldType> get fieldTypes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $ComposedFieldTypeCopyWith<ComposedFieldType> get copyWith =>
+  $DateFieldTypeCopyWith<DateFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TimeFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $TimeFieldTypeCopyWith(
+          TimeFieldType value, $Res Function(TimeFieldType) then) =
+      _$TimeFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$TimeFieldTypeCopyWithImpl<$Res> extends _$FieldTypeCopyWithImpl<$Res>
+    implements $TimeFieldTypeCopyWith<$Res> {
+  _$TimeFieldTypeCopyWithImpl(
+      TimeFieldType _value, $Res Function(TimeFieldType) _then)
+      : super(_value, (v) => _then(v as TimeFieldType));
+
+  @override
+  TimeFieldType get _value => super._value as TimeFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(TimeFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$TimeFieldType with GetFieldTypeNameMixin implements TimeFieldType {
+  _$TimeFieldType({this.nulleable = false});
+
+  factory _$TimeFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$TimeFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.time(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is TimeFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $TimeFieldTypeCopyWith<TimeFieldType> get copyWith =>
+      _$TimeFieldTypeCopyWithImpl<TimeFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return time(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (time != null) {
+      return time(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return time(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (time != null) {
+      return time(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$TimeFieldTypeToJson(this)..['field_type'] = 'Time';
+  }
+}
+
+abstract class TimeFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory TimeFieldType({bool nulleable}) = _$TimeFieldType;
+
+  factory TimeFieldType.fromJson(Map<String, dynamic> json) =
+      _$TimeFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $TimeFieldTypeCopyWith<TimeFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DateTimeFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $DateTimeFieldTypeCopyWith(
+          DateTimeFieldType value, $Res Function(DateTimeFieldType) then) =
+      _$DateTimeFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$DateTimeFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $DateTimeFieldTypeCopyWith<$Res> {
+  _$DateTimeFieldTypeCopyWithImpl(
+      DateTimeFieldType _value, $Res Function(DateTimeFieldType) _then)
+      : super(_value, (v) => _then(v as DateTimeFieldType));
+
+  @override
+  DateTimeFieldType get _value => super._value as DateTimeFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(DateTimeFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$DateTimeFieldType
+    with GetFieldTypeNameMixin
+    implements DateTimeFieldType {
+  _$DateTimeFieldType({this.nulleable = false});
+
+  factory _$DateTimeFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$DateTimeFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.datetime(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DateTimeFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $DateTimeFieldTypeCopyWith<DateTimeFieldType> get copyWith =>
+      _$DateTimeFieldTypeCopyWithImpl<DateTimeFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return datetime(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (datetime != null) {
+      return datetime(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return datetime(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (datetime != null) {
+      return datetime(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$DateTimeFieldTypeToJson(this)..['field_type'] = 'Datetime';
+  }
+}
+
+abstract class DateTimeFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory DateTimeFieldType({bool nulleable}) = _$DateTimeFieldType;
+
+  factory DateTimeFieldType.fromJson(Map<String, dynamic> json) =
+      _$DateTimeFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $DateTimeFieldTypeCopyWith<DateTimeFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocalPhotoFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $LocalPhotoFieldTypeCopyWith(
+          LocalPhotoFieldType value, $Res Function(LocalPhotoFieldType) then) =
+      _$LocalPhotoFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$LocalPhotoFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $LocalPhotoFieldTypeCopyWith<$Res> {
+  _$LocalPhotoFieldTypeCopyWithImpl(
+      LocalPhotoFieldType _value, $Res Function(LocalPhotoFieldType) _then)
+      : super(_value, (v) => _then(v as LocalPhotoFieldType));
+
+  @override
+  LocalPhotoFieldType get _value => super._value as LocalPhotoFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(LocalPhotoFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$LocalPhotoFieldType
+    with GetFieldTypeNameMixin
+    implements LocalPhotoFieldType {
+  _$LocalPhotoFieldType({this.nulleable = false});
+
+  factory _$LocalPhotoFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$LocalPhotoFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.localPhoto(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalPhotoFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $LocalPhotoFieldTypeCopyWith<LocalPhotoFieldType> get copyWith =>
+      _$LocalPhotoFieldTypeCopyWithImpl<LocalPhotoFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return localPhoto(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localPhoto != null) {
+      return localPhoto(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return localPhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localPhoto != null) {
+      return localPhoto(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LocalPhotoFieldTypeToJson(this)..['field_type'] = 'LocalPhoto';
+  }
+}
+
+abstract class LocalPhotoFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory LocalPhotoFieldType({bool nulleable}) = _$LocalPhotoFieldType;
+
+  factory LocalPhotoFieldType.fromJson(Map<String, dynamic> json) =
+      _$LocalPhotoFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $LocalPhotoFieldTypeCopyWith<LocalPhotoFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocalFileFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $LocalFileFieldTypeCopyWith(
+          LocalFileFieldType value, $Res Function(LocalFileFieldType) then) =
+      _$LocalFileFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$LocalFileFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $LocalFileFieldTypeCopyWith<$Res> {
+  _$LocalFileFieldTypeCopyWithImpl(
+      LocalFileFieldType _value, $Res Function(LocalFileFieldType) _then)
+      : super(_value, (v) => _then(v as LocalFileFieldType));
+
+  @override
+  LocalFileFieldType get _value => super._value as LocalFileFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(LocalFileFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$LocalFileFieldType
+    with GetFieldTypeNameMixin
+    implements LocalFileFieldType {
+  _$LocalFileFieldType({this.nulleable = false});
+
+  factory _$LocalFileFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$LocalFileFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.localFile(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalFileFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $LocalFileFieldTypeCopyWith<LocalFileFieldType> get copyWith =>
+      _$LocalFileFieldTypeCopyWithImpl<LocalFileFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return localFile(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localFile != null) {
+      return localFile(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return localFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localFile != null) {
+      return localFile(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LocalFileFieldTypeToJson(this)..['field_type'] = 'LocalFile';
+  }
+}
+
+abstract class LocalFileFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory LocalFileFieldType({bool nulleable}) = _$LocalFileFieldType;
+
+  factory LocalFileFieldType.fromJson(Map<String, dynamic> json) =
+      _$LocalFileFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $LocalFileFieldTypeCopyWith<LocalFileFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocalAudioFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $LocalAudioFieldTypeCopyWith(
+          LocalAudioFieldType value, $Res Function(LocalAudioFieldType) then) =
+      _$LocalAudioFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$LocalAudioFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $LocalAudioFieldTypeCopyWith<$Res> {
+  _$LocalAudioFieldTypeCopyWithImpl(
+      LocalAudioFieldType _value, $Res Function(LocalAudioFieldType) _then)
+      : super(_value, (v) => _then(v as LocalAudioFieldType));
+
+  @override
+  LocalAudioFieldType get _value => super._value as LocalAudioFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(LocalAudioFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$LocalAudioFieldType
+    with GetFieldTypeNameMixin
+    implements LocalAudioFieldType {
+  _$LocalAudioFieldType({this.nulleable = false});
+
+  factory _$LocalAudioFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$LocalAudioFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.localAudio(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LocalAudioFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $LocalAudioFieldTypeCopyWith<LocalAudioFieldType> get copyWith =>
+      _$LocalAudioFieldTypeCopyWithImpl<LocalAudioFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return localAudio(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localAudio != null) {
+      return localAudio(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return localAudio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (localAudio != null) {
+      return localAudio(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$LocalAudioFieldTypeToJson(this)..['field_type'] = 'LocalAudio';
+  }
+}
+
+abstract class LocalAudioFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory LocalAudioFieldType({bool nulleable}) = _$LocalAudioFieldType;
+
+  factory LocalAudioFieldType.fromJson(Map<String, dynamic> json) =
+      _$LocalAudioFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $LocalAudioFieldTypeCopyWith<LocalAudioFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemotePhotoFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $RemotePhotoFieldTypeCopyWith(RemotePhotoFieldType value,
+          $Res Function(RemotePhotoFieldType) then) =
+      _$RemotePhotoFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$RemotePhotoFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $RemotePhotoFieldTypeCopyWith<$Res> {
+  _$RemotePhotoFieldTypeCopyWithImpl(
+      RemotePhotoFieldType _value, $Res Function(RemotePhotoFieldType) _then)
+      : super(_value, (v) => _then(v as RemotePhotoFieldType));
+
+  @override
+  RemotePhotoFieldType get _value => super._value as RemotePhotoFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(RemotePhotoFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$RemotePhotoFieldType
+    with GetFieldTypeNameMixin
+    implements RemotePhotoFieldType {
+  _$RemotePhotoFieldType({this.nulleable = false});
+
+  factory _$RemotePhotoFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$RemotePhotoFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.remotePhoto(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemotePhotoFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemotePhotoFieldTypeCopyWith<RemotePhotoFieldType> get copyWith =>
+      _$RemotePhotoFieldTypeCopyWithImpl<RemotePhotoFieldType>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return remotePhoto(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remotePhoto != null) {
+      return remotePhoto(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return remotePhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remotePhoto != null) {
+      return remotePhoto(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$RemotePhotoFieldTypeToJson(this)..['field_type'] = 'RemotePhoto';
+  }
+}
+
+abstract class RemotePhotoFieldType
+    implements FieldType, GetFieldTypeNameMixin {
+  factory RemotePhotoFieldType({bool nulleable}) = _$RemotePhotoFieldType;
+
+  factory RemotePhotoFieldType.fromJson(Map<String, dynamic> json) =
+      _$RemotePhotoFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $RemotePhotoFieldTypeCopyWith<RemotePhotoFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoteFileFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $RemoteFileFieldTypeCopyWith(
+          RemoteFileFieldType value, $Res Function(RemoteFileFieldType) then) =
+      _$RemoteFileFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$RemoteFileFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $RemoteFileFieldTypeCopyWith<$Res> {
+  _$RemoteFileFieldTypeCopyWithImpl(
+      RemoteFileFieldType _value, $Res Function(RemoteFileFieldType) _then)
+      : super(_value, (v) => _then(v as RemoteFileFieldType));
+
+  @override
+  RemoteFileFieldType get _value => super._value as RemoteFileFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(RemoteFileFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$RemoteFileFieldType
+    with GetFieldTypeNameMixin
+    implements RemoteFileFieldType {
+  _$RemoteFileFieldType({this.nulleable = false});
+
+  factory _$RemoteFileFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$RemoteFileFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.remoteFile(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemoteFileFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemoteFileFieldTypeCopyWith<RemoteFileFieldType> get copyWith =>
+      _$RemoteFileFieldTypeCopyWithImpl<RemoteFileFieldType>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return remoteFile(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remoteFile != null) {
+      return remoteFile(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return remoteFile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remoteFile != null) {
+      return remoteFile(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$RemoteFileFieldTypeToJson(this)..['field_type'] = 'RemoteFile';
+  }
+}
+
+abstract class RemoteFileFieldType implements FieldType, GetFieldTypeNameMixin {
+  factory RemoteFileFieldType({bool nulleable}) = _$RemoteFileFieldType;
+
+  factory RemoteFileFieldType.fromJson(Map<String, dynamic> json) =
+      _$RemoteFileFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $RemoteFileFieldTypeCopyWith<RemoteFileFieldType> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RemoteAudioFieldTypeCopyWith<$Res>
+    implements $FieldTypeCopyWith<$Res> {
+  factory $RemoteAudioFieldTypeCopyWith(RemoteAudioFieldType value,
+          $Res Function(RemoteAudioFieldType) then) =
+      _$RemoteAudioFieldTypeCopyWithImpl<$Res>;
+  @override
+  $Res call({bool nulleable});
+}
+
+/// @nodoc
+class _$RemoteAudioFieldTypeCopyWithImpl<$Res>
+    extends _$FieldTypeCopyWithImpl<$Res>
+    implements $RemoteAudioFieldTypeCopyWith<$Res> {
+  _$RemoteAudioFieldTypeCopyWithImpl(
+      RemoteAudioFieldType _value, $Res Function(RemoteAudioFieldType) _then)
+      : super(_value, (v) => _then(v as RemoteAudioFieldType));
+
+  @override
+  RemoteAudioFieldType get _value => super._value as RemoteAudioFieldType;
+
+  @override
+  $Res call({
+    Object? nulleable = freezed,
+  }) {
+    return _then(RemoteAudioFieldType(
+      nulleable: nulleable == freezed
+          ? _value.nulleable
+          : nulleable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+@JsonSerializable()
+@With(GetFieldTypeNameMixin)
+
+/// @nodoc
+class _$RemoteAudioFieldType
+    with GetFieldTypeNameMixin
+    implements RemoteAudioFieldType {
+  _$RemoteAudioFieldType({this.nulleable = false});
+
+  factory _$RemoteAudioFieldType.fromJson(Map<String, dynamic> json) =>
+      _$_$RemoteAudioFieldTypeFromJson(json);
+
+  @JsonKey(defaultValue: false)
+  @override
+  final bool nulleable;
+
+  @override
+  String toString() {
+    return 'FieldType.remoteAudio(nulleable: $nulleable)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is RemoteAudioFieldType &&
+            (identical(other.nulleable, nulleable) ||
+                const DeepCollectionEquality()
+                    .equals(other.nulleable, nulleable)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nulleable);
+
+  @JsonKey(ignore: true)
+  @override
+  $RemoteAudioFieldTypeCopyWith<RemoteAudioFieldType> get copyWith =>
+      _$RemoteAudioFieldTypeCopyWithImpl<RemoteAudioFieldType>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool nulleable) tbool,
+    required TResult Function(bool nulleable) tint,
+    required TResult Function(bool nulleable) tdouble,
+    required TResult Function(bool nulleable) tstring,
+    required TResult Function(bool nulleable) year,
+    required TResult Function(bool nulleable) month,
+    required TResult Function(bool nulleable) day,
+    required TResult Function(bool nulleable) weekDay,
+    required TResult Function(bool nulleable) hour,
+    required TResult Function(bool nulleable) minute,
+    required TResult Function(bool nulleable) second,
+    required TResult Function(bool nulleable) date,
+    required TResult Function(bool nulleable) time,
+    required TResult Function(bool nulleable) datetime,
+    required TResult Function(bool nulleable) localPhoto,
+    required TResult Function(bool nulleable) localFile,
+    required TResult Function(bool nulleable) localAudio,
+    required TResult Function(bool nulleable) remotePhoto,
+    required TResult Function(bool nulleable) remoteFile,
+    required TResult Function(bool nulleable) remoteAudio,
+  }) {
+    return remoteAudio(nulleable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool nulleable)? tbool,
+    TResult Function(bool nulleable)? tint,
+    TResult Function(bool nulleable)? tdouble,
+    TResult Function(bool nulleable)? tstring,
+    TResult Function(bool nulleable)? year,
+    TResult Function(bool nulleable)? month,
+    TResult Function(bool nulleable)? day,
+    TResult Function(bool nulleable)? weekDay,
+    TResult Function(bool nulleable)? hour,
+    TResult Function(bool nulleable)? minute,
+    TResult Function(bool nulleable)? second,
+    TResult Function(bool nulleable)? date,
+    TResult Function(bool nulleable)? time,
+    TResult Function(bool nulleable)? datetime,
+    TResult Function(bool nulleable)? localPhoto,
+    TResult Function(bool nulleable)? localFile,
+    TResult Function(bool nulleable)? localAudio,
+    TResult Function(bool nulleable)? remotePhoto,
+    TResult Function(bool nulleable)? remoteFile,
+    TResult Function(bool nulleable)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remoteAudio != null) {
+      return remoteAudio(nulleable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(BoolFieldType value) tbool,
+    required TResult Function(IntFieldType value) tint,
+    required TResult Function(DoubleFieldType value) tdouble,
+    required TResult Function(StringFieldType value) tstring,
+    required TResult Function(YearFieldType value) year,
+    required TResult Function(MonthFieldType value) month,
+    required TResult Function(DayFieldType value) day,
+    required TResult Function(WeekDayFieldType value) weekDay,
+    required TResult Function(HourFieldType value) hour,
+    required TResult Function(MinuteFieldType value) minute,
+    required TResult Function(SecondFieldType value) second,
+    required TResult Function(DateFieldType value) date,
+    required TResult Function(TimeFieldType value) time,
+    required TResult Function(DateTimeFieldType value) datetime,
+    required TResult Function(LocalPhotoFieldType value) localPhoto,
+    required TResult Function(LocalFileFieldType value) localFile,
+    required TResult Function(LocalAudioFieldType value) localAudio,
+    required TResult Function(RemotePhotoFieldType value) remotePhoto,
+    required TResult Function(RemoteFileFieldType value) remoteFile,
+    required TResult Function(RemoteAudioFieldType value) remoteAudio,
+  }) {
+    return remoteAudio(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BoolFieldType value)? tbool,
+    TResult Function(IntFieldType value)? tint,
+    TResult Function(DoubleFieldType value)? tdouble,
+    TResult Function(StringFieldType value)? tstring,
+    TResult Function(YearFieldType value)? year,
+    TResult Function(MonthFieldType value)? month,
+    TResult Function(DayFieldType value)? day,
+    TResult Function(WeekDayFieldType value)? weekDay,
+    TResult Function(HourFieldType value)? hour,
+    TResult Function(MinuteFieldType value)? minute,
+    TResult Function(SecondFieldType value)? second,
+    TResult Function(DateFieldType value)? date,
+    TResult Function(TimeFieldType value)? time,
+    TResult Function(DateTimeFieldType value)? datetime,
+    TResult Function(LocalPhotoFieldType value)? localPhoto,
+    TResult Function(LocalFileFieldType value)? localFile,
+    TResult Function(LocalAudioFieldType value)? localAudio,
+    TResult Function(RemotePhotoFieldType value)? remotePhoto,
+    TResult Function(RemoteFileFieldType value)? remoteFile,
+    TResult Function(RemoteAudioFieldType value)? remoteAudio,
+    required TResult orElse(),
+  }) {
+    if (remoteAudio != null) {
+      return remoteAudio(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$RemoteAudioFieldTypeToJson(this)..['field_type'] = 'RemoteAudio';
+  }
+}
+
+abstract class RemoteAudioFieldType
+    implements FieldType, GetFieldTypeNameMixin {
+  factory RemoteAudioFieldType({bool nulleable}) = _$RemoteAudioFieldType;
+
+  factory RemoteAudioFieldType.fromJson(Map<String, dynamic> json) =
+      _$RemoteAudioFieldType.fromJson;
+
+  @override
+  bool get nulleable => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $RemoteAudioFieldTypeCopyWith<RemoteAudioFieldType> get copyWith =>
       throw _privateConstructorUsedError;
 }
