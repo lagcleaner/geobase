@@ -6,25 +6,28 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: IGeoDataRepository)
 class GeoDataRepository implements IGeoDataRepository {
   @override
-  Future<Either<Failure, GeoDataEntity>> addGeodata(GeoDataEntity geoData) {
+  Future<Either<Failure, GeoDataGetEntity>> addGeodata(
+    GeoDataPostEntity geoData,
+  ) {
     // TODO: implement addGeodata
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, List<GeoDataEntity>>> loadAllGeodata() {
+  Future<Either<Failure, List<GeoDataGetEntity>>> loadAllGeodata() {
     // TODO: implement loadAllGeodata
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, GeoDataEntity>> loadGeodataById(int geoDataId) {
+  Future<Either<Failure, GeoDataGetEntity>> loadGeodataById(int geoDataId) {
     // TODO: implement loadGeodataById
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, List<GeoDataEntity>>> loadGeodataWhere() {
+  Future<Either<Failure, List<GeoDataGetEntity>>> loadGeodataWhere(
+      FilterDataOptions filters) {
     // TODO: implement loadGeodataWhere
     throw UnimplementedError();
   }
@@ -36,7 +39,9 @@ class GeoDataRepository implements IGeoDataRepository {
   }
 
   @override
-  Future<Either<Failure, GeoDataEntity>> updateGeodata(GeoDataEntity geoData) {
+  Future<Either<Failure, GeoDataGetEntity>> updateGeodata(
+    GeoDataPutEntity geoData,
+  ) {
     // TODO: implement updateGeodata
     throw UnimplementedError();
   }

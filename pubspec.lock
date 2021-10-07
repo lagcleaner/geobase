@@ -29,20 +29,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.1"
-  auto_route:
+  beamer:
     dependency: "direct main"
     description:
-      name: auto_route
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
-  auto_route_generator:
-    dependency: "direct dev"
-    description:
-      name: auto_route_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
+      path: package
+      ref: "2015b04c79bf139d2df32ea62cba9f5d489433b2"
+      resolved-ref: "2015b04c79bf139d2df32ea62cba9f5d489433b2"
+      url: "https://github.com/slovnicki/beamer.git"
+    source: git
+    version: "0.14.1"
   bloc:
     dependency: transitive
     description:
@@ -611,6 +606,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  rxdart:
+    dependency: "direct main"
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.27.2"
   shared_preferences:
     dependency: "direct main"
     description:

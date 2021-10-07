@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$FailureTearOff {
   const _$FailureTearOff();
 
-  ConnectionFailure connection() {
-    return const ConnectionFailure();
+  ConnectionFailure connection({String? message}) {
+    return ConnectionFailure(
+      message: message,
+    );
   }
 
   PermissionDeniedFailure permissionDenied({String? message}) {
@@ -38,16 +40,18 @@ const $Failure = _$FailureTearOff();
 
 /// @nodoc
 mixin _$Failure {
+  String? get message => throw _privateConstructorUsedError;
+
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connection,
+    required TResult Function(String? message) connection,
     required TResult Function(String? message) permissionDenied,
     required TResult Function(String? message) unhandled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connection,
+    TResult Function(String? message)? connection,
     TResult Function(String? message)? permissionDenied,
     TResult Function(String? message)? unhandled,
     required TResult orElse(),
@@ -68,12 +72,16 @@ mixin _$Failure {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $FailureCopyWith<Failure> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
       _$FailureCopyWithImpl<$Res>;
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -83,13 +91,28 @@ class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
   final Failure _value;
   // ignore: unused_field
   final $Res Function(Failure) _then;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(_value.copyWith(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
-abstract class $ConnectionFailureCopyWith<$Res> {
+abstract class $ConnectionFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $ConnectionFailureCopyWith(
           ConnectionFailure value, $Res Function(ConnectionFailure) then) =
       _$ConnectionFailureCopyWithImpl<$Res>;
+  @override
+  $Res call({String? message});
 }
 
 /// @nodoc
@@ -101,45 +124,69 @@ class _$ConnectionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
   @override
   ConnectionFailure get _value => super._value as ConnectionFailure;
+
+  @override
+  $Res call({
+    Object? message = freezed,
+  }) {
+    return _then(ConnectionFailure(
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 class _$ConnectionFailure implements ConnectionFailure {
-  const _$ConnectionFailure();
+  const _$ConnectionFailure({this.message});
+
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'Failure.connection()';
+    return 'Failure.connection(message: $message)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ConnectionFailure);
+    return identical(this, other) ||
+        (other is ConnectionFailure &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @JsonKey(ignore: true)
+  @override
+  $ConnectionFailureCopyWith<ConnectionFailure> get copyWith =>
+      _$ConnectionFailureCopyWithImpl<ConnectionFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connection,
+    required TResult Function(String? message) connection,
     required TResult Function(String? message) permissionDenied,
     required TResult Function(String? message) unhandled,
   }) {
-    return connection();
+    return connection(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connection,
+    TResult Function(String? message)? connection,
     TResult Function(String? message)? permissionDenied,
     TResult Function(String? message)? unhandled,
     required TResult orElse(),
   }) {
     if (connection != null) {
-      return connection();
+      return connection(message);
     }
     return orElse();
   }
@@ -170,14 +217,23 @@ class _$ConnectionFailure implements ConnectionFailure {
 }
 
 abstract class ConnectionFailure implements Failure {
-  const factory ConnectionFailure() = _$ConnectionFailure;
+  const factory ConnectionFailure({String? message}) = _$ConnectionFailure;
+
+  @override
+  String? get message => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $ConnectionFailureCopyWith<ConnectionFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PermissionDeniedFailureCopyWith<$Res> {
+abstract class $PermissionDeniedFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $PermissionDeniedFailureCopyWith(PermissionDeniedFailure value,
           $Res Function(PermissionDeniedFailure) then) =
       _$PermissionDeniedFailureCopyWithImpl<$Res>;
+  @override
   $Res call({String? message});
 }
 
@@ -238,7 +294,7 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connection,
+    required TResult Function(String? message) connection,
     required TResult Function(String? message) permissionDenied,
     required TResult Function(String? message) unhandled,
   }) {
@@ -248,7 +304,7 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connection,
+    TResult Function(String? message)? connection,
     TResult Function(String? message)? permissionDenied,
     TResult Function(String? message)? unhandled,
     required TResult orElse(),
@@ -288,17 +344,21 @@ abstract class PermissionDeniedFailure implements Failure {
   const factory PermissionDeniedFailure({String? message}) =
       _$PermissionDeniedFailure;
 
+  @override
   String? get message => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $PermissionDeniedFailureCopyWith<PermissionDeniedFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnhandledFailureCopyWith<$Res> {
+abstract class $UnhandledFailureCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
   factory $UnhandledFailureCopyWith(
           UnhandledFailure value, $Res Function(UnhandledFailure) then) =
       _$UnhandledFailureCopyWithImpl<$Res>;
+  @override
   $Res call({String? message});
 }
 
@@ -357,7 +417,7 @@ class _$UnhandledFailure implements UnhandledFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() connection,
+    required TResult Function(String? message) connection,
     required TResult Function(String? message) permissionDenied,
     required TResult Function(String? message) unhandled,
   }) {
@@ -367,7 +427,7 @@ class _$UnhandledFailure implements UnhandledFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? connection,
+    TResult Function(String? message)? connection,
     TResult Function(String? message)? permissionDenied,
     TResult Function(String? message)? unhandled,
     required TResult orElse(),
@@ -406,7 +466,9 @@ class _$UnhandledFailure implements UnhandledFailure {
 abstract class UnhandledFailure implements Failure {
   const factory UnhandledFailure({String? message}) = _$UnhandledFailure;
 
+  @override
   String? get message => throw _privateConstructorUsedError;
+  @override
   @JsonKey(ignore: true)
   $UnhandledFailureCopyWith<UnhandledFailure> get copyWith =>
       throw _privateConstructorUsedError;

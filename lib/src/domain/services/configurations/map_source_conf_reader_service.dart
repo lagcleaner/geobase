@@ -18,7 +18,7 @@ class MapSourceConfigurationReaderService
   Future<Either<Failure, MapSourceConfiguration>>
       loadMapSourceConfigurations() async {
     // wms
-    return const Right(
+    return Right(
       MapSourceConfiguration.wms(
         baseUrl: 'https://{s}.s2maps-tiles.eu/wms/?',
         layers: ['s2cloudless-2018_3857'],

@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  auto_route: ^1.0.2
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0
   flash: ^1.5.1
@@ -29,11 +28,16 @@ dependencies:
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   sliding_up_panel: ^2.0.0+1
+  rxdart: ^0.27.2
+  beamer:
+    git:
+      url: https://github.com/slovnicki/beamer.git
+      path: package
+      ref: 2015b04c79bf139d2df32ea62cba9f5d489433b2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^1.0.1
   build_runner: ^1.11.5
   lint: ^1.6.0
   freezed: ^0.14.1

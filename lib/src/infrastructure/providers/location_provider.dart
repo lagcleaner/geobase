@@ -38,7 +38,7 @@ class LocationProvider implements ILocationProvider {
       final serviceEnabled = await _location.serviceEnabled();
       permissionGranted =
           serviceEnabled && (await permission) == PermissionStatus.granted;
-    } on PlatformException catch (e) {
+    } catch (e) {
       log(e.toString());
       // if (e.code == 'PERMISSION_DENIED') {
       //   _serviceError = e.message;

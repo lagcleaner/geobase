@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 class FilterCategoriesOptions {
   FilterCategoriesOptions({
     this.nameSubstring,
-    required this.ids,
-    required this.names,
-  });
+    this.ids,
+    this.names,
+  }) : assert(nameSubstring != null || ids != null || names != null);
 
   factory FilterCategoriesOptions.byNameOnly(String nameSubstring) =>
       FilterCategoriesOptions(
@@ -17,10 +17,10 @@ class FilterCategoriesOptions {
   /// contains in the name
   final String? nameSubstring;
 
-  final List<int> ids;
+  final List<int>? ids;
 
   /// exact name match
-  final List<String> names;
+  final List<String>? names;
 
   FilterCategoriesOptions copyWith({
     String? nameSubstring,
