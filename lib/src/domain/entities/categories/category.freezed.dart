@@ -35,7 +35,7 @@ class _$CategoryEntityTearOff {
       {required String name,
       Color? color,
       required Map<String, FieldType> fields,
-      required Map<String, String> relations}) {
+      required Map<String, int> relations}) {
     return CategoryPostEntity(
       name: name,
       color: color,
@@ -64,7 +64,7 @@ mixin _$CategoryEntity {
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, String> relations)
+            Map<String, FieldType> fields, Map<String, int> relations)
         post,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,7 +78,7 @@ mixin _$CategoryEntity {
             Map<String, CategoryEntity> relations)?
         get,
     TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, String> relations)?
+            Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) =>
@@ -268,7 +268,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, String> relations)
+            Map<String, FieldType> fields, Map<String, int> relations)
         post,
   }) {
     return get(id, name, color, fields, relations);
@@ -285,7 +285,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
             Map<String, CategoryEntity> relations)?
         get,
     TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, String> relations)?
+            Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) {
@@ -353,7 +353,7 @@ abstract class $CategoryPostEntityCopyWith<$Res>
       {String name,
       Color? color,
       Map<String, FieldType> fields,
-      Map<String, String> relations});
+      Map<String, int> relations});
 }
 
 /// @nodoc
@@ -390,7 +390,7 @@ class _$CategoryPostEntityCopyWithImpl<$Res>
       relations: relations == freezed
           ? _value.relations
           : relations // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
+              as Map<String, int>,
     ));
   }
 }
@@ -410,7 +410,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override // "name": FieldType
   final Map<String, FieldType> fields;
   @override // "name": "CategoryId"
-  final Map<String, String> relations;
+  final Map<String, int> relations;
 
   @override
   String toString() {
@@ -456,7 +456,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, String> relations)
+            Map<String, FieldType> fields, Map<String, int> relations)
         post,
   }) {
     return post(name, color, fields, relations);
@@ -473,7 +473,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
             Map<String, CategoryEntity> relations)?
         get,
     TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, String> relations)?
+            Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) {
@@ -511,7 +511,7 @@ abstract class CategoryPostEntity implements CategoryEntity {
       {required String name,
       Color? color,
       required Map<String, FieldType> fields,
-      required Map<String, String> relations}) = _$CategoryPostEntity;
+      required Map<String, int> relations}) = _$CategoryPostEntity;
 
   @override
   String get name => throw _privateConstructorUsedError;
@@ -520,7 +520,7 @@ abstract class CategoryPostEntity implements CategoryEntity {
   @override // "name": FieldType
   Map<String, FieldType> get fields =>
       throw _privateConstructorUsedError; // "name": "CategoryId"
-  Map<String, String> get relations => throw _privateConstructorUsedError;
+  Map<String, int> get relations => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $CategoryPostEntityCopyWith<CategoryPostEntity> get copyWith =>

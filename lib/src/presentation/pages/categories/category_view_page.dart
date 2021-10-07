@@ -4,8 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
-import 'package:geobase/src/presentation/pages/categories/blocS/categories/categories_bloc.dart';
-import 'package:geobase/src/presentation/pages/categories/blocs/category_view/cubit/categoryview_cubit.dart';
+import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
 
 class CategoryViewPage extends StatelessWidget {
@@ -146,6 +145,7 @@ class _CategoryViewBodyFetchSucessBottom extends StatelessWidget {
             child: MainButton(
               text: 'Editar',
               onPressed: () {
+                //TODO: DEFINIR SI SE PERMITIRA EDITAR CATEGORIAS
                 context.beamToNamed(
                   '/categories/$categoryId/edit',
                 );

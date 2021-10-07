@@ -24,6 +24,6 @@ class CategoryEntity with _$CategoryEntity {
     // "name": FieldType
     required Map<String, FieldType> fields,
     // "name": "CategoryId"
-    required Map<String, String> relations,
+    required Map<String, int> relations,
   }) = CategoryPostEntity;
 }
