@@ -1,4 +1,4 @@
-import 'package:flutter_lyform/flutter_lyform.dart';
+typedef InputFunctionValidator<T> = String? Function(T value);
 
 class Validator {
   static String? required(dynamic value) =>
@@ -27,21 +27,23 @@ class StringValidator {
           ? 'error_invalid_number_input'
           : null;
 
-  static InputValidator<String?> lengthGreaterThan(int len) =>
+  static InputFunctionValidator<String?> lengthGreaterThan(int len) =>
       (String? value) => value == null
           ? null
           : value.length > len
               ? null
               : 'error_too_short_input';
 
-  static InputValidator<String?> lengthLowerThan(int len) =>
+  static InputFunctionValidator<String?> lengthLowerThan(int len) =>
       (String? value) => value == null
           ? null
           : value.length < len
               ? null
               : 'error_too_long_input';
 
-  static InputValidator<String> stringPasswordMatch(String Function() match) =>
+  static InputFunctionValidator<String> stringPasswordMatch(
+    String Function() match,
+  ) =>
       (String value) =>
           value != match() ? 'error_confirm_password_no_match_input' : null;
 }

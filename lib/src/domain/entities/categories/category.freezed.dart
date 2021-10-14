@@ -20,7 +20,7 @@ class _$CategoryEntityTearOff {
       {required int id,
       required String name,
       Color? color,
-      required Map<String, FieldType> fields,
+      required Map<String, FieldTypeEnum> fields,
       required Map<String, CategoryEntity> relations}) {
     return CategoryGetEntity(
       id: id,
@@ -34,7 +34,7 @@ class _$CategoryEntityTearOff {
   CategoryPostEntity post(
       {required String name,
       Color? color,
-      required Map<String, FieldType> fields,
+      required Map<String, FieldTypeEnum> fields,
       required Map<String, int> relations}) {
     return CategoryPostEntity(
       name: name,
@@ -52,7 +52,7 @@ const $CategoryEntity = _$CategoryEntityTearOff();
 mixin _$CategoryEntity {
   String get name => throw _privateConstructorUsedError;
   Color? get color => throw _privateConstructorUsedError; // "name": FieldType
-  Map<String, FieldType> get fields => throw _privateConstructorUsedError;
+  Map<String, FieldTypeEnum> get fields => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -60,11 +60,11 @@ mixin _$CategoryEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, int> relations)
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)
         post,
   }) =>
       throw _privateConstructorUsedError;
@@ -74,11 +74,11 @@ mixin _$CategoryEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)?
         get,
-    TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, int> relations)?
+    TResult Function(String name, Color? color,
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) =>
@@ -107,7 +107,7 @@ abstract class $CategoryEntityCopyWith<$Res> {
   factory $CategoryEntityCopyWith(
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res>;
-  $Res call({String name, Color? color, Map<String, FieldType> fields});
+  $Res call({String name, Color? color, Map<String, FieldTypeEnum> fields});
 }
 
 /// @nodoc
@@ -137,7 +137,7 @@ class _$CategoryEntityCopyWithImpl<$Res>
       fields: fields == freezed
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldType>,
+              as Map<String, FieldTypeEnum>,
     ));
   }
 }
@@ -153,7 +153,7 @@ abstract class $CategoryGetEntityCopyWith<$Res>
       {int id,
       String name,
       Color? color,
-      Map<String, FieldType> fields,
+      Map<String, FieldTypeEnum> fields,
       Map<String, CategoryEntity> relations});
 }
 
@@ -192,7 +192,7 @@ class _$CategoryGetEntityCopyWithImpl<$Res>
       fields: fields == freezed
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldType>,
+              as Map<String, FieldTypeEnum>,
       relations: relations == freezed
           ? _value.relations
           : relations // ignore: cast_nullable_to_non_nullable
@@ -217,7 +217,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override
   final Color? color;
   @override // "name": FieldType
-  final Map<String, FieldType> fields;
+  final Map<String, FieldTypeEnum> fields;
   @override // "name": "CategoryId"
   final Map<String, CategoryEntity> relations;
 
@@ -264,11 +264,11 @@ class _$CategoryGetEntity implements CategoryGetEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, int> relations)
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)
         post,
   }) {
     return get(id, name, color, fields, relations);
@@ -281,11 +281,11 @@ class _$CategoryGetEntity implements CategoryGetEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)?
         get,
-    TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, int> relations)?
+    TResult Function(String name, Color? color,
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) {
@@ -323,7 +323,7 @@ abstract class CategoryGetEntity implements CategoryEntity {
       {required int id,
       required String name,
       Color? color,
-      required Map<String, FieldType> fields,
+      required Map<String, FieldTypeEnum> fields,
       required Map<String, CategoryEntity> relations}) = _$CategoryGetEntity;
 
   int get id => throw _privateConstructorUsedError;
@@ -332,7 +332,7 @@ abstract class CategoryGetEntity implements CategoryEntity {
   @override
   Color? get color => throw _privateConstructorUsedError;
   @override // "name": FieldType
-  Map<String, FieldType> get fields =>
+  Map<String, FieldTypeEnum> get fields =>
       throw _privateConstructorUsedError; // "name": "CategoryId"
   Map<String, CategoryEntity> get relations =>
       throw _privateConstructorUsedError;
@@ -352,7 +352,7 @@ abstract class $CategoryPostEntityCopyWith<$Res>
   $Res call(
       {String name,
       Color? color,
-      Map<String, FieldType> fields,
+      Map<String, FieldTypeEnum> fields,
       Map<String, int> relations});
 }
 
@@ -386,7 +386,7 @@ class _$CategoryPostEntityCopyWithImpl<$Res>
       fields: fields == freezed
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldType>,
+              as Map<String, FieldTypeEnum>,
       relations: relations == freezed
           ? _value.relations
           : relations // ignore: cast_nullable_to_non_nullable
@@ -408,7 +408,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override
   final Color? color;
   @override // "name": FieldType
-  final Map<String, FieldType> fields;
+  final Map<String, FieldTypeEnum> fields;
   @override // "name": "CategoryId"
   final Map<String, int> relations;
 
@@ -452,11 +452,11 @@ class _$CategoryPostEntity implements CategoryPostEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)
         get,
     required TResult Function(String name, Color? color,
-            Map<String, FieldType> fields, Map<String, int> relations)
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)
         post,
   }) {
     return post(name, color, fields, relations);
@@ -469,11 +469,11 @@ class _$CategoryPostEntity implements CategoryPostEntity {
             int id,
             String name,
             Color? color,
-            Map<String, FieldType> fields,
+            Map<String, FieldTypeEnum> fields,
             Map<String, CategoryEntity> relations)?
         get,
-    TResult Function(String name, Color? color, Map<String, FieldType> fields,
-            Map<String, int> relations)?
+    TResult Function(String name, Color? color,
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
         post,
     required TResult orElse(),
   }) {
@@ -510,7 +510,7 @@ abstract class CategoryPostEntity implements CategoryEntity {
   const factory CategoryPostEntity(
       {required String name,
       Color? color,
-      required Map<String, FieldType> fields,
+      required Map<String, FieldTypeEnum> fields,
       required Map<String, int> relations}) = _$CategoryPostEntity;
 
   @override
@@ -518,7 +518,7 @@ abstract class CategoryPostEntity implements CategoryEntity {
   @override
   Color? get color => throw _privateConstructorUsedError;
   @override // "name": FieldType
-  Map<String, FieldType> get fields =>
+  Map<String, FieldTypeEnum> get fields =>
       throw _privateConstructorUsedError; // "name": "CategoryId"
   Map<String, int> get relations => throw _privateConstructorUsedError;
   @override

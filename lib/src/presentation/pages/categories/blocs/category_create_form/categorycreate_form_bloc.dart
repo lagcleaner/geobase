@@ -1,24 +1,25 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class IPatientCreateFormBloc extends FormBloc<Unit, Failure> {
+abstract class ICategoryCreateFormBloc extends FormBloc<Unit, Failure> {
   InputBloc<String> get name;
   InputBloc<Color?> get color;
-  InputBloc<Map<String, FieldType>> get fields;
+  InputBloc<Map<String, FieldTypeEnum>> get fields;
   InputBloc<Map<String, int>> get relations;
 
   @override
   List<InputBloc> get inputs => [name, color, fields, relations];
 }
 
-@Injectable(as: IPatientCreateFormBloc)
-class PatientCreateFormBloc extends IPatientCreateFormBloc {
-  PatientCreateFormBloc({
+@Injectable(as: ICategoryCreateFormBloc)
+class CategoryCreateFormBloc extends ICategoryCreateFormBloc {
+  CategoryCreateFormBloc({
     required this.categoryService,
   }) : super();
 
@@ -26,9 +27,11 @@ class PatientCreateFormBloc extends IPatientCreateFormBloc {
   final InputBloc<String> name = InputBloc<String>(
     pureValue: '',
     validationType: ValidationType.explicit,
-    validators: [
-      StringValidator.required,
-    ],
+    validator: const ListValidator(
+      [
+        StringValidator.required,
+      ],
+    ),
   );
 
   @override
@@ -38,8 +41,8 @@ class PatientCreateFormBloc extends IPatientCreateFormBloc {
   );
 
   @override
-  final InputBloc<Map<String, FieldType>> fields =
-      InputBloc<Map<String, FieldType>>(
+  final InputBloc<Map<String, FieldTypeEnum>> fields =
+      InputBloc<Map<String, FieldTypeEnum>>(
     pureValue: {},
   );
 

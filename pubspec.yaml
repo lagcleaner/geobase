@@ -34,6 +34,7 @@ dependencies:
       url: https://github.com/slovnicki/beamer.git
       path: package
       ref: 2015b04c79bf139d2df32ea62cba9f5d489433b2
+  flutter_colorpicker: ^0.6.0
 
 dev_dependencies:
   flutter_test:

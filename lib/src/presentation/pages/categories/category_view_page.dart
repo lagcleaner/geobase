@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
@@ -267,9 +268,9 @@ class _CategoryViewBasicInfo extends StatelessWidget {
             ListTile(
               dense: true,
               title: Text(
-                '${field.key}${field.value.nulleable ? '' : '*'}',
+                '${field.key}*',
               ),
-              subtitle: Text(field.value.fieldTypeName),
+              subtitle: Text(field.value.visualName()),
             ),
         ],
         if (category.relations.isEmpty)

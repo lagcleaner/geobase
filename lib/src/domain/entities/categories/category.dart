@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geobase/src/domain/entities/categories/field_types/field_type.dart';
+import 'package:geobase/src/domain/core/enums/enums.dart';
 
 part 'category.freezed.dart';
 
@@ -12,7 +12,7 @@ class CategoryEntity with _$CategoryEntity {
     required String name,
     Color? color,
     // "name": FieldType
-    required Map<String, FieldType> fields,
+    required Map<String, FieldTypeEnum> fields,
     // "name": "CategoryId"
     required Map<String, CategoryEntity> relations,
     //TODO: especified this category entity relations to avoid cycles
@@ -22,7 +22,7 @@ class CategoryEntity with _$CategoryEntity {
     required String name,
     Color? color,
     // "name": FieldType
-    required Map<String, FieldType> fields,
+    required Map<String, FieldTypeEnum> fields,
     // "name": "CategoryId"
     required Map<String, int> relations,
   }) = CategoryPostEntity;

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/services.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_location_provider.dart';
 import 'package:injectable/injectable.dart';
 import 'package:latlong2/latlong.dart';
