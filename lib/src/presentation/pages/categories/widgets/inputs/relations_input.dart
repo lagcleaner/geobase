@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/src/domain/core/enums/field_type_enum.dart';
-import 'package:geobase/src/domain/core/extensions/extensions.dart';
-import 'package:geobase/src/domain/entities/categories/category.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/input_widget.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
@@ -30,11 +27,10 @@ class RelationsInputWidget extends StatefulWidget {
   //TODO: SHOW THIS ERROR TEXT SOME WHERE
 
   @override
-  State<RelationsInputWidget> createState() =>
-      _PathologicalHistoryInputWidgetState();
+  State<RelationsInputWidget> createState() => _RelationsInputWidgetState();
 }
 
-class _PathologicalHistoryInputWidgetState extends State<RelationsInputWidget> {
+class _RelationsInputWidgetState extends State<RelationsInputWidget> {
   @override
   Widget build(BuildContext context) {
     final relationsCubit = GetIt.I<RelationsCubit>()..loadCategories();
@@ -115,7 +111,7 @@ class _SelectCategoryInput extends StatelessWidget {
     return DropdownButtonFormField<int>(
       items: items.map((CategoryGetEntity categ) {
         return DropdownMenuItem(
-          value: value,
+          value: categ.id,
           child: Row(
             children: <Widget>[
               Text(categ.name),

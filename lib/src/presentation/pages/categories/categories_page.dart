@@ -22,8 +22,7 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CategoriesBloc>()
-        ..add(const CategoriesEvent.fetched(query: '')),
+      create: (_) => getIt<CategoriesBloc>(),
       child: const _CategoriesPageInternal(),
     );
   }
@@ -105,7 +104,7 @@ class _Body extends StatelessWidget {
               ],
             );
           },
-          fetchSuccess: (patients) {
+          fetchSuccess: (categories) {
             return ListView(
               children: [
                 _QueryInput(
@@ -113,8 +112,8 @@ class _Body extends StatelessWidget {
                   controller: queryController,
                   focusNode: focusNode,
                 ),
-                for (final patient in patients)
-                  _CategoryWidget(category: patient),
+                for (final category in categories)
+                  _CategoryWidget(category: category),
                 const SizedBox(height: 80),
               ],
             );

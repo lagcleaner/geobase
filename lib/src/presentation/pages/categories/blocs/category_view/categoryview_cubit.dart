@@ -25,4 +25,8 @@ class CategoryViewCubit extends Cubit<CategoryViewState> {
       ),
     );
   }
+
+  Future<void> remove(int categoryId) async {
+    await categoryService.removeCategory(categoryId);
+  }
 }

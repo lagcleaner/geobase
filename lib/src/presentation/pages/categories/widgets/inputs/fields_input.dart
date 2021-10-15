@@ -29,11 +29,10 @@ class FieldsInputWidget extends StatefulWidget {
   //TODO: SHOW THIS ERROR TEXT SOME WHERE
 
   @override
-  State<FieldsInputWidget> createState() =>
-      _PathologicalHistoryInputWidgetState();
+  State<FieldsInputWidget> createState() => _FieldsInputWidgetState();
 }
 
-class _PathologicalHistoryInputWidgetState extends State<FieldsInputWidget> {
+class _FieldsInputWidgetState extends State<FieldsInputWidget> {
   @override
   Widget build(BuildContext context) {
     final fieldsCubit = GetIt.I<FieldsCubit>();

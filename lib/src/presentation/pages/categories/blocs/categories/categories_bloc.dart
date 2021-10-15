@@ -26,9 +26,11 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
               FilterCategoriesOptions(nameSubstring: query),
             );
             response.fold(
-              (error) =>
-                  emit(CategoriesState.fetchFailure(error: error.toString())),
-              //TODO: CHANGE ERROR SHOWING
+              (error) => emit(
+                CategoriesState.fetchFailure(
+                  error: error.message ?? error.toString(),
+                ),
+              ),
               (categories) => emit(
                 categories.isEmpty
                     ? const CategoriesState.fetchSuccessNotFound()

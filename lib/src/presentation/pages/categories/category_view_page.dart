@@ -158,12 +158,37 @@ class _CategoryViewBodyFetchSucessBottom extends StatelessWidget {
             child: MainButton(
               text: 'Eliminar',
               onPressed: () {
-                //TODO: Eliminar Categoria
-
-                // context.beamToNamed(
-                //   '/categories/$categoryId/editegreso',
-                // );
+                final result = showDialog<bool>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    actionsAlignment: MainAxisAlignment.center,
+                    title: const Text('Eliminar Categoría.'),
+                    content: const Text(
+                      'La acción es irreversible y pueden verse afectados '
+                      'los datos relacionados a esta categoría. '
+                      '¿Está seguro?',
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: const Text('Si'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: const Text('No'),
+                      )
+                    ],
+                  ),
+                );
+                result.then((value) {
+                  if (value ?? false) {
+                    context.read<CategoryViewCubit>().remove(categoryId).then(
+                          (value) => context.beamToNamed('/categories'),
+                        );
+                  }
+                });
               },
+              color: Colors.red.withOpacity(0.7),
             ),
           ),
         ],
@@ -273,7 +298,7 @@ class _CategoryViewBasicInfo extends StatelessWidget {
               subtitle: Text(field.value.visualName()),
             ),
         ],
-        if (category.relations.isEmpty)
+        if (category.fields.isEmpty)
           const ListTile(dense: true, title: Text('Sin Campos')),
       ],
     );

@@ -22,14 +22,27 @@ class _$GeoDataEntityTearOff {
       Color? color,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
-      required Map<String, GeoDataEntity?> realtions}) {
+      required Map<String, GeoDataGetMinimalEntity?> relations}) {
     return GeoDataGetEntity(
       id: id,
       category: category,
       color: color,
       location: location,
       fields: fields,
-      realtions: realtions,
+      relations: relations,
+    );
+  }
+
+  GeoDataGetMinimalEntity getMinimal(
+      {required int id,
+      required int categoryId,
+      Color? color,
+      required LatLng location}) {
+    return GeoDataGetMinimalEntity(
+      id: id,
+      categoryId: categoryId,
+      color: color,
+      location: location,
     );
   }
 
@@ -37,12 +50,12 @@ class _$GeoDataEntityTearOff {
       {required int categoryId,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
-      required Map<String, String?> realtions}) {
+      required Map<String, int?> relation}) {
     return GeoDataPostEntity(
       categoryId: categoryId,
       location: location,
       fields: fields,
-      realtions: realtions,
+      relation: relation,
     );
   }
 
@@ -51,13 +64,13 @@ class _$GeoDataEntityTearOff {
       required int categoryId,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
-      required Map<String, String?> realtions}) {
+      required Map<String, int?> relations}) {
     return GeoDataPutEntity(
       id: id,
       categoryId: categoryId,
       location: location,
       fields: fields,
-      realtions: realtions,
+      relations: relations,
     );
   }
 }
@@ -68,8 +81,6 @@ const $GeoDataEntity = _$GeoDataEntityTearOff();
 /// @nodoc
 mixin _$GeoDataEntity {
   LatLng get location => throw _privateConstructorUsedError;
-  Map<String, FieldValueEntity> get fields =>
-      throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -79,20 +90,16 @@ mixin _$GeoDataEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)
+            Map<String, GeoDataGetMinimalEntity?> relations)
         get,
     required TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+            int id, int categoryId, Color? color, LatLng location)
+        getMinimal,
+    required TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)
         post,
-    required TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+    required TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)
         put,
   }) =>
       throw _privateConstructorUsedError;
@@ -104,20 +111,15 @@ mixin _$GeoDataEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)?
+            Map<String, GeoDataGetMinimalEntity?> relations)?
         get,
-    TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, Color? color, LatLng location)?
+        getMinimal,
+    TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)?
         post,
-    TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)?
         put,
     required TResult orElse(),
   }) =>
@@ -125,6 +127,7 @@ mixin _$GeoDataEntity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GeoDataGetEntity value) get,
+    required TResult Function(GeoDataGetMinimalEntity value) getMinimal,
     required TResult Function(GeoDataPostEntity value) post,
     required TResult Function(GeoDataPutEntity value) put,
   }) =>
@@ -132,6 +135,7 @@ mixin _$GeoDataEntity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GeoDataGetEntity value)? get,
+    TResult Function(GeoDataGetMinimalEntity value)? getMinimal,
     TResult Function(GeoDataPostEntity value)? post,
     TResult Function(GeoDataPutEntity value)? put,
     required TResult orElse(),
@@ -148,7 +152,7 @@ abstract class $GeoDataEntityCopyWith<$Res> {
   factory $GeoDataEntityCopyWith(
           GeoDataEntity value, $Res Function(GeoDataEntity) then) =
       _$GeoDataEntityCopyWithImpl<$Res>;
-  $Res call({LatLng location, Map<String, FieldValueEntity> fields});
+  $Res call({LatLng location});
 }
 
 /// @nodoc
@@ -163,17 +167,12 @@ class _$GeoDataEntityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? location = freezed,
-    Object? fields = freezed,
   }) {
     return _then(_value.copyWith(
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LatLng,
-      fields: fields == freezed
-          ? _value.fields
-          : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldValueEntity>,
     ));
   }
 }
@@ -191,7 +190,7 @@ abstract class $GeoDataGetEntityCopyWith<$Res>
       Color? color,
       LatLng location,
       Map<String, FieldValueEntity> fields,
-      Map<String, GeoDataEntity?> realtions});
+      Map<String, GeoDataGetMinimalEntity?> relations});
 
   $CategoryEntityCopyWith<$Res> get category;
 }
@@ -214,7 +213,7 @@ class _$GeoDataGetEntityCopyWithImpl<$Res>
     Object? color = freezed,
     Object? location = freezed,
     Object? fields = freezed,
-    Object? realtions = freezed,
+    Object? relations = freezed,
   }) {
     return _then(GeoDataGetEntity(
       id: id == freezed
@@ -237,10 +236,10 @@ class _$GeoDataGetEntityCopyWithImpl<$Res>
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String, FieldValueEntity>,
-      realtions: realtions == freezed
-          ? _value.realtions
-          : realtions // ignore: cast_nullable_to_non_nullable
-              as Map<String, GeoDataEntity?>,
+      relations: relations == freezed
+          ? _value.relations
+          : relations // ignore: cast_nullable_to_non_nullable
+              as Map<String, GeoDataGetMinimalEntity?>,
     ));
   }
 
@@ -262,7 +261,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
       this.color,
       required this.location,
       required this.fields,
-      required this.realtions});
+      required this.relations});
 
   @override
   final int id;
@@ -275,11 +274,11 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   @override
   final Map<String, FieldValueEntity> fields;
   @override
-  final Map<String, GeoDataEntity?> realtions;
+  final Map<String, GeoDataGetMinimalEntity?> relations;
 
   @override
   String toString() {
-    return 'GeoDataEntity.get(id: $id, category: $category, color: $color, location: $location, fields: $fields, realtions: $realtions)';
+    return 'GeoDataEntity.get(id: $id, category: $category, color: $color, location: $location, fields: $fields, relations: $relations)';
   }
 
   @override
@@ -298,9 +297,9 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
                     .equals(other.location, location)) &&
             (identical(other.fields, fields) ||
                 const DeepCollectionEquality().equals(other.fields, fields)) &&
-            (identical(other.realtions, realtions) ||
+            (identical(other.relations, relations) ||
                 const DeepCollectionEquality()
-                    .equals(other.realtions, realtions)));
+                    .equals(other.relations, relations)));
   }
 
   @override
@@ -311,7 +310,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
       const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(fields) ^
-      const DeepCollectionEquality().hash(realtions);
+      const DeepCollectionEquality().hash(relations);
 
   @JsonKey(ignore: true)
   @override
@@ -327,23 +326,19 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)
+            Map<String, GeoDataGetMinimalEntity?> relations)
         get,
     required TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+            int id, int categoryId, Color? color, LatLng location)
+        getMinimal,
+    required TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)
         post,
-    required TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+    required TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)
         put,
   }) {
-    return get(id, category, color, location, fields, realtions);
+    return get(id, category, color, location, fields, relations);
   }
 
   @override
@@ -355,25 +350,20 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)?
+            Map<String, GeoDataGetMinimalEntity?> relations)?
         get,
-    TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, Color? color, LatLng location)?
+        getMinimal,
+    TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)?
         post,
-    TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)?
         put,
     required TResult orElse(),
   }) {
     if (get != null) {
-      return get(id, category, color, location, fields, realtions);
+      return get(id, category, color, location, fields, relations);
     }
     return orElse();
   }
@@ -382,6 +372,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GeoDataGetEntity value) get,
+    required TResult Function(GeoDataGetMinimalEntity value) getMinimal,
     required TResult Function(GeoDataPostEntity value) post,
     required TResult Function(GeoDataPutEntity value) put,
   }) {
@@ -392,6 +383,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GeoDataGetEntity value)? get,
+    TResult Function(GeoDataGetMinimalEntity value)? getMinimal,
     TResult Function(GeoDataPostEntity value)? post,
     TResult Function(GeoDataPutEntity value)? put,
     required TResult orElse(),
@@ -405,26 +397,223 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
 
 abstract class GeoDataGetEntity implements GeoDataEntity, IMarkable {
   const factory GeoDataGetEntity(
-      {required int id,
-      required CategoryEntity category,
-      Color? color,
-      required LatLng location,
-      required Map<String, FieldValueEntity> fields,
-      required Map<String, GeoDataEntity?> realtions}) = _$GeoDataGetEntity;
+          {required int id,
+          required CategoryEntity category,
+          Color? color,
+          required LatLng location,
+          required Map<String, FieldValueEntity> fields,
+          required Map<String, GeoDataGetMinimalEntity?> relations}) =
+      _$GeoDataGetEntity;
 
   int get id => throw _privateConstructorUsedError;
   CategoryEntity get category => throw _privateConstructorUsedError;
   Color? get color => throw _privateConstructorUsedError;
   @override
   LatLng get location => throw _privateConstructorUsedError;
-  @override
   Map<String, FieldValueEntity> get fields =>
       throw _privateConstructorUsedError;
-  Map<String, GeoDataEntity?> get realtions =>
+  Map<String, GeoDataGetMinimalEntity?> get relations =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $GeoDataGetEntityCopyWith<GeoDataGetEntity> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GeoDataGetMinimalEntityCopyWith<$Res>
+    implements $GeoDataEntityCopyWith<$Res> {
+  factory $GeoDataGetMinimalEntityCopyWith(GeoDataGetMinimalEntity value,
+          $Res Function(GeoDataGetMinimalEntity) then) =
+      _$GeoDataGetMinimalEntityCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, int categoryId, Color? color, LatLng location});
+}
+
+/// @nodoc
+class _$GeoDataGetMinimalEntityCopyWithImpl<$Res>
+    extends _$GeoDataEntityCopyWithImpl<$Res>
+    implements $GeoDataGetMinimalEntityCopyWith<$Res> {
+  _$GeoDataGetMinimalEntityCopyWithImpl(GeoDataGetMinimalEntity _value,
+      $Res Function(GeoDataGetMinimalEntity) _then)
+      : super(_value, (v) => _then(v as GeoDataGetMinimalEntity));
+
+  @override
+  GeoDataGetMinimalEntity get _value => super._value as GeoDataGetMinimalEntity;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? categoryId = freezed,
+    Object? color = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(GeoDataGetMinimalEntity(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      categoryId: categoryId == freezed
+          ? _value.categoryId
+          : categoryId // ignore: cast_nullable_to_non_nullable
+              as int,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color?,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as LatLng,
+    ));
+  }
+}
+
+/// @nodoc
+class _$GeoDataGetMinimalEntity implements GeoDataGetMinimalEntity {
+  const _$GeoDataGetMinimalEntity(
+      {required this.id,
+      required this.categoryId,
+      this.color,
+      required this.location});
+
+  @override
+  final int id;
+  @override
+  final int categoryId;
+  @override
+  final Color? color;
+  @override
+  final LatLng location;
+
+  @override
+  String toString() {
+    return 'GeoDataEntity.getMinimal(id: $id, categoryId: $categoryId, color: $color, location: $location)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is GeoDataGetMinimalEntity &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.categoryId, categoryId) ||
+                const DeepCollectionEquality()
+                    .equals(other.categoryId, categoryId)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)) &&
+            (identical(other.location, location) ||
+                const DeepCollectionEquality()
+                    .equals(other.location, location)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(categoryId) ^
+      const DeepCollectionEquality().hash(color) ^
+      const DeepCollectionEquality().hash(location);
+
+  @JsonKey(ignore: true)
+  @override
+  $GeoDataGetMinimalEntityCopyWith<GeoDataGetMinimalEntity> get copyWith =>
+      _$GeoDataGetMinimalEntityCopyWithImpl<GeoDataGetMinimalEntity>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int id,
+            CategoryEntity category,
+            Color? color,
+            LatLng location,
+            Map<String, FieldValueEntity> fields,
+            Map<String, GeoDataGetMinimalEntity?> relations)
+        get,
+    required TResult Function(
+            int id, int categoryId, Color? color, LatLng location)
+        getMinimal,
+    required TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)
+        post,
+    required TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)
+        put,
+  }) {
+    return getMinimal(id, categoryId, color, location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            int id,
+            CategoryEntity category,
+            Color? color,
+            LatLng location,
+            Map<String, FieldValueEntity> fields,
+            Map<String, GeoDataGetMinimalEntity?> relations)?
+        get,
+    TResult Function(int id, int categoryId, Color? color, LatLng location)?
+        getMinimal,
+    TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)?
+        post,
+    TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)?
+        put,
+    required TResult orElse(),
+  }) {
+    if (getMinimal != null) {
+      return getMinimal(id, categoryId, color, location);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(GeoDataGetEntity value) get,
+    required TResult Function(GeoDataGetMinimalEntity value) getMinimal,
+    required TResult Function(GeoDataPostEntity value) post,
+    required TResult Function(GeoDataPutEntity value) put,
+  }) {
+    return getMinimal(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GeoDataGetEntity value)? get,
+    TResult Function(GeoDataGetMinimalEntity value)? getMinimal,
+    TResult Function(GeoDataPostEntity value)? post,
+    TResult Function(GeoDataPutEntity value)? put,
+    required TResult orElse(),
+  }) {
+    if (getMinimal != null) {
+      return getMinimal(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GeoDataGetMinimalEntity implements GeoDataEntity {
+  const factory GeoDataGetMinimalEntity(
+      {required int id,
+      required int categoryId,
+      Color? color,
+      required LatLng location}) = _$GeoDataGetMinimalEntity;
+
+  int get id => throw _privateConstructorUsedError;
+  int get categoryId => throw _privateConstructorUsedError;
+  Color? get color => throw _privateConstructorUsedError;
+  @override
+  LatLng get location => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $GeoDataGetMinimalEntityCopyWith<GeoDataGetMinimalEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -439,7 +628,7 @@ abstract class $GeoDataPostEntityCopyWith<$Res>
       {int categoryId,
       LatLng location,
       Map<String, FieldValueEntity> fields,
-      Map<String, String?> realtions});
+      Map<String, int?> relation});
 }
 
 /// @nodoc
@@ -458,7 +647,7 @@ class _$GeoDataPostEntityCopyWithImpl<$Res>
     Object? categoryId = freezed,
     Object? location = freezed,
     Object? fields = freezed,
-    Object? realtions = freezed,
+    Object? relation = freezed,
   }) {
     return _then(GeoDataPostEntity(
       categoryId: categoryId == freezed
@@ -473,10 +662,10 @@ class _$GeoDataPostEntityCopyWithImpl<$Res>
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String, FieldValueEntity>,
-      realtions: realtions == freezed
-          ? _value.realtions
-          : realtions // ignore: cast_nullable_to_non_nullable
-              as Map<String, String?>,
+      relation: relation == freezed
+          ? _value.relation
+          : relation // ignore: cast_nullable_to_non_nullable
+              as Map<String, int?>,
     ));
   }
 }
@@ -487,7 +676,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
       {required this.categoryId,
       required this.location,
       required this.fields,
-      required this.realtions});
+      required this.relation});
 
   @override
   final int categoryId;
@@ -496,11 +685,11 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
   @override
   final Map<String, FieldValueEntity> fields;
   @override
-  final Map<String, String?> realtions;
+  final Map<String, int?> relation;
 
   @override
   String toString() {
-    return 'GeoDataEntity.post(categoryId: $categoryId, location: $location, fields: $fields, realtions: $realtions)';
+    return 'GeoDataEntity.post(categoryId: $categoryId, location: $location, fields: $fields, relation: $relation)';
   }
 
   @override
@@ -515,9 +704,9 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
                     .equals(other.location, location)) &&
             (identical(other.fields, fields) ||
                 const DeepCollectionEquality().equals(other.fields, fields)) &&
-            (identical(other.realtions, realtions) ||
+            (identical(other.relation, relation) ||
                 const DeepCollectionEquality()
-                    .equals(other.realtions, realtions)));
+                    .equals(other.relation, relation)));
   }
 
   @override
@@ -526,7 +715,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
       const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(fields) ^
-      const DeepCollectionEquality().hash(realtions);
+      const DeepCollectionEquality().hash(relation);
 
   @JsonKey(ignore: true)
   @override
@@ -542,23 +731,19 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)
+            Map<String, GeoDataGetMinimalEntity?> relations)
         get,
     required TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+            int id, int categoryId, Color? color, LatLng location)
+        getMinimal,
+    required TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)
         post,
-    required TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+    required TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)
         put,
   }) {
-    return post(categoryId, location, fields, realtions);
+    return post(categoryId, location, fields, relation);
   }
 
   @override
@@ -570,25 +755,20 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)?
+            Map<String, GeoDataGetMinimalEntity?> relations)?
         get,
-    TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, Color? color, LatLng location)?
+        getMinimal,
+    TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)?
         post,
-    TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)?
         put,
     required TResult orElse(),
   }) {
     if (post != null) {
-      return post(categoryId, location, fields, realtions);
+      return post(categoryId, location, fields, relation);
     }
     return orElse();
   }
@@ -597,6 +777,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GeoDataGetEntity value) get,
+    required TResult Function(GeoDataGetMinimalEntity value) getMinimal,
     required TResult Function(GeoDataPostEntity value) post,
     required TResult Function(GeoDataPutEntity value) put,
   }) {
@@ -607,6 +788,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GeoDataGetEntity value)? get,
+    TResult Function(GeoDataGetMinimalEntity value)? getMinimal,
     TResult Function(GeoDataPostEntity value)? post,
     TResult Function(GeoDataPutEntity value)? put,
     required TResult orElse(),
@@ -623,15 +805,14 @@ abstract class GeoDataPostEntity implements GeoDataEntity {
       {required int categoryId,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
-      required Map<String, String?> realtions}) = _$GeoDataPostEntity;
+      required Map<String, int?> relation}) = _$GeoDataPostEntity;
 
   int get categoryId => throw _privateConstructorUsedError;
   @override
   LatLng get location => throw _privateConstructorUsedError;
-  @override
   Map<String, FieldValueEntity> get fields =>
       throw _privateConstructorUsedError;
-  Map<String, String?> get realtions => throw _privateConstructorUsedError;
+  Map<String, int?> get relation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $GeoDataPostEntityCopyWith<GeoDataPostEntity> get copyWith =>
@@ -650,7 +831,7 @@ abstract class $GeoDataPutEntityCopyWith<$Res>
       int categoryId,
       LatLng location,
       Map<String, FieldValueEntity> fields,
-      Map<String, String?> realtions});
+      Map<String, int?> relations});
 }
 
 /// @nodoc
@@ -670,7 +851,7 @@ class _$GeoDataPutEntityCopyWithImpl<$Res>
     Object? categoryId = freezed,
     Object? location = freezed,
     Object? fields = freezed,
-    Object? realtions = freezed,
+    Object? relations = freezed,
   }) {
     return _then(GeoDataPutEntity(
       id: id == freezed
@@ -689,10 +870,10 @@ class _$GeoDataPutEntityCopyWithImpl<$Res>
           ? _value.fields
           : fields // ignore: cast_nullable_to_non_nullable
               as Map<String, FieldValueEntity>,
-      realtions: realtions == freezed
-          ? _value.realtions
-          : realtions // ignore: cast_nullable_to_non_nullable
-              as Map<String, String?>,
+      relations: relations == freezed
+          ? _value.relations
+          : relations // ignore: cast_nullable_to_non_nullable
+              as Map<String, int?>,
     ));
   }
 }
@@ -704,7 +885,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
       required this.categoryId,
       required this.location,
       required this.fields,
-      required this.realtions});
+      required this.relations});
 
   @override
   final int id;
@@ -715,11 +896,11 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
   @override
   final Map<String, FieldValueEntity> fields;
   @override
-  final Map<String, String?> realtions;
+  final Map<String, int?> relations;
 
   @override
   String toString() {
-    return 'GeoDataEntity.put(id: $id, categoryId: $categoryId, location: $location, fields: $fields, realtions: $realtions)';
+    return 'GeoDataEntity.put(id: $id, categoryId: $categoryId, location: $location, fields: $fields, relations: $relations)';
   }
 
   @override
@@ -736,9 +917,9 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
                     .equals(other.location, location)) &&
             (identical(other.fields, fields) ||
                 const DeepCollectionEquality().equals(other.fields, fields)) &&
-            (identical(other.realtions, realtions) ||
+            (identical(other.relations, relations) ||
                 const DeepCollectionEquality()
-                    .equals(other.realtions, realtions)));
+                    .equals(other.relations, relations)));
   }
 
   @override
@@ -748,7 +929,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
       const DeepCollectionEquality().hash(categoryId) ^
       const DeepCollectionEquality().hash(location) ^
       const DeepCollectionEquality().hash(fields) ^
-      const DeepCollectionEquality().hash(realtions);
+      const DeepCollectionEquality().hash(relations);
 
   @JsonKey(ignore: true)
   @override
@@ -764,23 +945,19 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)
+            Map<String, GeoDataGetMinimalEntity?> relations)
         get,
     required TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+            int id, int categoryId, Color? color, LatLng location)
+        getMinimal,
+    required TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)
         post,
-    required TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)
+    required TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)
         put,
   }) {
-    return put(id, categoryId, location, fields, realtions);
+    return put(id, categoryId, location, fields, relations);
   }
 
   @override
@@ -792,25 +969,20 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
-            Map<String, GeoDataEntity?> realtions)?
+            Map<String, GeoDataGetMinimalEntity?> relations)?
         get,
-    TResult Function(
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, Color? color, LatLng location)?
+        getMinimal,
+    TResult Function(int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relation)?
         post,
-    TResult Function(
-            int id,
-            int categoryId,
-            LatLng location,
-            Map<String, FieldValueEntity> fields,
-            Map<String, String?> realtions)?
+    TResult Function(int id, int categoryId, LatLng location,
+            Map<String, FieldValueEntity> fields, Map<String, int?> relations)?
         put,
     required TResult orElse(),
   }) {
     if (put != null) {
-      return put(id, categoryId, location, fields, realtions);
+      return put(id, categoryId, location, fields, relations);
     }
     return orElse();
   }
@@ -819,6 +991,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(GeoDataGetEntity value) get,
+    required TResult Function(GeoDataGetMinimalEntity value) getMinimal,
     required TResult Function(GeoDataPostEntity value) post,
     required TResult Function(GeoDataPutEntity value) put,
   }) {
@@ -829,6 +1002,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(GeoDataGetEntity value)? get,
+    TResult Function(GeoDataGetMinimalEntity value)? getMinimal,
     TResult Function(GeoDataPostEntity value)? post,
     TResult Function(GeoDataPutEntity value)? put,
     required TResult orElse(),
@@ -846,16 +1020,15 @@ abstract class GeoDataPutEntity implements GeoDataEntity {
       required int categoryId,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
-      required Map<String, String?> realtions}) = _$GeoDataPutEntity;
+      required Map<String, int?> relations}) = _$GeoDataPutEntity;
 
   int get id => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
   @override
   LatLng get location => throw _privateConstructorUsedError;
-  @override
   Map<String, FieldValueEntity> get fields =>
       throw _privateConstructorUsedError;
-  Map<String, String?> get realtions => throw _privateConstructorUsedError;
+  Map<String, int?> get relations => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $GeoDataPutEntityCopyWith<GeoDataPutEntity> get copyWith =>

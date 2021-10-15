@@ -103,7 +103,7 @@ class GeoDataLocation extends BeamLocation<BeamState> {
     return [
       GeoDataPage.getPage(context),
       if (state.lenGreaterThan(1))
-        if (state.contains(1, 'new') && locationData != null)
+        if (state.contains(1, 'new'))
           GeoDataNewPage.getPage(context, locationData)
         else if (state.dataId != null) ...[
           GeoDataViewPage.getPage(context, state.dataId!),

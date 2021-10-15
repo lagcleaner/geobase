@@ -23,20 +23,26 @@ class GeoDataEntity with _$GeoDataEntity {
     Color? color,
     required LatLng location,
     required Map<String, FieldValueEntity> fields,
-    required Map<String, GeoDataEntity?> realtions,
+    required Map<String, GeoDataGetMinimalEntity?> relations,
   }) = GeoDataGetEntity;
+  const factory GeoDataEntity.getMinimal({
+    required int id,
+    required int categoryId,
+    Color? color,
+    required LatLng location,
+  }) = GeoDataGetMinimalEntity;
   const factory GeoDataEntity.post({
     required int categoryId,
     required LatLng location,
     required Map<String, FieldValueEntity> fields,
-    required Map<String, String?> realtions,
+    required Map<String, int?> relation,
   }) = GeoDataPostEntity;
   const factory GeoDataEntity.put({
     required int id,
     required int categoryId,
     required LatLng location,
     required Map<String, FieldValueEntity> fields,
-    required Map<String, String?> realtions,
+    required Map<String, int?> relations,
   }) = GeoDataPutEntity;
 }
 

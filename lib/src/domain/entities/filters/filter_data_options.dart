@@ -4,14 +4,14 @@ import 'package:geobase/src/domain/entities/filters/nearby_area.dart';
 
 class FilterDataOptions {
   FilterDataOptions({
-    this.ids = const [],
+    this.ids,
     this.nearTo,
     this.categoryId,
   });
 
   factory FilterDataOptions.clean() => FilterDataOptions();
 
-  final List<int> ids;
+  final List<int>? ids;
 
   final NearbyArea? nearTo;
 
