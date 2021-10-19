@@ -1,4 +1,5 @@
 export 'categories/category.dart';
+export 'categories/types.dart';
 export 'configurations/source_configuration.dart';
 export 'configurations/user_preferences.dart';
 export 'failures/failures.dart';

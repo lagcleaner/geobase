@@ -1,4 +1,5 @@
 import 'package:geobase/src/domain/core/enums/enums.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 
 extension EnumExtension on Enum {
   String get name => toString().split('.').last;
@@ -59,13 +60,13 @@ extension FieldTypeExtension on FieldTypeEnum {
       case FieldTypeEnum.DoubleFieldType:
         return (value as double?) != null;
       case FieldTypeEnum.MonthFieldType:
-        return (value as int?) != null;
+        return (value as MonthEnum?) != null;
       case FieldTypeEnum.YearFieldType:
         return (value as int?) != null;
       case FieldTypeEnum.TimeFieldType:
-        return (value as DateTime?) != null;
+        return (value as TimeEntity?) != null;
       case FieldTypeEnum.WeekDayFieldType:
-        return (value as String?) != null;
+        return (value as WeekDayEnum?) != null;
       case FieldTypeEnum.LocalAudioFieldType:
         return (value as String?) != null;
       case FieldTypeEnum.LocalPhotoFieldType:
@@ -76,6 +77,62 @@ extension FieldTypeExtension on FieldTypeEnum {
         return (value as String?) != null;
       default:
         throw Exception();
+    }
+  }
+}
+
+extension WeekDayExtensions on WeekDayEnum {
+  String visualName() {
+    switch (this) {
+      case WeekDayEnum.monday:
+        return 'Lunes';
+      case WeekDayEnum.tuesday:
+        return 'Martes';
+      case WeekDayEnum.wednesday:
+        return 'Miércoles';
+      case WeekDayEnum.thursday:
+        return 'Jueves';
+      case WeekDayEnum.friday:
+        return 'Viernes';
+      case WeekDayEnum.saturday:
+        return 'Sábado';
+      case WeekDayEnum.sunday:
+        return 'Domingo';
+      default:
+        return '';
+    }
+  }
+}
+
+extension MonthExtensions on MonthEnum {
+  String visualName() {
+    switch (this) {
+      case MonthEnum.january:
+        return 'Enero';
+      case MonthEnum.february:
+        return 'Febrero';
+      case MonthEnum.march:
+        return 'Marzo';
+      case MonthEnum.april:
+        return 'Abril';
+      case MonthEnum.may:
+        return 'Mayo';
+      case MonthEnum.june:
+        return 'Junio';
+      case MonthEnum.july:
+        return 'Julio';
+      case MonthEnum.august:
+        return 'Agosto';
+      case MonthEnum.september:
+        return 'Septiembre';
+      case MonthEnum.october:
+        return 'Octubre';
+      case MonthEnum.november:
+        return 'Noviembre';
+      case MonthEnum.december:
+        return 'Diciembre';
+      default:
+        return '';
     }
   }
 }

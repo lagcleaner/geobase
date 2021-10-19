@@ -11,7 +11,7 @@ class FieldValueEntity {
 
   final dynamic value;
 
-  T getValueOrNull<T>() => value as T;
+  T? getValueOrNull<T>() => value is T? ? value as T? : null;
 
   bool isValid() {
     if (value == null) return true;
