@@ -16,12 +16,19 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$CategoryEntityTearOff {
   const _$CategoryEntityTearOff();
 
+  CategoryMinimalEntity minimal({required int id, required String name}) {
+    return CategoryMinimalEntity(
+      id: id,
+      name: name,
+    );
+  }
+
   CategoryGetEntity get(
       {required int id,
       required String name,
       Color? color,
       required Map<String, FieldTypeEnum> fields,
-      required Map<String, CategoryEntity> relations}) {
+      required Map<String, CategoryMinimalEntity> relations}) {
     return CategoryGetEntity(
       id: id,
       name: name,
@@ -51,17 +58,16 @@ const $CategoryEntity = _$CategoryEntityTearOff();
 /// @nodoc
 mixin _$CategoryEntity {
   String get name => throw _privateConstructorUsedError;
-  Color? get color => throw _privateConstructorUsedError; // "name": FieldType
-  Map<String, FieldTypeEnum> get fields => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int id, String name) minimal,
     required TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)
+            Map<String, CategoryMinimalEntity> relations)
         get,
     required TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)
@@ -70,12 +76,13 @@ mixin _$CategoryEntity {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, String name)? minimal,
     TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)?
+            Map<String, CategoryMinimalEntity> relations)?
         get,
     TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
@@ -85,12 +92,14 @@ mixin _$CategoryEntity {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CategoryMinimalEntity value) minimal,
     required TResult Function(CategoryGetEntity value) get,
     required TResult Function(CategoryPostEntity value) post,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryMinimalEntity value)? minimal,
     TResult Function(CategoryGetEntity value)? get,
     TResult Function(CategoryPostEntity value)? post,
     required TResult orElse(),
@@ -107,7 +116,7 @@ abstract class $CategoryEntityCopyWith<$Res> {
   factory $CategoryEntityCopyWith(
           CategoryEntity value, $Res Function(CategoryEntity) then) =
       _$CategoryEntityCopyWithImpl<$Res>;
-  $Res call({String name, Color? color, Map<String, FieldTypeEnum> fields});
+  $Res call({String name});
 }
 
 /// @nodoc
@@ -122,24 +131,167 @@ class _$CategoryEntityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? color = freezed,
-    Object? fields = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color?,
-      fields: fields == freezed
-          ? _value.fields
-          : fields // ignore: cast_nullable_to_non_nullable
-              as Map<String, FieldTypeEnum>,
     ));
   }
+}
+
+/// @nodoc
+abstract class $CategoryMinimalEntityCopyWith<$Res>
+    implements $CategoryEntityCopyWith<$Res> {
+  factory $CategoryMinimalEntityCopyWith(CategoryMinimalEntity value,
+          $Res Function(CategoryMinimalEntity) then) =
+      _$CategoryMinimalEntityCopyWithImpl<$Res>;
+  @override
+  $Res call({int id, String name});
+}
+
+/// @nodoc
+class _$CategoryMinimalEntityCopyWithImpl<$Res>
+    extends _$CategoryEntityCopyWithImpl<$Res>
+    implements $CategoryMinimalEntityCopyWith<$Res> {
+  _$CategoryMinimalEntityCopyWithImpl(
+      CategoryMinimalEntity _value, $Res Function(CategoryMinimalEntity) _then)
+      : super(_value, (v) => _then(v as CategoryMinimalEntity));
+
+  @override
+  CategoryMinimalEntity get _value => super._value as CategoryMinimalEntity;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+  }) {
+    return _then(CategoryMinimalEntity(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$CategoryMinimalEntity implements CategoryMinimalEntity {
+  const _$CategoryMinimalEntity({required this.id, required this.name});
+
+  @override
+  final int id;
+  @override
+  final String name;
+
+  @override
+  String toString() {
+    return 'CategoryEntity.minimal(id: $id, name: $name)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CategoryMinimalEntity &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name);
+
+  @JsonKey(ignore: true)
+  @override
+  $CategoryMinimalEntityCopyWith<CategoryMinimalEntity> get copyWith =>
+      _$CategoryMinimalEntityCopyWithImpl<CategoryMinimalEntity>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int id, String name) minimal,
+    required TResult Function(
+            int id,
+            String name,
+            Color? color,
+            Map<String, FieldTypeEnum> fields,
+            Map<String, CategoryMinimalEntity> relations)
+        get,
+    required TResult Function(String name, Color? color,
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)
+        post,
+  }) {
+    return minimal(id, name);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, String name)? minimal,
+    TResult Function(
+            int id,
+            String name,
+            Color? color,
+            Map<String, FieldTypeEnum> fields,
+            Map<String, CategoryMinimalEntity> relations)?
+        get,
+    TResult Function(String name, Color? color,
+            Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
+        post,
+    required TResult orElse(),
+  }) {
+    if (minimal != null) {
+      return minimal(id, name);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CategoryMinimalEntity value) minimal,
+    required TResult Function(CategoryGetEntity value) get,
+    required TResult Function(CategoryPostEntity value) post,
+  }) {
+    return minimal(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryMinimalEntity value)? minimal,
+    TResult Function(CategoryGetEntity value)? get,
+    TResult Function(CategoryPostEntity value)? post,
+    required TResult orElse(),
+  }) {
+    if (minimal != null) {
+      return minimal(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CategoryMinimalEntity implements CategoryEntity {
+  const factory CategoryMinimalEntity({required int id, required String name}) =
+      _$CategoryMinimalEntity;
+
+  int get id => throw _privateConstructorUsedError;
+  @override
+  String get name => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  $CategoryMinimalEntityCopyWith<CategoryMinimalEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -154,7 +306,7 @@ abstract class $CategoryGetEntityCopyWith<$Res>
       String name,
       Color? color,
       Map<String, FieldTypeEnum> fields,
-      Map<String, CategoryEntity> relations});
+      Map<String, CategoryMinimalEntity> relations});
 }
 
 /// @nodoc
@@ -196,7 +348,7 @@ class _$CategoryGetEntityCopyWithImpl<$Res>
       relations: relations == freezed
           ? _value.relations
           : relations // ignore: cast_nullable_to_non_nullable
-              as Map<String, CategoryEntity>,
+              as Map<String, CategoryMinimalEntity>,
     ));
   }
 }
@@ -219,7 +371,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override // "name": FieldType
   final Map<String, FieldTypeEnum> fields;
   @override // "name": "CategoryId"
-  final Map<String, CategoryEntity> relations;
+  final Map<String, CategoryMinimalEntity> relations;
 
   @override
   String toString() {
@@ -260,12 +412,13 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int id, String name) minimal,
     required TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)
+            Map<String, CategoryMinimalEntity> relations)
         get,
     required TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)
@@ -277,12 +430,13 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, String name)? minimal,
     TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)?
+            Map<String, CategoryMinimalEntity> relations)?
         get,
     TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
@@ -298,6 +452,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CategoryMinimalEntity value) minimal,
     required TResult Function(CategoryGetEntity value) get,
     required TResult Function(CategoryPostEntity value) post,
   }) {
@@ -307,6 +462,7 @@ class _$CategoryGetEntity implements CategoryGetEntity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryMinimalEntity value)? minimal,
     TResult Function(CategoryGetEntity value)? get,
     TResult Function(CategoryPostEntity value)? post,
     required TResult orElse(),
@@ -320,21 +476,20 @@ class _$CategoryGetEntity implements CategoryGetEntity {
 
 abstract class CategoryGetEntity implements CategoryEntity {
   const factory CategoryGetEntity(
-      {required int id,
-      required String name,
-      Color? color,
-      required Map<String, FieldTypeEnum> fields,
-      required Map<String, CategoryEntity> relations}) = _$CategoryGetEntity;
+          {required int id,
+          required String name,
+          Color? color,
+          required Map<String, FieldTypeEnum> fields,
+          required Map<String, CategoryMinimalEntity> relations}) =
+      _$CategoryGetEntity;
 
   int get id => throw _privateConstructorUsedError;
   @override
   String get name => throw _privateConstructorUsedError;
-  @override
-  Color? get color => throw _privateConstructorUsedError;
-  @override // "name": FieldType
+  Color? get color => throw _privateConstructorUsedError; // "name": FieldType
   Map<String, FieldTypeEnum> get fields =>
       throw _privateConstructorUsedError; // "name": "CategoryId"
-  Map<String, CategoryEntity> get relations =>
+  Map<String, CategoryMinimalEntity> get relations =>
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -448,12 +603,13 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(int id, String name) minimal,
     required TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)
+            Map<String, CategoryMinimalEntity> relations)
         get,
     required TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)
@@ -465,12 +621,13 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, String name)? minimal,
     TResult Function(
             int id,
             String name,
             Color? color,
             Map<String, FieldTypeEnum> fields,
-            Map<String, CategoryEntity> relations)?
+            Map<String, CategoryMinimalEntity> relations)?
         get,
     TResult Function(String name, Color? color,
             Map<String, FieldTypeEnum> fields, Map<String, int> relations)?
@@ -486,6 +643,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(CategoryMinimalEntity value) minimal,
     required TResult Function(CategoryGetEntity value) get,
     required TResult Function(CategoryPostEntity value) post,
   }) {
@@ -495,6 +653,7 @@ class _$CategoryPostEntity implements CategoryPostEntity {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(CategoryMinimalEntity value)? minimal,
     TResult Function(CategoryGetEntity value)? get,
     TResult Function(CategoryPostEntity value)? post,
     required TResult orElse(),
@@ -515,9 +674,7 @@ abstract class CategoryPostEntity implements CategoryEntity {
 
   @override
   String get name => throw _privateConstructorUsedError;
-  @override
-  Color? get color => throw _privateConstructorUsedError;
-  @override // "name": FieldType
+  Color? get color => throw _privateConstructorUsedError; // "name": FieldType
   Map<String, FieldTypeEnum> get fields =>
       throw _privateConstructorUsedError; // "name": "CategoryId"
   Map<String, int> get relations => throw _privateConstructorUsedError;

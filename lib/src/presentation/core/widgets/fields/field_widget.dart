@@ -27,6 +27,7 @@ abstract class FieldListTile extends StatelessWidget {
       case FieldTypeEnum.LocalAudioFieldType:
       case FieldTypeEnum.LocalFileFieldType:
       case FieldTypeEnum.LocalPhotoFieldType:
+      case FieldTypeEnum.RemoteUrlFieldType:
       default:
         return TextValueFieldListTile(name: name, fieldValue: fieldValue);
     }

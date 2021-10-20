@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
 import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
 
 class RemoteUrlInputWidget extends BaseInputWidget {

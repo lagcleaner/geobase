@@ -1,6 +1,6 @@
 typedef InputFunctionValidator<T> = String? Function(T value);
 
-class Validator {
+class DynamicValidator {
   static String? required(dynamic value) =>
       value == null ? 'error_empty_input' : null;
 }
@@ -12,8 +12,8 @@ class IterableValidator {
 
 class StringValidator {
   /// assert when [value] is [null] or is not empty
-  static String? required(String value) =>
-      value.isEmpty ? 'error_empty_input' : null;
+  static String? required(String? value) =>
+      value?.isEmpty ?? true ? 'error_empty_input' : null;
 
   static String? number(String? value) => value == null
       ? null

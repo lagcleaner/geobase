@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/src/domain/core/enums/field_type_enum.dart';
 import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/input_widget.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/field/fields_cubit.dart';
 import 'package:get_it/get_it.dart';

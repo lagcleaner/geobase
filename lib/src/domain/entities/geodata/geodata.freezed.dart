@@ -18,7 +18,7 @@ class _$GeoDataEntityTearOff {
 
   GeoDataGetEntity get(
       {required int id,
-      required CategoryEntity category,
+      required CategoryGetEntity category,
       Color? color,
       required LatLng location,
       required Map<String, FieldValueEntity> fields,
@@ -86,7 +86,7 @@ mixin _$GeoDataEntity {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -107,7 +107,7 @@ mixin _$GeoDataEntity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -186,13 +186,11 @@ abstract class $GeoDataGetEntityCopyWith<$Res>
   @override
   $Res call(
       {int id,
-      CategoryEntity category,
+      CategoryGetEntity category,
       Color? color,
       LatLng location,
       Map<String, FieldValueEntity> fields,
       Map<String, GeoDataGetMinimalEntity?> relations});
-
-  $CategoryEntityCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -223,7 +221,7 @@ class _$GeoDataGetEntityCopyWithImpl<$Res>
       category: category == freezed
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as CategoryEntity,
+              as CategoryGetEntity,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -242,13 +240,6 @@ class _$GeoDataGetEntityCopyWithImpl<$Res>
               as Map<String, GeoDataGetMinimalEntity?>,
     ));
   }
-
-  @override
-  $CategoryEntityCopyWith<$Res> get category {
-    return $CategoryEntityCopyWith<$Res>(_value.category, (value) {
-      return _then(_value.copyWith(category: value));
-    });
-  }
 }
 
 @Implements(IMarkable)
@@ -266,7 +257,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   @override
   final int id;
   @override
-  final CategoryEntity category;
+  final CategoryGetEntity category;
   @override
   final Color? color;
   @override
@@ -322,7 +313,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -346,7 +337,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -398,7 +389,7 @@ class _$GeoDataGetEntity implements GeoDataGetEntity {
 abstract class GeoDataGetEntity implements GeoDataEntity, IMarkable {
   const factory GeoDataGetEntity(
           {required int id,
-          required CategoryEntity category,
+          required CategoryGetEntity category,
           Color? color,
           required LatLng location,
           required Map<String, FieldValueEntity> fields,
@@ -406,7 +397,7 @@ abstract class GeoDataGetEntity implements GeoDataEntity, IMarkable {
       _$GeoDataGetEntity;
 
   int get id => throw _privateConstructorUsedError;
-  CategoryEntity get category => throw _privateConstructorUsedError;
+  CategoryGetEntity get category => throw _privateConstructorUsedError;
   Color? get color => throw _privateConstructorUsedError;
   @override
   LatLng get location => throw _privateConstructorUsedError;
@@ -526,7 +517,7 @@ class _$GeoDataGetMinimalEntity implements GeoDataGetMinimalEntity {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -550,7 +541,7 @@ class _$GeoDataGetMinimalEntity implements GeoDataGetMinimalEntity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -727,7 +718,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -751,7 +742,7 @@ class _$GeoDataPostEntity implements GeoDataPostEntity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -941,7 +932,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
   TResult when<TResult extends Object?>({
     required TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,
@@ -965,7 +956,7 @@ class _$GeoDataPutEntity implements GeoDataPutEntity {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             int id,
-            CategoryEntity category,
+            CategoryGetEntity category,
             Color? color,
             LatLng location,
             Map<String, FieldValueEntity> fields,

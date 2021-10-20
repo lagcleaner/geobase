@@ -19,7 +19,7 @@ class GeoDataEntity with _$GeoDataEntity {
   @Implements(IMarkable)
   const factory GeoDataEntity.get({
     required int id,
-    required CategoryEntity category,
+    required CategoryGetEntity category,
     Color? color,
     required LatLng location,
     required Map<String, FieldValueEntity> fields,

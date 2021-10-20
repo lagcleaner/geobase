@@ -7,6 +7,12 @@ part 'category.freezed.dart';
 
 @freezed
 class CategoryEntity with _$CategoryEntity {
+  ///Only to be contained in relations
+  const factory CategoryEntity.minimal({
+    required int id,
+    required String name,
+  }) = CategoryMinimalEntity;
+
   const factory CategoryEntity.get({
     required int id,
     required String name,
@@ -14,8 +20,7 @@ class CategoryEntity with _$CategoryEntity {
     // "name": FieldType
     required Map<String, FieldTypeEnum> fields,
     // "name": "CategoryId"
-    required Map<String, CategoryEntity> relations,
-    //TODO: especified this category entity relations to avoid cycles
+    required Map<String, CategoryMinimalEntity> relations,
   }) = CategoryGetEntity;
 
   const factory CategoryEntity.post({
