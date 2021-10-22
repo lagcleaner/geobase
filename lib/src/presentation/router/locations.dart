@@ -41,7 +41,7 @@ class HomeLocation extends BeamLocation<BeamState> {
   List<String> get pathPatterns => [
         '/map',
         // '/map?location=', //TODO: Test if is working well
-        '/map/settings',
+        '/map/options',
       ];
 
   @override
@@ -52,7 +52,7 @@ class HomeLocation extends BeamLocation<BeamState> {
     return [
       if (state.contains(0, 'map'))
         HomePage.getPage(context, initialLocation: state.ubication),
-      if (state.contains(1, 'settings')) SettingsPage.getPage(context),
+      if (state.contains(1, 'options')) OptionsPage.getPage(context),
     ];
   }
 }

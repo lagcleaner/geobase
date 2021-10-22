@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
         actions: [
           TextButton.icon(
             onPressed: () {
-              context.beamToNamed('/map/settings');
+              context.beamToNamed('/map/options');
             },
             icon: const Icon(Icons.settings_rounded),
             label: const SizedBox(),

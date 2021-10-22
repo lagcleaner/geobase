@@ -7,5 +7,5 @@ export 'geodata/geodata_new_page.dart';
 export 'geodata/geodata_page.dart';
 export 'geodata/geodata_view_page.dart';
 export 'home/home_page.dart';
-export 'home/settings_page.dart';
+export 'home/options_page.dart';
 export 'not_found/not_found_page.dart';

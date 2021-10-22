@@ -1,28 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
-import 'package:geobase/src/presentation/core/utils/input_validators.dart';
-import 'package:geobase/src/presentation/pages/geodata/blocs/geodata_create/geodata_create_cubit.dart';
-import 'package:injectable/injectable.dart';
+import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:latlong2/latlong.dart';
 
-import '../blocs.dart';
+abstract class IGeodataEditFormBloc extends IGeodataFormBloc {
+  InputBloc<int> get geodataId;
 
-export '../utils/utils.dart';
-
-abstract class IGeodataCreateFormBloc extends FormBloc<Unit, Failure> {
-  InputBloc<int> get categoryId;
-  InputBloc<String> get latitude;
-  InputBloc<String> get longitude;
-  Map<String, InputBloc> get fieldInputBlocs;
-  Map<String, InputBloc<int?>> get relationInputBlocs;
-
-  CategoryGetEntity get category;
+  GeoDataGetEntity get defaultData;
 
   @override
   List<InputBloc> get inputs => [
+        geodataId,
         categoryId,
         latitude,
         longitude,
@@ -31,72 +23,79 @@ abstract class IGeodataCreateFormBloc extends FormBloc<Unit, Failure> {
       ];
 }
 
-@Injectable(as: IGeodataCreateFormBloc)
-class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
-  GeodataCreateFormBloc({
-    required this.categoryService,
-    @factoryParam GeodataCreateInitialData? createInitialData,
-  })  : initialData = createInitialData!,
+@Injectable(as: IGeodataEditFormBloc)
+class GeodataEditFormBloc extends IGeodataEditFormBloc {
+  GeodataEditFormBloc({
+    required this.geodataService,
+    @factoryParam GeodataEditInitialData? editInitialData,
+  })  : initialData = editInitialData!,
         super();
 
-  final IGeodataService categoryService;
-  final GeodataCreateInitialData initialData;
+  final IGeodataService geodataService;
+  final GeodataEditInitialData initialData;
 
   @override
-  CategoryGetEntity get category => initialData.category;
+  CategoryGetEntity get category => initialData.data.category;
+
+  @override
+  GeoDataGetEntity get defaultData => initialData.data;
 
   @override
   late final InputBloc<int> categoryId = InputBloc(
-    pureValue: initialData.category.id,
+    pureValue: category.id,
+  );
+
+  @override
+  late final InputBloc<int> geodataId = InputBloc(
+    pureValue: defaultData.id,
   );
 
   @override
   late final InputBloc<String> latitude = InputBloc<String>(
-    pureValue: initialData.location?.latitude.toString() ?? '',
+    pureValue: defaultData.location.latitude.toString(),
   );
 
   @override
   late final InputBloc<String> longitude = InputBloc<String>(
-    pureValue: initialData.location?.longitude.toString() ?? '',
+    pureValue: defaultData.location.longitude.toString(),
   );
 
   @override
   late final Map<String, InputBloc> fieldInputBlocs =
-      initialData.category.fields.entries.fold(
+      category.fields.entries.fold(
     {},
     (previousValue, element) => previousValue
       ..putIfAbsent(
         element.key,
-        () => getInputBloc(element.value),
+        () => getInputBloc(element.value)
+          ..pureValue = defaultData.fields[element.key]?.value,
       ),
   );
 
   @override
   late final Map<String, InputBloc<int?>> relationInputBlocs =
-      initialData.category.relations.entries.fold(
+      category.relations.entries.fold(
     {},
     (previousValue, element) => previousValue
       ..putIfAbsent(
         element.key,
         () => InputBloc<int?>(
-          pureValue: null,
-          // validationType: ValidationType.explicit,
-          // validator: const ListValidator([DynamicValidator.required]),
-          //TODO: Define if it will be required
+          pureValue: defaultData.relations[element.key]?.id,
         ),
       ),
   );
 
   @override
   Future<FormBlocState<Unit, Failure>> onSubmmit() async {
-    final response = await categoryService.createGeodata(
-      GeoDataPostEntity(
+    final response = await geodataService.editGeodata(
+      GeoDataPutEntity(
+        id: geodataId.state.value,
         categoryId: categoryId.state.value,
         location: LatLng(
           double.parse(latitude.state.value),
           double.parse(longitude.state.value),
         ),
-        relation: Map.fromEntries(
+        relations: Map.fromEntries(
           relationInputBlocs.entries.map(
             (entry) => MapEntry(entry.key, entry.value.state.value),
           ),
