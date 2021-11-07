@@ -64,13 +64,13 @@ class MapSourceConfiguration {
         },
       );
 
-  factory MapSourceConfiguration.networkCustom({
+  factory MapSourceConfiguration.customRemote({
     required String urlTemplate,
     List<String>? subdomains,
     Map<String, dynamic>? aditionalOptions,
   }) =>
       MapSourceConfiguration(
-        sourceType: MapSource.NetworkCustom,
+        sourceType: MapSource.CustomRemote,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
           MAP_SOURCE_SUBDOMAINS: subdomains,

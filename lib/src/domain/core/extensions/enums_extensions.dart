@@ -5,6 +5,27 @@ extension EnumExtension on Enum {
   String get name => toString().split('.').last;
 }
 
+extension MapSourceExtension on MapSource {
+  String visualName() {
+    switch (this) {
+      case MapSource.Assets:
+        return 'Precompilado';
+      case MapSource.File:
+        return 'Local';
+      case MapSource.CustomRemote:
+        return 'Remoto Personalizado';
+      case MapSource.WMS:
+        return 'Remoto protocolo WMS';
+      case MapSource.TMS:
+        return 'Remoto protocolo TMS';
+      case MapSource.Empty:
+        return 'Sin fuente';
+      default:
+        return name;
+    }
+  }
+}
+
 extension FieldTypeExtension on FieldTypeEnum {
   String visualName() {
     switch (this) {

@@ -1,14 +1,13 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/injection.dart';
-import 'package:geobase/src/presentation/core/constants/constants.dart';
-import 'package:geobase/src/presentation/pages/home/blocs/location/location_cubit.dart';
-import 'package:geobase/src/presentation/pages/home/blocs/map/map_cubit.dart';
-import 'package:geobase/src/presentation/pages/home/blocs/markers/marker_cubit.dart';
-import 'package:geobase/src/presentation/pages/home/widgets/map/map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+
+import 'package:geobase/injection.dart';
+import 'package:geobase/src/presentation/core/constants/constants.dart';
+import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
+import 'package:geobase/src/presentation/pages/home/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -38,7 +37,7 @@ class HomePage extends StatelessWidget {
         actions: [
           TextButton.icon(
             onPressed: () {
-              context.beamToNamed('/map/options');
+              context.beamToNamed('/options');
             },
             icon: const Icon(Icons.settings_rounded),
             label: const SizedBox(),
@@ -81,7 +80,7 @@ class _MapScreen extends StatelessWidget {
       children: [
         const GeoBaseMap(),
         //Left top
-        const Positioned(top: 200, left: 20, child: _SettingsButton()),
+        const Positioned(top: 200, left: 20, child: _OptionsButton()),
         //Right top
         const Positioned(top: 200, right: 20, child: _FiltersButton()),
         //Right bottom
@@ -123,7 +122,7 @@ class _GeoDataListButton extends StatelessWidget {
     return FloatingActionButton(
       elevation: 0,
       onPressed: () {
-        //TODO: NAVIGATE TO GEODATA LIST PAGE
+        context.beamToNamed('/geodata');
       },
       child: const Icon(Icons.view_list_rounded),
     );
@@ -150,10 +149,7 @@ class _FiltersButton extends StatelessWidget {
 class _GotoLocationButton extends StatelessWidget {
   const _GotoLocationButton({
     Key? key,
-    this.enabled = true,
   }) : super(key: key);
-
-  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -161,17 +157,20 @@ class _GotoLocationButton extends StatelessWidget {
       icon: const Icon(Icons.my_location_rounded),
       label: const SizedBox(),
       style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
-      onPressed: enabled
-          ? () {
-              //TODO: MOVE TO LOCATION (CENTER MAP ON CURRENT LOCATION) WHEN LOCATION IS ENABLE
-            }
-          : null,
+      onPressed: context.watch<LocationCubit>().state.map(
+            loading: (loading) => null,
+            disable: (disable) => null,
+            enable: (enable) => () {
+              final controller = context.read<MapCubit>().state.mapController;
+              controller.move(enable.location, controller.zoom);
+            },
+          ),
     );
   }
 }
 
-class _SettingsButton extends StatelessWidget {
-  const _SettingsButton({
+class _OptionsButton extends StatelessWidget {
+  const _OptionsButton({
     Key? key,
   }) : super(key: key);
 
@@ -180,7 +179,7 @@ class _SettingsButton extends StatelessWidget {
     return FloatingActionButton(
       elevation: 0,
       onPressed: () {
-        //TODO: NAVIGATE TO SETTINGS
+        context.beamToNamed('/options');
       },
       child: const Icon(Icons.settings),
     );

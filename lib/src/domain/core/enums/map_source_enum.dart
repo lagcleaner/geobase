@@ -3,6 +3,6 @@ enum MapSource {
   TMS,
   Assets,
   File,
-  NetworkCustom,
+  CustomRemote,
   Empty,
 }

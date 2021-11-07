@@ -6,8 +6,8 @@ class DynamicValidator {
 }
 
 class IterableValidator {
-  static String? notEmpty(Iterable value) =>
-      value.isEmpty ? 'error_empty_input' : null;
+  static String? notEmpty(Iterable? value) =>
+      value?.isEmpty ?? true ? 'error_empty_input' : null;
 }
 
 class StringValidator {

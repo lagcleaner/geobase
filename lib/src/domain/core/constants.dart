@@ -2,7 +2,7 @@
 const String MAP_SOURCE_URL_TEMPLATE = 'urlTemplate';
 const String MAP_SOURCE_SUBDOMAINS = 'subdomains';
 const String MAP_SOURCE_TILE_SIZE = 'tileSize';
-const String MAP_SOURCE_TILE_MAX_ZOOM = 'urlTemplate';
+const String MAP_SOURCE_TILE_MAX_ZOOM = '';
 const String MAP_SOURCE_ADITIONAL_OPTIONS = 'aditionalOptions';
 
 // TileLayerSource Options for wms

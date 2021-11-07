@@ -5,6 +5,8 @@ import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
 import 'package:latlong2/latlong.dart';
 
+export 'layer_utils.dart';
+
 class GeoBaseMap extends StatelessWidget {
   const GeoBaseMap({Key? key}) : super(key: key);
 

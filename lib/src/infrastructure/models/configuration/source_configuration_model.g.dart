@@ -52,6 +52,6 @@ const _$MapSourceEnumMap = {
   MapSource.TMS: 'TMS',
   MapSource.Assets: 'Assets',
   MapSource.File: 'File',
-  MapSource.NetworkCustom: 'NetworkCustom',
+  MapSource.CustomRemote: 'CustomRemote',
   MapSource.Empty: 'Empty',
 };

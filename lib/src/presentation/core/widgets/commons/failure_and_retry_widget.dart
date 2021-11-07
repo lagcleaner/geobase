@@ -17,6 +17,7 @@ class FailureAndRetryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 16),
           const Text("Ha ocurrido un error :'("),
