@@ -1,1 +1,3 @@
-class ConfigurationProvider {}
+class ConfigurationProvider {
+  //sharedprefs
+}

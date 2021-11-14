@@ -37,10 +37,19 @@ import 'src/domain/services/map/interfaces/i_location_reader.dart' as _i9;
 import 'src/domain/services/map/location_reader_service.dart' as _i50;
 import 'src/domain/services/map/markers_service.dart' as _i37;
 import 'src/domain/services/services.dart' as _i11;
+import 'src/infrastructure/providers/column_provider.dart' as _i53;
+import 'src/infrastructure/providers/field_type_provider.dart' as _i55;
+import 'src/infrastructure/providers/interfaces/i_columns_provider.dart'
+    as _i52;
+import 'src/infrastructure/providers/interfaces/i_field_type_provider.dart'
+    as _i54;
 import 'src/infrastructure/providers/interfaces/i_location_provider.dart'
     as _i25;
+import 'src/infrastructure/providers/interfaces/i_static_selection_provider.dart'
+    as _i56;
 import 'src/infrastructure/providers/interfaces/interfaces.dart' as _i28;
 import 'src/infrastructure/providers/location_provider.dart' as _i26;
+import 'src/infrastructure/providers/static_selection_provider.dart' as _i57;
 import 'src/infrastructure/repositories/categories_repository.dart' as _i13;
 import 'src/infrastructure/repositories/configuration_repository.dart' as _i16;
 import 'src/infrastructure/repositories/geodata_filters_repository.dart'
@@ -157,5 +166,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       userPreferencesReaderService: get<_i11.IUserPreferencesReaderService>(),
       userPreferencesWritterService: get<_i11.IUserPreferencesWritterService>(),
       locationService: get<_i11.ILocationReaderService>()));
+  gh.singleton<_i52.IColumnsProvider>(_i53.ColumnSQLiteProvider());
+  gh.singleton<_i54.IFieldTypeProvider>(_i55.FieldTypeSQLiteProvider());
+  gh.singleton<_i56.IFieldTypeStaticSelectionProvider>(
+      _i57.StaticSelectionSQLiteProvider());
   return get;
 }

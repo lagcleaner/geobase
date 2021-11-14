@@ -24,7 +24,6 @@ dependencies:
   latlong2: ^0.8.0
   location: ^4.3.0
   shared_preferences: ^2.0.5
-  sqflite: ^2.0.0+3
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   sliding_up_panel: ^2.0.0+1
@@ -35,11 +34,15 @@ dependencies:
       path: package
       ref: 2015b04c79bf139d2df32ea62cba9f5d489433b2
   flutter_colorpicker: ^0.6.0
+  path_provider: ^2.0.7
+  sqfentity: ^2.0.0
+  sqfentity_gen: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^1.11.5
+  build_verify: ^2.0.0
   lint: ^1.6.0
   freezed: ^0.14.1
   injectable_generator: ^1.2.0

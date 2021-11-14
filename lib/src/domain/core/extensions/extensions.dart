@@ -1,2 +1,2 @@
 export 'enums_extensions.dart';
-export 'map_extensions.dart';
+export 'general_extensions.dart';

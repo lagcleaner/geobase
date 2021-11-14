@@ -1,9 +1,14 @@
 import 'package:geobase/src/domain/core/enums/enums.dart';
+import 'package:geobase/src/domain/core/extensions/general_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 
 extension EnumExtension on Enum {
   String get name => toString().split('.').last;
 }
+
+// only to be used internally by amplify-flutter library
+T? enumFromString<T extends Enum>(String? key, List<T> values) =>
+    values.firstWhereOrNull((v) => key == v.name);
 
 extension MapSourceExtension on MapSource {
   String visualName() {
@@ -51,12 +56,12 @@ extension FieldTypeExtension on FieldTypeEnum {
         return 'hora';
       case FieldTypeEnum.WeekDayFieldType:
         return 'día semanal';
-      case FieldTypeEnum.LocalAudioFieldType:
-        return 'audio';
-      case FieldTypeEnum.LocalPhotoFieldType:
-        return 'foto';
-      case FieldTypeEnum.LocalFileFieldType:
-        return 'archivo';
+      // case FieldTypeEnum.LocalAudioFieldType:
+      //   return 'audio';
+      // case FieldTypeEnum.LocalPhotoFieldType:
+      //   return 'foto';
+      // case FieldTypeEnum.LocalFileFieldType:
+      //   return 'archivo';
       case FieldTypeEnum.RemoteUrlFieldType:
         return 'enlace remoto';
       default:
@@ -88,12 +93,12 @@ extension FieldTypeExtension on FieldTypeEnum {
         return (value as TimeEntity?) != null;
       case FieldTypeEnum.WeekDayFieldType:
         return (value as WeekDayEnum?) != null;
-      case FieldTypeEnum.LocalAudioFieldType:
-        return (value as String?) != null;
-      case FieldTypeEnum.LocalPhotoFieldType:
-        return (value as String?) != null;
-      case FieldTypeEnum.LocalFileFieldType:
-        return (value as String?) != null;
+      // case FieldTypeEnum.LocalAudioFieldType:
+      //   return (value as String?) != null;
+      // case FieldTypeEnum.LocalPhotoFieldType:
+      //   return (value as String?) != null;
+      // case FieldTypeEnum.LocalFileFieldType:
+      //   return (value as String?) != null;
       case FieldTypeEnum.RemoteUrlFieldType:
         return (value as String?) != null;
       default:

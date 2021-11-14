@@ -1,8 +1,9 @@
-abstract class IConfigurationProvider {
-  Future<void> setLocationUpdateInterval(Duration duration);
+import 'package:geobase/src/infrastructure/models/models.dart';
 
-  Future<void> setAccessToUserLocation(bool enabled);
-
-  // ignore: type_annotate_public_apis
-  Future<void> setMapSourceOptions(source);
+abstract class ICategoriesProvider {
+  // Future<List<CategoryGetModel>> getAllFromCategory(int categoryId);
+  // Future<CategoryGetModel> getById(int id);
+  // Future<int> create(CategoryPostModel model);
+  // Future<int> edit(CategoryPostModel model);
+  // Future<int> remove(int id);
 }

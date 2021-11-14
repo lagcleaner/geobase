@@ -15,3 +15,12 @@ extension getOrExtension on Map<String, dynamic> {
     }
   }
 }
+
+extension FirstOrNull<T> on List<T> {
+  T? firstWhereOrNull(bool Function(T) test) {
+    for (final elem in this) {
+      if (test(elem)) return elem;
+    }
+    return null;
+  }
+}
