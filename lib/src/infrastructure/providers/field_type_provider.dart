@@ -7,10 +7,11 @@ import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_field_type_provider.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
-@Singleton(as: IFieldTypeProvider)
-class FieldTypeSQLiteProvider extends IFieldTypeProvider {
+@LazySingleton(as: IFieldTypeProvider)
+class FieldTypeSQLiteProvider implements IFieldTypeProvider {
   static bool _initialized = false;
   static Future initializeBaseFieldTypes() async {
+    //todo: pasar esta logica al repositorio
     if (_initialized) return;
     await GeobaseModel().batchStart();
     try {

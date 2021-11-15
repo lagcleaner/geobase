@@ -11,7 +11,7 @@ abstract class CategoryModel {
 
   String? description;
 
-  String? color;
+  int? color;
 
   int? materialIconCodePoint; // icon (char)
 

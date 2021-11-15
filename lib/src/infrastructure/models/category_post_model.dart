@@ -4,9 +4,9 @@ class CategoryPostModel extends CategoryModel {
   CategoryPostModel({
     required String name,
     String? description,
-    String? color,
+    int? color,
     int? materialIconCodePoint,
-    required this.columnIds,
+    // required this.columnIds,
   }) : super(
           name: name,
           description: description,
@@ -14,5 +14,5 @@ class CategoryPostModel extends CategoryModel {
           materialIconCodePoint: materialIconCodePoint,
         );
 
-  final List<int> columnIds;
+  // final List<int> columnIds;
 }

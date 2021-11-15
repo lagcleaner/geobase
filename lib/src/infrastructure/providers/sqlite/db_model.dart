@@ -133,7 +133,8 @@ const tableFieldValue = SqfEntityTable(
   primaryKeyName: 'field_value_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
   fields: [
-    SqfEntityField('value', DbType.text), // json serialized value
+    // json serialized value => '{"value": <value>}'
+    SqfEntityField('value', DbType.text, isNotNull: true),
     SqfEntityFieldRelationship(
       parentTable: tableGeodata,
       fieldName: 'geodata_id',

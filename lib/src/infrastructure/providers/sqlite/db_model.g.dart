@@ -185,7 +185,7 @@ class TableFieldValueDBModel extends SqfEntityTableBase {
     // declare fields
     fields = [
       SqfEntityFieldBase('value', DbType.text,
-          isUnique: false, isNotNull: false, isIndex: false),
+          isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldRelationshipBase(
           TableGeodataDBModel.getInstance, DeleteRule.CASCADE,
           relationType: RelationType.ONE_TO_MANY,

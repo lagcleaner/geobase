@@ -5,8 +5,9 @@ import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_static_selection_provider.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
-@Singleton(as: IFieldTypeStaticSelectionProvider)
-class StaticSelectionSQLiteProvider extends IFieldTypeStaticSelectionProvider {
+@LazySingleton(as: IFieldTypeStaticSelectionProvider)
+class StaticSelectionSQLiteProvider
+    implements IFieldTypeStaticSelectionProvider {
   @override
   Future<int> create(FieldTypeStaticSelectionPostModel model) async {
     await GeobaseModel().batchStart();

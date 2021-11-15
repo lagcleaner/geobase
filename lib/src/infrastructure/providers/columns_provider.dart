@@ -4,8 +4,8 @@ import 'package:geobase/src/infrastructure/providers/interfaces/i_columns_provid
 import 'package:geobase/src/infrastructure/providers/interfaces/i_field_type_provider.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
-@Singleton(as: IColumnsProvider)
-class ColumnsSQLiteProvider extends IColumnsProvider {
+@LazySingleton(as: IColumnsProvider)
+class ColumnsSQLiteProvider implements IColumnsProvider {
   @override
   Future<int> create(ColumnPostModel model) async {
     return await ColumnDBModel.withFields(

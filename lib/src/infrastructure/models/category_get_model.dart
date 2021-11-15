@@ -6,7 +6,7 @@ class CategoryGetModel extends CategoryModel {
     required this.id,
     required String name,
     String? description,
-    String? color,
+    int? color,
     int? materialIconCodePoint,
     required this.columns,
   }) : super(
