@@ -2,7 +2,7 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
-import 'package:geobase/src/domain/core/extensions/map_extensions.dart';
+import 'package:geobase/src/domain/core/extensions/general_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 

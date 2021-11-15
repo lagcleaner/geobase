@@ -52,30 +52,30 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           StringValidator.integer,
         ]),
       );
-    case FieldTypeEnum.LocalAudioFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-        ]),
-      );
-    case FieldTypeEnum.LocalPhotoFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-        ]),
-      );
-    case FieldTypeEnum.LocalFileFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-        ]),
-      );
+    // case FieldTypeEnum.LocalAudioFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //     ]),
+    //   );
+    // case FieldTypeEnum.LocalPhotoFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //     ]),
+    //   );
+    // case FieldTypeEnum.LocalFileFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //     ]),
+    //   );
     case FieldTypeEnum.MonthFieldType:
       return InputBloc<MonthEnum?>(
         pureValue: null,

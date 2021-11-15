@@ -1,3 +1,4 @@
+//base types
 enum FieldTypeEnum {
   // built-in
   BoolFieldType,
@@ -18,9 +19,9 @@ enum FieldTypeEnum {
   DateTimeFieldType,
 
   // file datetypes
-  LocalPhotoFieldType,
-  LocalFileFieldType,
-  LocalAudioFieldType,
+  // LocalPhotoFieldType,
+  // LocalFileFieldType,
+  // LocalAudioFieldType,
 
   // remotes
   RemoteUrlFieldType,

@@ -101,30 +101,30 @@ class BaseInputWidget extends StatelessWidget {
           errorText: errorText,
           onChanged: onChanged,
         );
-      case FieldTypeEnum.LocalAudioFieldType:
-        return LocalAudioInputWidget(
-          key: Key('inputfield_$name'),
-          name: name,
-          fieldValue: fieldValue,
-          errorText: errorText,
-          onChanged: onChanged,
-        );
-      case FieldTypeEnum.LocalFileFieldType:
-        return LocalFileInputWidget(
-          key: Key('inputfield_$name'),
-          name: name,
-          fieldValue: fieldValue,
-          errorText: errorText,
-          onChanged: onChanged,
-        );
-      case FieldTypeEnum.LocalPhotoFieldType:
-        return LocalPhotoInputWidget(
-          key: Key('inputfield_$name'),
-          name: name,
-          fieldValue: fieldValue,
-          errorText: errorText,
-          onChanged: onChanged,
-        );
+      // case FieldTypeEnum.LocalAudioFieldType:
+      //   return LocalAudioInputWidget(
+      //     key: Key('inputfield_$name'),
+      //     name: name,
+      //     fieldValue: fieldValue,
+      //     errorText: errorText,
+      //     onChanged: onChanged,
+      //   );
+      // case FieldTypeEnum.LocalFileFieldType:
+      //   return LocalFileInputWidget(
+      //     key: Key('inputfield_$name'),
+      //     name: name,
+      //     fieldValue: fieldValue,
+      //     errorText: errorText,
+      //     onChanged: onChanged,
+      //   );
+      // case FieldTypeEnum.LocalPhotoFieldType:
+      //   return LocalPhotoInputWidget(
+      //     key: Key('inputfield_$name'),
+      //     name: name,
+      //     fieldValue: fieldValue,
+      //     errorText: errorText,
+      //     onChanged: onChanged,
+      //   );
       case FieldTypeEnum.StringFieldType:
       default:
         return StringInputWidget(
