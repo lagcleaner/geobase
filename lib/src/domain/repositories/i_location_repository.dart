@@ -6,6 +6,4 @@ abstract class ILocationRepository {
   Stream<Either<Failure, LatLng>> get onLocationChanged;
 
   Future<Either<Failure, LatLng>> currentLocation();
-
-  Future<Either<Failure, Unit>> changeUpdateInterval(Duration duration);
 }

@@ -37,6 +37,7 @@ dependencies:
   path_provider: ^2.0.7
   sqfentity: ^2.0.0
   sqfentity_gen: ^2.0.0
+  reflectable: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -15,10 +15,12 @@ class BaseInputWidget extends StatelessWidget {
 
   factory BaseInputWidget.widget({
     required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
     String? errorText,
     ValueChanged? onChanged,
   }) {
+    //TODO: APPLIES REFLECTABLE HERE
+
     switch (fieldValue.type) {
       case FieldTypeEnum.BoolFieldType:
         return BoolInputWidget(
@@ -138,7 +140,7 @@ class BaseInputWidget extends StatelessWidget {
   }
 
   final String name;
-  final FieldValueEntity fieldValue;
+  final FieldValueGetEntity fieldValue;
   final ValueChanged? onChanged;
   final String? errorText;
 

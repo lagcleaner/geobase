@@ -23,7 +23,7 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
             }
             emit(const CategoriesState.fetchInProgress());
             final response = await categoryService.loadCategoriesWhere(
-              FilterCategoriesOptions(nameSubstring: query),
+              FilterCategoriesOptionsEntityEntity(nameSubstring: query),
             );
             response.fold(
               (error) => emit(

@@ -1,63 +1,60 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
+
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:geobase/src/infrastructure/core/changes_notifier_streamcontroller.dart';
-import 'package:injectable/injectable.dart';
+import 'package:geobase/src/infrastructure/providers/interfaces/i_local_preferences_provider.dart';
 
 @Injectable(as: IConfigurationRepository)
 class ConfigurationRepository implements IConfigurationRepository {
-  ConfigurationRepository() {
-    _changesSourceNotifier = ObjectChangeNotifier<MapSourceConfiguration>();
+  ConfigurationRepository(
+    this.provider,
+  ) {
     _changesUserPreferencesNotifier =
-        ObjectChangeNotifier<UserPreferencesGetEntity>();
+        ObjectChangeNotifier<UserPreferencesEntity>();
   }
-  late final ObjectChangeNotifier<MapSourceConfiguration>
-      _changesSourceNotifier;
-  late final ObjectChangeNotifier<UserPreferencesGetEntity>
+
+  late final ObjectChangeNotifier<UserPreferencesEntity>
       _changesUserPreferencesNotifier;
 
-  @override
-  Stream<MapSourceConfiguration> get onSourceConfigChanged =>
-      _changesSourceNotifier.stream;
+  final ILocalPreferencesProvider provider;
 
   @override
-  Stream<UserPreferencesGetEntity> get onUserPrefChanged =>
+  Stream<UserPreferencesEntity> get onUserPrefChanged =>
       _changesUserPreferencesNotifier.stream;
 
   @override
-  Future<Either<Failure, MapSourceConfiguration>>
-      loadMapSourceConfigurations() {
+  Future<Either<Failure, MapSourceConfigurationEntity>>
+      loadMapSourceConfigurations() async {
     // TODO: implement loadMapSourceConfigurations
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, UserPreferencesGetEntity>> loadUserPreferences() {
+  Future<Either<Failure, UserPreferencesEntity>> loadUserPreferences() async {
     // TODO: implement loadUserPreferences
     throw UnimplementedError();
   }
 
   @override
   Future<Either<Failure, Unit>> setMapSourceConfigurations(
-    MapSourceConfiguration configuration,
-  ) {
+    MapSourceConfigurationEntity configuration,
+  ) async {
     // TODO: implement setMapSourceConfigurations
-    _changesSourceNotifier.add(configuration);
     throw UnimplementedError();
   }
 
   @override
   Future<Either<Failure, Unit>> editUserPreferences(
-    UserPreferencesUpdateEntity preferences,
-  ) {
+    UserPreferencesEntity preferences,
+  ) async {
     // TODO: implement setUserPreferences
     _changesUserPreferencesNotifier.add(
-      UserPreferencesGetEntity(
-        showLocation: preferences.showLocation ?? true,
-        updateInterval: preferences.updateInterval ??
-            const Duration(seconds: 3), //TODO: notify real editted entity
+      UserPreferencesEntity(
+        showLocation: preferences.showLocation,
       ),
     );
-    throw UnimplementedError();
+    return const Right(unit);
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:geobase/src/domain/entities/categories/types.dart';
-import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/entities/time_entity.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
 

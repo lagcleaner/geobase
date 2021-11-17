@@ -7,25 +7,26 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:geobase/src/infrastructure/core/changes_notifier_streamcontroller.dart';
 
-@LazySingleton(as: IGeoDataFilterRepository)
-class GeoDataFiltersRepository extends IGeoDataFilterRepository {
-  GeoDataFiltersRepository() {
-    _changesNotifier = ObjectChangeNotifier<FilterDataOptions>();
+@LazySingleton(as: IGeodataFilterRepository)
+class GeodataFiltersRepository extends IGeodataFilterRepository {
+  GeodataFiltersRepository() {
+    _changesNotifier = ObjectChangeNotifier<FilterDataOptionsEntity>();
   }
-  late final ObjectChangeNotifier<FilterDataOptions> _changesNotifier;
+  late final ObjectChangeNotifier<FilterDataOptionsEntity> _changesNotifier;
 
   @override
-  Stream<FilterDataOptions> get onFiltersOptionsChanged =>
+  Stream<FilterDataOptionsEntity> get onFiltersOptionsChanged =>
       _changesNotifier.stream;
 
   @override
-  Future<Either<Failure, FilterDataOptions>> loadDefaultFilterOptions() async {
-    return Right(FilterDataOptions.clean());
+  Future<Either<Failure, FilterDataOptionsEntity>>
+      loadDefaultFilterOptions() async {
+    return Right(FilterDataOptionsEntity.clean());
   }
 
   @override
   Future<Either<Failure, Unit>> setDefaultFilterOptions(
-    FilterDataOptions filters,
+    FilterDataOptionsEntity filters,
   ) async {
     //TODO: Save in locals
 

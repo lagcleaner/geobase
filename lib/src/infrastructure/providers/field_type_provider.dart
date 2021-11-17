@@ -1,31 +1,10 @@
-import 'dart:convert';
-
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/core/enums/enums.dart';
-import 'package:geobase/src/domain/core/extensions/enums_extensions.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_field_type_provider.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
 @LazySingleton(as: IFieldTypeProvider)
 class FieldTypeSQLiteProvider implements IFieldTypeProvider {
-  static bool _initialized = false;
-  static Future initializeBaseFieldTypes() async {
-    //todo: pasar esta logica al repositorio
-    if (_initialized) return;
-    await GeobaseModel().batchStart();
-    try {
-      for (final value in FieldTypeEnum.values) {
-        await FieldTypeDBModel.withFields(value.name, BaseMetaTypeName).save();
-      }
-      await GeobaseModel().batchCommit();
-    } catch (e) {
-      GeobaseModel().batchRollback();
-      rethrow;
-    }
-    _initialized = true;
-  }
-
   @override
   Future<List<FieldTypeGetModel>> getAll() async {
     final fieldTypes = await FieldTypeDBModel().select().toList(preload: true);
@@ -49,14 +28,16 @@ class FieldTypeSQLiteProvider implements IFieldTypeProvider {
   Future<FieldTypeGetModel> buildFieldTypeFromDBModel(
     FieldTypeDBModel type,
   ) async {
+    //TODO: APPLY REFLECTABLE HERE TO REMOVE SWITCH
     switch (type.meta_type) {
       case StaticSelectionMetaTypeName:
+        //TODO: COULD WORK APPLY REFLECTABLE TO OBTEIN THE COMPLEX TABLA TO MAKE A type.get<complex-type>DBModels().
         return type.getStaticSelectionDBModels()!.toSingle().then(
-              (value) => FieldTypeStaticSelectionGetModel(
-                fieldTypeId: type.field_type_id!,
+              (value) => FieldTypeGetModel(
+                id: type.field_type_id!,
                 name: type.name!,
                 metaType: type.meta_type!,
-                options: json.decode(value!.options!) as List<String>,
+                extradata: value?.toMap(),
               ),
             );
       case BaseMetaTypeName:

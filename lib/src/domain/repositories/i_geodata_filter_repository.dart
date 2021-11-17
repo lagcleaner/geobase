@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 
-abstract class IGeoDataFilterRepository {
-  Future<Either<Failure, FilterDataOptions>> loadDefaultFilterOptions();
+abstract class IGeodataFilterRepository {
+  Future<Either<Failure, FilterDataOptionsEntity>> loadDefaultFilterOptions();
 
-  Stream<FilterDataOptions> get onFiltersOptionsChanged;
+  Stream<FilterDataOptionsEntity> get onFiltersOptionsChanged;
 
   Future<Either<Failure, Unit>> setDefaultFilterOptions(
-    FilterDataOptions filters,
+    FilterDataOptionsEntity filters,
   );
 }

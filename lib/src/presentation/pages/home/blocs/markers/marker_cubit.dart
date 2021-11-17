@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/map/interfaces/i_markers.dart';
+import 'package:geobase/src/domain/services/map/interfaces/i_get_markers.dart';
 
 part 'marker_cubit.freezed.dart';
 part 'marker_state.dart';

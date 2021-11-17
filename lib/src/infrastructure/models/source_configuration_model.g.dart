@@ -9,8 +9,8 @@ part of 'source_configuration_model.dart';
 SourceConfigurationModel _$SourceConfigurationModelFromJson(
     Map<String, dynamic> json) {
   return SourceConfigurationModel(
-    _$enumDecode(_$MapSourceEnumMap, json['type']),
-    json['properties'] as Map<String, dynamic>,
+    type: _$enumDecode(_$MapSourceEnumMap, json['type']),
+    properties: json['properties'] as Map<String, dynamic>,
   );
 }
 

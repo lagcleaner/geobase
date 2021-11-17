@@ -5,7 +5,7 @@ part 'source_configuration_model.g.dart';
 
 @JsonSerializable()
 class SourceConfigurationModel {
-  SourceConfigurationModel(this.type, this.properties);
+  SourceConfigurationModel({required this.type, required this.properties});
 
   factory SourceConfigurationModel.fromJson(Map<String, dynamic> json) =>
       _$SourceConfigurationModelFromJson(json);

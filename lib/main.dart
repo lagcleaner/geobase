@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:geobase/injection.dart';
+import 'package:geobase/src/infrastructure/core/extensions/sqlite_db_extension.dart';
+import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 
 Future main() async {
@@ -12,7 +14,9 @@ Future main() async {
 Future initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  configureInjection(Environment.dev);
+  configureInjection(Environment.prod);
+
+  await getIt<GeobaseModel>().initialize();
 
   Bloc.observer = getIt<BlocObserver>();
 }

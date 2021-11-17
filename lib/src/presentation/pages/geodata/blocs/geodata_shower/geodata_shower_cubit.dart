@@ -15,7 +15,7 @@ class GeodataShowerCubit extends Cubit<GeodataShowerState> {
   final IGeodataService service;
   Future<void> loadGeodata(int categoryId) async {
     final geodataListEither = await service.loadGeodataWhere(
-      FilterDataOptions(categoryId: categoryId),
+      FilterDataOptionsEntity(categoryId: categoryId),
     );
     geodataListEither.fold(
       (l) => emit(GeodataShowerState.failure(message: l.message)),

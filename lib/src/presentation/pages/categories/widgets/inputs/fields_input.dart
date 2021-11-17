@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/src/domain/core/enums/field_type_enum.dart';
+import 'package:geobase/src/domain/core/enums/base_field_type_enum.dart';
 import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';

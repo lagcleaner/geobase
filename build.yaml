@@ -1,0 +1,23 @@
+targets:
+  $default:
+    builders:
+      reflectable:
+        generate_for:
+          - lib/solid_**.dart
+          ## Presentation
+          # Fields Widgets to Show Data
+          - lib/src/presentation/core/widgets/fields/**.dart
+
+          # Input Widgets to field value
+          - lib/src/presentation/core/widgets/input/**.dart
+          # Input Blocs to field value
+          - lib/src/presentation/core/widgets/input/**.dart
+
+          # Input Widgets to complex types
+          - lib/src/presentation/core/widgets/input/**.dart
+          # Input Blocs to complex types
+          - lib/src/presentation/core/widgets/input/**.dart
+
+          ## Infraestructure
+          # FieldValue Models
+          - lib/src/presentation/core/widgets/input/**.dart

@@ -32,7 +32,7 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
   @override
   Future<List<CategoryGetModel>> getAll() async {
     //TODO: use a view_table to get category get models with their columns.
-    final categories = await CategoryDBModel().select().toList(preload: true);
+    final categories = await CategoryDBModel().select().toList();
     final result = <CategoryGetModel>[];
     for (final cat in categories) {
       result.add(
@@ -46,8 +46,6 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
         ),
       );
     }
-
-    print(result);
     return result;
   }
 
@@ -55,7 +53,7 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
   Future<CategoryGetModel> getById(int id) async {
     final category =
         await CategoryDBModel().select().category_id.equals(id).toSingle();
-    if (category == null) throw Exception('Category not found');
+    if (category == null) throw Exception('Category Not Found');
     return CategoryGetModel(
       id: category.category_id!,
       name: category.name!,

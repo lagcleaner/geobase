@@ -3,19 +3,18 @@ import 'package:dartz/dartz.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 
 abstract class IConfigurationRepository {
-  Stream<MapSourceConfiguration> get onSourceConfigChanged;
+  Stream<UserPreferencesEntity> get onUserPrefChanged;
 
-  Stream<UserPreferencesGetEntity> get onUserPrefChanged;
-
-  Future<Either<Failure, MapSourceConfiguration>> loadMapSourceConfigurations();
+  Future<Either<Failure, MapSourceConfigurationEntity>>
+      loadMapSourceConfigurations();
 
   Future<Either<Failure, Unit>> setMapSourceConfigurations(
-    MapSourceConfiguration configuration,
+    MapSourceConfigurationEntity configuration,
   );
 
-  Future<Either<Failure, UserPreferencesGetEntity>> loadUserPreferences();
+  Future<Either<Failure, UserPreferencesEntity>> loadUserPreferences();
 
   Future<Either<Failure, Unit>> editUserPreferences(
-    UserPreferencesUpdateEntity preferences,
+    UserPreferencesEntity preferences,
   );
 }

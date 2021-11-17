@@ -23,7 +23,7 @@ class GeodataListBloc extends Bloc<GeodataListEvent, GeodataListState> {
             }
             emit(const GeodataListState.fetchInProgress());
             final response = await geodataService.loadGeodataWhere(
-              FilterDataOptions(categoryId: categoryId),
+              FilterDataOptionsEntity(categoryId: categoryId),
             );
             response.fold(
               (error) => emit(

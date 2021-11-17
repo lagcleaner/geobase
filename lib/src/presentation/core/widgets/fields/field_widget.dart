@@ -11,30 +11,31 @@ abstract class FieldListTile extends StatelessWidget {
     required this.fieldValue,
   }) : super(key: key);
 
-  factory FieldListTile.widget(String name, FieldValueEntity fieldValue) {
-    switch (fieldValue.type) {
-      case FieldTypeEnum.BoolFieldType:
-      case FieldTypeEnum.IntFieldType:
-      case FieldTypeEnum.DoubleFieldType:
-      case FieldTypeEnum.StringFieldType:
-      case FieldTypeEnum.DateFieldType:
-      case FieldTypeEnum.DateTimeFieldType:
-      case FieldTypeEnum.TimeFieldType:
-      case FieldTypeEnum.DayFieldType:
-      case FieldTypeEnum.MonthFieldType:
-      case FieldTypeEnum.YearFieldType:
-      case FieldTypeEnum.WeekDayFieldType:
-      // case FieldTypeEnum.LocalAudioFieldType:
-      // case FieldTypeEnum.LocalFileFieldType:
-      // case FieldTypeEnum.LocalPhotoFieldType:
-      case FieldTypeEnum.RemoteUrlFieldType:
+  factory FieldListTile.widget(String name, FieldValueGetEntity fieldValue) {
+    //TODO: APPLIES REFLECTABLE HERE
+    switch (fieldValue.column.type) {
+      // case FieldTypeEnum.BoolFieldType:
+      // case FieldTypeEnum.IntFieldType:
+      // case FieldTypeEnum.DoubleFieldType:
+      // case FieldTypeEnum.StringFieldType:
+      // case FieldTypeEnum.DateFieldType:
+      // case FieldTypeEnum.DateTimeFieldType:
+      // case FieldTypeEnum.TimeFieldType:
+      // case FieldTypeEnum.DayFieldType:
+      // case FieldTypeEnum.MonthFieldType:
+      // case FieldTypeEnum.YearFieldType:
+      // case FieldTypeEnum.WeekDayFieldType:
+      // // case FieldTypeEnum.LocalAudioFieldType:
+      // // case FieldTypeEnum.LocalFileFieldType:
+      // // case FieldTypeEnum.LocalPhotoFieldType:
+      // case FieldTypeEnum.RemoteUrlFieldType:
       default:
         return TextValueFieldListTile(name: name, fieldValue: fieldValue);
     }
   }
 
   final String name;
-  final FieldValueEntity fieldValue;
+  final FieldValueGetEntity fieldValue;
 
   @override
   Widget build(BuildContext context);
@@ -44,7 +45,7 @@ class TextValueFieldListTile extends FieldListTile {
   const TextValueFieldListTile({
     Key? key,
     required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
   }) : super(
           key: key,
           name: name,
@@ -56,7 +57,8 @@ class TextValueFieldListTile extends FieldListTile {
     return ListTile(
       dense: true,
       title: Text(fieldValue.value?.toString() ?? ''),
-      subtitle: Text('$name (${fieldValue.type.visualName()})'),
+      subtitle: Text(
+          '$name (${fieldValue.column.type.metaType}.${fieldValue.column.type.name})'),
     );
   }
 }

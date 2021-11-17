@@ -55,9 +55,11 @@ class ColumnsSQLiteProvider implements IColumnsProvider {
         .column_id
         .equals(id)
         .toSingle(preload: true);
+    if (column == null) throw Exception('Column Not Found');
+
     return ColumnGetModel(
       id: id,
-      categoryId: column!.category_id!,
+      categoryId: column.category_id!,
       name: column.name!,
       type: await getIt<IFieldTypeProvider>().getById(column.field_type_id!),
     );

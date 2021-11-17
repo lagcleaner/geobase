@@ -12,10 +12,13 @@ abstract class FieldTypeModel {
 
 class FieldTypeGetModel extends FieldTypeModel {
   FieldTypeGetModel({
-    required this.id,
     required String name,
     required String metaType,
+    required this.id,
+    this.extradata,
   }) : super(name: name, metaType: metaType);
 
   final int id;
+
+  final Map<String, dynamic>? extradata;
 }
