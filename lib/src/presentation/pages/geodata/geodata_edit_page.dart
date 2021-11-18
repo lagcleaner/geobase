@@ -10,8 +10,8 @@ import 'package:geobase/src/presentation/core/widgets/commons/commons.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
 
-class GeoDataEditPage extends StatelessWidget {
-  const GeoDataEditPage({
+class GeodataEditPage extends StatelessWidget {
+  const GeodataEditPage({
     Key? key,
     required this.geodataId,
   }) : super(key: key);
@@ -20,9 +20,9 @@ class GeoDataEditPage extends StatelessWidget {
 
   static BeamPage getPage(BuildContext context, int geodataId) {
     return BeamPage(
-      key: const ValueKey('GeoDataEdit'),
+      key: const ValueKey('GeodataEdit'),
       title: 'Editar Información del punto',
-      child: GeoDataEditPage(
+      child: GeodataEditPage(
         geodataId: geodataId,
       ),
     );

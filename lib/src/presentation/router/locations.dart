@@ -85,7 +85,7 @@ class CategoriesLocation extends BeamLocation<BeamState> {
   }
 }
 
-class GeoDataLocation extends BeamLocation<BeamState> {
+class GeodataLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns => [
         '/geodata',
@@ -101,14 +101,14 @@ class GeoDataLocation extends BeamLocation<BeamState> {
   ) {
     final locationData = data as LatLng?;
     return [
-      GeoDataPage.getPage(context),
+      GeodataPage.getPage(context),
       if (state.lenGreaterThan(1))
         if (state.contains(1, 'new'))
-          GeoDataNewPage.getPage(context, locationData)
+          GeodataNewPage.getPage(context, locationData)
         else if (state.dataId != null) ...[
-          GeoDataViewPage.getPage(context, state.dataId!),
+          GeodataViewPage.getPage(context, state.dataId!),
           if (state.contains(2, 'edit'))
-            GeoDataEditPage.getPage(context, state.dataId!),
+            GeodataEditPage.getPage(context, state.dataId!),
         ]
     ];
   }

@@ -4,7 +4,7 @@ part of 'geodataview_cubit.dart';
 class GeodataViewState with _$GeodataViewState {
   const factory GeodataViewState.fetchInProgress() = _FetchInProgress;
   const factory GeodataViewState.fetchSuccess({
-    required GeoDataGetEntity geodata,
+    required GeodataGetEntity geodata,
   }) = _FetchSuccess;
   const factory GeodataViewState.fetchFailure({
     required String error,

@@ -24,5 +24,5 @@ enum FieldTypeEnum {
   // LocalAudioFieldType,
 
   // remotes
-  RemoteUrlFieldType,
+  // RemoteUrlFieldType,
 }

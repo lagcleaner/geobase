@@ -14,9 +14,5 @@ abstract class IFieldTypeStaticSelectionRepository {
     FieldTypeStaticSelectionPostEntity newStaticSelection,
   );
 
-  // Future<Either<Failure, int>> editStaticSelection(
-  //   FieldTypeStaticSelectionPutEntity newStaticSelection,
-  // );
-
   Future<Either<Failure, Unit>> removeStaticSelection(int fieldTypeId);
 }

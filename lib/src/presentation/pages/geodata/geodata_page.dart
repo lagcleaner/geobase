@@ -9,16 +9,16 @@ import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
 
-class GeoDataPage extends StatelessWidget {
-  const GeoDataPage({
+class GeodataPage extends StatelessWidget {
+  const GeodataPage({
     Key? key,
   }) : super(key: key);
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
-      key: ValueKey('GeoDataList'),
+      key: ValueKey('GeodataList'),
       title: 'Datos Georeferenciados',
-      child: GeoDataPage(),
+      child: GeodataPage(),
     );
   }
 
@@ -156,7 +156,7 @@ class _GeodataWidget extends StatelessWidget {
     required this.geodata,
   }) : super(key: key);
 
-  final GeoDataGetEntity geodata;
+  final GeodataGetEntity geodata;
 
   @override
   Widget build(BuildContext context) {

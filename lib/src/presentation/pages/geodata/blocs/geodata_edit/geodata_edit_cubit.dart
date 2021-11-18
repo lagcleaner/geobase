@@ -36,7 +36,7 @@ class GeodataEditInitialData {
     required this.data,
   });
 
-  final GeoDataGetEntity data;
+  final GeodataGetEntity data;
 
   @override
   bool operator ==(Object other) {

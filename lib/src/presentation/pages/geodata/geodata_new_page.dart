@@ -10,8 +10,8 @@ import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
 import 'package:latlong2/latlong.dart';
 
-class GeoDataNewPage extends StatelessWidget {
-  const GeoDataNewPage({
+class GeodataNewPage extends StatelessWidget {
+  const GeodataNewPage({
     Key? key,
     this.ubication,
   }) : super(key: key);
@@ -24,9 +24,9 @@ class GeoDataNewPage extends StatelessWidget {
   ) {
     // navigate from map with latLng, or from geodata list to manually enter the latLng
     return BeamPage(
-      key: const ValueKey('GeoDataNew'),
+      key: const ValueKey('GeodataNew'),
       title: 'Nuevo punto georeferenciado',
-      child: GeoDataNewPage(
+      child: GeodataNewPage(
         ubication: latLng,
       ),
     );

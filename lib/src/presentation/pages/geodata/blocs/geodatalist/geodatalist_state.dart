@@ -5,7 +5,7 @@ class GeodataListState with _$GeodataListState {
   const factory GeodataListState.initial() = _Initial;
   const factory GeodataListState.fetchInProgress() = _FetchInProgress;
   const factory GeodataListState.fetchSuccess({
-    required List<GeoDataGetEntity> geodataList,
+    required List<GeodataGetEntity> geodataList,
   }) = _FetchSuccess;
   const factory GeodataListState.fetchSuccessNotFound() = _FetchSuccessNotFound;
   const factory GeodataListState.fetchFailure({

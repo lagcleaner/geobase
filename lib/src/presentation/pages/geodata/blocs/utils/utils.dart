@@ -3,6 +3,7 @@ import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 
+//TODO: DO THIS WITH REFLECTABLE...
 InputBloc getInputBloc(FieldTypeEnum typeEnum) {
   switch (typeEnum) {
     case FieldTypeEnum.BoolFieldType:
@@ -35,14 +36,14 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           StringValidator.integer,
         ]),
       );
-    case FieldTypeEnum.RemoteUrlFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-        ]),
-      );
+    // case FieldTypeEnum.RemoteUrlFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //     ]),
+    //   );
     case FieldTypeEnum.DayFieldType:
       return InputBloc<String>(
         pureValue: '',

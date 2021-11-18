@@ -103,7 +103,7 @@ class _MapScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: const [
-              _GeoDataListButton(),
+              _GeodataListButton(),
             ],
           ),
         ),
@@ -112,8 +112,8 @@ class _MapScreen extends StatelessWidget {
   }
 }
 
-class _GeoDataListButton extends StatelessWidget {
-  const _GeoDataListButton({
+class _GeodataListButton extends StatelessWidget {
+  const _GeodataListButton({
     Key? key,
   }) : super(key: key);
 

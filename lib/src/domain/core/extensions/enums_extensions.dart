@@ -62,8 +62,8 @@ extension FieldTypeExtension on FieldTypeEnum {
       //   return 'foto';
       // case FieldTypeEnum.LocalFileFieldType:
       //   return 'archivo';
-      case FieldTypeEnum.RemoteUrlFieldType:
-        return 'enlace remoto';
+      // case FieldTypeEnum.RemoteUrlFieldType:
+      //   return 'enlace remoto';
       default:
         return name;
     }
@@ -99,8 +99,8 @@ extension FieldTypeExtension on FieldTypeEnum {
       //   return (value as String?) != null;
       // case FieldTypeEnum.LocalFileFieldType:
       //   return (value as String?) != null;
-      case FieldTypeEnum.RemoteUrlFieldType:
-        return (value as String?) != null;
+      // case FieldTypeEnum.RemoteUrlFieldType:
+      //   return (value as String?) != null;
       default:
         throw Exception();
     }

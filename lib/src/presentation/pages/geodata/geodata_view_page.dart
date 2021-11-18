@@ -9,8 +9,8 @@ import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/latlng_format.dart';
 
-class GeoDataViewPage extends StatelessWidget {
-  const GeoDataViewPage({
+class GeodataViewPage extends StatelessWidget {
+  const GeodataViewPage({
     Key? key,
     required this.geodataId,
   }) : super(key: key);
@@ -19,9 +19,9 @@ class GeoDataViewPage extends StatelessWidget {
 
   static BeamPage getPage(BuildContext context, int geodataId) {
     return BeamPage(
-      key: const ValueKey('GeoDataDetails'),
+      key: const ValueKey('GeodataDetails'),
       title: 'Detalles del Punto',
-      child: GeoDataViewPage(
+      child: GeodataViewPage(
         geodataId: geodataId,
       ),
     );
@@ -127,7 +127,7 @@ class _GeodataViewBodyFetchSuccess extends StatelessWidget {
   const _GeodataViewBodyFetchSuccess({Key? key, required this.geodata})
       : super(key: key);
 
-  final GeoDataGetEntity geodata;
+  final GeodataGetEntity geodata;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +165,7 @@ class _GeodataViewBasicInfo extends StatelessWidget {
   const _GeodataViewBasicInfo({Key? key, required this.geodata})
       : super(key: key);
 
-  final GeoDataGetEntity geodata;
+  final GeodataGetEntity geodata;
 
   @override
   Widget build(BuildContext context) {

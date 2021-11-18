@@ -10,7 +10,7 @@ import 'package:latlong2/latlong.dart';
 abstract class IGeodataEditFormBloc extends IGeodataFormBloc {
   InputBloc<int> get geodataId;
 
-  GeoDataGetEntity get defaultData;
+  GeodataGetEntity get defaultData;
 
   @override
   List<InputBloc> get inputs => [
@@ -38,7 +38,7 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   CategoryGetEntity get category => initialData.data.category;
 
   @override
-  GeoDataGetEntity get defaultData => initialData.data;
+  GeodataGetEntity get defaultData => initialData.data;
 
   @override
   late final InputBloc<int> categoryId = InputBloc(
@@ -88,7 +88,7 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   @override
   Future<FormBlocState<Unit, Failure>> onSubmmit() async {
     final response = await geodataService.editGeodata(
-      GeoDataPutEntity(
+      GeodataPutEntity(
         id: geodataId.state.value,
         categoryId: categoryId.state.value,
         location: LatLng(

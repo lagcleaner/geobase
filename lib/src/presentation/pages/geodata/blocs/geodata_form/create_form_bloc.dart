@@ -65,7 +65,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
   @override
   Future<FormBlocState<Unit, Failure>> onSubmmit() async {
     final response = await geodataService.createGeodata(
-      GeoDataPostEntity(
+      GeodataPostEntity(
         categoryId: categoryId.state.value,
         location: LatLng(
           double.parse(latitude.state.value),

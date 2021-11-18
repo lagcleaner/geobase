@@ -7,7 +7,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 
 abstract class IMapSourceFormBloc
-    extends FormBloc<MapSourceConfiguration, Failure> {
+    extends FormBloc<MapSourceConfigurationEntity, Failure> {
   InputBloc<MapSource> get sourceType;
   //
   InputBloc<String?> get urlTemplate;
@@ -43,7 +43,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
         super();
 
   final MapSource mapSourceType;
-  final MapSourceConfiguration? source;
+  final MapSourceConfigurationEntity? source;
 
   @override
   late final InputBloc<MapSource> sourceType = InputBloc(
@@ -58,7 +58,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.TMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_URL_TEMPLATE,
             defaultValue: null,
           ),
@@ -72,7 +72,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.WMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_WMS_BASE_URL,
             defaultValue: null,
           ),
@@ -88,7 +88,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.WMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_WMS_FORMAT,
             defaultValue: 'image/pngs',
           ),
@@ -106,7 +106,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.TMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_SUBDOMAINS,
             defaultValue: null,
           ),
@@ -122,7 +122,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.WMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_WMS_LAYERS,
             defaultValue: null,
           ),
@@ -135,7 +135,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
 
   @override
   late final InputBloc<Map<String, dynamic>?> aditionalOptions = InputBloc(
-    pureValue: source?.options.getCastedOrDefault(
+    pureValue: source?.extensions.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,
       defaultValue: null,
     ),
@@ -145,7 +145,7 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
     MapSource.WMS,
   ].contains(mapSourceType)
       ? InputBloc(
-          pureValue: source?.options.getCastedOrDefault(
+          pureValue: source?.extensions.getCastedOrDefault(
             MAP_SOURCE_WMS_OTHER_PARAMS,
             defaultValue: null,
           ),
@@ -153,9 +153,10 @@ class MapSourceFormBloc extends IMapSourceFormBloc {
       : InputBloc(pureValue: null);
 
   @override
-  Future<FormBlocState<MapSourceConfiguration, Failure>> onSubmmit() async {
+  Future<FormBlocState<MapSourceConfigurationEntity, Failure>>
+      onSubmmit() async {
     return FormSuccessState(
-      MapSourceConfiguration(
+      MapSourceConfigurationEntity(
         sourceType: sourceType.state.value,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate.state.value,

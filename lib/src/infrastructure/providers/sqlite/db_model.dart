@@ -7,11 +7,13 @@ const String CategoryTableName = 'Category';
 const String GeodataTableName = 'Geodata';
 const String FieldTypeTableName = 'FieldType';
 const String StaticSelectionTableName = 'StaticSelection';
+const String MediaTableName = 'Media';
 const String ColumnTableName = 'Column';
 const String FieldValueTableName = 'FieldValue';
 
 //meta type names for FieldType
 const StaticSelectionMetaTypeName = StaticSelectionTableName;
+const MediaMetaTypeName = MediaTableName;
 const BaseMetaTypeName = 'Base';
 
 const tableCategory = SqfEntityTable(
@@ -63,6 +65,23 @@ const tableStaticSelection = SqfEntityTable(
   fields: [
     // json serialized list of Strings
     SqfEntityField('options', DbType.text, isNotNull: true),
+    SqfEntityFieldRelationship(
+      parentTable: tableFieldType,
+      fieldName: 'field_type_id',
+      isNotNull: true,
+      deleteRule: DeleteRule.CASCADE,
+    ),
+  ],
+);
+
+const tableMedia = SqfEntityTable(
+  tableName: MediaTableName,
+  modelName: 'MediaDBModel',
+  primaryKeyName: 'media_id',
+  primaryKeyType: PrimaryKeyType.integer_auto_incremental,
+  fields: [
+    // json serialized list of Strings
+    SqfEntityField('extensions', DbType.text, isNotNull: true),
     SqfEntityFieldRelationship(
       parentTable: tableFieldType,
       fieldName: 'field_type_id',

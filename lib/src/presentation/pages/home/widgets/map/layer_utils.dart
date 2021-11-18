@@ -8,35 +8,35 @@ import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.da
 LayerOptions mapLayerOptions(MapSourceConfiguration source) {
   if (source.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
   return TileLayerOptions(
-    urlTemplate: source.options.getCastedOrDefault(
+    urlTemplate: source.extensions.getCastedOrDefault(
       MAP_SOURCE_URL_TEMPLATE,
       defaultValue: null,
     ),
     wmsOptions: source.mapSourceType != MapSource.WMS
         ? null
         : WMSTileLayerOptions(
-            baseUrl: source.options.getCastedOrCrash(
+            baseUrl: source.extensions.getCastedOrCrash(
               MAP_SOURCE_WMS_BASE_URL,
             ),
-            layers: source.options.getCastedOrDefault(
+            layers: source.extensions.getCastedOrDefault(
               MAP_SOURCE_WMS_LAYERS,
               defaultValue: const [],
             ),
-            format: source.options.getCastedOrDefault(
+            format: source.extensions.getCastedOrDefault(
               MAP_SOURCE_WMS_FORMAT,
               defaultValue: 'image/png',
             ),
-            otherParameters: source.options.getCastedOrDefault(
+            otherParameters: source.extensions.getCastedOrDefault(
               MAP_SOURCE_WMS_OTHER_PARAMS,
               defaultValue: const {},
             ),
           ),
-    subdomains: source.options.getCastedOrDefault(
+    subdomains: source.extensions.getCastedOrDefault(
       MAP_SOURCE_SUBDOMAINS,
       defaultValue: const [],
     ),
     tileProvider: _getTileProvider(source),
-    additionalOptions: source.options.getCastedOrDefault(
+    additionalOptions: source.extensions.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,
       defaultValue: null,
     ),

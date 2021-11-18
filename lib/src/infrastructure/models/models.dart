@@ -15,6 +15,8 @@ export 'geodata_get_model.dart';
 export 'geodata_model.dart';
 export 'geodata_post_model.dart';
 export 'geodata_put_model.dart';
+export 'media_get_model.dart';
+export 'media_post_model.dart';
 export 'source_configuration_model.dart';
 export 'static_selection_get_model.dart';
 export 'static_selection_post_model.dart';

@@ -13,7 +13,7 @@ class Routes {
       beamLocations: [
         HomeLocation(),
         CategoriesLocation(),
-        GeoDataLocation(),
+        GeodataLocation(),
         NotFoundLocation(),
       ],
     ),
