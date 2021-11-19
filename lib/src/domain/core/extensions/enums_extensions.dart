@@ -44,18 +44,18 @@ extension FieldTypeExtension on FieldTypeEnum {
         return 'fecha';
       case FieldTypeEnum.DateTime:
         return 'fecha y hora';
-      case FieldTypeEnum.DayFieldType:
-        return 'día';
+      // case FieldTypeEnum.DayFieldType:
+      //   return 'día';
       case FieldTypeEnum.Double:
         return 'número';
-      case FieldTypeEnum.MonthFieldType:
-        return 'mes';
-      case FieldTypeEnum.YearFieldType:
-        return 'año';
-      case FieldTypeEnum.Time:
-        return 'hora';
-      case FieldTypeEnum.WeekDayFieldType:
-        return 'día semanal';
+      // case FieldTypeEnum.MonthFieldType:
+      //   return 'mes';
+      // case FieldTypeEnum.YearFieldType:
+      //   return 'año';
+      // case FieldTypeEnum.Time:
+      //   return 'hora';
+      // case FieldTypeEnum.WeekDayFieldType:
+      //   return 'día semanal';
       // case FieldTypeEnum.LocalAudioFieldType:
       //   return 'audio';
       // case FieldTypeEnum.LocalPhotoFieldType:
@@ -81,18 +81,18 @@ extension FieldTypeExtension on FieldTypeEnum {
         return (value as DateTime?) != null;
       case FieldTypeEnum.DateTime:
         return (value as DateTime?) != null;
-      case FieldTypeEnum.DayFieldType:
-        return (value as int?) != null;
+      // case FieldTypeEnum.DayFieldType:
+      //   return (value as int?) != null;
       case FieldTypeEnum.Double:
         return (value as double?) != null;
-      case FieldTypeEnum.MonthFieldType:
-        return (value as MonthEnum?) != null;
-      case FieldTypeEnum.YearFieldType:
-        return (value as int?) != null;
-      case FieldTypeEnum.Time:
-        return (value as TimeEntity?) != null;
-      case FieldTypeEnum.WeekDayFieldType:
-        return (value as WeekDayEnum?) != null;
+      // case FieldTypeEnum.MonthFieldType:
+      //   return (value as MonthEnum?) != null;
+      // case FieldTypeEnum.YearFieldType:
+      //   return (value as int?) != null;
+      // case FieldTypeEnum.Time:
+      //   return (value as TimeEntity?) != null;
+      // case FieldTypeEnum.WeekDayFieldType:
+      //   return (value as WeekDayEnum?) != null;
       // case FieldTypeEnum.LocalAudioFieldType:
       //   return (value as String?) != null;
       // case FieldTypeEnum.LocalPhotoFieldType:

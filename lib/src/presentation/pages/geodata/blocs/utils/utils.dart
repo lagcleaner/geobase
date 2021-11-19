@@ -77,31 +77,31 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
     //       StringValidator.required,
     //     ]),
     //   );
-    case FieldTypeEnum.MonthFieldType:
-      return InputBloc<MonthEnum?>(
-        pureValue: null,
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          DynamicValidator.required,
-        ]),
-      );
-    case FieldTypeEnum.WeekDayFieldType:
-      return InputBloc<WeekDayEnum?>(
-        pureValue: null,
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          DynamicValidator.required,
-        ]),
-      );
-    case FieldTypeEnum.YearFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-          StringValidator.integer,
-        ]),
-      );
+    // case FieldTypeEnum.MonthFieldType:
+    //   return InputBloc<MonthEnum?>(
+    //     pureValue: null,
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       DynamicValidator.required,
+    //     ]),
+    //   );
+    // case FieldTypeEnum.WeekDayFieldType:
+    //   return InputBloc<WeekDayEnum?>(
+    //     pureValue: null,
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       DynamicValidator.required,
+    //     ]),
+    //   );
+    // case FieldTypeEnum.YearFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //       StringValidator.integer,
+    //     ]),
+    //   );
     case FieldTypeEnum.Date:
       return InputBloc<DateTime?>(
         pureValue: null,
@@ -118,14 +118,14 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           DynamicValidator.required,
         ]),
       );
-    case FieldTypeEnum.Time:
-      return InputBloc<TimeEntity?>(
-        pureValue: null,
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          DynamicValidator.required,
-        ]),
-      );
+    // case FieldTypeEnum.Time:
+    //   return InputBloc<TimeEntity?>(
+    //     pureValue: null,
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       DynamicValidator.required,
+    //     ]),
+    //   );
     default:
       return InputBloc<dynamic>(
         pureValue: null,

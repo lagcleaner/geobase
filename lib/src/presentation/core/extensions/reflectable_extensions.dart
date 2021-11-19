@@ -1,29 +1,29 @@
 import 'package:reflectable/reflectable.dart';
 
 extension ReflectableExtension on Reflectable {
-  ClassMirror? getClassByNameStructure({
-    String prefix = '',
-    String suffix = '',
+  ClassMirror? getClassMirrorWhere({
+    String namePrefix = '',
+    String nameSuffix = '',
     bool Function(ClassMirror)? aditionalCondition,
   }) {
     for (final cm in annotatedClasses) {
-      if (prefix.matchAsPrefix(cm.simpleName) != null &&
-          cm.simpleName.endsWith(suffix) &&
+      if (namePrefix.startsWith(cm.simpleName) &&
+          cm.simpleName.endsWith(nameSuffix) &&
           (aditionalCondition?.call(cm) ?? true)) {
         return cm;
       }
     }
   }
 
-  MethodMirror? getStaticMethodByNameStructure(
+  MethodMirror? getStaticMethodWhere(
     ClassMirror classMirror, {
-    String prefix = '',
-    String suffix = '',
+    String namePrefix = '',
+    String nameSuffix = '',
     bool Function(MethodMirror)? aditionalCondition,
   }) {
     for (final mm in classMirror.staticMembers.entries) {
-      if (prefix.matchAsPrefix(mm.key) != null &&
-          mm.key.endsWith(suffix) &&
+      if (namePrefix.startsWith(mm.key) &&
+          mm.key.endsWith(nameSuffix) &&
           mm.value.isStatic &&
           !mm.value.isFactoryConstructor &&
           (aditionalCondition?.call(mm.value) ?? true)) {

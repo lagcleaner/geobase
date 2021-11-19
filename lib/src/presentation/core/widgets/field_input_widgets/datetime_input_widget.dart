@@ -1,30 +1,29 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
 
-class DateTimeInputWidget extends BaseInputWidget {
-  const DateTimeInputWidget({
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
+
+@fieldInputWidgetReflector
+class DateTimeFieldValueInputWidget extends FieldValueInputWidget {
+  const DateTimeFieldValueInputWidget({
     Key? key,
-    required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
     String? errorText,
-    ValueChanged? onChanged,
+    required ValueChanged onChanged,
   }) : super(
           key: key,
-          name: name,
           fieldValue: fieldValue,
-          onChanged: onChanged,
           errorText: errorText,
+          onChanged: onChanged,
         );
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.getValueOrNull<DateTime>();
     return ListTile(
       key: key,
-      title: Text(value?.toString().replaceAll('-', '/') ?? ''),
-      subtitle: Text(name),
+      title: Text(fieldValue.value?.toString() ?? ''),
+      subtitle: Text(fieldValue.column.name),
       trailing: errorText != null
           ? Icon(
               Icons.info_outline_rounded,
@@ -32,30 +31,34 @@ class DateTimeInputWidget extends BaseInputWidget {
             )
           : null,
       onTap: () async {
+        final initialValue =
+            DateTime.tryParse(fieldValue.value?.toString() ?? '');
         final resultDate = await showDatePicker(
           context: context,
           initialDate: DateTime.now(),
           firstDate: DateTime(1900),
           lastDate: DateTime(DateTime.now().year + 100),
-          currentDate: value,
+          currentDate: initialValue,
         );
         if (resultDate != null) {
           final resultTime = await showTimePicker(
             context: context,
-            initialTime: value != null
-                ? TimeOfDay(hour: value.hour, minute: value.minute)
+            initialTime: initialValue != null
+                ? TimeOfDay(
+                    hour: initialValue.hour, minute: initialValue.minute)
                 : TimeOfDay.now(),
             initialEntryMode: TimePickerEntryMode.input,
           );
           if (resultTime != null) {
-            final result = DateTime(
-              resultDate.year,
-              resultDate.month,
-              resultDate.day,
-              resultTime.hour,
-              resultTime.minute,
+            onChanged(
+              DateTime(
+                resultDate.year,
+                resultDate.month,
+                resultDate.day,
+                resultTime.hour,
+                resultTime.minute,
+              ).toString(),
             );
-            onChanged?.call(result);
           }
         }
       },

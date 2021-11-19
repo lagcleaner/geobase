@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
@@ -18,11 +20,10 @@ const fieldInputBlocReflectable = FieldInputBlocReflectable();
 InputBloc<dynamic> getBlocByFieldValue(FieldValueGetEntity fieldValue) {
   try {
     final mirrorInstantiator = fieldInputBlocReflectable
-        .reflectType(InputBlocInstantiator) as ClassMirror;
-    final methodMirror =
-        fieldInputBlocReflectable.getStaticMethodByNameStructure(
+        .reflectType(FieldInputBlocInstantiator) as ClassMirror;
+    final methodMirror = fieldInputBlocReflectable.getStaticMethodWhere(
       mirrorInstantiator,
-      prefix: 'getInputBloc',
+      namePrefix: 'getInputBloc',
       aditionalCondition: (mm) {
         if (fieldValue.column.type.metaType == BaseMetaTypeName) {
           return mm.simpleName.endsWith(fieldValue.column.type.name);
@@ -35,14 +36,13 @@ InputBloc<dynamic> getBlocByFieldValue(FieldValueGetEntity fieldValue) {
         mirrorInstantiator.invoke(methodMirror.simpleName, [fieldValue]);
     return inputBloc! as InputBloc;
   } catch (e) {
-    return InputBloc(
-      pureValue: null,
-    );
+    log(e.toString());
+    return InputBloc(pureValue: null);
   }
 }
 
 @fieldInputBlocReflectable
-class InputBlocInstantiator {
+class FieldInputBlocInstantiator {
   static InputBloc getInputBlocBool(FieldValueGetEntity fieldValue) {
     return InputBloc<FieldValueEntity>(
       pureValue: fieldValue,
@@ -54,8 +54,7 @@ class InputBlocInstantiator {
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
       validator: ListValidator([
-        FieldValueValidator.from(StringValidator.required),
-        FieldValueValidator.from(StringValidator.number),
+        FieldValueValidator.from(IntValidator.required),
       ]),
     );
   }
@@ -65,8 +64,7 @@ class InputBlocInstantiator {
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
       validator: ListValidator([
-        FieldValueValidator.from(StringValidator.required),
-        FieldValueValidator.from(StringValidator.number),
+        FieldValueValidator.from(DoubleValidator.required),
       ]),
     );
   }
@@ -79,11 +77,12 @@ class InputBlocInstantiator {
 
   static InputBloc getInputBlocDate(FieldValueGetEntity fieldValue) {
     return InputBloc<FieldValueEntity>(
+      // here cames a date formatted string
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
-      validator: ListValidator([
-        FieldValueValidator.from(StringValidator.required),
-      ]),
+      // validator: ListValidator([
+      //   FieldValueValidator.from(DynamicValidator.required),
+      // ]),
     );
   }
 
@@ -91,9 +90,9 @@ class InputBlocInstantiator {
     return InputBloc<FieldValueEntity>(
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
-      validator: ListValidator([
-        FieldValueValidator.from(StringValidator.required),
-      ]),
+      // validator: ListValidator([
+      //   FieldValueValidator.from(DynamicValidator.required),
+      // ]),
     );
   }
 
@@ -103,7 +102,7 @@ class InputBlocInstantiator {
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
       validator: ListValidator([
-        FieldValueValidator.from(StringValidator.required),
+        FieldValueValidator.from(DynamicValidator.required),
       ]),
     );
   }

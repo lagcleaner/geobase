@@ -1,33 +1,37 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
-import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
 
-class DoubleInputWidget extends BaseInputWidget {
-  const DoubleInputWidget({
+@fieldInputWidgetReflector
+class DoubleFieldValueInputWidget extends FieldValueInputWidget {
+  const DoubleFieldValueInputWidget({
     Key? key,
-    required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
     String? errorText,
-    ValueChanged? onChanged,
+    required ValueChanged onChanged,
   }) : super(
           key: key,
-          name: name,
           fieldValue: fieldValue,
-          onChanged: onChanged,
           errorText: errorText,
+          onChanged: onChanged,
         );
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.getValueOrNull<double>();
     return TextInputWidget(
       key: key,
-      labelText: name,
-      onChanged: onChanged,
-      controller:
-          value != null ? TextEditingCustom.fromValue(value.toString()) : null,
+      labelText: fieldValue.column.name,
+      onChanged: (newValue) => onChanged(
+        double.tryParse(
+          newValue.trim(),
+        ),
+      ),
+      controller: TextEditingCustom.fromValue(
+        fieldValue.value?.toString() ?? '0.0',
+      ),
       keyboardType:
           const TextInputType.numberWithOptions(decimal: true, signed: true),
       errorText: errorText,

@@ -22,9 +22,9 @@ abstract class IFieldValueListTile {
 
 Widget getListTileByFieldValue(FieldValueGetEntity fieldValue) {
   try {
-    final classMirror = fieldViewWidgetReflector.getClassByNameStructure(
-      prefix: fieldValue.column.type.metaType,
-      suffix: 'ListTile',
+    final classMirror = fieldViewWidgetReflector.getClassMirrorWhere(
+      namePrefix: fieldValue.column.type.metaType,
+      nameSuffix: 'ListTile',
     );
     if (classMirror == null) throw UnimplementedError();
     final listTile = classMirror.newInstance(

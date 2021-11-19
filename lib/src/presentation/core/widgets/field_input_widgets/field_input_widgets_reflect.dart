@@ -1,9 +1,10 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
-import 'package:reflectable/reflectable.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 import 'package:geobase/src/presentation/core/extensions/reflectable_extensions.dart';
+import 'package:reflectable/reflectable.dart';
 
 class FieldInputWidgetReflector extends Reflectable {
   const FieldInputWidgetReflector()
@@ -40,8 +41,8 @@ abstract class FieldValueInputWidget extends StatelessWidget {
     required ValueChanged onChanged,
   }) {
     try {
-      final classMirror = fieldInputWidgetReflector.getClassByNameStructure(
-        suffix: 'InputWidget',
+      final classMirror = fieldInputWidgetReflector.getClassMirrorWhere(
+        nameSuffix: 'InputWidget',
         aditionalCondition: (cm) {
           if (cm.isAbstract) return false;
           if (!cm.superinterfaces
@@ -57,9 +58,12 @@ abstract class FieldValueInputWidget extends StatelessWidget {
       );
       if (classMirror == null) throw UnimplementedError();
       final field = classMirror.newInstance('', [], {
+        const Symbol('key'): Key('input_${fieldValue.id}'),
         const Symbol('name'): fieldValue.column.name,
         const Symbol('errorText'): errorText,
-        const Symbol('onChanged'): onChanged,
+        const Symbol('onChanged'): (newValue) {
+          onChanged(fieldValue..value = newValue);
+        },
       });
       return field as Widget;
     } catch (e) {

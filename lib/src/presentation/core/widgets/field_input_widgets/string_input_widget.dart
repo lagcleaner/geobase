@@ -1,32 +1,32 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
-import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
 
-class StringInputWidget extends BaseInputWidget {
-  const StringInputWidget({
+@fieldInputWidgetReflector
+class StringFieldValueInputWidget extends FieldValueInputWidget {
+  const StringFieldValueInputWidget({
     Key? key,
-    required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
     String? errorText,
-    ValueChanged? onChanged,
+    required ValueChanged onChanged,
   }) : super(
           key: key,
-          name: name,
           fieldValue: fieldValue,
-          onChanged: onChanged,
           errorText: errorText,
+          onChanged: onChanged,
         );
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.getValueOrNull<String>();
     return TextInputWidget(
       key: key,
-      labelText: name,
+      labelText: fieldValue.column.name,
       onChanged: onChanged,
-      controller: value != null ? TextEditingCustom.fromValue(value) : null,
+      controller:
+          TextEditingCustom.fromValue(fieldValue.value?.toString() ?? ''),
       errorText: errorText,
     );
   }

@@ -1,30 +1,27 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
 
-class LocalAudioInputWidget extends BaseInputWidget {
-  const LocalAudioInputWidget({
+class MediaFieldValueInputWidget extends FieldValueInputWidget {
+  const MediaFieldValueInputWidget({
     Key? key,
-    required String name,
-    required FieldValueEntity fieldValue,
+    required FieldValueGetEntity fieldValue,
     String? errorText,
-    ValueChanged? onChanged,
+    required ValueChanged onChanged,
   }) : super(
           key: key,
-          name: name,
           fieldValue: fieldValue,
-          onChanged: onChanged,
           errorText: errorText,
+          onChanged: onChanged,
         );
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.getValueOrNull<String>();
     return ListTile(
       key: key,
-      title: Text(value != null ? '[Audio]' : ''),
-      subtitle: Text(name),
+      title: Text(fieldValue.value != null ? '[File]' : ''),
+      subtitle: Text(fieldValue.column.name),
       trailing: errorText != null
           ? Icon(
               Icons.info_outline_rounded,
@@ -33,12 +30,13 @@ class LocalAudioInputWidget extends BaseInputWidget {
           : null,
       onTap: () async {
         //TODO: ALL OF THIS
-        // final result = await showAudioPicker(
+        // final result = await showFilePicker(
         //   context: context,
         //   current: value,
         // );
         // // if (result != null)
-        onChanged?.call('mocked local audio url');
+        //TODO: WHAT EXPLAINS https://stackoverflow.com/questions/54123131/how-to-import-file-from-local-storage-into-db-in-flutter
+        onChanged?.call('');
       },
     );
   }

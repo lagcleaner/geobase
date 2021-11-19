@@ -50,9 +50,14 @@ class StringValidator {
           value != match() ? 'error_confirm_password_no_match_input' : null;
 }
 
+class DoubleValidator {
+  static String? required(double? value) =>
+      value == null ? 'error_invalid_value_or_empty' : null;
+}
+
 class IntValidator {
   static String? required(int? value) =>
-      value == null ? 'error_null_value' : null;
+      value == null ? 'error_invalid_value_or_empty' : null;
 
   static String? Function(int?) greaterThan(int limit) =>
       (int? value) => value == null || (value <= limit)
