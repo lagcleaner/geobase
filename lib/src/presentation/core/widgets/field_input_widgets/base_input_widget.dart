@@ -22,7 +22,7 @@ class BaseInputWidget extends StatelessWidget {
     //TODO: APPLIES REFLECTABLE HERE
 
     switch (fieldValue.type) {
-      case FieldTypeEnum.BoolFieldType:
+      case FieldTypeEnum.Bool:
         return BoolInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -30,7 +30,7 @@ class BaseInputWidget extends StatelessWidget {
           errorText: errorText,
           onChanged: onChanged,
         );
-      case FieldTypeEnum.IntFieldType:
+      case FieldTypeEnum.Int:
         return IntInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -38,7 +38,7 @@ class BaseInputWidget extends StatelessWidget {
           errorText: errorText,
           onChanged: onChanged,
         );
-      case FieldTypeEnum.DoubleFieldType:
+      case FieldTypeEnum.Double:
         return DoubleInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -47,7 +47,7 @@ class BaseInputWidget extends StatelessWidget {
           onChanged: onChanged,
         );
 
-      case FieldTypeEnum.DateFieldType:
+      case FieldTypeEnum.Date:
         return DateInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -55,7 +55,7 @@ class BaseInputWidget extends StatelessWidget {
           errorText: errorText,
           onChanged: onChanged,
         );
-      case FieldTypeEnum.DateTimeFieldType:
+      case FieldTypeEnum.DateTime:
         return DateTimeInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -63,7 +63,7 @@ class BaseInputWidget extends StatelessWidget {
           errorText: errorText,
           onChanged: onChanged,
         );
-      case FieldTypeEnum.TimeFieldType:
+      case FieldTypeEnum.Time:
         return TimeInputWidget(
           key: Key('inputfield_$name'),
           name: name,
@@ -127,7 +127,7 @@ class BaseInputWidget extends StatelessWidget {
       //     errorText: errorText,
       //     onChanged: onChanged,
       //   );
-      case FieldTypeEnum.StringFieldType:
+      case FieldTypeEnum.String:
       default:
         return StringInputWidget(
           key: Key('inputfield_$name'),

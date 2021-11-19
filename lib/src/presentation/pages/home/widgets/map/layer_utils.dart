@@ -5,7 +5,7 @@ import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.dart';
 
-LayerOptions mapLayerOptions(MapSourceConfiguration source) {
+LayerOptions mapLayerOptions(MapSourceConfigurationEntity source) {
   if (source.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
   return TileLayerOptions(
     urlTemplate: source.extensions.getCastedOrDefault(
@@ -43,7 +43,7 @@ LayerOptions mapLayerOptions(MapSourceConfiguration source) {
   );
 }
 
-TileProvider _getTileProvider(MapSourceConfiguration source) {
+TileProvider _getTileProvider(MapSourceConfigurationEntity source) {
   switch (source.mapSourceType) {
     case MapSource.Assets:
       return const AssetTileProvider();

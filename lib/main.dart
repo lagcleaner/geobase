@@ -18,5 +18,6 @@ Future initializeApp() async {
 
   await getIt<GeobaseModel>().initialize();
 
+  //TODO: initialize reflectable here
   Bloc.observer = getIt<BlocObserver>();
 }

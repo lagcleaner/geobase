@@ -4,7 +4,7 @@ part of 'map_source_input_cubit.dart';
 class MapSourceInputState with _$MapSourceInputState {
   const factory MapSourceInputState.initial() = _Initial;
   const factory MapSourceInputState.sourceInput({
-    MapSourceConfiguration? source,
+    MapSourceConfigurationEntity? source,
     required MapSource selectedType,
   }) = _SourceInput;
   const factory MapSourceInputState.failureLoading(
@@ -12,6 +12,6 @@ class MapSourceInputState with _$MapSourceInputState {
   ) = _SourceLoadFailure;
   const factory MapSourceInputState.failureSaving({
     required Failure failure,
-    required MapSourceConfiguration source,
+    required MapSourceConfigurationEntity source,
   }) = _SourceSavingLoadFailure;
 }

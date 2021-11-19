@@ -1,22 +1,21 @@
 //base types
 enum FieldTypeEnum {
   // built-in
-  BoolFieldType,
-  IntFieldType,
-  DoubleFieldType,
-  StringFieldType,
+  Bool,
+  Int,
+  Double,
+  String,
 
   // datetime (Unitaries, needed to build UI)
-  YearFieldType,
-  MonthFieldType,
-  DayFieldType,
-  WeekDayFieldType,
+  // YearFieldType,
+  // MonthFieldType,
+  // DayFieldType,
+  // WeekDayFieldType,
   // HourFieldType,
   // MinuteFieldType,
   // SecondFieldType,
-  DateFieldType,
-  TimeFieldType,
-  DateTimeFieldType,
+  Date,
+  DateTime,
 
   // file datetypes
   // LocalPhotoFieldType,

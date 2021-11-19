@@ -105,8 +105,7 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
             (entry) => MapEntry(
               entry.key,
               FieldValueEntity(
-                type:
-                    category.fields[entry.key] ?? FieldTypeEnum.StringFieldType,
+                type: category.fields[entry.key] ?? FieldTypeEnum.String,
                 value: entry.value.state.value,
               ),
               // TODO: check this way to store fields.

@@ -213,7 +213,7 @@ class _$GeodataListStateTearOff {
     return const _FetchInProgress();
   }
 
-  _FetchSuccess fetchSuccess({required List<GeoDataGetEntity> geodataList}) {
+  _FetchSuccess fetchSuccess({required List<GeodataGetEntity> geodataList}) {
     return _FetchSuccess(
       geodataList: geodataList,
     );
@@ -239,7 +239,7 @@ mixin _$GeodataListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) =>
@@ -248,7 +248,7 @@ mixin _$GeodataListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
@@ -330,7 +330,7 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) {
@@ -342,7 +342,7 @@ class _$_Initial implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
@@ -427,7 +427,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) {
@@ -439,7 +439,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
@@ -488,7 +488,7 @@ abstract class _$FetchSuccessCopyWith<$Res> {
   factory _$FetchSuccessCopyWith(
           _FetchSuccess value, $Res Function(_FetchSuccess) then) =
       __$FetchSuccessCopyWithImpl<$Res>;
-  $Res call({List<GeoDataGetEntity> geodataList});
+  $Res call({List<GeodataGetEntity> geodataList});
 }
 
 /// @nodoc
@@ -510,7 +510,7 @@ class __$FetchSuccessCopyWithImpl<$Res>
       geodataList: geodataList == freezed
           ? _value.geodataList
           : geodataList // ignore: cast_nullable_to_non_nullable
-              as List<GeoDataGetEntity>,
+              as List<GeodataGetEntity>,
     ));
   }
 }
@@ -520,7 +520,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   const _$_FetchSuccess({required this.geodataList});
 
   @override
-  final List<GeoDataGetEntity> geodataList;
+  final List<GeodataGetEntity> geodataList;
 
   @override
   String toString() {
@@ -550,7 +550,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) {
@@ -562,7 +562,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
@@ -603,10 +603,10 @@ class _$_FetchSuccess implements _FetchSuccess {
 }
 
 abstract class _FetchSuccess implements GeodataListState {
-  const factory _FetchSuccess({required List<GeoDataGetEntity> geodataList}) =
+  const factory _FetchSuccess({required List<GeodataGetEntity> geodataList}) =
       _$_FetchSuccess;
 
-  List<GeoDataGetEntity> get geodataList => throw _privateConstructorUsedError;
+  List<GeodataGetEntity> get geodataList => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -653,7 +653,7 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) {
@@ -665,7 +665,7 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
@@ -775,7 +775,7 @@ class _$_FetchFailure implements _FetchFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() fetchInProgress,
-    required TResult Function(List<GeoDataGetEntity> geodataList) fetchSuccess,
+    required TResult Function(List<GeodataGetEntity> geodataList) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
   }) {
@@ -787,7 +787,7 @@ class _$_FetchFailure implements _FetchFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
-    TResult Function(List<GeoDataGetEntity> geodataList)? fetchSuccess,
+    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
     TResult Function()? fetchSuccessNotFound,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),

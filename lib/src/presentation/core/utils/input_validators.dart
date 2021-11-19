@@ -1,3 +1,5 @@
+import 'package:geobase/src/domain/entities/entities.dart';
+
 typedef InputFunctionValidator<T> = String? Function(T value);
 
 class DynamicValidator {
@@ -70,4 +72,11 @@ class IntValidator {
 
   static String? nonNegative(int? value) =>
       value == null || value >= 0 ? null : 'error_value_negative';
+}
+
+class FieldValueValidator {
+  static InputFunctionValidator<FieldValueEntity> from<T>(
+    InputFunctionValidator<T?> validator,
+  ) =>
+      (fieldValue) => validator(fieldValue.value as T?);
 }

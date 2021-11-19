@@ -38,8 +38,8 @@ class GeodataForm extends StatelessWidget {
                 Flexible(
                   child: _FieldInputWidget(
                     name: e.key,
-                    type: formBloc.category.fields[e.key] ??
-                        FieldTypeEnum.StringFieldType,
+                    type:
+                        formBloc.category.fields[e.key] ?? FieldTypeEnum.String,
                     value: e.value,
                     errorText: formBloc.fieldInputBlocs[e.key]!.state.error,
                   ),

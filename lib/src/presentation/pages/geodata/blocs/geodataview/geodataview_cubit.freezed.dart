@@ -20,7 +20,7 @@ class _$GeodataViewStateTearOff {
     return const _FetchInProgress();
   }
 
-  _FetchSuccess fetchSuccess({required GeoDataGetEntity geodata}) {
+  _FetchSuccess fetchSuccess({required GeodataGetEntity geodata}) {
     return _FetchSuccess(
       geodata: geodata,
     );
@@ -41,14 +41,14 @@ mixin _$GeodataViewState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInProgress,
-    required TResult Function(GeoDataGetEntity geodata) fetchSuccess,
+    required TResult Function(GeodataGetEntity geodata) fetchSuccess,
     required TResult Function(String error) fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInProgress,
-    TResult Function(GeoDataGetEntity geodata)? fetchSuccess,
+    TResult Function(GeodataGetEntity geodata)? fetchSuccess,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
   }) =>
@@ -127,7 +127,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInProgress,
-    required TResult Function(GeoDataGetEntity geodata) fetchSuccess,
+    required TResult Function(GeodataGetEntity geodata) fetchSuccess,
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchInProgress();
@@ -137,7 +137,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInProgress,
-    TResult Function(GeoDataGetEntity geodata)? fetchSuccess,
+    TResult Function(GeodataGetEntity geodata)? fetchSuccess,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
   }) {
@@ -181,7 +181,7 @@ abstract class _$FetchSuccessCopyWith<$Res> {
   factory _$FetchSuccessCopyWith(
           _FetchSuccess value, $Res Function(_FetchSuccess) then) =
       __$FetchSuccessCopyWithImpl<$Res>;
-  $Res call({GeoDataGetEntity geodata});
+  $Res call({GeodataGetEntity geodata});
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class __$FetchSuccessCopyWithImpl<$Res>
       geodata: geodata == freezed
           ? _value.geodata
           : geodata // ignore: cast_nullable_to_non_nullable
-              as GeoDataGetEntity,
+              as GeodataGetEntity,
     ));
   }
 }
@@ -213,7 +213,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   const _$_FetchSuccess({required this.geodata});
 
   @override
-  final GeoDataGetEntity geodata;
+  final GeodataGetEntity geodata;
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInProgress,
-    required TResult Function(GeoDataGetEntity geodata) fetchSuccess,
+    required TResult Function(GeodataGetEntity geodata) fetchSuccess,
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchSuccess(geodata);
@@ -251,7 +251,7 @@ class _$_FetchSuccess implements _FetchSuccess {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInProgress,
-    TResult Function(GeoDataGetEntity geodata)? fetchSuccess,
+    TResult Function(GeodataGetEntity geodata)? fetchSuccess,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
   }) {
@@ -287,10 +287,10 @@ class _$_FetchSuccess implements _FetchSuccess {
 }
 
 abstract class _FetchSuccess implements GeodataViewState {
-  const factory _FetchSuccess({required GeoDataGetEntity geodata}) =
+  const factory _FetchSuccess({required GeodataGetEntity geodata}) =
       _$_FetchSuccess;
 
-  GeoDataGetEntity get geodata => throw _privateConstructorUsedError;
+  GeodataGetEntity get geodata => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -361,7 +361,7 @@ class _$_FetchFailure implements _FetchFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetchInProgress,
-    required TResult Function(GeoDataGetEntity geodata) fetchSuccess,
+    required TResult Function(GeodataGetEntity geodata) fetchSuccess,
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchFailure(error);
@@ -371,7 +371,7 @@ class _$_FetchFailure implements _FetchFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetchInProgress,
-    TResult Function(GeoDataGetEntity geodata)? fetchSuccess,
+    TResult Function(GeodataGetEntity geodata)? fetchSuccess,
     TResult Function(String error)? fetchFailure,
     required TResult orElse(),
   }) {

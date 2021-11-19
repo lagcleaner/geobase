@@ -6,11 +6,11 @@ import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 //TODO: DO THIS WITH REFLECTABLE...
 InputBloc getInputBloc(FieldTypeEnum typeEnum) {
   switch (typeEnum) {
-    case FieldTypeEnum.BoolFieldType:
+    case FieldTypeEnum.Bool:
       return InputBloc<bool>(
         pureValue: false,
       );
-    case FieldTypeEnum.StringFieldType:
+    case FieldTypeEnum.String:
       return InputBloc<String>(
         pureValue: '',
         validationType: ValidationType.explicit,
@@ -18,7 +18,7 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           StringValidator.required,
         ]),
       );
-    case FieldTypeEnum.DoubleFieldType:
+    case FieldTypeEnum.Double:
       return InputBloc<String>(
         pureValue: '',
         validationType: ValidationType.explicit,
@@ -27,7 +27,7 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           StringValidator.number,
         ]),
       );
-    case FieldTypeEnum.IntFieldType:
+    case FieldTypeEnum.Int:
       return InputBloc<String>(
         pureValue: '',
         validationType: ValidationType.explicit,
@@ -44,15 +44,15 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
     //       StringValidator.required,
     //     ]),
     //   );
-    case FieldTypeEnum.DayFieldType:
-      return InputBloc<String>(
-        pureValue: '',
-        validationType: ValidationType.explicit,
-        validator: const ListValidator([
-          StringValidator.required,
-          StringValidator.integer,
-        ]),
-      );
+    // case FieldTypeEnum.DayFieldType:
+    //   return InputBloc<String>(
+    //     pureValue: '',
+    //     validationType: ValidationType.explicit,
+    //     validator: const ListValidator([
+    //       StringValidator.required,
+    //       StringValidator.integer,
+    //     ]),
+    //   );
     // case FieldTypeEnum.LocalAudioFieldType:
     //   return InputBloc<String>(
     //     pureValue: '',
@@ -102,7 +102,7 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           StringValidator.integer,
         ]),
       );
-    case FieldTypeEnum.DateFieldType:
+    case FieldTypeEnum.Date:
       return InputBloc<DateTime?>(
         pureValue: null,
         validationType: ValidationType.explicit,
@@ -110,7 +110,7 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           DynamicValidator.required,
         ]),
       );
-    case FieldTypeEnum.DateTimeFieldType:
+    case FieldTypeEnum.DateTime:
       return InputBloc<DateTime?>(
         pureValue: null,
         validationType: ValidationType.explicit,
@@ -118,7 +118,7 @@ InputBloc getInputBloc(FieldTypeEnum typeEnum) {
           DynamicValidator.required,
         ]),
       );
-    case FieldTypeEnum.TimeFieldType:
+    case FieldTypeEnum.Time:
       return InputBloc<TimeEntity?>(
         pureValue: null,
         validationType: ValidationType.explicit,

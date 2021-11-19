@@ -4,8 +4,7 @@ import 'package:geobase/injection.dart';
 
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/configurations/interfaces/i_map_source_conf_reader.dart';
-import 'package:geobase/src/domain/services/configurations/interfaces/i_map_source_conf_writter.dart';
+import 'package:geobase/src/domain/services/services.dart';
 
 part 'map_source_input_cubit.freezed.dart';
 part 'map_source_input_state.dart';

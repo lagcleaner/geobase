@@ -20,7 +20,7 @@ class _$GeodataShowerStateTearOff {
     return const _InitialState();
   }
 
-  _SuccessState state({List<GeoDataGetEntity> geodataList = const []}) {
+  _SuccessState state({List<GeodataGetEntity> geodataList = const []}) {
     return _SuccessState(
       geodataList: geodataList,
     );
@@ -41,14 +41,14 @@ mixin _$GeodataShowerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<GeoDataGetEntity> geodataList) state,
+    required TResult Function(List<GeodataGetEntity> geodataList) state,
     required TResult Function(String? message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<GeoDataGetEntity> geodataList)? state,
+    TResult Function(List<GeodataGetEntity> geodataList)? state,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) =>
@@ -127,7 +127,7 @@ class _$_InitialState implements _InitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<GeoDataGetEntity> geodataList) state,
+    required TResult Function(List<GeodataGetEntity> geodataList) state,
     required TResult Function(String? message) failure,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$_InitialState implements _InitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<GeoDataGetEntity> geodataList)? state,
+    TResult Function(List<GeodataGetEntity> geodataList)? state,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) {
@@ -181,7 +181,7 @@ abstract class _$SuccessStateCopyWith<$Res> {
   factory _$SuccessStateCopyWith(
           _SuccessState value, $Res Function(_SuccessState) then) =
       __$SuccessStateCopyWithImpl<$Res>;
-  $Res call({List<GeoDataGetEntity> geodataList});
+  $Res call({List<GeodataGetEntity> geodataList});
 }
 
 /// @nodoc
@@ -203,7 +203,7 @@ class __$SuccessStateCopyWithImpl<$Res>
       geodataList: geodataList == freezed
           ? _value.geodataList
           : geodataList // ignore: cast_nullable_to_non_nullable
-              as List<GeoDataGetEntity>,
+              as List<GeodataGetEntity>,
     ));
   }
 }
@@ -214,7 +214,7 @@ class _$_SuccessState implements _SuccessState {
 
   @JsonKey(defaultValue: const [])
   @override
-  final List<GeoDataGetEntity> geodataList;
+  final List<GeodataGetEntity> geodataList;
 
   @override
   String toString() {
@@ -243,7 +243,7 @@ class _$_SuccessState implements _SuccessState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<GeoDataGetEntity> geodataList) state,
+    required TResult Function(List<GeodataGetEntity> geodataList) state,
     required TResult Function(String? message) failure,
   }) {
     return state(geodataList);
@@ -253,7 +253,7 @@ class _$_SuccessState implements _SuccessState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<GeoDataGetEntity> geodataList)? state,
+    TResult Function(List<GeodataGetEntity> geodataList)? state,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) {
@@ -289,10 +289,10 @@ class _$_SuccessState implements _SuccessState {
 }
 
 abstract class _SuccessState implements GeodataShowerState {
-  const factory _SuccessState({List<GeoDataGetEntity> geodataList}) =
+  const factory _SuccessState({List<GeodataGetEntity> geodataList}) =
       _$_SuccessState;
 
-  List<GeoDataGetEntity> get geodataList => throw _privateConstructorUsedError;
+  List<GeodataGetEntity> get geodataList => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SuccessStateCopyWith<_SuccessState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -363,7 +363,7 @@ class _$_FailureState implements _FailureState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<GeoDataGetEntity> geodataList) state,
+    required TResult Function(List<GeodataGetEntity> geodataList) state,
     required TResult Function(String? message) failure,
   }) {
     return failure(message);
@@ -373,7 +373,7 @@ class _$_FailureState implements _FailureState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<GeoDataGetEntity> geodataList)? state,
+    TResult Function(List<GeodataGetEntity> geodataList)? state,
     TResult Function(String? message)? failure,
     required TResult orElse(),
   }) {

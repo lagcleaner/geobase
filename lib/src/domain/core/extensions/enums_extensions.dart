@@ -34,25 +34,25 @@ extension MapSourceExtension on MapSource {
 extension FieldTypeExtension on FieldTypeEnum {
   String visualName() {
     switch (this) {
-      case FieldTypeEnum.BoolFieldType:
+      case FieldTypeEnum.Bool:
         return 'boolean';
-      case FieldTypeEnum.IntFieldType:
+      case FieldTypeEnum.Int:
         return 'entero';
-      case FieldTypeEnum.StringFieldType:
+      case FieldTypeEnum.String:
         return 'texto';
-      case FieldTypeEnum.DateFieldType:
+      case FieldTypeEnum.Date:
         return 'fecha';
-      case FieldTypeEnum.DateTimeFieldType:
+      case FieldTypeEnum.DateTime:
         return 'fecha y hora';
       case FieldTypeEnum.DayFieldType:
         return 'día';
-      case FieldTypeEnum.DoubleFieldType:
+      case FieldTypeEnum.Double:
         return 'número';
       case FieldTypeEnum.MonthFieldType:
         return 'mes';
       case FieldTypeEnum.YearFieldType:
         return 'año';
-      case FieldTypeEnum.TimeFieldType:
+      case FieldTypeEnum.Time:
         return 'hora';
       case FieldTypeEnum.WeekDayFieldType:
         return 'día semanal';
@@ -71,25 +71,25 @@ extension FieldTypeExtension on FieldTypeEnum {
 
   bool isTypeOf(dynamic value) {
     switch (this) {
-      case FieldTypeEnum.BoolFieldType:
+      case FieldTypeEnum.Bool:
         return (value as bool?) != null;
-      case FieldTypeEnum.IntFieldType:
+      case FieldTypeEnum.Int:
         return (value as int?) != null;
-      case FieldTypeEnum.StringFieldType:
+      case FieldTypeEnum.String:
         return (value as String?) != null;
-      case FieldTypeEnum.DateFieldType:
+      case FieldTypeEnum.Date:
         return (value as DateTime?) != null;
-      case FieldTypeEnum.DateTimeFieldType:
+      case FieldTypeEnum.DateTime:
         return (value as DateTime?) != null;
       case FieldTypeEnum.DayFieldType:
         return (value as int?) != null;
-      case FieldTypeEnum.DoubleFieldType:
+      case FieldTypeEnum.Double:
         return (value as double?) != null;
       case FieldTypeEnum.MonthFieldType:
         return (value as MonthEnum?) != null;
       case FieldTypeEnum.YearFieldType:
         return (value as int?) != null;
-      case FieldTypeEnum.TimeFieldType:
+      case FieldTypeEnum.Time:
         return (value as TimeEntity?) != null;
       case FieldTypeEnum.WeekDayFieldType:
         return (value as WeekDayEnum?) != null;

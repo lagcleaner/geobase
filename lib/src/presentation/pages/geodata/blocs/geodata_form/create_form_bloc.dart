@@ -45,7 +45,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
     (previousValue, element) => previousValue
       ..putIfAbsent(
         element.key,
-        () => getInputBloc(element.value),
+        () => getInpu tBloc(element.value),
       ),
   );
 
@@ -81,8 +81,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
             (entry) => MapEntry(
               entry.key,
               FieldValueEntity(
-                type:
-                    category.fields[entry.key] ?? FieldTypeEnum.StringFieldType,
+                type: category.fields[entry.key] ?? FieldTypeEnum.String,
                 value: entry.value.state.value,
               ),
               // TODO: check this way to store fields.
