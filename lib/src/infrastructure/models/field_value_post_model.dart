@@ -7,7 +7,7 @@ class FieldValuePostModel extends FieldValueModel {
     required this.columnId,
   }) : super(value: value);
 
-  final int geodataId;
+  final int? geodataId;
 
   final int columnId;
 }

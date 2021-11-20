@@ -4,4 +4,6 @@ abstract class FieldValueEntity {
   });
 
   dynamic value;
+
+  FieldValueEntity copyWithValue(dynamic value);
 }

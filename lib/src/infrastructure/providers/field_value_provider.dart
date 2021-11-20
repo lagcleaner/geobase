@@ -9,6 +9,9 @@ import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 class FieldValueSQLiteProvider implements IFieldValueProvider {
   @override
   Future<int> create(FieldValuePostModel model) async {
+    if (model.geodataId != null) {
+      throw Exception("Create FieldValur Denied (geodataId can't be null)");
+    }
     final id = await FieldValueDBModel.withFields(
       encodeValue(model.value),
       model.geodataId,

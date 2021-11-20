@@ -13,4 +13,14 @@ class FieldValuePutEntity extends FieldValueEntity {
   final int geodataId;
 
   final int columnId;
+
+  @override
+  FieldValueEntity copyWithValue(dynamic value) {
+    return FieldValuePutEntity(
+      id: id,
+      value: value,
+      columnId: columnId,
+      geodataId: geodataId,
+    );
+  }
 }

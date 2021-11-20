@@ -4,8 +4,8 @@ import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 
-class MediaFieldInputWidget extends FieldInputWidget {
-  const MediaFieldInputWidget({
+class StaticSelectionFieldInputWidget extends FieldInputWidget {
+  const StaticSelectionFieldInputWidget({
     Key? key,
     required ColumnGetEntity column,
     required FieldValueEntity fieldValue,
@@ -21,6 +21,7 @@ class MediaFieldInputWidget extends FieldInputWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return DropdownButtonFormField(items: ,)
     return ListTile(
       key: key,
       title: Text(fieldValue.value != null ? '[File]' : ''),

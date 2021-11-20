@@ -2,17 +2,18 @@ import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 
-import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 
-@fieldInputWidgetReflector
-class DateTimeFieldValueInputWidget extends FieldValueInputWidget {
-  const DateTimeFieldValueInputWidget({
+class DateTimeFieldInputWidget extends FieldInputWidget {
+  const DateTimeFieldInputWidget({
     Key? key,
-    required FieldValueGetEntity fieldValue,
+    required ColumnGetEntity column,
+    required FieldValueEntity fieldValue,
     String? errorText,
     required ValueChanged onChanged,
   }) : super(
           key: key,
+          column: column,
           fieldValue: fieldValue,
           errorText: errorText,
           onChanged: onChanged,
@@ -23,7 +24,7 @@ class DateTimeFieldValueInputWidget extends FieldValueInputWidget {
     return ListTile(
       key: key,
       title: Text(fieldValue.value?.toString() ?? ''),
-      subtitle: Text(fieldValue.column.name),
+      subtitle: Text(column.name),
       trailing: errorText != null
           ? Icon(
               Icons.info_outline_rounded,

@@ -1,44 +1,47 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/widgets/inputs/base_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 
-class LocalPhotoInputWidget extends BaseInputWidget {
-  const LocalPhotoInputWidget({
+class MediaFileFieldInputWidget extends FieldInputWidget {
+  const MediaFileFieldInputWidget({
     Key? key,
-    required String name,
+    required ColumnGetEntity column,
     required FieldValueEntity fieldValue,
     String? errorText,
-    ValueChanged? onChanged,
+    required ValueChanged onChanged,
   }) : super(
           key: key,
-          name: name,
+          column: column,
           fieldValue: fieldValue,
-          onChanged: onChanged,
           errorText: errorText,
+          onChanged: onChanged,
         );
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.getValueOrNull<String>();
     return ListTile(
       key: key,
-      title: Text(value != null ? '[imagen]' : ''),
-      subtitle: Text(name),
+      title: Text(fieldValue.value != null ? '[File]' : ''),
+      subtitle: Text(column.name),
       trailing: errorText != null
           ? Icon(
               Icons.info_outline_rounded,
               color: Colors.red.withOpacity(0.5),
             )
           : null,
-      onTap: () async {
+      onLongPress: () async {
         //TODO: ALL OF THIS
         // final result = await showPhotoPicker(
         //   context: context,
         //   current: value,
         // );
         // // if (result != null)
-        onChanged?.call('mocked local image url');
+        onChanged('');
+      },
+      onTap: () async {
+        //show a preview
       },
     );
   }

@@ -1,17 +1,18 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widgets_reflect.dart';
+import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 
-@fieldInputWidgetReflector
-class BoolFieldValueInputWidget extends FieldValueInputWidget {
-  const BoolFieldValueInputWidget({
+class BoolFieldInputWidget extends FieldInputWidget {
+  const BoolFieldInputWidget({
     Key? key,
-    required FieldValueGetEntity fieldValue,
+    required ColumnGetEntity column,
+    required FieldValueEntity fieldValue,
     String? errorText,
     required ValueChanged onChanged,
   }) : super(
           key: key,
+          column: column,
           fieldValue: fieldValue,
           errorText: errorText,
           onChanged: onChanged,
@@ -19,15 +20,12 @@ class BoolFieldValueInputWidget extends FieldValueInputWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = fieldValue.value as bool?;
     return CheckboxListTile(
       key: key,
       controlAffinity: ListTileControlAffinity.leading,
-      title: Text(fieldValue.column.name),
-      value: value,
-      onChanged: (newValue) {
-        onChanged(fieldValue..value = newValue);
-      },
+      title: Text(column.name),
+      value: (fieldValue.value as bool?) ?? false,
+      onChanged: onChanged,
     );
   }
 }

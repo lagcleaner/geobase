@@ -18,7 +18,7 @@ class GeodataSQLiteProvider implements IGeodataProvider {
       ).save();
       if (geodataId == null) throw Exception('Create Geodata Denied');
       for (final fv in model.fieldValues) {
-        await getIt<IFieldValueProvider>().create(fv);
+        await getIt<IFieldValueProvider>().create(fv..geodataId);
       }
       await GeobaseModel().batchCommit();
       return geodataId;

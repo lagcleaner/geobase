@@ -1,5 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
+import 'package:geobase/injection.dart';
+import 'package:geobase/src/infrastructure/models/models.dart';
+import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
 //base types
@@ -16,21 +20,25 @@ const _nameKey = 'name';
 const _renderClassKey = 'render_class';
 const _extensionKey = 'extensions';
 
+// especial medias
 const _mediaTypesInitialRows = [
   {
-    _nameKey: 'image',
+    _nameKey: 'Image',
     _extensionKey: ['jpg', 'jpeg', 'png'],
-    _renderClassKey: '${MEDIA_METATYPE_NAME}ImageFieldRender',
+    _renderClassKey:
+        '${MEDIA_METATYPE_NAME}Image$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
   },
   {
-    _nameKey: 'audio',
+    _nameKey: 'Audio',
     _extensionKey: ['mp3', 'm3a'],
-    _renderClassKey: '${MEDIA_METATYPE_NAME}AudioUIRender',
+    _renderClassKey:
+        '${MEDIA_METATYPE_NAME}Audio$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
   },
   {
-    _nameKey: 'file',
+    _nameKey: 'File',
     _extensionKey: ['*'],
-    _renderClassKey: '${MEDIA_METATYPE_NAME}FileUIRender',
+    _renderClassKey:
+        '${MEDIA_METATYPE_NAME}File$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
   },
 ];
 
@@ -51,7 +59,7 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
         final result = await FieldTypeDBModel.withFields(
           name,
           BASE_METATYPE_NAME,
-          '${name}UIRender',
+          '$BASE_METATYPE_NAME$name$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
         ).save();
         if (result == null) {
           throw Exception('Invalid Insert Database Action At init.');
@@ -60,19 +68,16 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
 
       // insert media types
       for (final row in _mediaTypesInitialRows) {
-        final result = await FieldTypeDBModel.withFields(
-          row[_nameKey] as String?,
-          MEDIA_METATYPE_NAME,
-          row[_renderClassKey] as String?,
-        ).save();
-        if (result == null) {
-          throw Exception('Invalid Insert Database Action At init.');
-        }
-        final result2 = await MediaDBModel.withFields(
-          json.encode(row[_extensionKey] as List<String>?),
-          result,
-        ).save();
-        if (result2 == null) {
+        try {
+          await getIt<IFieldTypeMediaProvider>().create(
+            FieldTypeMediaPostModel(
+              name: (row[_nameKey] as String?)!,
+              metaType: MEDIA_METATYPE_NAME,
+              extensions: (row[_renderClassKey] as List<String>?)!,
+            ),
+          );
+        } catch (e) {
+          log(e.toString());
           throw Exception('Invalid Insert Database Action At init.');
         }
       }

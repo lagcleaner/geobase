@@ -18,10 +18,6 @@ class GeodataFilterService implements IGeodataFiltersOptionsService {
   }
 
   @override
-  Stream<FilterDataOptionsEntity> get onFiltersOptionsChanged =>
-      filterRepository.onFiltersOptionsChanged;
-
-  @override
   Future<Either<Failure, Unit>> setFilterOptions(
     FilterDataOptionsEntity filters,
   ) async {

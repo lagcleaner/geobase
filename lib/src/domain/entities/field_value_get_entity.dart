@@ -15,7 +15,8 @@ class FieldValueGetEntity extends FieldValueEntity {
 
   final ColumnGetEntity column;
 
-  FieldValueGetEntity copyWith({
+  @override
+  FieldValueGetEntity copyWithValue({
     int? id,
     int? geodataId,
     ColumnGetEntity? column,

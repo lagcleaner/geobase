@@ -4,11 +4,13 @@ extension ReflectableExtension on Reflectable {
   ClassMirror? getClassMirrorWhere({
     String namePrefix = '',
     String nameSuffix = '',
+    String? exactName,
     bool Function(ClassMirror)? aditionalCondition,
   }) {
     for (final cm in annotatedClasses) {
-      if (namePrefix.startsWith(cm.simpleName) &&
-          cm.simpleName.endsWith(nameSuffix) &&
+      if ((cm.simpleName == exactName ||
+              (namePrefix.startsWith(cm.simpleName) &&
+                  cm.simpleName.endsWith(nameSuffix))) &&
           (aditionalCondition?.call(cm) ?? true)) {
         return cm;
       }
