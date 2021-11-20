@@ -23,6 +23,7 @@ extension GeodataPostEntityExtension on GeodataPostEntity {
       latitude: latitude,
       longitude: longitude,
       categoryId: categoryId,
+      fieldValues: fieldValues.map((e) => e.toModel()).toList(),
     );
   }
 }
@@ -34,6 +35,7 @@ extension GeodataPutEntityExtension on GeodataPutEntity {
       latitude: latitude,
       longitude: longitude,
       categoryId: categoryId,
+      fieldValues: fieldValues.map((e) => e.toModel()).toList(),
     );
   }
 }

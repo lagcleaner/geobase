@@ -39,15 +39,15 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
   );
 
   @override
-  late final Map<String, InputBloc> fieldInputBlocs =
-      initialData.category.fields.entries.fold(
-    {},
-    (previousValue, element) => previousValue
-      ..putIfAbsent(
-        element.key,
-        () => getInpu tBloc(element.value),
-      ),
-  );
+  late final Map<String, InputBloc> fieldInputBlocs = Map<String, InputBloc>();
+  //   initialData.category.fields.entries.fold(
+  // {},
+  // (previousValue, element) => previousValue
+  //   ..putIfAbsent(
+  //     element.key,
+  //     () => getInpu tBloc(element.value),
+  //   ),
+  // );
 
   @override
   late final Map<String, InputBloc<int?>> relationInputBlocs =

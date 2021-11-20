@@ -20,8 +20,8 @@ class _$MapSourceInputStateTearOff {
     return const _Initial();
   }
 
-  _SourceInput sourceInput(
-      {MapSourceConfigurationEntity? source, required MapSource selectedType}) {
+  _SourceInput configurationInput(
+      {MapConfigurationEntity? source, required MapSource selectedType}) {
     return _SourceInput(
       source: source,
       selectedType: selectedType,
@@ -35,8 +35,7 @@ class _$MapSourceInputStateTearOff {
   }
 
   _SourceSavingLoadFailure failureSaving(
-      {required Failure failure,
-      required MapSourceConfigurationEntity source}) {
+      {required Failure failure, required MapConfigurationEntity source}) {
     return _SourceSavingLoadFailure(
       failure: failure,
       source: source,
@@ -53,22 +52,20 @@ mixin _$MapSourceInputState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)
-        sourceInput,
+            MapConfigurationEntity? source, MapSource selectedType)
+        configurationInput,
     required TResult Function(Failure failure) failureLoading,
-    required TResult Function(
-            Failure failure, MapSourceConfigurationEntity source)
+    required TResult Function(Failure failure, MapConfigurationEntity source)
         failureSaving,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)?
-        sourceInput,
+    TResult Function(MapConfigurationEntity? source, MapSource selectedType)?
+        configurationInput,
     TResult Function(Failure failure)? failureLoading,
-    TResult Function(Failure failure, MapSourceConfigurationEntity source)?
+    TResult Function(Failure failure, MapConfigurationEntity source)?
         failureSaving,
     required TResult orElse(),
   }) =>
@@ -76,7 +73,7 @@ mixin _$MapSourceInputState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SourceInput value) sourceInput,
+    required TResult Function(_SourceInput value) configurationInput,
     required TResult Function(_SourceLoadFailure value) failureLoading,
     required TResult Function(_SourceSavingLoadFailure value) failureSaving,
   }) =>
@@ -84,7 +81,7 @@ mixin _$MapSourceInputState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SourceInput value)? sourceInput,
+    TResult Function(_SourceInput value)? configurationInput,
     TResult Function(_SourceLoadFailure value)? failureLoading,
     TResult Function(_SourceSavingLoadFailure value)? failureSaving,
     required TResult orElse(),
@@ -148,11 +145,10 @@ class _$_Initial implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)
-        sourceInput,
+            MapConfigurationEntity? source, MapSource selectedType)
+        configurationInput,
     required TResult Function(Failure failure) failureLoading,
-    required TResult Function(
-            Failure failure, MapSourceConfigurationEntity source)
+    required TResult Function(Failure failure, MapConfigurationEntity source)
         failureSaving,
   }) {
     return initial();
@@ -162,11 +158,10 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)?
-        sourceInput,
+    TResult Function(MapConfigurationEntity? source, MapSource selectedType)?
+        configurationInput,
     TResult Function(Failure failure)? failureLoading,
-    TResult Function(Failure failure, MapSourceConfigurationEntity source)?
+    TResult Function(Failure failure, MapConfigurationEntity source)?
         failureSaving,
     required TResult orElse(),
   }) {
@@ -180,7 +175,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SourceInput value) sourceInput,
+    required TResult Function(_SourceInput value) configurationInput,
     required TResult Function(_SourceLoadFailure value) failureLoading,
     required TResult Function(_SourceSavingLoadFailure value) failureSaving,
   }) {
@@ -191,7 +186,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SourceInput value)? sourceInput,
+    TResult Function(_SourceInput value)? configurationInput,
     TResult Function(_SourceLoadFailure value)? failureLoading,
     TResult Function(_SourceSavingLoadFailure value)? failureSaving,
     required TResult orElse(),
@@ -212,7 +207,7 @@ abstract class _$SourceInputCopyWith<$Res> {
   factory _$SourceInputCopyWith(
           _SourceInput value, $Res Function(_SourceInput) then) =
       __$SourceInputCopyWithImpl<$Res>;
-  $Res call({MapSourceConfigurationEntity? source, MapSource selectedType});
+  $Res call({MapConfigurationEntity? source, MapSource selectedType});
 }
 
 /// @nodoc
@@ -235,7 +230,7 @@ class __$SourceInputCopyWithImpl<$Res>
       source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as MapSourceConfigurationEntity?,
+              as MapConfigurationEntity?,
       selectedType: selectedType == freezed
           ? _value.selectedType
           : selectedType // ignore: cast_nullable_to_non_nullable
@@ -249,13 +244,13 @@ class _$_SourceInput implements _SourceInput {
   const _$_SourceInput({this.source, required this.selectedType});
 
   @override
-  final MapSourceConfigurationEntity? source;
+  final MapConfigurationEntity? source;
   @override
   final MapSource selectedType;
 
   @override
   String toString() {
-    return 'MapSourceInputState.sourceInput(source: $source, selectedType: $selectedType)';
+    return 'MapSourceInputState.configurationInput(source: $source, selectedType: $selectedType)';
   }
 
   @override
@@ -285,30 +280,28 @@ class _$_SourceInput implements _SourceInput {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)
-        sourceInput,
+            MapConfigurationEntity? source, MapSource selectedType)
+        configurationInput,
     required TResult Function(Failure failure) failureLoading,
-    required TResult Function(
-            Failure failure, MapSourceConfigurationEntity source)
+    required TResult Function(Failure failure, MapConfigurationEntity source)
         failureSaving,
   }) {
-    return sourceInput(source, selectedType);
+    return configurationInput(source, selectedType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)?
-        sourceInput,
+    TResult Function(MapConfigurationEntity? source, MapSource selectedType)?
+        configurationInput,
     TResult Function(Failure failure)? failureLoading,
-    TResult Function(Failure failure, MapSourceConfigurationEntity source)?
+    TResult Function(Failure failure, MapConfigurationEntity source)?
         failureSaving,
     required TResult orElse(),
   }) {
-    if (sourceInput != null) {
-      return sourceInput(source, selectedType);
+    if (configurationInput != null) {
+      return configurationInput(source, selectedType);
     }
     return orElse();
   }
@@ -317,24 +310,24 @@ class _$_SourceInput implements _SourceInput {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SourceInput value) sourceInput,
+    required TResult Function(_SourceInput value) configurationInput,
     required TResult Function(_SourceLoadFailure value) failureLoading,
     required TResult Function(_SourceSavingLoadFailure value) failureSaving,
   }) {
-    return sourceInput(this);
+    return configurationInput(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SourceInput value)? sourceInput,
+    TResult Function(_SourceInput value)? configurationInput,
     TResult Function(_SourceLoadFailure value)? failureLoading,
     TResult Function(_SourceSavingLoadFailure value)? failureSaving,
     required TResult orElse(),
   }) {
-    if (sourceInput != null) {
-      return sourceInput(this);
+    if (configurationInput != null) {
+      return configurationInput(this);
     }
     return orElse();
   }
@@ -342,11 +335,10 @@ class _$_SourceInput implements _SourceInput {
 
 abstract class _SourceInput implements MapSourceInputState {
   const factory _SourceInput(
-      {MapSourceConfigurationEntity? source,
+      {MapConfigurationEntity? source,
       required MapSource selectedType}) = _$_SourceInput;
 
-  MapSourceConfigurationEntity? get source =>
-      throw _privateConstructorUsedError;
+  MapConfigurationEntity? get source => throw _privateConstructorUsedError;
   MapSource get selectedType => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SourceInputCopyWith<_SourceInput> get copyWith =>
@@ -428,11 +420,10 @@ class _$_SourceLoadFailure implements _SourceLoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)
-        sourceInput,
+            MapConfigurationEntity? source, MapSource selectedType)
+        configurationInput,
     required TResult Function(Failure failure) failureLoading,
-    required TResult Function(
-            Failure failure, MapSourceConfigurationEntity source)
+    required TResult Function(Failure failure, MapConfigurationEntity source)
         failureSaving,
   }) {
     return failureLoading(failure);
@@ -442,11 +433,10 @@ class _$_SourceLoadFailure implements _SourceLoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)?
-        sourceInput,
+    TResult Function(MapConfigurationEntity? source, MapSource selectedType)?
+        configurationInput,
     TResult Function(Failure failure)? failureLoading,
-    TResult Function(Failure failure, MapSourceConfigurationEntity source)?
+    TResult Function(Failure failure, MapConfigurationEntity source)?
         failureSaving,
     required TResult orElse(),
   }) {
@@ -460,7 +450,7 @@ class _$_SourceLoadFailure implements _SourceLoadFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SourceInput value) sourceInput,
+    required TResult Function(_SourceInput value) configurationInput,
     required TResult Function(_SourceLoadFailure value) failureLoading,
     required TResult Function(_SourceSavingLoadFailure value) failureSaving,
   }) {
@@ -471,7 +461,7 @@ class _$_SourceLoadFailure implements _SourceLoadFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SourceInput value)? sourceInput,
+    TResult Function(_SourceInput value)? configurationInput,
     TResult Function(_SourceLoadFailure value)? failureLoading,
     TResult Function(_SourceSavingLoadFailure value)? failureSaving,
     required TResult orElse(),
@@ -497,7 +487,7 @@ abstract class _$SourceSavingLoadFailureCopyWith<$Res> {
   factory _$SourceSavingLoadFailureCopyWith(_SourceSavingLoadFailure value,
           $Res Function(_SourceSavingLoadFailure) then) =
       __$SourceSavingLoadFailureCopyWithImpl<$Res>;
-  $Res call({Failure failure, MapSourceConfigurationEntity source});
+  $Res call({Failure failure, MapConfigurationEntity source});
 
   $FailureCopyWith<$Res> get failure;
 }
@@ -527,7 +517,7 @@ class __$SourceSavingLoadFailureCopyWithImpl<$Res>
       source: source == freezed
           ? _value.source
           : source // ignore: cast_nullable_to_non_nullable
-              as MapSourceConfigurationEntity,
+              as MapConfigurationEntity,
     ));
   }
 
@@ -547,7 +537,7 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
   @override
   final Failure failure;
   @override
-  final MapSourceConfigurationEntity source;
+  final MapConfigurationEntity source;
 
   @override
   String toString() {
@@ -582,11 +572,10 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)
-        sourceInput,
+            MapConfigurationEntity? source, MapSource selectedType)
+        configurationInput,
     required TResult Function(Failure failure) failureLoading,
-    required TResult Function(
-            Failure failure, MapSourceConfigurationEntity source)
+    required TResult Function(Failure failure, MapConfigurationEntity source)
         failureSaving,
   }) {
     return failureSaving(failure, source);
@@ -596,11 +585,10 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(
-            MapSourceConfigurationEntity? source, MapSource selectedType)?
-        sourceInput,
+    TResult Function(MapConfigurationEntity? source, MapSource selectedType)?
+        configurationInput,
     TResult Function(Failure failure)? failureLoading,
-    TResult Function(Failure failure, MapSourceConfigurationEntity source)?
+    TResult Function(Failure failure, MapConfigurationEntity source)?
         failureSaving,
     required TResult orElse(),
   }) {
@@ -614,7 +602,7 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_SourceInput value) sourceInput,
+    required TResult Function(_SourceInput value) configurationInput,
     required TResult Function(_SourceLoadFailure value) failureLoading,
     required TResult Function(_SourceSavingLoadFailure value) failureSaving,
   }) {
@@ -625,7 +613,7 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_SourceInput value)? sourceInput,
+    TResult Function(_SourceInput value)? configurationInput,
     TResult Function(_SourceLoadFailure value)? failureLoading,
     TResult Function(_SourceSavingLoadFailure value)? failureSaving,
     required TResult orElse(),
@@ -639,12 +627,11 @@ class _$_SourceSavingLoadFailure implements _SourceSavingLoadFailure {
 
 abstract class _SourceSavingLoadFailure implements MapSourceInputState {
   const factory _SourceSavingLoadFailure(
-          {required Failure failure,
-          required MapSourceConfigurationEntity source}) =
-      _$_SourceSavingLoadFailure;
+      {required Failure failure,
+      required MapConfigurationEntity source}) = _$_SourceSavingLoadFailure;
 
   Failure get failure => throw _privateConstructorUsedError;
-  MapSourceConfigurationEntity get source => throw _privateConstructorUsedError;
+  MapConfigurationEntity get source => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$SourceSavingLoadFailureCopyWith<_SourceSavingLoadFailure> get copyWith =>
       throw _privateConstructorUsedError;

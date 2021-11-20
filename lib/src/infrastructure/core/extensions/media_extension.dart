@@ -7,6 +7,7 @@ extension MediaGetModelExtension on FieldTypeMediaGetModel {
       id: id,
       name: name,
       metaType: metaType,
+      renderClass: renderClass,
       extensions: extensions,
     );
   }

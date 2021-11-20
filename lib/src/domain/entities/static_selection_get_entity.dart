@@ -5,8 +5,9 @@ class FieldTypeStaticSelectionGetEntity extends FieldTypeGetEntity {
     required String name,
     required String metaType,
     required int id,
+    required String renderClass,
     required this.options,
-  }) : super(id: id, name: name, metaType: metaType);
+  }) : super(id: id, name: name, metaType: metaType, renderClass: renderClass);
 
   final List<String> options;
 }

@@ -4,19 +4,19 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/repositories/repositories.dart';
 import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
 
-@LazySingleton(as: IMapSourceConfigurationWritterService)
-class MapSourceConfigurationWritterService
-    implements IMapSourceConfigurationWritterService {
-  MapSourceConfigurationWritterService(
+@LazySingleton(as: IMapConfigurationWritterService)
+class MapConfigurationWritterService
+    implements IMapConfigurationWritterService {
+  MapConfigurationWritterService(
     this.repository,
   );
 
   final IConfigurationRepository repository;
 
   @override
-  Future<Either<Failure, Unit>> setMapSourceConfigurations(
-    MapSourceConfigurationEntity configuration,
+  Future<Either<Failure, Unit>> setMapConfigurations(
+    MapConfigurationEntity configuration,
   ) async {
-    return repository.setMapSourceConfigurations(configuration);
+    return repository.setMapConfigurations(configuration);
   }
 }

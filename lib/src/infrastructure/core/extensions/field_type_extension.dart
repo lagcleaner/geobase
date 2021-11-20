@@ -7,6 +7,7 @@ extension FieldTypeGetModelExtension on FieldTypeGetModel {
       id: id,
       name: name,
       metaType: metaType,
+      renderClass: renderClass,
       extradata: extradata,
     );
   }

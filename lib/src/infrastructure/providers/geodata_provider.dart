@@ -5,7 +5,6 @@ import 'package:geobase/src/infrastructure/providers/interfaces/i_geodata_provid
 import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
-///todo: methodo para inicializar todos los valores de geodata a null
 @LazySingleton(as: IGeodataProvider)
 class GeodataSQLiteProvider implements IGeodataProvider {
   @override
@@ -18,37 +17,37 @@ class GeodataSQLiteProvider implements IGeodataProvider {
         model.categoryId,
       ).save();
       if (geodataId == null) throw Exception('Create Geodata Denied');
-      final columns = await getIt<IColumnsProvider>().getAllFromCategory(
-        model.categoryId,
-      );
-      for (final col in columns) {
-        await getIt<IFieldValueProvider>().create(
-          FieldValuePostModel(
-            value: null,
-            geodataId: geodataId,
-            columnId: col.id,
-          ),
-        );
+      for (final fv in model.fieldValues) {
+        await getIt<IFieldValueProvider>().create(fv);
       }
       await GeobaseModel().batchCommit();
       return geodataId;
     } catch (e) {
       GeobaseModel().batchRollback();
-
       rethrow;
     }
   }
 
   @override
   Future<int> edit(GeodataPutModel model) async {
-    final geodataId = await GeodataDBModel.withId(
-      model.id,
-      model.longitude,
-      model.latitude,
-      model.categoryId,
-    ).save();
-    if (geodataId == null) throw Exception('Edit Geodata Denied');
-    return geodataId;
+    await GeobaseModel().batchStart();
+    try {
+      final geodataId = await GeodataDBModel.withId(
+        model.id,
+        model.longitude,
+        model.latitude,
+        model.categoryId,
+      ).save();
+      if (geodataId == null) throw Exception('Edit Geodata Denied');
+      for (final fv in model.fieldValues) {
+        await getIt<IFieldValueProvider>().edit(fv);
+      }
+      await GeobaseModel().batchCommit();
+      return geodataId;
+    } catch (e) {
+      GeobaseModel().batchRollback();
+      rethrow;
+    }
   }
 
   @override
@@ -84,9 +83,7 @@ class GeodataSQLiteProvider implements IGeodataProvider {
   Future<GeodataGetModel> getById(int id) async {
     final geodata =
         await GeodataDBModel().select().geodata_id.equals(id).toSingle();
-    if (geodata == null) {
-      throw Exception('Geodata Not Found');
-    }
+    if (geodata == null) throw Exception('Geodata Not Found');
     return GeodataGetModel(
       latitude: geodata.latitude!,
       longitude: geodata.longitude!,

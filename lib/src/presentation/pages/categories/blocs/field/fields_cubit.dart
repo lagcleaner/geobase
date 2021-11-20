@@ -15,11 +15,11 @@ class FieldsCubit extends Cubit<FieldsState> {
   }
 
   void changeType(FieldTypeEnum? type) {
-    if (type == state.type) return;
-    emit(state.copyWith(type: type));
+    if (type == state.sourceType) return;
+    emit(state.copyWith(sourceType: type));
   }
 
   void clear() {
-    emit(state.copyWith(name: '', type: null));
+    emit(state.copyWith(name: '', sourceType: null));
   }
 }

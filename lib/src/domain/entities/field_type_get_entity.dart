@@ -15,10 +15,13 @@ class FieldTypeGetEntity extends FieldTypeEntity {
     required this.id,
     required String name,
     required String metaType,
+    required this.renderClass,
     this.extradata,
   }) : super(name: name, metaType: metaType);
 
   final int id;
+
+  final String renderClass;
 
   final Map<String, dynamic>? extradata;
 }

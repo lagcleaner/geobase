@@ -19,7 +19,7 @@ export 'geodata_get_entity.dart';
 export 'geodata_post_entity.dart';
 export 'geodata_put_entity.dart';
 export 'i_markable_entity.dart';
-export 'map_source_configuration_entity.dart';
+export 'map_configuration_entity.dart';
 export 'media_get_entity.dart';
 export 'media_post_entity.dart';
 export 'nearby_area_entity.dart';

@@ -25,9 +25,9 @@ class ConfigurationRepository implements IConfigurationRepository {
       _changesUserPreferencesNotifier.stream;
 
   @override
-  Future<Either<Failure, MapSourceConfigurationEntity>>
-      loadMapSourceConfigurations() async {
-    // TODO: implement loadMapSourceConfigurations
+  Future<Either<Failure, MapConfigurationEntity>>
+      loadMapConfigurations() async {
+    // TODO: implement loadMapConfigurations
     throw UnimplementedError();
   }
 
@@ -38,10 +38,10 @@ class ConfigurationRepository implements IConfigurationRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> setMapSourceConfigurations(
-    MapSourceConfigurationEntity configuration,
+  Future<Either<Failure, Unit>> setMapConfigurations(
+    MapConfigurationEntity configuration,
   ) async {
-    // TODO: implement setMapSourceConfigurations
+    // TODO: implement setMapConfigurations
     throw UnimplementedError();
   }
 

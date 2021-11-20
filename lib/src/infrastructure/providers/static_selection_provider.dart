@@ -11,13 +11,18 @@ class StaticSelectionSQLiteProvider
   @override
   Future<int> create(FieldTypeStaticSelectionPostModel model) async {
     await GeobaseModel().batchStart();
-    final fieldTypeId =
-        await FieldTypeDBModel.withFields(model.name, model.metaType).save();
+    final fieldTypeId = await FieldTypeDBModel.withFields(
+      model.name,
+      model.metaType,
+      STATICSELECTION_RENDER_CLASS,
+    ).save();
+    if (fieldTypeId == null) throw Exception('Create StaticSelection Denied');
     try {
-      final id = (await StaticSelectionDBModel.withFields(
+      final id = await StaticSelectionDBModel.withFields(
         json.encode(model.options),
         fieldTypeId,
-      ).save())!;
+      ).save();
+      if (id == null) throw Exception('Create StaticSelection Denied');
       await GeobaseModel().batchCommit();
       return id;
     } catch (e) {
@@ -28,7 +33,6 @@ class StaticSelectionSQLiteProvider
 
   @override
   Future<List<FieldTypeStaticSelectionGetModel>> getAll() async {
-    //TODO: Use view_...
     final staticSelectiondb = await StaticSelectionDBModel().select().toList();
     final result = <FieldTypeStaticSelectionGetModel>[];
     for (final ss in staticSelectiondb) {
@@ -38,6 +42,7 @@ class StaticSelectionSQLiteProvider
           name: fieldType!.name!,
           metaType: fieldType.meta_type!,
           fieldTypeId: ss.field_type_id!,
+          renderClass: fieldType.render_class!,
           options: json.decode(ss.options!) as List<String>,
         ),
       );
@@ -52,10 +57,12 @@ class StaticSelectionSQLiteProvider
         .field_type_id
         .equals(id)
         .toSingle(preload: true);
+    if (ss == null) throw Exception('StaticSelection Not Found');
     return FieldTypeStaticSelectionGetModel(
-      name: ss!.plFieldTypeDBModel!.name!,
+      name: ss.plFieldTypeDBModel!.name!,
       metaType: ss.plFieldTypeDBModel!.meta_type!,
       fieldTypeId: ss.field_type_id!,
+      renderClass: ss.plFieldTypeDBModel!.render_class!,
       options: json.decode(ss.options!) as List<String>,
     );
   }

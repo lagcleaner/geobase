@@ -25,7 +25,7 @@ InputBloc<dynamic> getBlocByFieldValue(FieldValueGetEntity fieldValue) {
       mirrorInstantiator,
       namePrefix: 'getInputBloc',
       aditionalCondition: (mm) {
-        if (fieldValue.column.type.metaType == BaseMetaTypeName) {
+        if (fieldValue.column.type.metaType == BASE_METATYPE_NAME) {
           return mm.simpleName.endsWith(fieldValue.column.type.name);
         }
         return mm.simpleName.endsWith(fieldValue.column.type.metaType);

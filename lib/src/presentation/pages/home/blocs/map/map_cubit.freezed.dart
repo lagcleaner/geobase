@@ -18,12 +18,12 @@ class _$MapStateTearOff {
 
   _MapState state(
       {required MapController mapController,
-      required MapSourceConfiguration sourceConfiguration,
+      required MapConfigurationEntity mapConfiguration,
       bool loadingConfigs = false,
       Failure? failure = null}) {
     return _MapState(
       mapController: mapController,
-      sourceConfiguration: sourceConfiguration,
+      mapConfiguration: mapConfiguration,
       loadingConfigs: loadingConfigs,
       failure: failure,
     );
@@ -36,7 +36,7 @@ const $MapState = _$MapStateTearOff();
 /// @nodoc
 mixin _$MapState {
   MapController get mapController => throw _privateConstructorUsedError;
-  MapSourceConfiguration get sourceConfiguration =>
+  MapConfigurationEntity get mapConfiguration =>
       throw _privateConstructorUsedError;
   bool get loadingConfigs => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$MapState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             MapController mapController,
-            MapSourceConfiguration sourceConfiguration,
+            MapConfigurationEntity mapConfiguration,
             bool loadingConfigs,
             Failure? failure)
         state,
@@ -55,7 +55,7 @@ mixin _$MapState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             MapController mapController,
-            MapSourceConfiguration sourceConfiguration,
+            MapConfigurationEntity mapConfiguration,
             bool loadingConfigs,
             Failure? failure)?
         state,
@@ -85,7 +85,7 @@ abstract class $MapStateCopyWith<$Res> {
       _$MapStateCopyWithImpl<$Res>;
   $Res call(
       {MapController mapController,
-      MapSourceConfiguration sourceConfiguration,
+      MapConfigurationEntity mapConfiguration,
       bool loadingConfigs,
       Failure? failure});
 
@@ -103,7 +103,7 @@ class _$MapStateCopyWithImpl<$Res> implements $MapStateCopyWith<$Res> {
   @override
   $Res call({
     Object? mapController = freezed,
-    Object? sourceConfiguration = freezed,
+    Object? mapConfiguration = freezed,
     Object? loadingConfigs = freezed,
     Object? failure = freezed,
   }) {
@@ -112,10 +112,10 @@ class _$MapStateCopyWithImpl<$Res> implements $MapStateCopyWith<$Res> {
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
               as MapController,
-      sourceConfiguration: sourceConfiguration == freezed
-          ? _value.sourceConfiguration
-          : sourceConfiguration // ignore: cast_nullable_to_non_nullable
-              as MapSourceConfiguration,
+      mapConfiguration: mapConfiguration == freezed
+          ? _value.mapConfiguration
+          : mapConfiguration // ignore: cast_nullable_to_non_nullable
+              as MapConfigurationEntity,
       loadingConfigs: loadingConfigs == freezed
           ? _value.loadingConfigs
           : loadingConfigs // ignore: cast_nullable_to_non_nullable
@@ -146,7 +146,7 @@ abstract class _$MapStateCopyWith<$Res> implements $MapStateCopyWith<$Res> {
   @override
   $Res call(
       {MapController mapController,
-      MapSourceConfiguration sourceConfiguration,
+      MapConfigurationEntity mapConfiguration,
       bool loadingConfigs,
       Failure? failure});
 
@@ -166,7 +166,7 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? mapController = freezed,
-    Object? sourceConfiguration = freezed,
+    Object? mapConfiguration = freezed,
     Object? loadingConfigs = freezed,
     Object? failure = freezed,
   }) {
@@ -175,10 +175,10 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
               as MapController,
-      sourceConfiguration: sourceConfiguration == freezed
-          ? _value.sourceConfiguration
-          : sourceConfiguration // ignore: cast_nullable_to_non_nullable
-              as MapSourceConfiguration,
+      mapConfiguration: mapConfiguration == freezed
+          ? _value.mapConfiguration
+          : mapConfiguration // ignore: cast_nullable_to_non_nullable
+              as MapConfigurationEntity,
       loadingConfigs: loadingConfigs == freezed
           ? _value.loadingConfigs
           : loadingConfigs // ignore: cast_nullable_to_non_nullable
@@ -195,14 +195,14 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
 class _$_MapState implements _MapState {
   const _$_MapState(
       {required this.mapController,
-      required this.sourceConfiguration,
+      required this.mapConfiguration,
       this.loadingConfigs = false,
       this.failure = null});
 
   @override
   final MapController mapController;
   @override
-  final MapSourceConfiguration sourceConfiguration;
+  final MapConfigurationEntity mapConfiguration;
   @JsonKey(defaultValue: false)
   @override
   final bool loadingConfigs;
@@ -212,7 +212,7 @@ class _$_MapState implements _MapState {
 
   @override
   String toString() {
-    return 'MapState.state(mapController: $mapController, sourceConfiguration: $sourceConfiguration, loadingConfigs: $loadingConfigs, failure: $failure)';
+    return 'MapState.state(mapController: $mapController, mapConfiguration: $mapConfiguration, loadingConfigs: $loadingConfigs, failure: $failure)';
   }
 
   @override
@@ -222,9 +222,9 @@ class _$_MapState implements _MapState {
             (identical(other.mapController, mapController) ||
                 const DeepCollectionEquality()
                     .equals(other.mapController, mapController)) &&
-            (identical(other.sourceConfiguration, sourceConfiguration) ||
+            (identical(other.mapConfiguration, mapConfiguration) ||
                 const DeepCollectionEquality()
-                    .equals(other.sourceConfiguration, sourceConfiguration)) &&
+                    .equals(other.mapConfiguration, mapConfiguration)) &&
             (identical(other.loadingConfigs, loadingConfigs) ||
                 const DeepCollectionEquality()
                     .equals(other.loadingConfigs, loadingConfigs)) &&
@@ -236,7 +236,7 @@ class _$_MapState implements _MapState {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(mapController) ^
-      const DeepCollectionEquality().hash(sourceConfiguration) ^
+      const DeepCollectionEquality().hash(mapConfiguration) ^
       const DeepCollectionEquality().hash(loadingConfigs) ^
       const DeepCollectionEquality().hash(failure);
 
@@ -250,12 +250,12 @@ class _$_MapState implements _MapState {
   TResult when<TResult extends Object?>({
     required TResult Function(
             MapController mapController,
-            MapSourceConfiguration sourceConfiguration,
+            MapConfigurationEntity mapConfiguration,
             bool loadingConfigs,
             Failure? failure)
         state,
   }) {
-    return state(mapController, sourceConfiguration, loadingConfigs, failure);
+    return state(mapController, mapConfiguration, loadingConfigs, failure);
   }
 
   @override
@@ -263,14 +263,14 @@ class _$_MapState implements _MapState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             MapController mapController,
-            MapSourceConfiguration sourceConfiguration,
+            MapConfigurationEntity mapConfiguration,
             bool loadingConfigs,
             Failure? failure)?
         state,
     required TResult orElse(),
   }) {
     if (state != null) {
-      return state(mapController, sourceConfiguration, loadingConfigs, failure);
+      return state(mapController, mapConfiguration, loadingConfigs, failure);
     }
     return orElse();
   }
@@ -299,14 +299,14 @@ class _$_MapState implements _MapState {
 abstract class _MapState implements MapState {
   const factory _MapState(
       {required MapController mapController,
-      required MapSourceConfiguration sourceConfiguration,
+      required MapConfigurationEntity mapConfiguration,
       bool loadingConfigs,
       Failure? failure}) = _$_MapState;
 
   @override
   MapController get mapController => throw _privateConstructorUsedError;
   @override
-  MapSourceConfiguration get sourceConfiguration =>
+  MapConfigurationEntity get mapConfiguration =>
       throw _privateConstructorUsedError;
   @override
   bool get loadingConfigs => throw _privateConstructorUsedError;

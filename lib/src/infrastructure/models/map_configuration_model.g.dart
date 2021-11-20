@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'source_configuration_model.dart';
+part of 'map_configuration_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SourceConfigurationModel _$SourceConfigurationModelFromJson(
+MapConfigurationModel _$MapConfigurationModelFromJson(
     Map<String, dynamic> json) {
-  return SourceConfigurationModel(
-    type: _$enumDecode(_$MapSourceEnumMap, json['type']),
+  return MapConfigurationModel(
+    sourceType: _$enumDecode(_$MapSourceEnumMap, json['sourceType']),
     properties: json['properties'] as Map<String, dynamic>,
   );
 }
 
-Map<String, dynamic> _$SourceConfigurationModelToJson(
-        SourceConfigurationModel instance) =>
+Map<String, dynamic> _$MapConfigurationModelToJson(
+        MapConfigurationModel instance) =>
     <String, dynamic>{
-      'type': _$MapSourceEnumMap[instance.type],
+      'sourceType': _$MapSourceEnumMap[instance.sourceType],
       'properties': instance.properties,
     };
 

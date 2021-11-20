@@ -23,3 +23,13 @@ extension FieldValuePutModelExtension on FieldValuePutEntity {
     );
   }
 }
+
+extension FieldValuePostModelExtension on FieldValuePostEntity {
+  FieldValuePostModel toModel() {
+    return FieldValuePostModel(
+      value: value,
+      geodataId: geodataId,
+      columnId: columnId,
+    );
+  }
+}

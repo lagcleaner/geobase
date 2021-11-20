@@ -11,7 +11,7 @@ class UrlTemplateInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final form = context.read<IMapSourceFormBloc>();
+    final form = context.read<IMapConfigurationFormBloc>();
     return InputBlocBuilder<String?>(
       bloc: form.urlTemplate,
       builder: (context, state) => TextInputWidget(
@@ -49,7 +49,7 @@ class WMSFormatInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final form = context.read<IMapSourceFormBloc>();
+    final form = context.read<IMapConfigurationFormBloc>();
     return InputBlocBuilder<String?>(
       bloc: form.wmsFormat,
       builder: (context, state) => TextInputWidget(
@@ -79,7 +79,7 @@ class WMSBaseUrlInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final form = context.read<IMapSourceFormBloc>();
+    final form = context.read<IMapConfigurationFormBloc>();
     return InputBlocBuilder<String?>(
       bloc: form.wmsBaseUrl,
       builder: (context, state) => TextInputWidget(

@@ -4,11 +4,9 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
-import 'package:geobase/src/domain/core/extensions/enums_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
-import 'package:geobase/src/presentation/pages/home/widgets/source_section/source_section.dart';
 
 class SourceOptionsSectionWidget extends StatelessWidget {
   const SourceOptionsSectionWidget({
@@ -17,8 +15,8 @@ class SourceOptionsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapSourceInputCubit, MapSourceInputState>(
-      bloc: context.read<MapSourceInputCubit>(),
+    return BlocBuilder<MapConfigurationInputCubit, MapConfigurationInputState>(
+      bloc: context.read<MapConfigurationInputCubit>(),
       builder: (context, state) => state.map(
         initial: (_) {
           return Center(
@@ -34,7 +32,7 @@ class SourceOptionsSectionWidget extends StatelessWidget {
             children: [
               Flexible(
                 child: _SourceSelector(
-                  onChanged: context.read<MapSourceInputCubit>().select,
+                  onChanged: context.read<MapConfigurationInputCubit>().select,
                   sourceType: state.selectedType,
                 ),
               ),
@@ -48,7 +46,8 @@ class SourceOptionsSectionWidget extends StatelessWidget {
                 ),
                 child: MapSourceForm(
                   selectedType: state.selectedType,
-                  onSuccessSubmit: context.read<MapSourceInputCubit>().save,
+                  onSuccessSubmit:
+                      context.read<MapConfigurationInputCubit>().save,
                 ),
               ),
             ],
@@ -58,7 +57,7 @@ class SourceOptionsSectionWidget extends StatelessWidget {
           return FailureAndRetryWidget(
             errorText: state.failure.message ?? '',
             onPressed: () {
-              return context.read<MapSourceInputCubit>().load();
+              return context.read<MapConfigurationInputCubit>().load();
             },
           );
         },
@@ -66,7 +65,9 @@ class SourceOptionsSectionWidget extends StatelessWidget {
           return FailureAndRetryWidget(
             errorText: state.failure.message ?? '',
             onPressed: () {
-              return context.read<MapSourceInputCubit>().save(state.source);
+              return context
+                  .read<MapConfigurationInputCubit>()
+                  .save(state.configs);
             },
           );
         },
@@ -83,11 +84,11 @@ class MapSourceForm extends StatelessWidget {
   }) : super(key: key);
 
   final MapSource selectedType;
-  final Function(MapSourceConfiguration) onSuccessSubmit;
+  final Function(MapConfigurationEntity) onSuccessSubmit;
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocListener<IMapSourceFormBloc, MapSourceConfiguration,
+    return FormBlocListener<IMapSourceFormBloc, MapConfigurationEntity,
         Failure>(
       onSuccess: onSuccessSubmit,
       child: Column(

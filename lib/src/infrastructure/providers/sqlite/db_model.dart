@@ -3,21 +3,28 @@ import 'package:sqfentity_gen/sqfentity_gen.dart';
 
 part 'db_model.g.dart';
 
-const String CategoryTableName = 'Category';
-const String GeodataTableName = 'Geodata';
-const String FieldTypeTableName = 'FieldType';
-const String StaticSelectionTableName = 'StaticSelection';
-const String MediaTableName = 'Media';
-const String ColumnTableName = 'Column';
-const String FieldValueTableName = 'FieldValue';
+const String CATEGORY_TABLE_NAME = 'Category';
+const String GEODATA_TABLE_NAME = 'Geodata';
+const String FIELDTYPE_TABLE_NAME = 'FieldType';
+const String STATICSELECTION_TABLE_NAME = 'StaticSelection';
+const String MEDIA_TABLE_NAME = 'Media';
+const String COLUMN_TABLE_NAME = 'Column';
+const String FIELDVALUE_TABLE_NAME = 'FieldValue';
 
-//meta type names for FieldType
-const StaticSelectionMetaTypeName = StaticSelectionTableName;
-const MediaMetaTypeName = MediaTableName;
-const BaseMetaTypeName = 'Base';
+// meta type names for FieldType
+const STATICSELECTION_METATYPE_NAME = STATICSELECTION_TABLE_NAME;
+const MEDIA_METATYPE_NAME = MEDIA_TABLE_NAME;
+const BASE_METATYPE_NAME = 'Base';
+
+// default render class name for meta_types
+const _DEFAULT_RENDER_CLASS_NAME_SUFFIX = 'UIRender';
+const STATICSELECTION_RENDER_CLASS =
+    '$STATICSELECTION_METATYPE_NAME$_DEFAULT_RENDER_CLASS_NAME_SUFFIX';
+const MEDIA_RENDER_CLASS =
+    '$MEDIA_METATYPE_NAME$_DEFAULT_RENDER_CLASS_NAME_SUFFIX';
 
 const tableCategory = SqfEntityTable(
-  tableName: CategoryTableName,
+  tableName: CATEGORY_TABLE_NAME,
   modelName: 'CategoryDBModel',
   primaryKeyName: 'category_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -30,7 +37,7 @@ const tableCategory = SqfEntityTable(
 );
 
 const tableGeodata = SqfEntityTable(
-  tableName: GeodataTableName,
+  tableName: GEODATA_TABLE_NAME,
   modelName: 'GeodataDBModel',
   primaryKeyName: 'geodata_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -47,18 +54,19 @@ const tableGeodata = SqfEntityTable(
 );
 
 const tableFieldType = SqfEntityTable(
-  tableName: FieldTypeTableName,
+  tableName: FIELDTYPE_TABLE_NAME,
   modelName: 'FieldTypeDBModel',
   primaryKeyName: 'field_type_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
   fields: [
     SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
     SqfEntityField('meta_type', DbType.text, isUnique: true, isNotNull: true),
+    SqfEntityField('render_class', DbType.text, isNotNull: true),
   ],
 );
 
 const tableStaticSelection = SqfEntityTable(
-  tableName: StaticSelectionTableName,
+  tableName: STATICSELECTION_TABLE_NAME,
   modelName: 'StaticSelectionDBModel',
   primaryKeyName: 'static_selection_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -75,7 +83,7 @@ const tableStaticSelection = SqfEntityTable(
 );
 
 const tableMedia = SqfEntityTable(
-  tableName: MediaTableName,
+  tableName: MEDIA_TABLE_NAME,
   modelName: 'MediaDBModel',
   primaryKeyName: 'media_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -97,6 +105,7 @@ const VIEW_FTStaticSelections = SqfEntityTable(
   fields: [
     SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
     SqfEntityField('meta_type', DbType.text, isUnique: true, isNotNull: true),
+    SqfEntityField('render_name', DbType.text, isNotNull: true),
     SqfEntityField('options', DbType.text, isNotNull: true),
     SqfEntityFieldRelationship(
       parentTable: tableFieldType,
@@ -125,7 +134,7 @@ const VIEW_FTStaticSelections = SqfEntityTable(
 );
 
 const tableColumn = SqfEntityTable(
-  tableName: ColumnTableName,
+  tableName: COLUMN_TABLE_NAME,
   modelName: 'ColumnDBModel',
   primaryKeyName: 'column_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -147,7 +156,7 @@ const tableColumn = SqfEntityTable(
 );
 
 const tableFieldValue = SqfEntityTable(
-  tableName: FieldValueTableName,
+  tableName: FIELDVALUE_TABLE_NAME,
   modelName: 'FieldValueDBModel',
   primaryKeyName: 'field_value_id',
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
@@ -161,7 +170,7 @@ const tableFieldValue = SqfEntityTable(
       deleteRule: DeleteRule.CASCADE,
     ),
     SqfEntityFieldRelationship(
-      parentTable: tableFieldType,
+      parentTable: tableColumn,
       fieldName: 'column_id',
       isNotNull: true,
       deleteRule: DeleteRule.CASCADE,
@@ -205,6 +214,7 @@ const geobaseDBModel = SqfEntityModel(
     tableColumn,
     tableFieldType,
     tableStaticSelection,
+    tableMedia,
     tableFieldValue,
     VIEW_Markers,
     VIEW_FTStaticSelections,

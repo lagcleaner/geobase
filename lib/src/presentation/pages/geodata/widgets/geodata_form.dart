@@ -129,7 +129,7 @@ class _FieldInputWidget extends StatelessWidget {
     return BaseInputWidget.widget(
       name: name,
       fieldValue: FieldValueEntity(
-        type: type,
+        sourceType: type,
         value: value,
       ),
       errorText: errorText,

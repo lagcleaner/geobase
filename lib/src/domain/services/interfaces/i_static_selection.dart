@@ -9,7 +9,7 @@ abstract class IFieldTypeStaticSelectionService {
   );
 
   Future<Either<Failure, int>> createStaticSelection(
-    FieldTypeStaticSelectionPostEntity geoData,
+    FieldTypeStaticSelectionPostEntity staticSelection,
   );
 
   Future<Either<Failure, Unit>> removeStaticSelection(int fieldTypeId);

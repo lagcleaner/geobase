@@ -51,17 +51,17 @@ class _FieldsInputWidgetState extends State<FieldsInputWidget> {
             const SizedBox(height: 10),
             // field type Input
             _FieldTypeInput(
-              value: state.type,
+              value: state.sourceType,
               onChanged: fieldsCubit.changeType,
             ),
             const SizedBox(height: 10),
             // Add Button
             ElevatedButton(
-              onPressed: state.type != null &&
+              onPressed: state.sourceType != null &&
                       state.name != '' &&
                       widget.fields[state.name] == null
                   ? () {
-                      widget.onAdd?.call(state.name, state.type!);
+                      widget.onAdd?.call(state.name, state.sourceType!);
                       fieldsCubit.clear();
                     }
                   : null,

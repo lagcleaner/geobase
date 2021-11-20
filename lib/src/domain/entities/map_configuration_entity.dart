@@ -1,14 +1,14 @@
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/map_source_enum.dart';
 
-class MapSourceConfigurationEntity {
-  const MapSourceConfigurationEntity({
+class MapConfigurationEntity {
+  const MapConfigurationEntity({
     MapSource? sourceType,
     Map<String, dynamic>? sourceProperties,
   })  : options = sourceProperties ?? const {},
         mapSourceType = sourceType ?? MapSource.Empty;
 
-  factory MapSourceConfigurationEntity.wms({
+  factory MapConfigurationEntity.wms({
     required String baseUrl,
     required List<String> layers,
     required List<String> subdomains,
@@ -16,7 +16,7 @@ class MapSourceConfigurationEntity {
     Map<String, dynamic>? otherParameters,
     Map<String, dynamic>? aditionalOptions,
   }) =>
-      MapSourceConfigurationEntity(
+      MapConfigurationEntity(
         sourceType: MapSource.WMS,
         sourceProperties: {
           MAP_SOURCE_SUBDOMAINS: subdomains,
@@ -28,11 +28,11 @@ class MapSourceConfigurationEntity {
         },
       );
 
-  factory MapSourceConfigurationEntity.tms({
+  factory MapConfigurationEntity.tms({
     required String urlTemplate,
     Map<String, dynamic>? aditionalOptions,
   }) =>
-      MapSourceConfigurationEntity(
+      MapConfigurationEntity(
         sourceType: MapSource.TMS,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
@@ -40,11 +40,11 @@ class MapSourceConfigurationEntity {
         },
       );
 
-  factory MapSourceConfigurationEntity.assets({
+  factory MapConfigurationEntity.assets({
     required String urlTemplate,
     Map<String, dynamic>? aditionalOptions,
   }) =>
-      MapSourceConfigurationEntity(
+      MapConfigurationEntity(
         sourceType: MapSource.Assets,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
@@ -52,11 +52,11 @@ class MapSourceConfigurationEntity {
         },
       );
 
-  factory MapSourceConfigurationEntity.file({
+  factory MapConfigurationEntity.file({
     required String urlTemplate,
     Map<String, dynamic>? aditionalOptions,
   }) =>
-      MapSourceConfigurationEntity(
+      MapConfigurationEntity(
         sourceType: MapSource.File,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
@@ -64,12 +64,12 @@ class MapSourceConfigurationEntity {
         },
       );
 
-  factory MapSourceConfigurationEntity.customRemote({
+  factory MapConfigurationEntity.customRemote({
     required String urlTemplate,
     List<String>? subdomains,
     Map<String, dynamic>? aditionalOptions,
   }) =>
-      MapSourceConfigurationEntity(
+      MapConfigurationEntity(
         sourceType: MapSource.CustomRemote,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
@@ -78,8 +78,7 @@ class MapSourceConfigurationEntity {
         },
       );
 
-  factory MapSourceConfigurationEntity.empty() =>
-      const MapSourceConfigurationEntity();
+  factory MapConfigurationEntity.empty() => const MapConfigurationEntity();
 
   final MapSource mapSourceType;
   final Map<String, dynamic> options;

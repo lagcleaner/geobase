@@ -50,7 +50,7 @@ abstract class FieldValueInputWidget extends StatelessWidget {
             return false;
           }
           //FieldType name or metaType
-          if (fieldValue.column.type.metaType == BaseMetaTypeName) {
+          if (fieldValue.column.type.metaType == BASE_METATYPE_NAME) {
             return cm.simpleName.startsWith(fieldValue.column.type.name);
           }
           return cm.simpleName.startsWith(fieldValue.column.type.metaType);

@@ -133,6 +133,8 @@ class TableFieldTypeDBModel extends SqfEntityTableBase {
           isUnique: true, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('meta_type', DbType.text,
           isUnique: true, isNotNull: true, isIndex: false),
+      SqfEntityFieldBase('render_class', DbType.text,
+          isUnique: false, isNotNull: true, isIndex: false),
     ];
     super.init();
   }
@@ -172,6 +174,36 @@ class TableStaticSelectionDBModel extends SqfEntityTableBase {
   }
 }
 
+// MediaDBModel TABLE
+class TableMediaDBModel extends SqfEntityTableBase {
+  TableMediaDBModel() {
+    // declare properties of EntityTable
+    tableName = 'Media';
+    primaryKeyName = 'media_id';
+    primaryKeyType = PrimaryKeyType.integer_auto_incremental;
+    useSoftDeleting = false;
+    // when useSoftDeleting is true, creates a field named 'isDeleted' on the table, and set to '1' this field when item deleted (does not hard delete)
+
+    // declare fields
+    fields = [
+      SqfEntityFieldBase('extensions', DbType.text,
+          isUnique: false, isNotNull: true, isIndex: false),
+      SqfEntityFieldRelationshipBase(
+          TableFieldTypeDBModel.getInstance, DeleteRule.CASCADE,
+          relationType: RelationType.ONE_TO_MANY,
+          fieldName: 'field_type_id',
+          isUnique: false,
+          isNotNull: true,
+          isIndex: false),
+    ];
+    super.init();
+  }
+  static SqfEntityTableBase? _instance;
+  static SqfEntityTableBase get getInstance {
+    return _instance = _instance ?? TableMediaDBModel();
+  }
+}
+
 // FieldValueDBModel TABLE
 class TableFieldValueDBModel extends SqfEntityTableBase {
   TableFieldValueDBModel() {
@@ -194,7 +226,7 @@ class TableFieldValueDBModel extends SqfEntityTableBase {
           isNotNull: true,
           isIndex: false),
       SqfEntityFieldRelationshipBase(
-          TableFieldTypeDBModel.getInstance, DeleteRule.CASCADE,
+          TableColumnDBModel.getInstance, DeleteRule.CASCADE,
           relationType: RelationType.ONE_TO_MANY,
           fieldName: 'column_id',
           isUnique: false,
@@ -215,7 +247,7 @@ class TableVMarker extends SqfEntityTableBase {
     // declare properties of EntityTable
     tableName = 'VMarkers';
     objectType = ObjectType.view;
-    sqlStatement = geobaseDBModel.databaseTables![6].sqlStatement;
+    sqlStatement = geobaseDBModel.databaseTables![7].sqlStatement;
     useSoftDeleting = false;
     // when useSoftDeleting is true, creates a field named 'isDeleted' on the table, and set to '1' this field when item deleted (does not hard delete)
 
@@ -249,7 +281,7 @@ class TableVStaticSelection extends SqfEntityTableBase {
     // declare properties of EntityTable
     tableName = 'VStaticSelections';
     objectType = ObjectType.view;
-    sqlStatement = geobaseDBModel.databaseTables![7].sqlStatement;
+    sqlStatement = geobaseDBModel.databaseTables![8].sqlStatement;
     useSoftDeleting = false;
     // when useSoftDeleting is true, creates a field named 'isDeleted' on the table, and set to '1' this field when item deleted (does not hard delete)
 
@@ -259,6 +291,8 @@ class TableVStaticSelection extends SqfEntityTableBase {
           isUnique: true, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('meta_type', DbType.text,
           isUnique: true, isNotNull: true, isIndex: false),
+      SqfEntityFieldBase('render_name', DbType.text,
+          isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('options', DbType.text,
           isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldRelationshipBase(
@@ -297,6 +331,7 @@ class GeobaseModel extends SqfEntityModelProvider {
       TableColumnDBModel.getInstance,
       TableFieldTypeDBModel.getInstance,
       TableStaticSelectionDBModel.getInstance,
+      TableMediaDBModel.getInstance,
       TableFieldValueDBModel.getInstance,
       TableVMarker.getInstance,
       TableVStaticSelection.getInstance,
@@ -3033,6 +3068,26 @@ class ColumnDBModel {
   }
   // END RELATIONSHIPS (ColumnDBModel)
 
+// COLLECTIONS & VIRTUALS (ColumnDBModel)
+  /// to load children of items to this field, use preload parameter. Ex: toList(preload:true) or toSingle(preload:true) or getById(preload:true)
+  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plFieldValueDBModels', 'plField2'..]) or so on..
+  List<FieldValueDBModel>? plFieldValueDBModels;
+
+  /// get FieldValueDBModel(s) filtered by column_id=column_id
+  FieldValueDBModelFilterBuilder? getFieldValueDBModels(
+      {List<String>? columnsToSelect, bool? getIsDeleted}) {
+    if (column_id == null) {
+      return null;
+    }
+    return FieldValueDBModel()
+        .select(columnsToSelect: columnsToSelect, getIsDeleted: getIsDeleted)
+        .column_id
+        .equals(column_id)
+        .and;
+  }
+
+// END COLLECTIONS & VIRTUALS (ColumnDBModel)
+
   static const bool _softDeleteActivated = false;
   ColumnDBModelManager? __mnColumnDBModel;
 
@@ -3097,6 +3152,12 @@ class ColumnDBModel {
               : plFieldTypeDBModel!.name
           : field_type_id;
     }
+
+// COLLECTIONS (ColumnDBModel)
+    if (!forQuery) {
+      map['FieldValueDBModels'] = await getFieldValueDBModels()!.toMapList();
+    }
+// END COLLECTIONS (ColumnDBModel)
 
     return map;
   }
@@ -3163,6 +3224,22 @@ class ColumnDBModel {
           setDefaultValues: setDefaultValues);
       // final List<String> _loadedFields = List<String>.from(loadedFields);
 
+      // RELATIONSHIPS PRELOAD CHILD
+      if (preload) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('Column.plFieldValueDBModels') && */ (preloadFields ==
+                null ||
+            preloadFields.contains('plFieldValueDBModels'))) {
+          /*_loadedfields!.add('Column.plFieldValueDBModels'); */ obj
+                  .plFieldValueDBModels =
+              obj.plFieldValueDBModels ??
+                  await obj.getFieldValueDBModels()!.toList(
+                      preload: preload,
+                      preloadFields: preloadFields,
+                      loadParents: false /*, loadedFields:_loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD CHILD
+
       // RELATIONSHIPS PRELOAD
       if (preload || loadParents) {
         loadedFields = loadedFields ?? [];
@@ -3222,6 +3299,22 @@ class ColumnDBModel {
     if (data.length != 0) {
       obj = ColumnDBModel.fromMap(data[0] as Map<String, dynamic>);
       // final List<String> _loadedFields = loadedFields ?? [];
+
+      // RELATIONSHIPS PRELOAD CHILD
+      if (preload) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('Column.plFieldValueDBModels') && */ (preloadFields ==
+                null ||
+            preloadFields.contains('plFieldValueDBModels'))) {
+          /*_loadedfields!.add('Column.plFieldValueDBModels'); */ obj
+                  .plFieldValueDBModels =
+              obj.plFieldValueDBModels ??
+                  await obj.getFieldValueDBModels()!.toList(
+                      preload: preload,
+                      preloadFields: preloadFields,
+                      loadParents: false /*, loadedFields:_loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD CHILD
 
       // RELATIONSHIPS PRELOAD
       if (preload || loadParents) {
@@ -3345,6 +3438,18 @@ class ColumnDBModel {
 
   Future<BoolResult> delete([bool hardDelete = false]) async {
     print('SQFENTITIY: delete ColumnDBModel invoked (column_id=$column_id)');
+    var result = BoolResult(success: false);
+    {
+      result = await FieldValueDBModel()
+          .select()
+          .column_id
+          .equals(column_id)
+          .and
+          .delete(hardDelete);
+    }
+    if (!result.success) {
+      return result;
+    }
     if (!_softDeleteActivated || hardDelete) {
       return _mnColumnDBModel.delete(
           QueryParams(whereString: 'column_id=?', whereArguments: [column_id]));
@@ -3912,6 +4017,16 @@ class ColumnDBModelFilterBuilder extends SearchCriteria {
   Future<BoolResult> delete([bool hardDelete = false]) async {
     _buildParameters();
     var r = BoolResult(success: false);
+    // Delete sub records where in (FieldValueDBModel) according to DeleteRule.CASCADE
+    final idListFieldValueDBModelBYcolumn_id = toListPrimaryKeySQL(false);
+    final resFieldValueDBModelBYcolumn_id = await FieldValueDBModel()
+        .select()
+        .where('column_id IN (${idListFieldValueDBModelBYcolumn_id['sql']})',
+            parameterValue: idListFieldValueDBModelBYcolumn_id['args'])
+        .delete(hardDelete);
+    if (!resFieldValueDBModelBYcolumn_id.success) {
+      return resFieldValueDBModelBYcolumn_id;
+    }
 
     if (ColumnDBModel._softDeleteActivated && !hardDelete) {
       r = await _obj!._mnColumnDBModel.updateBatch(qparams, {'isDeleted': 1});
@@ -3962,6 +4077,22 @@ class ColumnDBModelFilterBuilder extends SearchCriteria {
     if (data.isNotEmpty) {
       obj = ColumnDBModel.fromMap(data[0] as Map<String, dynamic>);
       // final List<String> _loadedFields = loadedFields ?? [];
+
+      // RELATIONSHIPS PRELOAD CHILD
+      if (preload) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('Column.plFieldValueDBModels') && */ (preloadFields ==
+                null ||
+            preloadFields.contains('plFieldValueDBModels'))) {
+          /*_loadedfields!.add('Column.plFieldValueDBModels'); */ obj
+                  .plFieldValueDBModels =
+              obj.plFieldValueDBModels ??
+                  await obj.getFieldValueDBModels()!.toList(
+                      preload: preload,
+                      preloadFields: preloadFields,
+                      loadParents: false /*, loadedFields:_loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD CHILD
 
       // RELATIONSHIPS PRELOAD
       if (preload || loadParents) {
@@ -4182,13 +4313,15 @@ class ColumnDBModelManager extends SqfEntityProvider {
 //endregion ColumnDBModelManager
 // region FieldTypeDBModel
 class FieldTypeDBModel {
-  FieldTypeDBModel({this.field_type_id, this.name, this.meta_type}) {
+  FieldTypeDBModel(
+      {this.field_type_id, this.name, this.meta_type, this.render_class}) {
     _setDefaultValues();
   }
-  FieldTypeDBModel.withFields(this.name, this.meta_type) {
+  FieldTypeDBModel.withFields(this.name, this.meta_type, this.render_class) {
     _setDefaultValues();
   }
-  FieldTypeDBModel.withId(this.field_type_id, this.name, this.meta_type) {
+  FieldTypeDBModel.withId(
+      this.field_type_id, this.name, this.meta_type, this.render_class) {
     _setDefaultValues();
   }
   // fromMap v2.0
@@ -4204,11 +4337,15 @@ class FieldTypeDBModel {
     if (o['meta_type'] != null) {
       meta_type = o['meta_type'].toString();
     }
+    if (o['render_class'] != null) {
+      render_class = o['render_class'].toString();
+    }
   }
   // FIELDS (FieldTypeDBModel)
   int? field_type_id;
   String? name;
   String? meta_type;
+  String? render_class;
 
   BoolResult? saveResult;
   // end FIELDS (FieldTypeDBModel)
@@ -4249,18 +4386,18 @@ class FieldTypeDBModel {
   }
 
   /// to load children of items to this field, use preload parameter. Ex: toList(preload:true) or toSingle(preload:true) or getById(preload:true)
-  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plFieldValueDBModels', 'plField2'..]) or so on..
-  List<FieldValueDBModel>? plFieldValueDBModels;
+  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plMediaDBModels', 'plField2'..]) or so on..
+  List<MediaDBModel>? plMediaDBModels;
 
-  /// get FieldValueDBModel(s) filtered by field_type_id=column_id
-  FieldValueDBModelFilterBuilder? getFieldValueDBModels(
+  /// get MediaDBModel(s) filtered by field_type_id=field_type_id
+  MediaDBModelFilterBuilder? getMediaDBModels(
       {List<String>? columnsToSelect, bool? getIsDeleted}) {
     if (field_type_id == null) {
       return null;
     }
-    return FieldValueDBModel()
+    return MediaDBModel()
         .select(columnsToSelect: columnsToSelect, getIsDeleted: getIsDeleted)
-        .column_id
+        .field_type_id
         .equals(field_type_id)
         .and;
   }
@@ -4307,6 +4444,10 @@ class FieldTypeDBModel {
       map['meta_type'] = meta_type;
     }
 
+    if (render_class != null) {
+      map['render_class'] = render_class;
+    }
+
     return map;
   }
 
@@ -4326,6 +4467,10 @@ class FieldTypeDBModel {
       map['meta_type'] = meta_type;
     }
 
+    if (render_class != null) {
+      map['render_class'] = render_class;
+    }
+
 // COLLECTIONS (FieldTypeDBModel)
     if (!forQuery) {
       map['ColumnDBModels'] = await getColumnDBModels()!.toMapList();
@@ -4335,7 +4480,7 @@ class FieldTypeDBModel {
           await getStaticSelectionDBModels()!.toMapList();
     }
     if (!forQuery) {
-      map['FieldValueDBModels'] = await getFieldValueDBModels()!.toMapList();
+      map['MediaDBModels'] = await getMediaDBModels()!.toMapList();
     }
     if (!forQuery) {
       map['VStaticSelections'] = await getVStaticSelections()!.toMapList();
@@ -4356,11 +4501,11 @@ class FieldTypeDBModel {
   }
 
   List<dynamic> toArgs() {
-    return [name, meta_type];
+    return [name, meta_type, render_class];
   }
 
   List<dynamic> toArgsWithIds() {
-    return [field_type_id, name, meta_type];
+    return [field_type_id, name, meta_type, render_class];
   }
 
   static Future<List<FieldTypeDBModel>?> fromWebUrl(Uri uri,
@@ -4432,13 +4577,13 @@ class FieldTypeDBModel {
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldValueDBModels') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('FieldType.plMediaDBModels') && */ (preloadFields ==
                 null ||
-            preloadFields.contains('plFieldValueDBModels'))) {
-          /*_loadedfields!.add('FieldType.plFieldValueDBModels'); */ obj
-                  .plFieldValueDBModels =
-              obj.plFieldValueDBModels ??
-                  await obj.getFieldValueDBModels()!.toList(
+            preloadFields.contains('plMediaDBModels'))) {
+          /*_loadedfields!.add('FieldType.plMediaDBModels'); */ obj
+                  .plMediaDBModels =
+              obj.plMediaDBModels ??
+                  await obj.getMediaDBModels()!.toList(
                       preload: preload,
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
@@ -4516,13 +4661,13 @@ class FieldTypeDBModel {
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldValueDBModels') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('FieldType.plMediaDBModels') && */ (preloadFields ==
                 null ||
-            preloadFields.contains('plFieldValueDBModels'))) {
-          /*_loadedfields!.add('FieldType.plFieldValueDBModels'); */ obj
-                  .plFieldValueDBModels =
-              obj.plFieldValueDBModels ??
-                  await obj.getFieldValueDBModels()!.toList(
+            preloadFields.contains('plMediaDBModels'))) {
+          /*_loadedfields!.add('FieldType.plMediaDBModels'); */ obj
+                  .plMediaDBModels =
+              obj.plMediaDBModels ??
+                  await obj.getMediaDBModels()!.toList(
                       preload: preload,
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
@@ -4574,7 +4719,7 @@ class FieldTypeDBModel {
   /// Returns a <List<BoolResult>>
   static Future<List<dynamic>> saveAll(
       List<FieldTypeDBModel> fieldtypedbmodels) async {
-    // final results = _mnFieldTypeDBModel.saveAll('INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type)  VALUES (?,?,?)',fieldtypedbmodels);
+    // final results = _mnFieldTypeDBModel.saveAll('INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type, render_class)  VALUES (?,?,?,?)',fieldtypedbmodels);
     // return results; removed in sqfentity_gen 1.3.0+6
     await GeobaseModel().batchStart();
     for (final obj in fieldtypedbmodels) {
@@ -4598,8 +4743,8 @@ class FieldTypeDBModel {
   Future<int?> upsert() async {
     try {
       final result = await _mnFieldTypeDBModel.rawInsert(
-          'INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type)  VALUES (?,?,?)',
-          [field_type_id, name, meta_type]);
+          'INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type, render_class)  VALUES (?,?,?,?)',
+          [field_type_id, name, meta_type, render_class]);
       if (result! > 0) {
         saveResult = BoolResult(
             success: true,
@@ -4628,7 +4773,7 @@ class FieldTypeDBModel {
   Future<BoolCommitResult> upsertAll(
       List<FieldTypeDBModel> fieldtypedbmodels) async {
     final results = await _mnFieldTypeDBModel.rawInsertAll(
-        'INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type)  VALUES (?,?,?)',
+        'INSERT OR REPLACE INTO FieldType (field_type_id,name, meta_type, render_class)  VALUES (?,?,?,?)',
         fieldtypedbmodels);
     return results;
   }
@@ -4664,9 +4809,9 @@ class FieldTypeDBModel {
       return result;
     }
     {
-      result = await FieldValueDBModel()
+      result = await MediaDBModel()
           .select()
-          .column_id
+          .field_type_id
           .equals(field_type_id)
           .and
           .delete(hardDelete);
@@ -5159,6 +5304,11 @@ class FieldTypeDBModelFilterBuilder extends SearchCriteria {
     return _meta_type = setField(_meta_type, 'meta_type', DbType.text);
   }
 
+  FieldTypeDBModelField? _render_class;
+  FieldTypeDBModelField get render_class {
+    return _render_class = setField(_render_class, 'render_class', DbType.text);
+  }
+
   bool _getIsDeleted = false;
 
   void _buildParameters() {
@@ -5285,15 +5435,15 @@ class FieldTypeDBModelFilterBuilder extends SearchCriteria {
     if (!resStaticSelectionDBModelBYfield_type_id.success) {
       return resStaticSelectionDBModelBYfield_type_id;
     }
-// Delete sub records where in (FieldValueDBModel) according to DeleteRule.CASCADE
-    final idListFieldValueDBModelBYcolumn_id = toListPrimaryKeySQL(false);
-    final resFieldValueDBModelBYcolumn_id = await FieldValueDBModel()
+// Delete sub records where in (MediaDBModel) according to DeleteRule.CASCADE
+    final idListMediaDBModelBYfield_type_id = toListPrimaryKeySQL(false);
+    final resMediaDBModelBYfield_type_id = await MediaDBModel()
         .select()
-        .where('column_id IN (${idListFieldValueDBModelBYcolumn_id['sql']})',
-            parameterValue: idListFieldValueDBModelBYcolumn_id['args'])
+        .where('field_type_id IN (${idListMediaDBModelBYfield_type_id['sql']})',
+            parameterValue: idListMediaDBModelBYfield_type_id['args'])
         .delete(hardDelete);
-    if (!resFieldValueDBModelBYcolumn_id.success) {
-      return resFieldValueDBModelBYcolumn_id;
+    if (!resMediaDBModelBYfield_type_id.success) {
+      return resMediaDBModelBYfield_type_id;
     }
 // Check sub records where in (VStaticSelection) according to DeleteRule.NO_ACTION
 
@@ -5387,13 +5537,13 @@ class FieldTypeDBModelFilterBuilder extends SearchCriteria {
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldValueDBModels') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('FieldType.plMediaDBModels') && */ (preloadFields ==
                 null ||
-            preloadFields.contains('plFieldValueDBModels'))) {
-          /*_loadedfields!.add('FieldType.plFieldValueDBModels'); */ obj
-                  .plFieldValueDBModels =
-              obj.plFieldValueDBModels ??
-                  await obj.getFieldValueDBModels()!.toList(
+            preloadFields.contains('plMediaDBModels'))) {
+          /*_loadedfields!.add('FieldType.plMediaDBModels'); */ obj
+                  .plMediaDBModels =
+              obj.plMediaDBModels ??
+                  await obj.getMediaDBModels()!.toList(
                       preload: preload,
                       preloadFields: preloadFields,
                       loadParents: false /*, loadedFields:_loadedFields*/);
@@ -5581,6 +5731,12 @@ class FieldTypeDBModelFields {
   static TableField get meta_type {
     return _fMeta_type = _fMeta_type ??
         SqlSyntax.setField(_fMeta_type, 'meta_type', DbType.text);
+  }
+
+  static TableField? _fRender_class;
+  static TableField get render_class {
+    return _fRender_class = _fRender_class ??
+        SqlSyntax.setField(_fRender_class, 'render_class', DbType.text);
   }
 }
 // endregion FieldTypeDBModelFields
@@ -6880,6 +7036,1146 @@ class StaticSelectionDBModelManager extends SqfEntityProvider {
 }
 
 //endregion StaticSelectionDBModelManager
+// region MediaDBModel
+class MediaDBModel {
+  MediaDBModel({this.media_id, this.extensions, this.field_type_id}) {
+    _setDefaultValues();
+  }
+  MediaDBModel.withFields(this.extensions, this.field_type_id) {
+    _setDefaultValues();
+  }
+  MediaDBModel.withId(this.media_id, this.extensions, this.field_type_id) {
+    _setDefaultValues();
+  }
+  // fromMap v2.0
+  MediaDBModel.fromMap(Map<String, dynamic> o, {bool setDefaultValues = true}) {
+    if (setDefaultValues) {
+      _setDefaultValues();
+    }
+    media_id = int.tryParse(o['media_id'].toString());
+    if (o['extensions'] != null) {
+      extensions = o['extensions'].toString();
+    }
+    field_type_id = int.tryParse(o['field_type_id'].toString());
+
+    // RELATIONSHIPS FromMAP
+    plFieldTypeDBModel = o['fieldTypeDBModel'] != null
+        ? FieldTypeDBModel.fromMap(
+            o['fieldTypeDBModel'] as Map<String, dynamic>)
+        : null;
+    // END RELATIONSHIPS FromMAP
+  }
+  // FIELDS (MediaDBModel)
+  int? media_id;
+  String? extensions;
+  int? field_type_id;
+
+  BoolResult? saveResult;
+  // end FIELDS (MediaDBModel)
+
+// RELATIONSHIPS (MediaDBModel)
+  /// to load parent of items to this field, use preload parameter ex: toList(preload:true) or toSingle(preload:true) or getById(preload:true)
+  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plFieldTypeDBModel', 'plField2'..]) or so on..
+  FieldTypeDBModel? plFieldTypeDBModel;
+
+  /// get FieldTypeDBModel By Field_type_id
+  Future<FieldTypeDBModel?> getFieldTypeDBModel(
+      {bool loadParents = false, List<String>? loadedFields}) async {
+    final _obj = await FieldTypeDBModel().getById(field_type_id,
+        loadParents: loadParents, loadedFields: loadedFields);
+    return _obj;
+  }
+  // END RELATIONSHIPS (MediaDBModel)
+
+  static const bool _softDeleteActivated = false;
+  MediaDBModelManager? __mnMediaDBModel;
+
+  MediaDBModelManager get _mnMediaDBModel {
+    return __mnMediaDBModel = __mnMediaDBModel ?? MediaDBModelManager();
+  }
+
+  // METHODS
+  Map<String, dynamic> toMap(
+      {bool forQuery = false, bool forJson = false, bool forView = false}) {
+    final map = <String, dynamic>{};
+    if (media_id != null) {
+      map['media_id'] = media_id;
+    }
+    if (extensions != null) {
+      map['extensions'] = extensions;
+    }
+
+    if (field_type_id != null) {
+      map['field_type_id'] = forView
+          ? plFieldTypeDBModel == null
+              ? field_type_id
+              : plFieldTypeDBModel!.name
+          : field_type_id;
+    }
+
+    return map;
+  }
+
+  Future<Map<String, dynamic>> toMapWithChildren(
+      [bool forQuery = false,
+      bool forJson = false,
+      bool forView = false]) async {
+    final map = <String, dynamic>{};
+    if (media_id != null) {
+      map['media_id'] = media_id;
+    }
+    if (extensions != null) {
+      map['extensions'] = extensions;
+    }
+
+    if (field_type_id != null) {
+      map['field_type_id'] = forView
+          ? plFieldTypeDBModel == null
+              ? field_type_id
+              : plFieldTypeDBModel!.name
+          : field_type_id;
+    }
+
+    return map;
+  }
+
+  /// This method returns Json String [MediaDBModel]
+  String toJson() {
+    return json.encode(toMap(forJson: true));
+  }
+
+  /// This method returns Json String [MediaDBModel]
+  Future<String> toJsonWithChilds() async {
+    return json.encode(await toMapWithChildren(false, true));
+  }
+
+  List<dynamic> toArgs() {
+    return [extensions, field_type_id];
+  }
+
+  List<dynamic> toArgsWithIds() {
+    return [media_id, extensions, field_type_id];
+  }
+
+  static Future<List<MediaDBModel>?> fromWebUrl(Uri uri,
+      {Map<String, String>? headers}) async {
+    try {
+      final response = await http.get(uri, headers: headers);
+      return await fromJson(response.body);
+    } catch (e) {
+      print(
+          'SQFENTITY ERROR MediaDBModel.fromWebUrl: ErrorMessage: ${e.toString()}');
+      return null;
+    }
+  }
+
+  Future<http.Response> postUrl(Uri uri, {Map<String, String>? headers}) {
+    return http.post(uri, headers: headers, body: toJson());
+  }
+
+  static Future<List<MediaDBModel>> fromJson(String jsonBody) async {
+    final Iterable list = await json.decode(jsonBody) as Iterable;
+    var objList = <MediaDBModel>[];
+    try {
+      objList = list
+          .map((mediadbmodel) =>
+              MediaDBModel.fromMap(mediadbmodel as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      print(
+          'SQFENTITY ERROR MediaDBModel.fromJson: ErrorMessage: ${e.toString()}');
+    }
+    return objList;
+  }
+
+  static Future<List<MediaDBModel>> fromMapList(List<dynamic> data,
+      {bool preload = false,
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields,
+      bool setDefaultValues = true}) async {
+    final List<MediaDBModel> objList = <MediaDBModel>[];
+    loadedFields = loadedFields ?? [];
+    for (final map in data) {
+      final obj = MediaDBModel.fromMap(map as Map<String, dynamic>,
+          setDefaultValues: setDefaultValues);
+      // final List<String> _loadedFields = List<String>.from(loadedFields);
+
+      // RELATIONSHIPS PRELOAD
+      if (preload || loadParents) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+                null ||
+            loadParents ||
+            preloadFields.contains('plFieldTypeDBModel'))) {
+          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
+              .plFieldTypeDBModel = obj
+                  .plFieldTypeDBModel ??
+              await obj.getFieldTypeDBModel(
+                  loadParents: loadParents /*, loadedFields: _loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD
+
+      objList.add(obj);
+    }
+    return objList;
+  }
+
+  /// returns MediaDBModel by ID if exist, otherwise returns null
+  ///
+  /// Primary Keys: int? media_id
+  ///
+  /// bool preload: if true, loads all related child objects (Set preload to true if you want to load all fields related to child or parent)
+  ///
+  /// ex: getById(preload:true) -> Loads all related objects
+  ///
+  /// List<String> preloadFields: specify the fields you want to preload (preload parameter's value should also be "true")
+  ///
+  /// ex: getById(preload:true, preloadFields:['plField1','plField2'... etc])  -> Loads only certain fields what you specified
+  ///
+  /// bool loadParents: if true, loads all parent objects until the object has no parent
+
+  ///
+  /// <returns>returns MediaDBModel if exist, otherwise returns null
+  Future<MediaDBModel?> getById(int? media_id,
+      {bool preload = false,
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
+    if (media_id == null) {
+      return null;
+    }
+    MediaDBModel? obj;
+    final data = await _mnMediaDBModel.getById([media_id]);
+    if (data.length != 0) {
+      obj = MediaDBModel.fromMap(data[0] as Map<String, dynamic>);
+      // final List<String> _loadedFields = loadedFields ?? [];
+
+      // RELATIONSHIPS PRELOAD
+      if (preload || loadParents) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+                null ||
+            loadParents ||
+            preloadFields.contains('plFieldTypeDBModel'))) {
+          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
+              .plFieldTypeDBModel = obj
+                  .plFieldTypeDBModel ??
+              await obj.getFieldTypeDBModel(
+                  loadParents: loadParents /*, loadedFields: _loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD
+
+    } else {
+      obj = null;
+    }
+    return obj;
+  }
+
+  /// Saves the (MediaDBModel) object. If the media_id field is null, saves as a new record and returns new media_id, if media_id is not null then updates record
+
+  /// <returns>Returns media_id
+  Future<int?> save() async {
+    if (media_id == null || media_id == 0) {
+      media_id = await _mnMediaDBModel.insert(this);
+    } else {
+      // media_id= await _upsert(); // removed in sqfentity_gen 1.3.0+6
+      await _mnMediaDBModel.update(this);
+    }
+
+    return media_id;
+  }
+
+  /// saveAs MediaDBModel. Returns a new Primary Key value of MediaDBModel
+
+  /// <returns>Returns a new Primary Key value of MediaDBModel
+  Future<int?> saveAs() async {
+    media_id = null;
+
+    return save();
+  }
+
+  /// saveAll method saves the sent List<MediaDBModel> as a bulk in one transaction
+  ///
+  /// Returns a <List<BoolResult>>
+  static Future<List<dynamic>> saveAll(List<MediaDBModel> mediadbmodels) async {
+    // final results = _mnMediaDBModel.saveAll('INSERT OR REPLACE INTO Media (media_id,extensions, field_type_id)  VALUES (?,?,?)',mediadbmodels);
+    // return results; removed in sqfentity_gen 1.3.0+6
+    await GeobaseModel().batchStart();
+    for (final obj in mediadbmodels) {
+      await obj.save();
+    }
+    //    return GeobaseModel().batchCommit();
+    final result = await GeobaseModel().batchCommit();
+    for (int i = 0; i < mediadbmodels.length; i++) {
+      if (mediadbmodels[i].media_id == null) {
+        mediadbmodels[i].media_id = result![i] as int;
+      }
+    }
+
+    return result!;
+  }
+
+  /// Updates if the record exists, otherwise adds a new row
+
+  /// <returns>Returns media_id
+
+  Future<int?> upsert() async {
+    try {
+      final result = await _mnMediaDBModel.rawInsert(
+          'INSERT OR REPLACE INTO Media (media_id,extensions, field_type_id)  VALUES (?,?,?)',
+          [media_id, extensions, field_type_id]);
+      if (result! > 0) {
+        saveResult = BoolResult(
+            success: true,
+            successMessage:
+                'MediaDBModel media_id=$media_id updated successfully');
+      } else {
+        saveResult = BoolResult(
+            success: false,
+            errorMessage: 'MediaDBModel media_id=$media_id did not update');
+      }
+      return media_id;
+    } catch (e) {
+      saveResult = BoolResult(
+          success: false,
+          errorMessage: 'MediaDBModel Save failed. Error: ${e.toString()}');
+      return null;
+    }
+  }
+
+  /// inserts or replaces the sent List<<MediaDBModel>> as a bulk in one transaction.
+  ///
+  /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
+  ///
+  /// Returns a BoolCommitResult
+  Future<BoolCommitResult> upsertAll(List<MediaDBModel> mediadbmodels) async {
+    final results = await _mnMediaDBModel.rawInsertAll(
+        'INSERT OR REPLACE INTO Media (media_id,extensions, field_type_id)  VALUES (?,?,?)',
+        mediadbmodels);
+    return results;
+  }
+
+  /// Deletes MediaDBModel
+
+  /// <returns>BoolResult res.success=Deleted, not res.success=Can not deleted
+
+  Future<BoolResult> delete([bool hardDelete = false]) async {
+    print('SQFENTITIY: delete MediaDBModel invoked (media_id=$media_id)');
+    if (!_softDeleteActivated || hardDelete) {
+      return _mnMediaDBModel.delete(
+          QueryParams(whereString: 'media_id=?', whereArguments: [media_id]));
+    } else {
+      return _mnMediaDBModel.updateBatch(
+          QueryParams(whereString: 'media_id=?', whereArguments: [media_id]),
+          {'isDeleted': 1});
+    }
+  }
+
+  MediaDBModelFilterBuilder select(
+      {List<String>? columnsToSelect, bool? getIsDeleted}) {
+    return MediaDBModelFilterBuilder(this)
+      .._getIsDeleted = getIsDeleted == true
+      ..qparams.selectColumns = columnsToSelect;
+  }
+
+  MediaDBModelFilterBuilder distinct(
+      {List<String>? columnsToSelect, bool? getIsDeleted}) {
+    return MediaDBModelFilterBuilder(this)
+      .._getIsDeleted = getIsDeleted == true
+      ..qparams.selectColumns = columnsToSelect
+      ..qparams.distinct = true;
+  }
+
+  void _setDefaultValues() {}
+  // END METHODS
+  // BEGIN CUSTOM CODE
+  /*
+      you can define customCode property of your SqfEntityTable constant. For example:
+      const tablePerson = SqfEntityTable(
+      tableName: 'person',
+      primaryKeyName: 'id',
+      primaryKeyType: PrimaryKeyType.integer_auto_incremental,
+      fields: [
+        SqfEntityField('firstName', DbType.text),
+        SqfEntityField('lastName', DbType.text),
+      ],
+      customCode: '''
+       String fullName()
+       { 
+         return '$firstName $lastName';
+       }
+      ''');
+     */
+  // END CUSTOM CODE
+}
+// endregion mediadbmodel
+
+// region MediaDBModelField
+class MediaDBModelField extends SearchCriteria {
+  MediaDBModelField(this.mediadbmodelFB);
+  // { param = DbParameter(); }
+  DbParameter param = DbParameter();
+  String _waitingNot = '';
+  MediaDBModelFilterBuilder mediadbmodelFB;
+
+  MediaDBModelField get not {
+    _waitingNot = ' NOT ';
+    return this;
+  }
+
+  MediaDBModelFilterBuilder equals(dynamic pValue) {
+    param.expression = '=';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.EQuals, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.NotEQuals, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder equalsOrNull(dynamic pValue) {
+    param.expression = '=';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.EQualsOrNull, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.NotEQualsOrNull, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder isNull() {
+    mediadbmodelFB._addedBlocks = setCriteria(
+        0,
+        mediadbmodelFB.parameters,
+        param,
+        SqlSyntax.IsNULL.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+        mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder contains(dynamic pValue) {
+    if (pValue != null) {
+      mediadbmodelFB._addedBlocks = setCriteria(
+          '%${pValue.toString()}%',
+          mediadbmodelFB.parameters,
+          param,
+          SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+          mediadbmodelFB._addedBlocks);
+      _waitingNot = '';
+      mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+          mediadbmodelFB._addedBlocks.retVal;
+    }
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder startsWith(dynamic pValue) {
+    if (pValue != null) {
+      mediadbmodelFB._addedBlocks = setCriteria(
+          '${pValue.toString()}%',
+          mediadbmodelFB.parameters,
+          param,
+          SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+          mediadbmodelFB._addedBlocks);
+      _waitingNot = '';
+      mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+          mediadbmodelFB._addedBlocks.retVal;
+      mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+          mediadbmodelFB._addedBlocks.retVal;
+    }
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder endsWith(dynamic pValue) {
+    if (pValue != null) {
+      mediadbmodelFB._addedBlocks = setCriteria(
+          '%${pValue.toString()}',
+          mediadbmodelFB.parameters,
+          param,
+          SqlSyntax.Contains.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+          mediadbmodelFB._addedBlocks);
+      _waitingNot = '';
+      mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+          mediadbmodelFB._addedBlocks.retVal;
+    }
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder between(dynamic pFirst, dynamic pLast) {
+    if (pFirst != null && pLast != null) {
+      mediadbmodelFB._addedBlocks = setCriteria(
+          pFirst,
+          mediadbmodelFB.parameters,
+          param,
+          SqlSyntax.Between.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+          mediadbmodelFB._addedBlocks,
+          pLast);
+    } else if (pFirst != null) {
+      if (_waitingNot != '') {
+        mediadbmodelFB._addedBlocks = setCriteria(
+            pFirst,
+            mediadbmodelFB.parameters,
+            param,
+            SqlSyntax.LessThan,
+            mediadbmodelFB._addedBlocks);
+      } else {
+        mediadbmodelFB._addedBlocks = setCriteria(
+            pFirst,
+            mediadbmodelFB.parameters,
+            param,
+            SqlSyntax.GreaterThanOrEquals,
+            mediadbmodelFB._addedBlocks);
+      }
+    } else if (pLast != null) {
+      if (_waitingNot != '') {
+        mediadbmodelFB._addedBlocks = setCriteria(
+            pLast,
+            mediadbmodelFB.parameters,
+            param,
+            SqlSyntax.GreaterThan,
+            mediadbmodelFB._addedBlocks);
+      } else {
+        mediadbmodelFB._addedBlocks = setCriteria(
+            pLast,
+            mediadbmodelFB.parameters,
+            param,
+            SqlSyntax.LessThanOrEquals,
+            mediadbmodelFB._addedBlocks);
+      }
+    }
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder greaterThan(dynamic pValue) {
+    param.expression = '>';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.GreaterThan, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.LessThanOrEquals, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder lessThan(dynamic pValue) {
+    param.expression = '<';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.LessThan, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.GreaterThanOrEquals, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder greaterThanOrEquals(dynamic pValue) {
+    param.expression = '>=';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.GreaterThanOrEquals, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.LessThan, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder lessThanOrEquals(dynamic pValue) {
+    param.expression = '<=';
+    mediadbmodelFB._addedBlocks = _waitingNot == ''
+        ? setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.LessThanOrEquals, mediadbmodelFB._addedBlocks)
+        : setCriteria(pValue, mediadbmodelFB.parameters, param,
+            SqlSyntax.GreaterThan, mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+
+  MediaDBModelFilterBuilder inValues(dynamic pValue) {
+    mediadbmodelFB._addedBlocks = setCriteria(
+        pValue,
+        mediadbmodelFB.parameters,
+        param,
+        SqlSyntax.IN.replaceAll(SqlSyntax.notKeyword, _waitingNot),
+        mediadbmodelFB._addedBlocks);
+    _waitingNot = '';
+    mediadbmodelFB._addedBlocks.needEndBlock![mediadbmodelFB._blockIndex] =
+        mediadbmodelFB._addedBlocks.retVal;
+    return mediadbmodelFB;
+  }
+}
+// endregion MediaDBModelField
+
+// region MediaDBModelFilterBuilder
+class MediaDBModelFilterBuilder extends SearchCriteria {
+  MediaDBModelFilterBuilder(MediaDBModel obj) {
+    whereString = '';
+    groupByList = <String>[];
+    _addedBlocks.needEndBlock!.add(false);
+    _addedBlocks.waitingStartBlock!.add(false);
+    _obj = obj;
+  }
+  AddedBlocks _addedBlocks = AddedBlocks(<bool>[], <bool>[]);
+  int _blockIndex = 0;
+  List<DbParameter> parameters = <DbParameter>[];
+  List<String> orderByList = <String>[];
+  MediaDBModel? _obj;
+  QueryParams qparams = QueryParams();
+  int _pagesize = 0;
+  int _page = 0;
+
+  /// put the sql keyword 'AND'
+  MediaDBModelFilterBuilder get and {
+    if (parameters.isNotEmpty) {
+      parameters[parameters.length - 1].wOperator = ' AND ';
+    }
+    return this;
+  }
+
+  /// put the sql keyword 'OR'
+  MediaDBModelFilterBuilder get or {
+    if (parameters.isNotEmpty) {
+      parameters[parameters.length - 1].wOperator = ' OR ';
+    }
+    return this;
+  }
+
+  /// open parentheses
+  MediaDBModelFilterBuilder get startBlock {
+    _addedBlocks.waitingStartBlock!.add(true);
+    _addedBlocks.needEndBlock!.add(false);
+    _blockIndex++;
+    if (_blockIndex > 1) {
+      _addedBlocks.needEndBlock![_blockIndex - 1] = true;
+    }
+    return this;
+  }
+
+  /// String whereCriteria, write raw query without 'where' keyword. Like this: 'field1 like 'test%' and field2 = 3'
+  MediaDBModelFilterBuilder where(String? whereCriteria,
+      {dynamic parameterValue}) {
+    if (whereCriteria != null && whereCriteria != '') {
+      final DbParameter param = DbParameter(
+          columnName: parameterValue == null ? null : '',
+          hasParameter: parameterValue != null);
+      _addedBlocks = setCriteria(parameterValue ?? 0, parameters, param,
+          '($whereCriteria)', _addedBlocks);
+      _addedBlocks.needEndBlock![_blockIndex] = _addedBlocks.retVal;
+    }
+    return this;
+  }
+
+  /// page = page number,
+  ///
+  /// pagesize = row(s) per page
+  MediaDBModelFilterBuilder page(int page, int pagesize) {
+    if (page > 0) {
+      _page = page;
+    }
+    if (pagesize > 0) {
+      _pagesize = pagesize;
+    }
+    return this;
+  }
+
+  /// int count = LIMIT
+  MediaDBModelFilterBuilder top(int count) {
+    if (count > 0) {
+      _pagesize = count;
+    }
+    return this;
+  }
+
+  /// close parentheses
+  MediaDBModelFilterBuilder get endBlock {
+    if (_addedBlocks.needEndBlock![_blockIndex]) {
+      parameters[parameters.length - 1].whereString += ' ) ';
+    }
+    _addedBlocks.needEndBlock!.removeAt(_blockIndex);
+    _addedBlocks.waitingStartBlock!.removeAt(_blockIndex);
+    _blockIndex--;
+    return this;
+  }
+
+  /// argFields might be String or List<String>.
+  ///
+  /// Example 1: argFields='name, date'
+  ///
+  /// Example 2: argFields = ['name', 'date']
+  MediaDBModelFilterBuilder orderBy(dynamic argFields) {
+    if (argFields != null) {
+      if (argFields is String) {
+        orderByList.add(argFields);
+      } else {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
+            orderByList.add(' $s ');
+          }
+        }
+      }
+    }
+    return this;
+  }
+
+  /// argFields might be String or List<String>.
+  ///
+  /// Example 1: argFields='field1, field2'
+  ///
+  /// Example 2: argFields = ['field1', 'field2']
+  MediaDBModelFilterBuilder orderByDesc(dynamic argFields) {
+    if (argFields != null) {
+      if (argFields is String) {
+        orderByList.add('$argFields desc ');
+      } else {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
+            orderByList.add(' $s desc ');
+          }
+        }
+      }
+    }
+    return this;
+  }
+
+  /// argFields might be String or List<String>.
+  ///
+  /// Example 1: argFields='field1, field2'
+  ///
+  /// Example 2: argFields = ['field1', 'field2']
+  MediaDBModelFilterBuilder groupBy(dynamic argFields) {
+    if (argFields != null) {
+      if (argFields is String) {
+        groupByList.add(' $argFields ');
+      } else {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
+            groupByList.add(' $s ');
+          }
+        }
+      }
+    }
+    return this;
+  }
+
+  /// argFields might be String or List<String>.
+  ///
+  /// Example 1: argFields='name, date'
+  ///
+  /// Example 2: argFields = ['name', 'date']
+  MediaDBModelFilterBuilder having(dynamic argFields) {
+    if (argFields != null) {
+      if (argFields is String) {
+        havingList.add(argFields);
+      } else {
+        for (String? s in argFields as List<String?>) {
+          if (s!.isNotEmpty) {
+            havingList.add(' $s ');
+          }
+        }
+      }
+    }
+    return this;
+  }
+
+  MediaDBModelField setField(
+      MediaDBModelField? field, String colName, DbType dbtype) {
+    return MediaDBModelField(this)
+      ..param = DbParameter(
+          dbType: dbtype,
+          columnName: colName,
+          wStartBlock: _addedBlocks.waitingStartBlock![_blockIndex]);
+  }
+
+  MediaDBModelField? _media_id;
+  MediaDBModelField get media_id {
+    return _media_id = setField(_media_id, 'media_id', DbType.integer);
+  }
+
+  MediaDBModelField? _extensions;
+  MediaDBModelField get extensions {
+    return _extensions = setField(_extensions, 'extensions', DbType.text);
+  }
+
+  MediaDBModelField? _field_type_id;
+  MediaDBModelField get field_type_id {
+    return _field_type_id =
+        setField(_field_type_id, 'field_type_id', DbType.integer);
+  }
+
+  bool _getIsDeleted = false;
+
+  void _buildParameters() {
+    if (_page > 0 && _pagesize > 0) {
+      qparams
+        ..limit = _pagesize
+        ..offset = (_page - 1) * _pagesize;
+    } else {
+      qparams
+        ..limit = _pagesize
+        ..offset = _page;
+    }
+    for (DbParameter param in parameters) {
+      if (param.columnName != null) {
+        if (param.value is List && !param.hasParameter) {
+          param.value = param.dbType == DbType.text || param.value[0] is String
+              ? '\'${param.value.join('\',\'')}\''
+              : param.value.join(',');
+          whereString += param.whereString
+              .replaceAll('{field}', param.columnName!)
+              .replaceAll('?', param.value.toString());
+          param.value = null;
+        } else {
+          if (param.value is Map<String, dynamic> &&
+              param.value['sql'] != null) {
+            param
+              ..whereString = param.whereString
+                  .replaceAll('?', param.value['sql'].toString())
+              ..dbType = DbType.integer
+              ..value = param.value['args'];
+          }
+          whereString +=
+              param.whereString.replaceAll('{field}', param.columnName!);
+        }
+        if (!param.whereString.contains('?')) {
+        } else {
+          switch (param.dbType) {
+            case DbType.bool:
+              param.value = param.value == null
+                  ? null
+                  : param.value == true
+                      ? 1
+                      : 0;
+              param.value2 = param.value2 == null
+                  ? null
+                  : param.value2 == true
+                      ? 1
+                      : 0;
+              break;
+            case DbType.date:
+            case DbType.datetime:
+            case DbType.datetimeUtc:
+              param.value = param.value == null
+                  ? null
+                  : (param.value as DateTime).millisecondsSinceEpoch;
+              param.value2 = param.value2 == null
+                  ? null
+                  : (param.value2 as DateTime).millisecondsSinceEpoch;
+              break;
+            default:
+          }
+          if (param.value != null) {
+            if (param.value is List) {
+              for (var p in param.value) {
+                whereArguments.add(p);
+              }
+            } else {
+              whereArguments.add(param.value);
+            }
+          }
+          if (param.value2 != null) {
+            whereArguments.add(param.value2);
+          }
+        }
+      } else {
+        whereString += param.whereString;
+      }
+    }
+    if (MediaDBModel._softDeleteActivated) {
+      if (whereString != '') {
+        whereString =
+            '${!_getIsDeleted ? 'ifnull(isDeleted,0)=0 AND' : ''} ($whereString)';
+      } else if (!_getIsDeleted) {
+        whereString = 'ifnull(isDeleted,0)=0';
+      }
+    }
+
+    if (whereString != '') {
+      qparams.whereString = whereString;
+    }
+    qparams
+      ..whereArguments = whereArguments
+      ..groupBy = groupByList.join(',')
+      ..orderBy = orderByList.join(',')
+      ..having = havingList.join(',');
+  }
+
+  /// Deletes List<MediaDBModel> bulk by query
+  ///
+  /// <returns>BoolResult res.success=Deleted, not res.success=Can not deleted
+  Future<BoolResult> delete([bool hardDelete = false]) async {
+    _buildParameters();
+    var r = BoolResult(success: false);
+
+    if (MediaDBModel._softDeleteActivated && !hardDelete) {
+      r = await _obj!._mnMediaDBModel.updateBatch(qparams, {'isDeleted': 1});
+    } else {
+      r = await _obj!._mnMediaDBModel.delete(qparams);
+    }
+    return r;
+  }
+
+  /// using:
+  ///
+  /// update({'fieldName': Value})
+  ///
+  /// fieldName must be String. Value is dynamic, it can be any of the (int, bool, String.. )
+  Future<BoolResult> update(Map<String, dynamic> values) {
+    _buildParameters();
+    if (qparams.limit! > 0 || qparams.offset! > 0) {
+      qparams.whereString =
+          'media_id IN (SELECT media_id from Media ${qparams.whereString!.isNotEmpty ? 'WHERE ${qparams.whereString}' : ''}${qparams.limit! > 0 ? ' LIMIT ${qparams.limit}' : ''}${qparams.offset! > 0 ? ' OFFSET ${qparams.offset}' : ''})';
+    }
+    return _obj!._mnMediaDBModel.updateBatch(qparams, values);
+  }
+
+  /// This method always returns MediaDBModel Obj if exist, otherwise returns null
+  ///
+  /// bool preload: if true, loads all related child objects (Set preload to true if you want to load all fields related to child or parent)
+  ///
+  /// ex: toSingle(preload:true) -> Loads all related objects
+  ///
+  /// List<String> preloadFields: specify the fields you want to preload (preload parameter's value should also be "true")
+  ///
+  /// ex: toSingle(preload:true, preloadFields:['plField1','plField2'... etc])  -> Loads only certain fields what you specified
+  ///
+  /// bool loadParents: if true, loads all parent objects until the object has no parent
+
+  ///
+  /// <returns>List<MediaDBModel>
+  Future<MediaDBModel?> toSingle(
+      {bool preload = false,
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
+    _pagesize = 1;
+    _buildParameters();
+    final objFuture = _obj!._mnMediaDBModel.toList(qparams);
+    final data = await objFuture;
+    MediaDBModel? obj;
+    if (data.isNotEmpty) {
+      obj = MediaDBModel.fromMap(data[0] as Map<String, dynamic>);
+      // final List<String> _loadedFields = loadedFields ?? [];
+
+      // RELATIONSHIPS PRELOAD
+      if (preload || loadParents) {
+        loadedFields = loadedFields ?? [];
+        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+                null ||
+            loadParents ||
+            preloadFields.contains('plFieldTypeDBModel'))) {
+          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
+              .plFieldTypeDBModel = obj
+                  .plFieldTypeDBModel ??
+              await obj.getFieldTypeDBModel(
+                  loadParents: loadParents /*, loadedFields: _loadedFields*/);
+        }
+      } // END RELATIONSHIPS PRELOAD
+
+    } else {
+      obj = null;
+    }
+    return obj;
+  }
+
+  /// This method returns int. [MediaDBModel]
+  ///
+  /// <returns>int
+  Future<int> toCount([VoidCallback Function(int c)? mediadbmodelCount]) async {
+    _buildParameters();
+    qparams.selectColumns = ['COUNT(1) AS CNT'];
+    final mediadbmodelsFuture = await _obj!._mnMediaDBModel.toList(qparams);
+    final int count = mediadbmodelsFuture[0]['CNT'] as int;
+    if (mediadbmodelCount != null) {
+      mediadbmodelCount(count);
+    }
+    return count;
+  }
+
+  /// This method returns List<MediaDBModel> [MediaDBModel]
+  ///
+  /// bool preload: if true, loads all related child objects (Set preload to true if you want to load all fields related to child or parent)
+  ///
+  /// ex: toList(preload:true) -> Loads all related objects
+  ///
+  /// List<String> preloadFields: specify the fields you want to preload (preload parameter's value should also be "true")
+  ///
+  /// ex: toList(preload:true, preloadFields:['plField1','plField2'... etc])  -> Loads only certain fields what you specified
+  ///
+  /// bool loadParents: if true, loads all parent objects until the object has no parent
+
+  ///
+  /// <returns>List<MediaDBModel>
+  Future<List<MediaDBModel>> toList(
+      {bool preload = false,
+      List<String>? preloadFields,
+      bool loadParents = false,
+      List<String>? loadedFields}) async {
+    final data = await toMapList();
+    final List<MediaDBModel> mediadbmodelsData = await MediaDBModel.fromMapList(
+        data,
+        preload: preload,
+        preloadFields: preloadFields,
+        loadParents: loadParents,
+        loadedFields: loadedFields,
+        setDefaultValues: qparams.selectColumns == null);
+    return mediadbmodelsData;
+  }
+
+  /// This method returns Json String [MediaDBModel]
+  Future<String> toJson() async {
+    final list = <dynamic>[];
+    final data = await toList();
+    for (var o in data) {
+      list.add(o.toMap(forJson: true));
+    }
+    return json.encode(list);
+  }
+
+  /// This method returns Json String. [MediaDBModel]
+  Future<String> toJsonWithChilds() async {
+    final list = <dynamic>[];
+    final data = await toList();
+    for (var o in data) {
+      list.add(await o.toMapWithChildren(false, true));
+    }
+    return json.encode(list);
+  }
+
+  /// This method returns List<dynamic>. [MediaDBModel]
+  ///
+  /// <returns>List<dynamic>
+  Future<List<dynamic>> toMapList() async {
+    _buildParameters();
+    return await _obj!._mnMediaDBModel.toList(qparams);
+  }
+
+  /// This method returns Primary Key List SQL and Parameters retVal = Map<String,dynamic>. [MediaDBModel]
+  ///
+  /// retVal['sql'] = SQL statement string, retVal['args'] = whereArguments List<dynamic>;
+  ///
+  /// <returns>List<String>
+  Map<String, dynamic> toListPrimaryKeySQL([bool buildParameters = true]) {
+    final Map<String, dynamic> _retVal = <String, dynamic>{};
+    if (buildParameters) {
+      _buildParameters();
+    }
+    _retVal['sql'] =
+        'SELECT `media_id` FROM Media WHERE ${qparams.whereString}';
+    _retVal['args'] = qparams.whereArguments;
+    return _retVal;
+  }
+
+  /// This method returns Primary Key List<int>.
+  /// <returns>List<int>
+  Future<List<int>> toListPrimaryKey([bool buildParameters = true]) async {
+    if (buildParameters) {
+      _buildParameters();
+    }
+    final List<int> media_idData = <int>[];
+    qparams.selectColumns = ['media_id'];
+    final media_idFuture = await _obj!._mnMediaDBModel.toList(qparams);
+
+    final int count = media_idFuture.length;
+    for (int i = 0; i < count; i++) {
+      media_idData.add(media_idFuture[i]['media_id'] as int);
+    }
+    return media_idData;
+  }
+
+  /// Returns List<dynamic> for selected columns. Use this method for 'groupBy' with min,max,avg..  [MediaDBModel]
+  ///
+  /// Sample usage: (see EXAMPLE 4.2 at https://github.com/hhtokpinar/sqfEntity#group-by)
+  Future<List<dynamic>> toListObject() async {
+    _buildParameters();
+
+    final objectFuture = _obj!._mnMediaDBModel.toList(qparams);
+
+    final List<dynamic> objectsData = <dynamic>[];
+    final data = await objectFuture;
+    final int count = data.length;
+    for (int i = 0; i < count; i++) {
+      objectsData.add(data[i]);
+    }
+    return objectsData;
+  }
+
+  /// Returns List<String> for selected first column
+  ///
+  /// Sample usage: await MediaDBModel.select(columnsToSelect: ['columnName']).toListString()
+  Future<List<String>> toListString(
+      [VoidCallback Function(List<String> o)? listString]) async {
+    _buildParameters();
+
+    final objectFuture = _obj!._mnMediaDBModel.toList(qparams);
+
+    final List<String> objectsData = <String>[];
+    final data = await objectFuture;
+    final int count = data.length;
+    for (int i = 0; i < count; i++) {
+      objectsData.add(data[i][qparams.selectColumns![0]].toString());
+    }
+    if (listString != null) {
+      listString(objectsData);
+    }
+    return objectsData;
+  }
+}
+// endregion MediaDBModelFilterBuilder
+
+// region MediaDBModelFields
+class MediaDBModelFields {
+  static TableField? _fMedia_id;
+  static TableField get media_id {
+    return _fMedia_id = _fMedia_id ??
+        SqlSyntax.setField(_fMedia_id, 'media_id', DbType.integer);
+  }
+
+  static TableField? _fExtensions;
+  static TableField get extensions {
+    return _fExtensions = _fExtensions ??
+        SqlSyntax.setField(_fExtensions, 'extensions', DbType.text);
+  }
+
+  static TableField? _fField_type_id;
+  static TableField get field_type_id {
+    return _fField_type_id = _fField_type_id ??
+        SqlSyntax.setField(_fField_type_id, 'field_type_id', DbType.integer);
+  }
+}
+// endregion MediaDBModelFields
+
+//region MediaDBModelManager
+class MediaDBModelManager extends SqfEntityProvider {
+  MediaDBModelManager()
+      : super(GeobaseModel(),
+            tableName: _tableName,
+            primaryKeyList: _primaryKeyList,
+            whereStr: _whereStr);
+  static final String _tableName = 'Media';
+  static final List<String> _primaryKeyList = ['media_id'];
+  static final String _whereStr = 'media_id=?';
+}
+
+//endregion MediaDBModelManager
 // region FieldValueDBModel
 class FieldValueDBModel {
   FieldValueDBModel(
@@ -6911,9 +8207,8 @@ class FieldValueDBModel {
     plGeodataDBModel = o['geodataDBModel'] != null
         ? GeodataDBModel.fromMap(o['geodataDBModel'] as Map<String, dynamic>)
         : null;
-    plFieldTypeDBModel = o['fieldTypeDBModel'] != null
-        ? FieldTypeDBModel.fromMap(
-            o['fieldTypeDBModel'] as Map<String, dynamic>)
+    plColumnDBModel = o['columnDBModel'] != null
+        ? ColumnDBModel.fromMap(o['columnDBModel'] as Map<String, dynamic>)
         : null;
     // END RELATIONSHIPS FromMAP
   }
@@ -6940,13 +8235,13 @@ class FieldValueDBModel {
   }
 
   /// to load parent of items to this field, use preload parameter ex: toList(preload:true) or toSingle(preload:true) or getById(preload:true)
-  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plFieldTypeDBModel', 'plField2'..]) or so on..
-  FieldTypeDBModel? plFieldTypeDBModel;
+  /// You can also specify this object into certain preload fields!. Ex: toList(preload:true, preloadFields:['plColumnDBModel', 'plField2'..]) or so on..
+  ColumnDBModel? plColumnDBModel;
 
-  /// get FieldTypeDBModel By Column_id
-  Future<FieldTypeDBModel?> getFieldTypeDBModel(
+  /// get ColumnDBModel By Column_id
+  Future<ColumnDBModel?> getColumnDBModel(
       {bool loadParents = false, List<String>? loadedFields}) async {
-    final _obj = await FieldTypeDBModel().getById(column_id,
+    final _obj = await ColumnDBModel().getById(column_id,
         loadParents: loadParents, loadedFields: loadedFields);
     return _obj;
   }
@@ -6981,9 +8276,9 @@ class FieldValueDBModel {
 
     if (column_id != null) {
       map['column_id'] = forView
-          ? plFieldTypeDBModel == null
+          ? plColumnDBModel == null
               ? column_id
-              : plFieldTypeDBModel!.name
+              : plColumnDBModel!.name
           : column_id;
     }
 
@@ -7012,9 +8307,9 @@ class FieldValueDBModel {
 
     if (column_id != null) {
       map['column_id'] = forView
-          ? plFieldTypeDBModel == null
+          ? plColumnDBModel == null
               ? column_id
-              : plFieldTypeDBModel!.name
+              : plColumnDBModel!.name
           : column_id;
     }
 
@@ -7096,14 +8391,14 @@ class FieldValueDBModel {
               await obj.getGeodataDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('Column.plColumnDBModel') && */ (preloadFields ==
                 null ||
             loadParents ||
-            preloadFields.contains('plFieldTypeDBModel'))) {
-          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
-              .plFieldTypeDBModel = obj
-                  .plFieldTypeDBModel ??
-              await obj.getFieldTypeDBModel(
+            preloadFields.contains('plColumnDBModel'))) {
+          /*_loadedfields!.add('Column.plColumnDBModel');*/ obj
+              .plColumnDBModel = obj
+                  .plColumnDBModel ??
+              await obj.getColumnDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD
@@ -7156,14 +8451,14 @@ class FieldValueDBModel {
               await obj.getGeodataDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('Column.plColumnDBModel') && */ (preloadFields ==
                 null ||
             loadParents ||
-            preloadFields.contains('plFieldTypeDBModel'))) {
-          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
-              .plFieldTypeDBModel = obj
-                  .plFieldTypeDBModel ??
-              await obj.getFieldTypeDBModel(
+            preloadFields.contains('plColumnDBModel'))) {
+          /*_loadedfields!.add('Column.plColumnDBModel');*/ obj
+              .plColumnDBModel = obj
+                  .plColumnDBModel ??
+              await obj.getColumnDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD
@@ -7916,14 +9211,14 @@ class FieldValueDBModelFilterBuilder extends SearchCriteria {
               await obj.getGeodataDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
-        if (/*!_loadedfields!.contains('FieldType.plFieldTypeDBModel') && */ (preloadFields ==
+        if (/*!_loadedfields!.contains('Column.plColumnDBModel') && */ (preloadFields ==
                 null ||
             loadParents ||
-            preloadFields.contains('plFieldTypeDBModel'))) {
-          /*_loadedfields!.add('FieldType.plFieldTypeDBModel');*/ obj
-              .plFieldTypeDBModel = obj
-                  .plFieldTypeDBModel ??
-              await obj.getFieldTypeDBModel(
+            preloadFields.contains('plColumnDBModel'))) {
+          /*_loadedfields!.add('Column.plColumnDBModel');*/ obj
+              .plColumnDBModel = obj
+                  .plColumnDBModel ??
+              await obj.getColumnDBModel(
                   loadParents: loadParents /*, loadedFields: _loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD
@@ -9077,17 +10372,18 @@ class VStaticSelection {
   VStaticSelection(
       {this.name,
       this.meta_type,
+      this.render_name,
       this.options,
       this.field_type_id,
       this.static_selection_id}) {
     _setDefaultValues();
   }
-  VStaticSelection.withFields(this.name, this.meta_type, this.options,
-      this.field_type_id, this.static_selection_id) {
+  VStaticSelection.withFields(this.name, this.meta_type, this.render_name,
+      this.options, this.field_type_id, this.static_selection_id) {
     _setDefaultValues();
   }
-  VStaticSelection.withId(this.name, this.meta_type, this.options,
-      this.field_type_id, this.static_selection_id) {
+  VStaticSelection.withId(this.name, this.meta_type, this.render_name,
+      this.options, this.field_type_id, this.static_selection_id) {
     _setDefaultValues();
   }
   // fromMap v2.0
@@ -9101,6 +10397,9 @@ class VStaticSelection {
     }
     if (o['meta_type'] != null) {
       meta_type = o['meta_type'].toString();
+    }
+    if (o['render_name'] != null) {
+      render_name = o['render_name'].toString();
     }
     if (o['options'] != null) {
       options = o['options'].toString();
@@ -9125,6 +10424,7 @@ class VStaticSelection {
   // FIELDS (VStaticSelection)
   String? name;
   String? meta_type;
+  String? render_name;
   String? options;
   int? field_type_id;
   int? static_selection_id;
@@ -9178,6 +10478,10 @@ class VStaticSelection {
       map['meta_type'] = meta_type;
     }
 
+    if (render_name != null) {
+      map['render_name'] = render_name;
+    }
+
     if (options != null) {
       map['options'] = options;
     }
@@ -9214,6 +10518,10 @@ class VStaticSelection {
       map['meta_type'] = meta_type;
     }
 
+    if (render_name != null) {
+      map['render_name'] = render_name;
+    }
+
     if (options != null) {
       map['options'] = options;
     }
@@ -9248,11 +10556,25 @@ class VStaticSelection {
   }
 
   List<dynamic> toArgs() {
-    return [name, meta_type, options, field_type_id, static_selection_id];
+    return [
+      name,
+      meta_type,
+      render_name,
+      options,
+      field_type_id,
+      static_selection_id
+    ];
   }
 
   List<dynamic> toArgsWithIds() {
-    return [name, meta_type, options, field_type_id, static_selection_id];
+    return [
+      name,
+      meta_type,
+      render_name,
+      options,
+      field_type_id,
+      static_selection_id
+    ];
   }
 
   static Future<List<VStaticSelection>?> fromWebUrl(Uri uri,
@@ -9787,6 +11109,11 @@ class VStaticSelectionFilterBuilder extends SearchCriteria {
     return _meta_type = setField(_meta_type, 'meta_type', DbType.text);
   }
 
+  VStaticSelectionField? _render_name;
+  VStaticSelectionField get render_name {
+    return _render_name = setField(_render_name, 'render_name', DbType.text);
+  }
+
   VStaticSelectionField? _options;
   VStaticSelectionField get options {
     return _options = setField(_options, 'options', DbType.text);
@@ -10101,6 +11428,12 @@ class VStaticSelectionFields {
   static TableField get meta_type {
     return _fMeta_type = _fMeta_type ??
         SqlSyntax.setField(_fMeta_type, 'meta_type', DbType.text);
+  }
+
+  static TableField? _fRender_name;
+  static TableField get render_name {
+    return _fRender_name = _fRender_name ??
+        SqlSyntax.setField(_fRender_name, 'render_name', DbType.text);
   }
 
   static TableField? _fOptions;

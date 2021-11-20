@@ -7,6 +7,7 @@ extension StaticSelectionGetModelExtension on FieldTypeStaticSelectionGetModel {
       id: id,
       name: name,
       metaType: metaType,
+      renderClass: renderClass,
       options: options,
     );
   }

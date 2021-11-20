@@ -14,11 +14,14 @@ class FieldTypeGetModel extends FieldTypeModel {
   FieldTypeGetModel({
     required String name,
     required String metaType,
+    required this.renderClass,
     required this.id,
     this.extradata,
   }) : super(name: name, metaType: metaType);
 
   final int id;
+
+  final String renderClass;
 
   final Map<String, dynamic>? extradata;
 }

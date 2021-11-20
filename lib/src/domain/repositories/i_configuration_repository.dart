@@ -5,11 +5,10 @@ import 'package:geobase/src/domain/entities/entities.dart';
 abstract class IConfigurationRepository {
   Stream<UserPreferencesEntity> get onUserPrefChanged;
 
-  Future<Either<Failure, MapSourceConfigurationEntity>>
-      loadMapSourceConfigurations();
+  Future<Either<Failure, MapConfigurationEntity>> loadMapConfigurations();
 
-  Future<Either<Failure, Unit>> setMapSourceConfigurations(
-    MapSourceConfigurationEntity configuration,
+  Future<Either<Failure, Unit>> setMapConfigurations(
+    MapConfigurationEntity configuration,
   );
 
   Future<Either<Failure, UserPreferencesEntity>> loadUserPreferences();

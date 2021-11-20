@@ -15,34 +15,22 @@ part 'map_state.dart';
 @injectable
 class MapCubit extends Cubit<MapState> {
   MapCubit({
-    required this.sourceConfReader,
+    required this.confReader,
     @factoryParam this.initialLocation,
   }) : super(
           MapState.state(
             mapController: MapController(),
-            sourceConfiguration: MapSourceConfiguration.empty(),
+            mapConfiguration: MapConfigurationEntity.empty(),
           ),
-        ) {
-    mapSourceConfChangesSubscription =
-        sourceConfReader.onSourceConfigChanged.listen((sourceConf) {
-      emit(state.copyWith(sourceConfiguration: sourceConf));
-    });
-  }
+        );
 
   final LatLng? initialLocation;
-  final IMapSourceConfigurationReaderService sourceConfReader;
-  late StreamSubscription mapSourceConfChangesSubscription;
-
-  @override
-  Future<void> close() async {
-    await mapSourceConfChangesSubscription.cancel();
-    await super.close();
-  }
+  final IMapConfigurationReaderService confReader;
 
   Future<void> initialConfigurationsRequested() async {
     emit(state.copyWith(loadingConfigs: true));
 
-    final result = await sourceConfReader.loadMapSourceConfigurations();
+    final result = await confReader.loadMapConfigurations();
     await result.fold(
       (failure) async {
         emit(
@@ -55,7 +43,7 @@ class MapCubit extends Cubit<MapState> {
       (entity) async {
         emit(
           state.copyWith(
-            sourceConfiguration: entity,
+            mapConfiguration: entity,
             loadingConfigs: false,
           ),
         );

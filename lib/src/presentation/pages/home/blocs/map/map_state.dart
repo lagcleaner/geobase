@@ -4,7 +4,7 @@ part of 'map_cubit.dart';
 class MapState with _$MapState {
   const factory MapState.state({
     required MapController mapController,
-    required MapSourceConfigurationEntity sourceConfiguration,
+    required MapConfigurationEntity mapConfiguration,
     @Default(false) bool loadingConfigs,
     @Default(null) Failure? failure,
   }) = _MapState;

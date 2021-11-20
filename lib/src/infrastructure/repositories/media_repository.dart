@@ -2,26 +2,25 @@ import 'package:dartz/dartz.dart';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/repositories/i_static_selection_repository.dart';
+import 'package:geobase/src/domain/repositories/i_media_repository.dart';
 import 'package:geobase/src/infrastructure/core/error_handling.dart';
 import 'package:geobase/src/infrastructure/core/extensions/extensions.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
 
-@LazySingleton(as: IFieldTypeStaticSelectionRepository)
-class FieldTypeStaticSelectionRepository
-    extends IFieldTypeStaticSelectionRepository {
-  FieldTypeStaticSelectionRepository({
+@LazySingleton(as: IFieldTypeMediaRepository)
+class FieldTypeMediaRepository extends IFieldTypeMediaRepository {
+  FieldTypeMediaRepository({
     required this.provider,
   });
 
-  final IFieldTypeStaticSelectionProvider provider;
+  final IFieldTypeMediaProvider provider;
 
   @override
-  Future<Either<Failure, int>> addFieldTypeStaticSelection(
-    FieldTypeStaticSelectionPostEntity newStaticSelection,
+  Future<Either<Failure, int>> addFieldTypeMedia(
+    FieldTypeMediaPostEntity newMedia,
   ) async {
     try {
-      final response = await provider.create(newStaticSelection.toModel());
+      final response = await provider.create(newMedia.toModel());
       return Right(response);
     } catch (e) {
       return catchMethod(e);
@@ -29,7 +28,7 @@ class FieldTypeStaticSelectionRepository
   }
 
   @override
-  Future<Either<Failure, FieldTypeStaticSelectionGetEntity>> getFromFieldType(
+  Future<Either<Failure, FieldTypeMediaGetEntity>> getFromFieldType(
     int fieldTypeId,
   ) async {
     try {
@@ -41,8 +40,7 @@ class FieldTypeStaticSelectionRepository
   }
 
   @override
-  Future<Either<Failure, List<FieldTypeStaticSelectionGetEntity>>>
-      loadStaticSelections() async {
+  Future<Either<Failure, List<FieldTypeMediaGetEntity>>> loadMedias() async {
     try {
       final response = await provider.getAll();
       return Right(response.map((e) => e.toEntity()).toList());
@@ -52,7 +50,7 @@ class FieldTypeStaticSelectionRepository
   }
 
   @override
-  Future<Either<Failure, Unit>> removeStaticSelection(int fieldTypeId) async {
+  Future<Either<Failure, Unit>> removeMedia(int fieldTypeId) async {
     try {
       await provider.remove(fieldTypeId);
       return const Right(unit);
