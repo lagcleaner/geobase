@@ -3,7 +3,7 @@ abstract class CategoryEntity {
     required this.name,
     this.description,
     this.color,
-    this.icon,
+    required this.icon,
   });
 
   String name;
@@ -12,6 +12,6 @@ abstract class CategoryEntity {
 
   int? color;
 
-  int? icon; // icon (char)
+  int icon; // icon (char)
 
 }

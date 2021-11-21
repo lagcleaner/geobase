@@ -5,7 +5,7 @@ class CategoryPostEntity extends CategoryEntity {
     required String name,
     String? description,
     int? color,
-    int? icon,
+    required int icon,
   }) : super(
           name: name,
           description: description,

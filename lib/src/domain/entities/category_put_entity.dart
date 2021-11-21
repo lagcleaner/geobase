@@ -6,7 +6,7 @@ class CategoryPutEntity extends CategoryEntity {
     required String name,
     String? description,
     int? color,
-    int? icon,
+    required int icon,
     // required this.columnIds,
   }) : super(
           name: name,

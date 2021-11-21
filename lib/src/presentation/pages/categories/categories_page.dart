@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/blocS/categories/categories_bloc.dart';
@@ -187,6 +188,7 @@ class _CategoryWidget extends StatelessWidget {
             tileColor: category.color?.withOpacity(0.5),
             title: SelectableText(category.name),
             subtitle: SelectableText(category.id.toString()),
+            leading: Icon(IconData(category.icon!)),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Categoría',
               icon: Icon(

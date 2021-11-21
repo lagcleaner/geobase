@@ -6,7 +6,7 @@ class CategoryPutModel extends CategoryModel {
     required String name,
     String? description,
     int? color,
-    int? materialIconCodePoint,
+    required int materialIconCodePoint,
     // required this.columnIds,
   }) : super(
           name: name,

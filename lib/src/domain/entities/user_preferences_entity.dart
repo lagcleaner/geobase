@@ -1,5 +1,5 @@
 class UserPreferencesEntity {
-  UserPreferencesEntity({
+  const UserPreferencesEntity({
     required this.showLocation,
   });
 

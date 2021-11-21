@@ -3,7 +3,7 @@ abstract class CategoryModel {
     required this.name,
     this.description,
     this.color,
-    this.materialIconCodePoint,
+    required this.materialIconCodePoint,
     // required this.columns,
   });
 
@@ -13,6 +13,6 @@ abstract class CategoryModel {
 
   int? color;
 
-  int? materialIconCodePoint; // icon (char)
+  int materialIconCodePoint; // icon (char)
 
 }

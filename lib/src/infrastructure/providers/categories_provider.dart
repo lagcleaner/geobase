@@ -39,9 +39,10 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
         CategoryGetModel(
           id: cat.category_id!,
           name: cat.name!,
+          description: cat.description!,
           color: cat.color,
-          materialIconCodePoint: cat.icon,
-          columns: await getIt<ColumnsSQLiteProvider>()
+          materialIconCodePoint: cat.icon!,
+          columns: await getIt<IColumnsProvider>()
               .getAllFromCategory(cat.category_id!),
         ),
       );
@@ -57,7 +58,10 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
     return CategoryGetModel(
       id: category.category_id!,
       name: category.name!,
-      columns: await getIt<ColumnsSQLiteProvider>()
+      description: category.description,
+      materialIconCodePoint: category.icon!,
+      color: category.color,
+      columns: await getIt<IColumnsProvider>()
           .getAllFromCategory(category.category_id!),
     );
   }

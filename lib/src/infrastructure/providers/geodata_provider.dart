@@ -64,13 +64,16 @@ class GeodataSQLiteProvider implements IGeodataProvider {
     }
     final result = <GeodataGetModel>[];
     for (final geod in geodataList) {
+      final category =
+          await getIt<ICategoriesProvider>().getById(geod.category_id!);
       result.add(
         GeodataGetModel(
+          id: geod.geodata_id!,
           latitude: geod.latitude!,
           longitude: geod.longitude!,
-          id: geod.geodata_id!,
-          category:
-              await getIt<ICategoriesProvider>().getById(geod.category_id!),
+          materialIconCodePoint: category.materialIconCodePoint,
+          color: category.color,
+          category: category,
           fields: await getIt<IFieldValueProvider>()
               .getAllFromGeodata(geod.geodata_id!),
         ),
@@ -84,12 +87,15 @@ class GeodataSQLiteProvider implements IGeodataProvider {
     final geodata =
         await GeodataDBModel().select().geodata_id.equals(id).toSingle();
     if (geodata == null) throw Exception('Geodata Not Found');
+    final category =
+        await getIt<ICategoriesProvider>().getById(geodata.category_id!);
     return GeodataGetModel(
       latitude: geodata.latitude!,
       longitude: geodata.longitude!,
       id: id,
-      category:
-          await getIt<ICategoriesProvider>().getById(geodata.category_id!),
+      materialIconCodePoint: category.materialIconCodePoint,
+      color: category.color,
+      category: category,
       fields: await getIt<IFieldValueProvider>().getAllFromGeodata(id),
     );
   }

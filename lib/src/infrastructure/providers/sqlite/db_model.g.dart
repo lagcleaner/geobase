@@ -38,7 +38,7 @@ class TableCategoryDBModel extends SqfEntityTableBase {
       SqfEntityFieldBase('color', DbType.integer,
           isUnique: false, isNotNull: false, isIndex: false),
       SqfEntityFieldBase('icon', DbType.integer,
-          isUnique: false, isNotNull: false, isIndex: false),
+          isUnique: false, isNotNull: true, isIndex: false),
     ];
     super.init();
   }
@@ -132,7 +132,7 @@ class TableFieldTypeDBModel extends SqfEntityTableBase {
       SqfEntityFieldBase('name', DbType.text,
           isUnique: true, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('meta_type', DbType.text,
-          isUnique: true, isNotNull: true, isIndex: false),
+          isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('render_class', DbType.text,
           isUnique: false, isNotNull: true, isIndex: false),
     ];

@@ -43,7 +43,7 @@ class LocationCubit extends Cubit<LocationState> {
       disable: (disable) async {
         if (disable.failureAtTrying != null) return;
         await userPreferencesWritterService.setUserPreferences(
-          const UserPreferencesUpdateEntity(showLocation: true),
+          const UserPreferencesEntity(showLocation: true),
         );
       },
       orElse: () async {},
@@ -54,7 +54,7 @@ class LocationCubit extends Cubit<LocationState> {
     await state.maybeMap(
       enable: (enable) async {
         await userPreferencesWritterService.setUserPreferences(
-          const UserPreferencesUpdateEntity(showLocation: false),
+          const UserPreferencesEntity(showLocation: false),
         );
       },
       orElse: () async {},
