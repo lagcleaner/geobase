@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/entities/categories/category.dart';
 import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/blocS/categories/categories_bloc.dart';

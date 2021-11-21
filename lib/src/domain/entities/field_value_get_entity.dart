@@ -15,15 +15,14 @@ class FieldValueGetEntity extends FieldValueEntity {
 
   final ColumnGetEntity column;
 
-  @override
-  FieldValueGetEntity copyWithValue({
+  FieldValueGetEntity copyWith({
     int? id,
     int? geodataId,
     ColumnGetEntity? column,
     dynamic value,
   }) {
     return FieldValueGetEntity(
-      value: value,
+      value: value ?? this.value,
       id: id ?? this.id,
       geodataId: geodataId ?? this.geodataId,
       column: column ?? this.column,
@@ -44,4 +43,14 @@ class FieldValueGetEntity extends FieldValueEntity {
   @override
   int get hashCode =>
       id.hashCode ^ geodataId.hashCode ^ column.hashCode ^ value.hashCode;
+
+  @override
+  FieldValueEntity copyWithValue(dynamic value) {
+    return FieldValueGetEntity(
+      value: value,
+      id: id,
+      geodataId: geodataId,
+      column: column,
+    );
+  }
 }

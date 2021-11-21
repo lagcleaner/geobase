@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/src/domain/core/enums/base_field_type_enum.dart';
 import 'package:geobase/src/domain/core/extensions/extensions.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/textcontroller_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
-import 'package:geobase/src/presentation/pages/categories/blocs/field/fields_cubit.dart';
 import 'package:get_it/get_it.dart';
 
-class FieldsInputWidget extends StatefulWidget {
-  const FieldsInputWidget({
+class ColumnsInputWidget extends StatefulWidget {
+  const ColumnsInputWidget({
     Key? key,
     this.onAdd,
     this.onRemoveWithName,
@@ -17,21 +16,21 @@ class FieldsInputWidget extends StatefulWidget {
     this.errorText,
   }) : super(key: key);
 
-  final Function(String, FieldTypeEnum)? onAdd;
+  final Function(String, FieldTypeGetEntity)? onAdd;
   final Function(String)? onRemoveWithName;
   final Function()? onClear;
 
   //
-  final Map<String, FieldTypeEnum> fields;
+  final Map<String, FieldTypeGetEntity> fields;
 
   final String? errorText;
   //TODO: SHOW THIS ERROR TEXT SOME WHERE
 
   @override
-  State<FieldsInputWidget> createState() => _FieldsInputWidgetState();
+  State<ColumnsInputWidget> createState() => _ColumnsInputWidgetState();
 }
 
-class _FieldsInputWidgetState extends State<FieldsInputWidget> {
+class _ColumnsInputWidgetState extends State<ColumnsInputWidget> {
   @override
   Widget build(BuildContext context) {
     final fieldsCubit = GetIt.I<FieldsCubit>();

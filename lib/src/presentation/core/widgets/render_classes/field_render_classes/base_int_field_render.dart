@@ -52,7 +52,8 @@ class BaseIntFieldRender implements IFieldRenderClass {
 
   @override
   Widget getViewWidget(FieldValueGetEntity fieldValue) {
-    // TODO: implement getViewWidget
-    throw UnimplementedError();
+    return BaseFieldView(
+      fieldValue: fieldValue,
+    );
   }
 }

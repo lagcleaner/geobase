@@ -52,7 +52,8 @@ class MediaFieldRender implements IFieldRenderClass {
 
   @override
   Widget getViewWidget(FieldValueGetEntity fieldValue) {
-    // TODO: implement getViewWidget
-    throw UnimplementedError();
+    return MediaFieldView(
+      fieldValue: fieldValue,
+    );
   }
 }

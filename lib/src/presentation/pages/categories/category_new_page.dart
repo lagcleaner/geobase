@@ -185,7 +185,7 @@ class _FieldsInput extends StatelessWidget {
     final form = context.read<ICategoryCreateFormBloc>();
     return InputBlocBuilder<Map<String, FieldTypeEnum>>(
       bloc: form.fields,
-      builder: (context, state) => FieldsInputWidget(
+      builder: (context, state) => ColumnsInputWidget(
         fields: state.value,
         errorText: state.error,
         onAdd: (name, type) =>

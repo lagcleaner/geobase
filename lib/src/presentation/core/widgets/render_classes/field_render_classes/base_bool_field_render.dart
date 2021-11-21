@@ -46,8 +46,9 @@ class BaseBoolFieldRender implements IFieldRenderClass {
   }
 
   @override
-  Widget getViewWidget(FieldValueGetEntity fieldValue) {
-    // TODO: implement getViewWidget
-    throw UnimplementedError();
+  FieldViewWidget getViewWidget(FieldValueGetEntity fieldValue) {
+    return BaseFieldView(
+      fieldValue: fieldValue,
+    );
   }
 }

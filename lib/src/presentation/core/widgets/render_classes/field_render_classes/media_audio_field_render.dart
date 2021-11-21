@@ -54,7 +54,8 @@ class MediaAudioFieldRender implements IFieldRenderClass {
 
   @override
   Widget getViewWidget(FieldValueGetEntity fieldValue) {
-    // TODO: implement getViewWidget
-    throw UnimplementedError();
+    return MediaAudioFieldView(
+      fieldValue: fieldValue,
+    );
   }
 }

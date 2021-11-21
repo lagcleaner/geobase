@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/reflectable_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/not_implemented_list_tile_widget.dart';
@@ -12,14 +13,20 @@ class FieldRenderReflectable extends Reflectable {
   const FieldRenderReflectable()
       : super(
           typeCapability,
-          staticInvokeCapability,
+          typeRelationsCapability,
+          newInstanceCapability,
         );
 }
 
 const fieldRenderReflectable = FieldRenderReflectable();
 
+@LazySingleton()
 class FieldRenderResolver {
-  /// Unsave
+  static initializateReflectable() {
+    initializateReflectable();
+  }
+
+  /// Unsave internal
   static IFieldRenderClass _getInstance(String renderClassName) {
     final interfaceImplemented =
         fieldRenderReflectable.reflectType(IFieldRenderClass) as ClassMirror;
