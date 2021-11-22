@@ -5,15 +5,15 @@ class CategoryGetModel extends CategoryModel {
   CategoryGetModel({
     required this.id,
     required String name,
-    String? description,
-    int? color,
-    required int materialIconCodePoint,
+    required String? description,
+    required int? color,
+    required String icon,
     required this.columns,
   }) : super(
           name: name,
           description: description,
           color: color,
-          materialIconCodePoint: materialIconCodePoint,
+          icon: icon,
         );
 
   final int id;

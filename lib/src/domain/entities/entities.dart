@@ -6,7 +6,7 @@ export 'column_entity.dart';
 export 'column_get_entity.dart';
 export 'column_post_entity.dart';
 export 'column_put_entity.dart';
-export 'failures/failures.dart';
+export 'failures.dart';
 export 'field_type_get_entity.dart';
 export 'field_value_entity.dart';
 export 'field_value_get_entity.dart';

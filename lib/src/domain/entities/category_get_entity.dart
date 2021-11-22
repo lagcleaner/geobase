@@ -5,9 +5,9 @@ class CategoryGetEntity extends CategoryEntity {
   CategoryGetEntity({
     required this.id,
     required String name,
-    String? description,
-    int? color,
-    required int icon,
+    required String? description,
+    required int? color,
+    required String icon,
     required this.columns,
   }) : super(
           name: name,

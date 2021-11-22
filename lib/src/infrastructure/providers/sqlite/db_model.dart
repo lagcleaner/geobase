@@ -32,7 +32,7 @@ const tableCategory = SqfEntityTable(
     SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
     SqfEntityField('description', DbType.text),
     SqfEntityField('color', DbType.integer), // 32bit integer (ARGB)
-    SqfEntityField('icon', DbType.integer, isNotNull: true), // char unicode
+    SqfEntityField('icon', DbType.text, isNotNull: true), // icon name
   ],
 );
 
@@ -60,7 +60,7 @@ const tableFieldType = SqfEntityTable(
   primaryKeyType: PrimaryKeyType.integer_auto_incremental,
   fields: [
     SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
-    SqfEntityField('meta_type', DbType.text, isUnique: false, isNotNull: true),
+    SqfEntityField('meta_type', DbType.text, isNotNull: true),
     SqfEntityField('render_class', DbType.text, isNotNull: true),
   ],
 );
@@ -104,7 +104,7 @@ const VIEW_FTStaticSelections = SqfEntityTable(
   objectType: ObjectType.view,
   fields: [
     SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
-    SqfEntityField('meta_type', DbType.text, isUnique: true, isNotNull: true),
+    SqfEntityField('meta_type', DbType.text, isNotNull: true),
     SqfEntityField('render_name', DbType.text, isNotNull: true),
     SqfEntityField('options', DbType.text, isNotNull: true),
     SqfEntityFieldRelationship(
@@ -183,7 +183,7 @@ const VIEW_Markers = SqfEntityTable(
   objectType: ObjectType.view,
   fields: [
     SqfEntityField('kind', DbType.text, isNotNull: true),
-    SqfEntityField('icon', DbType.integer),
+    SqfEntityField('icon', DbType.text),
     SqfEntityField('color', DbType.integer),
     SqfEntityFieldRelationship(
       parentTable: tableGeodata,

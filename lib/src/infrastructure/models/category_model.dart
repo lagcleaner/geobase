@@ -1,9 +1,9 @@
 abstract class CategoryModel {
   CategoryModel({
     required this.name,
-    this.description,
-    this.color,
-    required this.materialIconCodePoint,
+    required this.description,
+    required this.color,
+    required this.icon,
     // required this.columns,
   });
 
@@ -13,6 +13,6 @@ abstract class CategoryModel {
 
   int? color;
 
-  int materialIconCodePoint; // icon (char)
+  String icon; // icon (name)
 
 }

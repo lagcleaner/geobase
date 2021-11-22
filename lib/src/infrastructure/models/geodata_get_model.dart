@@ -8,7 +8,7 @@ class GeodataGetModel extends GeodataModel {
     required double longitude,
     required this.id,
     required this.category,
-    this.color,
+    required this.color,
     required this.materialIconCodePoint,
     required this.fields,
   }) : super(latitude: latitude, longitude: longitude);
@@ -19,7 +19,7 @@ class GeodataGetModel extends GeodataModel {
 
   final int? color;
 
-  final int materialIconCodePoint;
+  final String materialIconCodePoint;
 
   final List<FieldValueGetModel> fields;
 }

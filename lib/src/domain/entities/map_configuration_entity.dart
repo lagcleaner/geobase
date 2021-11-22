@@ -40,37 +40,13 @@ class MapConfigurationEntity {
         },
       );
 
-  factory MapConfigurationEntity.assets({
-    required String urlTemplate,
-    Map<String, dynamic>? aditionalOptions,
-  }) =>
-      MapConfigurationEntity(
-        sourceType: MapSource.Assets,
-        sourceProperties: {
-          MAP_SOURCE_URL_TEMPLATE: urlTemplate,
-          MAP_SOURCE_ADITIONAL_OPTIONS: aditionalOptions
-        },
-      );
-
-  factory MapConfigurationEntity.file({
-    required String urlTemplate,
-    Map<String, dynamic>? aditionalOptions,
-  }) =>
-      MapConfigurationEntity(
-        sourceType: MapSource.File,
-        sourceProperties: {
-          MAP_SOURCE_URL_TEMPLATE: urlTemplate,
-          MAP_SOURCE_ADITIONAL_OPTIONS: aditionalOptions
-        },
-      );
-
-  factory MapConfigurationEntity.customRemote({
+  factory MapConfigurationEntity.osm({
     required String urlTemplate,
     List<String>? subdomains,
     Map<String, dynamic>? aditionalOptions,
   }) =>
       MapConfigurationEntity(
-        sourceType: MapSource.CustomRemote,
+        sourceType: MapSource.OSM,
         sourceProperties: {
           MAP_SOURCE_URL_TEMPLATE: urlTemplate,
           MAP_SOURCE_SUBDOMAINS: subdomains,

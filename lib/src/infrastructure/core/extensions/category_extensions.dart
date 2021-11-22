@@ -9,7 +9,7 @@ extension CategoryGetModelExtension on CategoryGetModel {
       name: name,
       description: description,
       color: color,
-      icon: materialIconCodePoint,
+      icon: icon,
       columns: columns.map((e) => e.toEntity()).toList(),
     );
   }
@@ -21,7 +21,8 @@ extension CategoryPostEntityExtension on CategoryPostEntity {
       name: name,
       description: description,
       color: color,
-      materialIconCodePoint: icon,
+      icon: icon,
+      columns: columns.map((e) => e.toModel()).toList(),
     );
   }
 }
@@ -33,7 +34,8 @@ extension CategoryPutEntityExtension on CategoryPutEntity {
       name: name,
       description: description,
       color: color,
-      materialIconCodePoint: icon,
+      icon: icon,
+      columns: columns.map((e) => e.toModel()).toList(),
     );
   }
 }

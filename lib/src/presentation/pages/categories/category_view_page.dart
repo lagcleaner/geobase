@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
@@ -273,33 +272,19 @@ class _CategoryViewBasicInfo extends StatelessWidget {
           subtitle: const Text('Nombre'),
         ),
         const Divider(),
-        const Center(child: Text('Relaciones')),
+        const Center(child: Text('Columnas')),
         ...[
-          for (final relation in category.relations.entries)
+          for (final field in category.columns)
             ListTile(
               dense: true,
               title: Text(
-                relation.key,
+                '${field.name}*',
               ),
-              subtitle: Text('Categoría(${relation.value.name})'),
+              subtitle: Text(field.type.name),
             ),
         ],
-        if (category.relations.isEmpty)
-          const ListTile(dense: true, title: Text('Sin Relaciones')),
-        const Divider(),
-        const Center(child: Text('Campos')),
-        ...[
-          for (final field in category.fields.entries)
-            ListTile(
-              dense: true,
-              title: Text(
-                '${field.key}*',
-              ),
-              subtitle: Text(field.value.visualName()),
-            ),
-        ],
-        if (category.fields.isEmpty)
-          const ListTile(dense: true, title: Text('Sin Campos')),
+        if (category.columns.isEmpty)
+          const ListTile(dense: true, title: Text('Sin Columnas')),
       ],
     );
   }

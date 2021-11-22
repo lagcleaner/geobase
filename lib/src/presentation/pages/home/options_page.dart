@@ -32,19 +32,37 @@ class _OptionsInternalPage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 10),
-        Row(
-          children: [
-            const SizedBox(width: 8),
-            Flexible(
-              child: BlocProvider<MapConfigurationInputCubit>(
-                create: (context) => getIt<MapConfigurationInputCubit>(),
-                child: const SourceOptionsSectionWidget(),
-              ),
-            ),
-            const Divider(height: 16),
-            // Flexible(child: _LongitudeInput()),
-            const SizedBox(width: 8),
-          ],
+        //TODO: OPTION TO NAVEGATE TO CATEGORIES
+        const Divider(
+          height: 16,
+          thickness: 1,
+        ),
+        Text(
+          'Configuración de los tipos',
+          style: Theme.of(context).textTheme.headline4,
+        ),
+        const SizedBox(height: 5),
+        Text(
+          'Selección Statica (StaticSelection)', //TODO: NAVIGATE TO TYPE STATIC SELECTION LIST
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        const Divider(
+          height: 16,
+          thickness: 1,
+        ),
+        Text(
+          'Configuración del Mapa',
+          style: Theme.of(context).textTheme.headline4,
+        ),
+        Flexible(
+          child: BlocProvider<MapConfigurationFormBloc>(
+            create: (context) => getIt<MapConfigurationFormBloc>(),
+            child: const SourceOptionsSectionWidget(),
+          ),
+        ),
+        const Divider(
+          height: 16,
+          thickness: 1,
         ),
       ],
     );

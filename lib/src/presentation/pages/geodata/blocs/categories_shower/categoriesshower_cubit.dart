@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/categories/interfaces/i_category.dart';
+import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
 
 part 'categoriesshower_state.dart';
 part 'categoriesshower_cubit.freezed.dart';

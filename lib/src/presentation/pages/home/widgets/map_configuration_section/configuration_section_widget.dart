@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
+import 'package:geobase/src/domain/core/extensions/enums_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/widgets/form_bloc/form_bloc_builder.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 
@@ -15,156 +17,46 @@ class SourceOptionsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MapConfigurationInputCubit, MapConfigurationInputState>(
-      bloc: context.read<MapConfigurationInputCubit>(),
-      builder: (context, state) => state.map(
-        initial: (_) {
-          return Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: Theme.of(context).primaryColor,
-            ),
-          );
-        },
-        sourceInput: (state) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Flexible(
-                child: _SourceSelector(
-                  onChanged: context.read<MapConfigurationInputCubit>().select,
-                  sourceType: state.selectedType,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              BlocProvider<IMapSourceFormBloc>(
-                create: (context) => getIt(
-                  param1: state.selectedType,
-                  param2: state.source,
-                ),
-                child: MapSourceForm(
-                  selectedType: state.selectedType,
-                  onSuccessSubmit:
-                      context.read<MapConfigurationInputCubit>().save,
-                ),
-              ),
-            ],
-          );
-        },
-        failureLoading: (state) {
-          return FailureAndRetryWidget(
-            errorText: state.failure.message ?? '',
-            onPressed: () {
-              return context.read<MapConfigurationInputCubit>().load();
-            },
-          );
-        },
-        failureSaving: (state) {
-          return FailureAndRetryWidget(
-            errorText: state.failure.message ?? '',
-            onPressed: () {
-              return context
-                  .read<MapConfigurationInputCubit>()
-                  .save(state.configs);
-            },
-          );
+    return FormBlocBuilder<
+        MapConfigurationFormBloc,
+        FormBlocState<MapConfigurationEntity, String>,
+        MapConfigurationEntity,
+        String>(
+      bloc: context.read<MapConfigurationFormBloc>(),
+      onLoadFailed: (failure) => FailureAndRetryWidget(
+        errorText:
+            'Tenemos problemas para cargar la configuración :( ${failure ?? ''}',
+        onPressed: () {
+          return context.read<MapConfigurationFormBloc>().emitLoading();
         },
       ),
-    );
-  }
-}
-
-class MapSourceForm extends StatelessWidget {
-  const MapSourceForm({
-    Key? key,
-    required this.selectedType,
-    required this.onSuccessSubmit,
-  }) : super(key: key);
-
-  final MapSource selectedType;
-  final Function(MapConfigurationEntity) onSuccessSubmit;
-
-  @override
-  Widget build(BuildContext context) {
-    return FormBlocListener<IMapSourceFormBloc, MapConfigurationEntity,
-        Failure>(
-      onSuccess: onSuccessSubmit,
-      child: Column(
+      onFailure: (failure) => FailureAndRetryWidget(
+        errorText:
+            'Tenemos problemas para guardar la configuración :( ${failure ?? ''}',
+        onPressed: () {
+          return context.read<MapConfigurationFormBloc>().emitLoading();
+        },
+      ),
+      onLoading: () => Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
+      orElse: () => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (selectedType == MapSource.Assets) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Esta opción solo es configurable, tras '
-              'haber compilado la applicación junto '
-              'a los archivos de mapa en "assets/map". ',
-            ),
-          ],
-          if (selectedType == MapSource.File) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Esta opción admite por el momento '
-              'base de datos de imágenes para mapas '
-              'ubicados de la forma "<dir>/x/y/z.png". ',
-            ),
-            const SizedBox(height: 8),
-            const Flexible(child: UrlTemplateInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: AditionalOptionsInput()),
-          ],
-          if (selectedType == MapSource.TMS) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Esta opción permite el acceso a '
-              'servicios remotos que usen el protocolo TMS. ',
-            ),
-            const SizedBox(height: 8),
-            const Flexible(child: UrlTemplateInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: AditionalOptionsInput()),
-          ],
-          if (selectedType == MapSource.WMS) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Esta opción permite el acceso a '
-              'servicios remotos que usen el protocolo WMS. ',
-            ),
-            const SizedBox(height: 8),
-            const Flexible(child: WMSBaseUrlInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: WMSFormatInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: WMSLayersInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: WMSOtherParamsInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: SubdomainsInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: AditionalOptionsInput()),
-          ],
-          if (selectedType == MapSource.CustomRemote) ...[
-            const SizedBox(height: 4),
-            const Text(
-              'Esta opción permite el acceso a '
-              'servicios remotos standard. ',
-            ),
-            const SizedBox(height: 8),
-            const Flexible(child: UrlTemplateInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: SubdomainsInput()),
-            const SizedBox(height: 8),
-            const Flexible(child: AditionalOptionsInput()),
-          ],
-          if (selectedType == MapSource.Empty)
-            const Text(
-              'Sin configuraciones para mapas.',
-            ),
-          const SizedBox(
-            height: 8,
-          ),
-          const SubmmitButton<IMapSourceFormBloc>(label: 'Aceptar'),
+          const Flexible(child: _SourceSelector()),
+          const Flexible(child: _UrlTemplateInput()),
+          const Flexible(child: _WMSBaseUrlInput()),
+          const Flexible(child: _WMSFormatInput()),
+          const Flexible(child: _WMSLayersInput()),
+          const Flexible(child: _SubdomainsInput()),
+          const SizedBox(height: 10),
+          MainButton(
+            text: 'Guardar Configuración',
+            onPressed: context.read<MapConfigurationFormBloc>().submit,
+          )
         ],
       ),
     );
@@ -174,24 +66,160 @@ class MapSourceForm extends StatelessWidget {
 class _SourceSelector extends StatelessWidget {
   const _SourceSelector({
     Key? key,
-    required this.onChanged,
-    required this.sourceType,
   }) : super(key: key);
-
-  final ValueChanged<MapSource> onChanged;
-  final MapSource sourceType;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<MapSource>(
-      items: MapSource.values
-          .map((e) => DropdownMenuItem(value: e, child: Text(e.visualName())))
-          .toList(),
-      value: sourceType,
-      onChanged: (value) => value != null ? onChanged(value) : null,
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return DropdownFieldBlocBuilder<MapSource>(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      selectFieldBloc: formBloc.source,
       decoration: TextFieldDecorations.decoration(
-        labelText: 'Tipo de Fuente',
+        labelText: 'Protocolo',
       ),
+      itemBuilder: (context, value) => value.name,
+    );
+  }
+}
+
+class _UrlTemplateInput extends StatelessWidget {
+  const _UrlTemplateInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return TextFieldBlocBuilder(
+      textFieldBloc: formBloc.urlTemplate,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: TextFieldDecorations.decoration(
+        labelText: 'Url Plantilla*',
+      ),
+    );
+  }
+}
+
+class _WMSBaseUrlInput extends StatelessWidget {
+  const _WMSBaseUrlInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return TextFieldBlocBuilder(
+      textFieldBloc: formBloc.wmsBaseUrl,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: TextFieldDecorations.decoration(
+        labelText: 'Url Base*',
+      ),
+    );
+  }
+}
+
+class _WMSFormatInput extends StatelessWidget {
+  const _WMSFormatInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return TextFieldBlocBuilder(
+      textFieldBloc: formBloc.wmsBaseUrl,
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      decoration: TextFieldDecorations.decoration(
+        labelText: 'Url Base*',
+      ),
+    );
+  }
+}
+
+class _WMSLayersInput extends StatelessWidget {
+  const _WMSLayersInput({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Divider(),
+        BlocBuilder<ListFieldBloc<TextFieldBloc>,
+            ListFieldBlocState<TextFieldBloc>>(
+          bloc: formBloc.wmsLayers,
+          builder: (context, state) {
+            if (state.fieldBlocs.isNotEmpty) {
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.fieldBlocs.length,
+                itemBuilder: (context, i) {
+                  return _WMSLayerInput(
+                    bloc: state.fieldBlocs[i],
+                    index: i,
+                    onRemoved: () => formBloc.removeLayer(i),
+                  );
+                },
+              );
+            }
+            return const SizedBox();
+          },
+        ),
+        TextButton(
+          onPressed: formBloc.addNewLayer,
+          child: const Text('Añadir otra capa'),
+        ),
+        const SizedBox(height: 4),
+        const Divider(),
+      ],
+    );
+  }
+}
+
+class _WMSLayerInput extends StatelessWidget {
+  const _WMSLayerInput({
+    Key? key,
+    required this.bloc,
+    required this.index,
+    required this.onRemoved,
+  }) : super(key: key);
+
+  final TextFieldBloc bloc;
+  final int index;
+  final VoidCallback onRemoved;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        TextFieldBlocBuilder(
+          textFieldBloc: bloc,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          decoration: TextFieldDecorations.decoration(
+            labelText: 'Capa #(${index + 1})*',
+          ),
+        ),
+        const SizedBox(width: 4),
+        IconButton(
+          onPressed: onRemoved,
+          icon: const Icon(Icons.highlight_remove_rounded),
+        )
+      ],
+    );
+  }
+}
+
+class _SubdomainsInput extends StatelessWidget {
+  const _SubdomainsInput({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final formBloc = context.read<MapConfigurationFormBloc>();
+    return CheckboxGroupFieldBlocBuilder<String>(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      multiSelectFieldBloc: formBloc.subdomains,
+      decoration: TextFieldDecorations.decoration(
+        labelText: 'Subdominios a usar',
+      ),
+      itemBuilder: (context, value) => value,
     );
   }
 }

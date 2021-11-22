@@ -1,3 +1,0 @@
-class ConfigurationProvider {
-  //sharedprefs
-}

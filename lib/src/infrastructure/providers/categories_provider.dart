@@ -8,25 +8,53 @@ import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 class CategoriesSQLiteProvider implements ICategoriesProvider {
   @override
   Future<int> create(CategoryPostModel model) async {
-    final id = await CategoryDBModel.withFields(
-      model.name,
-      model.description,
-      model.color,
-      model.materialIconCodePoint,
-    ).save();
-    return id!;
+    await GeobaseModel().batchStart();
+    try {
+      final categoryId = await CategoryDBModel.withFields(
+        model.name,
+        model.description,
+        model.color,
+        model.icon,
+      ).save();
+      if (categoryId == null) throw Exception('Create Category Denied');
+      for (final col in model.columns) {
+        await getIt<IColumnsProvider>().create(
+          ColumnPostModel(
+            name: col.name,
+            typeId: col.typeId,
+            categoryId: col.categoryId,
+          ),
+        );
+      }
+      await GeobaseModel().batchCommit();
+      return categoryId;
+    } catch (e) {
+      GeobaseModel().batchRollback();
+      rethrow;
+    }
   }
 
   @override
   Future<int> edit(CategoryPutModel model) async {
-    final id = await CategoryDBModel.withId(
-      model.id,
-      model.name,
-      model.description,
-      model.color,
-      model.materialIconCodePoint,
-    ).save();
-    return id!;
+    await GeobaseModel().batchStart();
+    try {
+      final categoryId = await CategoryDBModel.withId(
+        model.id,
+        model.name,
+        model.description,
+        model.color,
+        model.icon,
+      ).save();
+      if (categoryId == null) throw Exception('Edit Category Denied');
+      for (final col in model.columns) {
+        await getIt<IColumnsProvider>().edit(col);
+      }
+      await GeobaseModel().batchCommit();
+      return categoryId;
+    } catch (e) {
+      GeobaseModel().batchRollback();
+      rethrow;
+    }
   }
 
   @override
@@ -39,9 +67,9 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
         CategoryGetModel(
           id: cat.category_id!,
           name: cat.name!,
-          description: cat.description!,
+          description: cat.description,
           color: cat.color,
-          materialIconCodePoint: cat.icon!,
+          icon: cat.icon!,
           columns: await getIt<IColumnsProvider>()
               .getAllFromCategory(cat.category_id!),
         ),
@@ -59,7 +87,7 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
       id: category.category_id!,
       name: category.name!,
       description: category.description,
-      materialIconCodePoint: category.icon!,
+      icon: category.icon!,
       color: category.color,
       columns: await getIt<IColumnsProvider>()
           .getAllFromCategory(category.category_id!),

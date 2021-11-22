@@ -1,8 +1,6 @@
 enum MapSource {
   WMS,
   TMS,
-  Assets,
-  File,
-  CustomRemote,
+  OSM,
   Empty,
 }

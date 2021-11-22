@@ -7,7 +7,7 @@ class ColumnPostModel extends ColumnModel {
     required this.typeId,
   }) : super(name: name);
 
-  final int categoryId;
+  final int? categoryId;
 
   final int typeId;
 }

@@ -7,6 +7,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/blocS/categories/categories_bloc.dart';
+import 'package:icon_picker/material_icons%20all.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({Key? key}) : super(key: key);
@@ -185,10 +186,12 @@ class _CategoryWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListTile(
-            tileColor: category.color?.withOpacity(0.5),
+            tileColor: category.color != null
+                ? Color(category.color!).withOpacity(0.5)
+                : null,
             title: SelectableText(category.name),
             subtitle: SelectableText(category.id.toString()),
-            leading: Icon(IconData(category.icon!)),
+            leading: Icon(MaterialIcons.mIcons[category.icon]),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Categoría',
               icon: Icon(

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/entities/failures/failures.dart';
+import 'package:geobase/src/domain/entities/failures.dart';
 import 'package:geobase/src/domain/entities/field_value_get_entity.dart';
 import 'package:geobase/src/domain/entities/field_value_put_entity.dart';
 import 'package:geobase/src/domain/repositories/i_field_value_repository.dart';
@@ -31,7 +31,8 @@ class FieldValueRepository extends IFieldValueRepository {
 
   @override
   Future<Either<Failure, FieldValueGetEntity>> getFieldValue(
-      int fieldValueId) async {
+    int fieldValueId,
+  ) async {
     try {
       final result = await provider.getById(fieldValueId);
       return Right(result.toEntity());

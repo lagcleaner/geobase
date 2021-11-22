@@ -1,18 +1,19 @@
 import 'package:geobase/src/infrastructure/models/category_model.dart';
+import 'package:geobase/src/infrastructure/models/column_post_model.dart';
 
 class CategoryPostModel extends CategoryModel {
   CategoryPostModel({
     required String name,
-    String? description,
-    int? color,
-    required int materialIconCodePoint,
-    // required this.columnIds,
+    required String? description,
+    required int? color,
+    required String icon,
+    required this.columns,
   }) : super(
           name: name,
           description: description,
           color: color,
-          materialIconCodePoint: materialIconCodePoint,
+          icon: icon,
         );
 
-  // final List<int> columnIds;
+  final List<ColumnPostModel> columns;
 }

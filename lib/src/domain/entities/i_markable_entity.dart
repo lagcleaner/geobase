@@ -6,8 +6,8 @@ abstract class IMarkable {
 
   LatLng get location;
 
-  ///material Icon CodePoint (unicode char)
-  int? get icon;
+  ///material Icon Name
+  String? get icon;
 
   /// 32 bit color value in ARGB format.
   int? get color;

@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 class UserLocationMarkerEntity extends IMarkable {
   UserLocationMarkerEntity({
     this.color = 0x88880088, //TODO: PUT A DEFAULT ICON AND COLOR HERE
-    this.icon,
+    required this.icon,
     required this.location,
   });
 
@@ -15,7 +15,7 @@ class UserLocationMarkerEntity extends IMarkable {
   final LatLng location;
 
   @override
-  final int? icon;
+  final String icon;
 
   @override
   final int? id = null;

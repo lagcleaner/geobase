@@ -37,7 +37,7 @@ class TableCategoryDBModel extends SqfEntityTableBase {
           isUnique: false, isNotNull: false, isIndex: false),
       SqfEntityFieldBase('color', DbType.integer,
           isUnique: false, isNotNull: false, isIndex: false),
-      SqfEntityFieldBase('icon', DbType.integer,
+      SqfEntityFieldBase('icon', DbType.text,
           isUnique: false, isNotNull: true, isIndex: false),
     ];
     super.init();
@@ -255,7 +255,7 @@ class TableVMarker extends SqfEntityTableBase {
     fields = [
       SqfEntityFieldBase('kind', DbType.text,
           isUnique: false, isNotNull: true, isIndex: false),
-      SqfEntityFieldBase('icon', DbType.integer,
+      SqfEntityFieldBase('icon', DbType.text,
           isUnique: false, isNotNull: false, isIndex: false),
       SqfEntityFieldBase('color', DbType.integer,
           isUnique: false, isNotNull: false, isIndex: false),
@@ -290,7 +290,7 @@ class TableVStaticSelection extends SqfEntityTableBase {
       SqfEntityFieldBase('name', DbType.text,
           isUnique: true, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('meta_type', DbType.text,
-          isUnique: true, isNotNull: true, isIndex: false),
+          isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('render_name', DbType.text,
           isUnique: false, isNotNull: true, isIndex: false),
       SqfEntityFieldBase('options', DbType.text,
@@ -380,7 +380,7 @@ class CategoryDBModel {
       color = int.tryParse(o['color'].toString());
     }
     if (o['icon'] != null) {
-      icon = int.tryParse(o['icon'].toString());
+      icon = o['icon'].toString();
     }
   }
   // FIELDS (CategoryDBModel)
@@ -388,7 +388,7 @@ class CategoryDBModel {
   String? name;
   String? description;
   int? color;
-  int? icon;
+  String? icon;
 
   BoolResult? saveResult;
   // end FIELDS (CategoryDBModel)
@@ -1253,7 +1253,7 @@ class CategoryDBModelFilterBuilder extends SearchCriteria {
 
   CategoryDBModelField? _icon;
   CategoryDBModelField get icon {
-    return _icon = setField(_icon, 'icon', DbType.integer);
+    return _icon = setField(_icon, 'icon', DbType.text);
   }
 
   bool _getIsDeleted = false;
@@ -1637,8 +1637,7 @@ class CategoryDBModelFields {
 
   static TableField? _fIcon;
   static TableField get icon {
-    return _fIcon =
-        _fIcon ?? SqlSyntax.setField(_fIcon, 'icon', DbType.integer);
+    return _fIcon = _fIcon ?? SqlSyntax.setField(_fIcon, 'icon', DbType.text);
   }
 }
 // endregion CategoryDBModelFields
@@ -9438,7 +9437,7 @@ class VMarker {
       kind = o['kind'].toString();
     }
     if (o['icon'] != null) {
-      icon = int.tryParse(o['icon'].toString());
+      icon = o['icon'].toString();
     }
     if (o['color'] != null) {
       color = int.tryParse(o['color'].toString());
@@ -9455,7 +9454,7 @@ class VMarker {
   }
   // FIELDS (VMarker)
   String? kind;
-  int? icon;
+  String? icon;
   int? color;
   int? geodata_id;
   bool? isSaved;
@@ -10042,7 +10041,7 @@ class VMarkerFilterBuilder extends SearchCriteria {
 
   VMarkerField? _icon;
   VMarkerField get icon {
-    return _icon = setField(_icon, 'icon', DbType.integer);
+    return _icon = setField(_icon, 'icon', DbType.text);
   }
 
   VMarkerField? _color;
@@ -10336,8 +10335,7 @@ class VMarkerFields {
 
   static TableField? _fIcon;
   static TableField get icon {
-    return _fIcon =
-        _fIcon ?? SqlSyntax.setField(_fIcon, 'icon', DbType.integer);
+    return _fIcon = _fIcon ?? SqlSyntax.setField(_fIcon, 'icon', DbType.text);
   }
 
   static TableField? _fColor;

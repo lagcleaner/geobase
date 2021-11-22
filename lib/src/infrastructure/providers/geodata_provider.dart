@@ -18,7 +18,13 @@ class GeodataSQLiteProvider implements IGeodataProvider {
       ).save();
       if (geodataId == null) throw Exception('Create Geodata Denied');
       for (final fv in model.fieldValues) {
-        await getIt<IFieldValueProvider>().create(fv..geodataId);
+        await getIt<IFieldValueProvider>().create(
+          FieldValuePostModel(
+            columnId: fv.columnId,
+            geodataId: geodataId,
+            value: fv.value,
+          ),
+        );
       }
       await GeobaseModel().batchCommit();
       return geodataId;
@@ -71,7 +77,7 @@ class GeodataSQLiteProvider implements IGeodataProvider {
           id: geod.geodata_id!,
           latitude: geod.latitude!,
           longitude: geod.longitude!,
-          materialIconCodePoint: category.materialIconCodePoint,
+          materialIconCodePoint: category.icon,
           color: category.color,
           category: category,
           fields: await getIt<IFieldValueProvider>()
@@ -93,7 +99,7 @@ class GeodataSQLiteProvider implements IGeodataProvider {
       latitude: geodata.latitude!,
       longitude: geodata.longitude!,
       id: id,
-      materialIconCodePoint: category.materialIconCodePoint,
+      materialIconCodePoint: category.icon,
       color: category.color,
       category: category,
       fields: await getIt<IFieldValueProvider>().getAllFromGeodata(id),

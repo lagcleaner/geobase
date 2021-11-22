@@ -10,8 +10,8 @@ class GeodataGetEntity extends GeodataEntity implements IMarkable {
     required double longitude,
     required this.id,
     required this.category,
-    this.color,
-    this.icon,
+    required this.color,
+    required this.icon,
     required this.fields,
   }) : super(latitude: latitude, longitude: longitude);
 
@@ -20,9 +20,11 @@ class GeodataGetEntity extends GeodataEntity implements IMarkable {
 
   final CategoryGetEntity category;
 
+  @override
   final int? color;
 
-  final int? icon;
+  @override
+  final String icon;
 
   final List<FieldValueGetEntity> fields;
 

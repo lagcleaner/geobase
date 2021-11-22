@@ -6,12 +6,11 @@ abstract class CategoryEntity {
     required this.icon,
   });
 
-  String name;
+  final String name;
 
-  String? description;
+  final String? description;
 
-  int? color;
+  final int? color;
 
-  int icon; // icon (char)
-
+  final String icon;
 }

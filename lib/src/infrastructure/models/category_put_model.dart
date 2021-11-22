@@ -1,21 +1,21 @@
-import 'package:geobase/src/infrastructure/models/category_model.dart';
+import 'package:geobase/src/infrastructure/models/models.dart';
 
 class CategoryPutModel extends CategoryModel {
   CategoryPutModel({
     required this.id,
     required String name,
-    String? description,
-    int? color,
-    required int materialIconCodePoint,
-    // required this.columnIds,
+    required String? description,
+    required int? color,
+    required String icon,
+    required this.columns,
   }) : super(
           name: name,
           description: description,
           color: color,
-          materialIconCodePoint: materialIconCodePoint,
+          icon: icon,
         );
 
   final int id;
 
-  // final List<int> columnIds;
+  final List<ColumnPutModel> columns;
 }

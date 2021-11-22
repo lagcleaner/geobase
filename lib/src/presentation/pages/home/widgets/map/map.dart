@@ -31,7 +31,7 @@ class GeoBaseMap extends StatelessWidget {
               minZoom: 2.0,
             ),
             layers: [
-              mapLayerOptions(state.sourceConfiguration),
+              mapLayerOptions(context, state.mapConfiguration),
               markerLayerOptions(context),
               liveLocationLayerOptions(context)
             ],
@@ -41,31 +41,33 @@ class GeoBaseMap extends StatelessWidget {
     );
   }
 
-  LayerOptions markerLayerOptions(BuildContext context) =>
-      context.watch<MarkerCubit>().state.map(
-            failure: (failure) => EmptyLayerOptions(),
-            filteredOut: (markerState) => MarkerLayerOptions(
-              // rotateAlignment: Alignment.center,
-              rotate: true,
-              markers: (markerState.markers)
-                  .map(
-                    (e) => Marker(
-                      point: e.location,
-                      builder: (context) => IconButton(
-                        icon: Icon(
-                          Icons.blur_circular_outlined,
-                          color: e.color ?? Colors.black54,
-                        ),
-                        onPressed: () {
-                          context.read<MapCubit>().markerTouched(e);
-                          //todo: show the view of details in a sliding panel
-                        },
-                      ),
+  LayerOptions markerLayerOptions(BuildContext context) => context
+      .watch<MarkerCubit>()
+      .state
+      .map(
+        failure: (failure) => EmptyLayerOptions(),
+        filteredOut: (markerState) => MarkerLayerOptions(
+          // rotateAlignment: Alignment.center,
+          rotate: true,
+          markers: (markerState.markers)
+              .map(
+                (e) => Marker(
+                  point: e.location,
+                  builder: (context) => IconButton(
+                    icon: Icon(
+                      Icons.blur_circular_outlined,
+                      color: e.color != null ? Color(e.color!) : Colors.black54,
                     ),
-                  )
-                  .toList(),
-            ),
-          );
+                    onPressed: () {
+                      context.read<MapCubit>().markerTouched(e);
+                      //todo: show the view of details in a sliding panel
+                    },
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      );
 
   LayerOptions liveLocationLayerOptions(BuildContext context) =>
       context.watch<LocationCubit>().state.map(
@@ -82,7 +84,7 @@ class GeoBaseMap extends StatelessWidget {
                       color: Colors.black,
                     ),
                     onPressed: () => null,
-                    //todo: show the view to add an new interest point, in a sliding panel
+                    //TODO: show the view to add an new interest point, in a sliding panel
                   ),
                 ),
               ],

@@ -1,57 +1,55 @@
+import 'package:beamer/src/beamer.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.dart';
 
-LayerOptions mapLayerOptions(MapConfigurationEntity source) {
-  if (source.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
+LayerOptions mapLayerOptions(
+    BuildContext context, MapConfigurationEntity configs) {
+  if (configs.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
+
   return TileLayerOptions(
-    urlTemplate: source.extensions.getCastedOrDefault(
+    urlTemplate: configs.options.getCastedOrDefault(
       MAP_SOURCE_URL_TEMPLATE,
       defaultValue: null,
     ),
-    wmsOptions: source.mapSourceType != MapSource.WMS
+    tms: configs.mapSourceType == MapSource.TMS,
+    wmsOptions: configs.mapSourceType != MapSource.WMS
         ? null
         : WMSTileLayerOptions(
-            baseUrl: source.extensions.getCastedOrCrash(
+            baseUrl: configs.options.getCastedOrCrash(
               MAP_SOURCE_WMS_BASE_URL,
             ),
-            layers: source.extensions.getCastedOrDefault(
+            layers: configs.options.getCastedOrDefault(
               MAP_SOURCE_WMS_LAYERS,
               defaultValue: const [],
             ),
-            format: source.extensions.getCastedOrDefault(
+            format: configs.options.getCastedOrDefault(
               MAP_SOURCE_WMS_FORMAT,
               defaultValue: 'image/png',
             ),
-            otherParameters: source.extensions.getCastedOrDefault(
+            otherParameters: configs.options.getCastedOrDefault(
               MAP_SOURCE_WMS_OTHER_PARAMS,
               defaultValue: const {},
             ),
           ),
-    subdomains: source.extensions.getCastedOrDefault(
+    subdomains: configs.options.getCastedOrDefault(
       MAP_SOURCE_SUBDOMAINS,
       defaultValue: const [],
     ),
-    tileProvider: _getTileProvider(source),
-    additionalOptions: source.extensions.getCastedOrDefault(
+    tileProvider: const CachedTileProvider(),
+    additionalOptions: configs.options.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,
       defaultValue: null,
     ),
+    errorTileCallback: (tile, error) {
+      //TODO: SOME VISUAL ALERT
+      context.beamToNamed('/options');
+    },
   );
-}
-
-TileProvider _getTileProvider(MapConfigurationEntity source) {
-  switch (source.mapSourceType) {
-    case MapSource.Assets:
-      return const AssetTileProvider();
-    case MapSource.File:
-      return const FileTileProvider();
-    default:
-      return const CachedTileProvider();
-  }
 }
 
 class EmptyLayerOptions extends LayerOptions {
