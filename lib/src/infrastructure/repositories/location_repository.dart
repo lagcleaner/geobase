@@ -13,7 +13,6 @@ class LocationRepository implements ILocationRepository {
   LocationRepository(
     this.provider,
   ) {
-    provider.initialize();
     _onLocationChangedStreamController = StreamController.broadcast();
     _onLocationChanged = provider.onLocationChanged.listen(
       (event) {
@@ -25,7 +24,7 @@ class LocationRepository implements ILocationRepository {
     );
   }
   late final StreamSubscription _onLocationChanged;
-  //TODO: TEST STREAM CONTROLLER HERE.
+
   late final StreamController<Either<Failure, LatLng>>
       _onLocationChangedStreamController;
   final ILocationProvider provider;

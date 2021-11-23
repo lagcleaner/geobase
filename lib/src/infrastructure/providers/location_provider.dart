@@ -30,30 +30,22 @@ class LocationProvider implements ILocationProvider {
     );
   }
 
-  @override
   Future<bool> initialize() async {
-    var permissionGranted = false;
-    try {
-      final serviceEnabled = await _location.serviceEnabled();
-      if (!serviceEnabled) throw Exception('Service Location Unavailable');
-      final perm = await permission;
-      permissionGranted = PermissionStatus.granted == perm;
-    } catch (e) {
-      log(e.toString());
-    }
-    return permissionGranted;
+    final serviceEnabled = await _location.serviceEnabled();
+    if (!serviceEnabled) throw Exception('Service Location Unavailable');
+    final perm = await permission;
+    return PermissionStatus.granted == perm;
   }
 
   @override
   Future<LatLng> get location async {
-    await _checkInitializationOrThrowException();
+    await initialize();
 
     final data = await _location.getLocation();
     return LatLng(data.latitude!, data.longitude!);
   }
 
   @override
-  // TODO: implement onLocationChanged
   Stream<LatLng> get onLocationChanged {
     // _checkInitializationOrThrowException();
     return _location.onLocationChanged

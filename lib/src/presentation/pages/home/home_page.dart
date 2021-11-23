@@ -91,6 +91,7 @@ class _MapScreen extends StatelessWidget {
           right: 20,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: const [
               _LocationButton(),
               SizedBox(height: 8),
@@ -157,17 +158,17 @@ class _GotoLocationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
       // style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
       onPressed: context.watch<LocationCubit>().state.map(
             loading: (loading) => null,
             disable: (disable) => null,
             enable: (enable) => () {
-              final controller = context.read<MapCubit>().state.mapController;
+              final controller = context.watch<MapCubit>().state.mapController;
               controller.move(enable.location, controller.zoom);
             },
           ),
-      child: const Icon(Icons.moving_outlined),
+      label: const Text('Ir a mi ubicación'),
     );
   }
 }
