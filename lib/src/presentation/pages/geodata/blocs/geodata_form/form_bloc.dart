@@ -8,8 +8,7 @@ abstract class IGeodataFormBloc extends FormBloc<Unit, Failure> {
   InputBloc<int> get categoryId;
   InputBloc<String> get latitude;
   InputBloc<String> get longitude;
-  Map<String, InputBloc> get fieldInputBlocs;
-  Map<String, InputBloc<int?>> get relationInputBlocs;
+  Map<ColumnGetEntity, InputBloc<FieldValueEntity>> get fieldValues;
 
   CategoryGetEntity get category;
 
@@ -18,7 +17,6 @@ abstract class IGeodataFormBloc extends FormBloc<Unit, Failure> {
         categoryId,
         latitude,
         longitude,
-        ...fieldInputBlocs.values,
-        ...relationInputBlocs.values,
+        ...fieldValues.values,
       ];
 }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
+import 'package:geobase/main.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/reflectable_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/not_implemented_list_tile_widget.dart';
@@ -22,8 +23,11 @@ const fieldRenderReflectable = FieldRenderReflectable();
 
 @LazySingleton()
 class FieldRenderResolver {
-  static initializateReflectable() {
-    initializateReflectable();
+  static bool isInitialized = false;
+  static void initializResolver() {
+    // reflectable
+    // initializateReflectable(); //TODO: THIS SHIT IS FUCKING IMPORTANT
+    isInitialized = true;
   }
 
   /// Unsave internal
@@ -45,6 +49,7 @@ class FieldRenderResolver {
     ColumnGetEntity column,
     FieldValueEntity fieldValue,
   ) {
+    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(column.type.renderClass);
       final inputBloc = instance.getInputBloc(fieldValue);
@@ -59,6 +64,7 @@ class FieldRenderResolver {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> inputBloc,
   ) {
+    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(column.type.renderClass);
       final inputWidget = instance.getInputWidget(column, inputBloc);
@@ -72,6 +78,7 @@ class FieldRenderResolver {
   static Widget getViewWidget(
     FieldValueGetEntity fieldValue,
   ) {
+    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(fieldValue.column.type.renderClass);
       final inputWidget = instance.getViewWidget(fieldValue);

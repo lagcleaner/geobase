@@ -4,10 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/widgets/fields/fields.dart';
+import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
-import 'package:geobase/src/presentation/pages/geodata/misc/latlng_format.dart';
 
 class GeodataViewPage extends StatelessWidget {
   const GeodataViewPage({
@@ -49,7 +48,7 @@ class _GeodataViewPageInternal extends StatelessWidget {
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
         title: Text(
-          'Detalles de la Categoría',
+          'Detalles del Punto',
           style: Theme.of(context).textTheme.headline6,
         ),
         iconTheme: Theme.of(context).iconTheme,
@@ -85,40 +84,16 @@ class _GeodataViewBody extends StatelessWidget {
           fetchSuccess: (geodata) {
             return _GeodataViewBodyFetchSuccess(geodata: geodata);
           },
-          fetchFailure: (_) {
-            return _GeodataViewBodyFetchFailure(geodataId: geodataId);
+          fetchFailure: (error) {
+            return FailureAndRetryWidget(
+              errorText: error,
+              onPressed: () {
+                context.read<GeodataViewCubit>().fetch(geodataId);
+              },
+            );
           },
         );
       },
-    );
-  }
-}
-
-class _GeodataViewBodyFetchFailure extends StatelessWidget {
-  const _GeodataViewBodyFetchFailure({
-    Key? key,
-    required this.geodataId,
-  }) : super(key: key);
-
-  final int geodataId;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          const Text(
-            'Ha ocurrido un error durante'
-            ' la obtención de los datos.',
-          ),
-          MainButton(
-            text: 'Reintentar',
-            onPressed: () {
-              context.read<GeodataViewCubit>().fetch(geodataId);
-            },
-          ),
-        ],
-      ),
     );
   }
 }
@@ -190,40 +165,22 @@ class _GeodataViewBasicInfo extends StatelessWidget {
                 dense: true,
                 title: Text(geodata.color?.toString() ?? 'No Especificado'),
                 subtitle: const Text('Color'),
-                trailing: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: geodata.color,
-                  ),
+                trailing: Icon(
+                  Icons.circle,
+                  color: Color(geodata.color ?? Colors.transparent.value),
                 ),
               ),
             ),
           ],
         ),
         const Divider(),
-        const Center(child: Text('Campos')),
-        ...[
-          for (final field in geodata.fields.entries)
-            FieldListTile.widget(field.key, field.value)
-        ],
         if (geodata.fields.isEmpty)
           const ListTile(dense: true, title: Text('Sin Campos')),
-        const Divider(),
-        const Center(child: Text('Relaciones')),
+        if (geodata.fields.isNotEmpty) const Center(child: Text('Campos')),
         ...[
-          for (final relation in geodata.relations.entries)
-            ListTile(
-              dense: true,
-              title: Text(
-                relation.key,
-              ),
-              subtitle: Text(
-                '${relation.key}(${relation.value?.location.visualString() ?? ''})',
-              ),
-            ),
+          for (final field in geodata.fields)
+            FieldRenderResolver.getViewWidget(field)
         ],
-        if (geodata.relations.isEmpty)
-          const ListTile(dense: true, title: Text('Sin Relaciones')),
       ],
     );
   }

@@ -169,12 +169,17 @@ class _GeodataWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListTile(
-            tileColor: geodata.color?.withOpacity(0.5),
+            tileColor: geodata.color != null
+                ? Color(geodata.color!).withOpacity(0.5)
+                : null,
             title: SelectableText(
               '${geodata.category.name}(${geodata.location.visualString()})',
             ),
             subtitle: SelectableText(
-              geodata.category.fields.values.join(','),
+              geodata.fields
+                  .map((e) => e.value.toString())
+                  .join(',')
+                  .substring(0, 100), //if contains a file is a risks
               // overflow: TextOverflow.fade,
             ),
             trailing: IconButton(

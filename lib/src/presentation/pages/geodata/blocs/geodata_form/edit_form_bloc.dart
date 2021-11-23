@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
+import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -18,8 +18,7 @@ abstract class IGeodataEditFormBloc extends IGeodataFormBloc {
         categoryId,
         latitude,
         longitude,
-        ...fieldInputBlocs.values,
-        ...relationInputBlocs.values,
+        ...fieldValues.values,
       ];
 }
 
@@ -61,28 +60,22 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   );
 
   @override
-  late final Map<String, InputBloc> fieldInputBlocs =
-      category.fields.entries.fold(
-    {},
-    (previousValue, element) => previousValue
-      ..putIfAbsent(
-        element.key,
-        () => getInputBloc(element.value)
-          ..pureValue = defaultData.fields[element.key]?.value,
+  late final Map<ColumnGetEntity, InputBloc<FieldValuePutEntity>> fieldValues =
+      Map.fromEntries(
+    defaultData.fields.map(
+      (e) => MapEntry(
+        e.column,
+        (FieldRenderResolver.getInputBloc(
+          e.column,
+          FieldValuePutEntity(
+            id: e.id,
+            geodataId: e.geodataId,
+            value: e.value,
+            columnId: e.id,
+          ),
+        ) as InputBloc<FieldValuePutEntity>?)!,
       ),
-  );
-
-  @override
-  late final Map<String, InputBloc<int?>> relationInputBlocs =
-      category.relations.entries.fold(
-    {},
-    (previousValue, element) => previousValue
-      ..putIfAbsent(
-        element.key,
-        () => InputBloc<int?>(
-          pureValue: defaultData.relations[element.key]?.id,
-        ),
-      ),
+    ),
   );
 
   @override
@@ -91,27 +84,10 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
       GeodataPutEntity(
         id: geodataId.state.value,
         categoryId: categoryId.state.value,
-        location: LatLng(
-          double.parse(latitude.state.value),
-          double.parse(longitude.state.value),
-        ),
-        relations: Map.fromEntries(
-          relationInputBlocs.entries.map(
-            (entry) => MapEntry(entry.key, entry.value.state.value),
-          ),
-        ),
-        fields: Map.fromEntries(
-          fieldInputBlocs.entries.map(
-            (entry) => MapEntry(
-              entry.key,
-              FieldValueEntity(
-                type: category.fields[entry.key] ?? FieldTypeEnum.String,
-                value: entry.value.state.value,
-              ),
-              // TODO: check this way to store fields.
-            ),
-          ),
-        ),
+        latitude: double.parse(latitude.state.value),
+        longitude: double.parse(longitude.state.value),
+        fieldValues:
+            fieldValues.values.map((value) => value.state.value).toList(),
       ),
     );
     return response.fold(

@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/geodata/interfaces/i_geodata.dart';
+import 'package:geobase/src/domain/services/services.dart';
 
 part 'geodataview_cubit.freezed.dart';
 part 'geodataview_state.dart';

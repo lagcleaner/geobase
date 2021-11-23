@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
+import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
-import 'package:latlong2/latlong.dart';
 
 abstract class IGeodataCreateFormBloc extends IGeodataFormBloc {}
 
@@ -39,27 +38,23 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
   );
 
   @override
-  late final Map<String, InputBloc> fieldInputBlocs = Map<String, InputBloc>();
-  //   initialData.category.fields.entries.fold(
-  // {},
-  // (previousValue, element) => previousValue
-  //   ..putIfAbsent(
-  //     element.key,
-  //     () => getInpu tBloc(element.value),
-  //   ),
-  // );
-
-  @override
-  late final Map<String, InputBloc<int?>> relationInputBlocs =
-      initialData.category.relations.entries.fold(
-    {},
-    (previousValue, element) => previousValue
-      ..putIfAbsent(
-        element.key,
-        () => InputBloc<int?>(
-          pureValue: null,
-        ),
+  late final Map<ColumnGetEntity, InputBloc<FieldValuePostEntity>> fieldValues =
+      Map.fromEntries(
+    category.columns.map(
+      (e) => MapEntry(
+        e,
+        FieldRenderResolver.getInputBloc(
+              e,
+              FieldValuePostEntity(value: null, columnId: e.id),
+            ) as InputBloc<FieldValuePostEntity>? ??
+            InputBloc<FieldValuePostEntity>(
+              pureValue: FieldValuePostEntity(
+                columnId: e.id,
+                value: null,
+              ),
+            ),
       ),
+    ),
   );
 
   @override
@@ -67,27 +62,10 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
     final response = await geodataService.createGeodata(
       GeodataPostEntity(
         categoryId: categoryId.state.value,
-        location: LatLng(
-          double.parse(latitude.state.value),
-          double.parse(longitude.state.value),
-        ),
-        relation: Map.fromEntries(
-          relationInputBlocs.entries.map(
-            (entry) => MapEntry(entry.key, entry.value.state.value),
-          ),
-        ),
-        fields: Map.fromEntries(
-          fieldInputBlocs.entries.map(
-            (entry) => MapEntry(
-              entry.key,
-              FieldValueEntity(
-                type: category.fields[entry.key] ?? FieldTypeEnum.String,
-                value: entry.value.state.value,
-              ),
-              // TODO: check this way to store fields.
-            ),
-          ),
-        ),
+        latitude: double.parse(latitude.state.value),
+        longitude: double.parse(longitude.state.value),
+        fieldValues:
+            fieldValues.values.map((value) => value.state.value).toList(),
       ),
     );
     return response.fold(

@@ -2,8 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/categories/interfaces/i_category.dart';
-import 'package:geobase/src/domain/services/map/interfaces/i_location_reader.dart';
+import 'package:geobase/src/domain/services/services.dart';
 import 'package:latlong2/latlong.dart';
 
 part 'geodata_create_cubit.freezed.dart';

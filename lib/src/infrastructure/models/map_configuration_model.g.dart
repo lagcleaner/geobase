@@ -50,8 +50,6 @@ K _$enumDecode<K, V>(
 const _$MapSourceEnumMap = {
   MapSource.WMS: 'WMS',
   MapSource.TMS: 'TMS',
-  MapSource.Assets: 'Assets',
-  MapSource.File: 'File',
-  MapSource.CustomRemote: 'CustomRemote',
+  MapSource.OSM: 'OSM',
   MapSource.Empty: 'Empty',
 };

@@ -31,8 +31,10 @@ class DoubleFieldValueInputWidget extends FieldInputWidget {
       controller: TextEditingCustom.fromValue(
         fieldValue.value?.toString() ?? '0.0',
       ),
-      keyboardType:
-          const TextInputType.numberWithOptions(decimal: true, signed: true),
+      keyboardType: const TextInputType.numberWithOptions(
+        decimal: true,
+        signed: true,
+      ),
       errorText: errorText,
     );
   }
