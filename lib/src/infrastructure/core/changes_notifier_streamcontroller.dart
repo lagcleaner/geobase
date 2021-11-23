@@ -3,7 +3,7 @@ import 'dart:async';
 class ObjectChangeNotifier<T> {
   ObjectChangeNotifier([T? initialObj]) : _state = initialObj;
 
-  late StreamController<T> _changesNotifier;
+  final StreamController<T> _changesNotifier = StreamController();
 
   T? _state;
 
