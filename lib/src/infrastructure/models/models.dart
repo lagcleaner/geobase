@@ -20,3 +20,4 @@ export 'media_get_model.dart';
 export 'media_post_model.dart';
 export 'static_selection_get_model.dart';
 export 'static_selection_post_model.dart';
+export 'user_prefs_model.dart';

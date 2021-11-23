@@ -12,7 +12,7 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
     final fieldTypeId = await FieldTypeDBModel.withFields(
       model.name,
       model.metaType,
-      MEDIA_RENDER_CLASS,
+      model.renderClass ?? MEDIA_RENDER_CLASS,
     ).save();
     if (fieldTypeId == null) throw Exception('Create Media Denied');
     try {

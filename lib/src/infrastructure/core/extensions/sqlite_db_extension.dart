@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:geobase/injection.dart';
@@ -50,8 +49,8 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
   Future<void> populateDB() async {
     try {
       // test if is already initialized
-      final entries = await FieldTypeDBModel().select().toCount();
-      if (entries > 0) return;
+      final entry = await FieldTypeDBModel().select().toSingle();
+      if (entry != null) return;
 
       // insert base types
       for (final name in _baseTypeNames) {
@@ -72,7 +71,7 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
             FieldTypeMediaPostModel(
               name: (row[_nameKey] as String?)!,
               metaType: MEDIA_METATYPE_NAME,
-              renderClass: (row[_renderClassKey] as String?)!,
+              renderClass: row[_renderClassKey] as String?,
               extensions: (row[_extensionKey] as List<String>?)!,
             ),
           );

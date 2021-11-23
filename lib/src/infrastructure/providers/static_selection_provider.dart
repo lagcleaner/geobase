@@ -13,7 +13,7 @@ class StaticSelectionSQLiteProvider
     final fieldTypeId = await FieldTypeDBModel.withFields(
       model.name,
       model.metaType,
-      STATICSELECTION_RENDER_CLASS,
+      model.renderClass ?? STATICSELECTION_RENDER_CLASS,
     ).save();
     if (fieldTypeId == null) throw Exception('Create StaticSelection Denied');
     try {
