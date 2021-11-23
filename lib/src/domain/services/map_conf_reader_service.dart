@@ -15,14 +15,6 @@ class MapConfigurationReaderService implements IMapConfigurationReaderService {
   @override
   Future<Either<Failure, MapConfigurationEntity>>
       loadMapConfigurations() async {
-    // wms
-    return Right(
-      MapConfigurationEntity.wms(
-        baseUrl: 'https://{s}.s2maps-tiles.eu/wms/?',
-        layers: ['s2cloudless-2018_3857'],
-        subdomains: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
-      ),
-    );
-    // return repository.loadMapConfigurations();
+    return repository.loadMapConfigurations();
   }
 }

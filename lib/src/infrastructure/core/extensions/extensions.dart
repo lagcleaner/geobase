@@ -7,3 +7,4 @@ export 'map_configuration_extension.dart';
 export 'media_extension.dart';
 export 'sqlite_db_extension.dart';
 export 'static_selection_extension.dart';
+export 'user_preferences_extension.dart';

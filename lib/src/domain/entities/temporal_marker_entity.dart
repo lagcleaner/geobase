@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:geobase/src/domain/entities/i_markable_entity.dart';
-import 'package:geobase/src/presentation/core/app.dart';
 import 'package:latlong2/latlong.dart';
 
 class TemporalMarkerEntity extends IMarkable {

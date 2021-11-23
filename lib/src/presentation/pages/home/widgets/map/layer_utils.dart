@@ -11,7 +11,7 @@ LayerOptions mapLayerOptions(
   BuildContext context,
   MapConfigurationEntity configs,
 ) {
-  if (configs.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
+  if (configs.mapSourceType == MapSource.Empty) return MarkerLayerOptions();
 
   return TileLayerOptions(
     urlTemplate: configs.options.getCastedOrDefault(
@@ -52,8 +52,4 @@ LayerOptions mapLayerOptions(
       context.beamToNamed('/options');
     },
   );
-}
-
-class EmptyLayerOptions extends LayerOptions {
-  EmptyLayerOptions() : super();
 }

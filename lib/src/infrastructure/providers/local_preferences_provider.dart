@@ -3,12 +3,19 @@ import 'dart:convert';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
-import 'package:geobase/src/infrastructure/models/map_configuration_model.dart';
+import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_local_preferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const _MAP_SOURCE_KEY = 'map.source';
-const _DEFAULT_MAP_SOURCE_CONFIG = MapConfigurationModel(
+// KEYS
+const _MAP_CONFIG_KEY = 'map.config';
+const _PREFERENCES_KEY = 'user.preferences';
+
+// DEFAULT VALUES
+const _DEFAULT_PREFERENCES = UserPreferencesModel(showLocation: false);
+const _DEFAULT_MAP_CONFIG = _OSM_MAP_CONFIG;
+
+const _WMS_MAP_CONFIG = MapConfigurationModel(
   sourceType: MapSource.WMS,
   properties: {
     MAP_SOURCE_WMS_BASE_URL: 'https://{s}.s2maps-tiles.eu/wms/?',
@@ -17,15 +24,24 @@ const _DEFAULT_MAP_SOURCE_CONFIG = MapConfigurationModel(
   },
 );
 
+const _OSM_MAP_CONFIG = MapConfigurationModel(
+  sourceType: MapSource.OSM,
+  properties: {
+    MAP_SOURCE_URL_TEMPLATE:
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    MAP_SOURCE_SUBDOMAINS: ['a', 'b', 'c'],
+  },
+);
+
 @LazySingleton(as: ILocalPreferencesProvider)
 class LocalPreferencesProvider extends ILocalPreferencesProvider {
   @override
   Future<MapConfigurationModel> loadMapConfig() async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = getIt<SharedPreferences>();
 
-    final rawValue = prefs.getString(_MAP_SOURCE_KEY);
+    final rawValue = prefs.getString(_MAP_CONFIG_KEY);
     if (rawValue == null) {
-      return _DEFAULT_MAP_SOURCE_CONFIG;
+      return _DEFAULT_MAP_CONFIG;
     }
     return MapConfigurationModel.fromJson(
       json.decode(rawValue) as Map<String, dynamic>,
@@ -34,8 +50,29 @@ class LocalPreferencesProvider extends ILocalPreferencesProvider {
 
   @override
   Future saveMapConfig(MapConfigurationModel configs) async {
-    final prefs = await SharedPreferences.getInstance();
+    final prefs = getIt<SharedPreferences>();
 
-    await prefs.setString(_MAP_SOURCE_KEY, json.encode(configs.toJson()));
+    await prefs.setString(_MAP_CONFIG_KEY, json.encode(configs.toJson()));
+  }
+
+  @override
+  Future<UserPreferencesModel> loadUserPrefs() async {
+    final prefs = getIt<SharedPreferences>();
+
+    final rawValue = prefs.getString(_PREFERENCES_KEY);
+    if (rawValue == null) {
+      return _DEFAULT_PREFERENCES;
+    }
+    return UserPreferencesModel.fromJson(
+      json.decode(rawValue) as Map<String, dynamic>,
+    );
+  }
+
+  @override
+  Future<void> saveUserPrefs(UserPreferencesModel configs) async {
+    final prefs = getIt<SharedPreferences>();
+
+    await prefs.setString(_PREFERENCES_KEY, json.encode(configs.toJson()));
+    ;
   }
 }

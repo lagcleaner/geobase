@@ -54,7 +54,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
     thickness: 0,
   ),
   primaryColor: primaryBrandColor,
-  accentColor: secondaryBrandColor,
+  // accentColor: secondaryBrandColor,
   highlightColor: highlightColor,
   scaffoldBackgroundColor: backgroundColor,
   canvasColor: backgroundColor,

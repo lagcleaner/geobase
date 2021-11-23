@@ -12,32 +12,30 @@ class GeoBaseMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: BlocBuilder<MapCubit, MapState>(
-        bloc: context.read<MapCubit>()..initialConfigurationsRequested(),
-        builder: (context, state) {
-          if (state.loadingConfigs) {
-            return const Center(
-              child: CircularProgressIndicator(strokeWidth: 2),
-            );
-          }
-          return FlutterMap(
-            options: MapOptions(
-              controller: state.mapController,
-              center: LatLng(51.5, -0.09),
-              //TODO: start position loaded from settings or something
-              zoom: 5.0,
-              maxZoom: 14.0,
-              minZoom: 2.0,
-            ),
-            layers: [
-              mapLayerOptions(context, state.mapConfiguration),
-              markerLayerOptions(context),
-              liveLocationLayerOptions(context)
-            ],
+    return BlocBuilder<MapCubit, MapState>(
+      bloc: context.read<MapCubit>()..initialConfigurationsRequested(),
+      builder: (context, state) {
+        if (state.loadingConfigs) {
+          return const Center(
+            child: CircularProgressIndicator(strokeWidth: 2),
           );
-        },
-      ),
+        }
+        return FlutterMap(
+          options: MapOptions(
+            controller: state.mapController,
+            center: LatLng(51.5, -0.09),
+            //TODO: start position loaded from settings or something
+            zoom: 5.0,
+            maxZoom: 14.0,
+            minZoom: 2.0,
+          ),
+          layers: [
+            mapLayerOptions(context, state.mapConfiguration),
+            markerLayerOptions(context),
+            liveLocationLayerOptions(context)
+          ],
+        );
+      },
     );
   }
 
@@ -45,7 +43,7 @@ class GeoBaseMap extends StatelessWidget {
       .watch<MarkerCubit>()
       .state
       .map(
-        failure: (failure) => EmptyLayerOptions(),
+        failure: (failure) => MarkerLayerOptions(),
         filteredOut: (markerState) => MarkerLayerOptions(
           // rotateAlignment: Alignment.center,
           rotate: true,
@@ -71,8 +69,8 @@ class GeoBaseMap extends StatelessWidget {
 
   LayerOptions liveLocationLayerOptions(BuildContext context) =>
       context.watch<LocationCubit>().state.map(
-            loading: (_) => EmptyLayerOptions(),
-            disable: (_) => EmptyLayerOptions(),
+            loading: (_) => MarkerLayerOptions(),
+            disable: (_) => MarkerLayerOptions(),
             enable: (enableState) => MarkerLayerOptions(
               rotate: true,
               markers: [
