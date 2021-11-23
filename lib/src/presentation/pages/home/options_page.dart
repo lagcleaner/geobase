@@ -28,43 +28,77 @@ class _OptionsInternalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(height: 10),
-        //TODO: OPTION TO NAVEGATE TO CATEGORIES
-        const Divider(
-          height: 16,
-          thickness: 1,
-        ),
-        Text(
-          'Configuración de los tipos',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          'Selección Statica (StaticSelection)', //TODO: NAVIGATE TO TYPE STATIC SELECTION LIST
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        const Divider(
-          height: 16,
-          thickness: 1,
-        ),
-        Text(
-          'Configuración del Mapa',
-          style: Theme.of(context).textTheme.headline4,
-        ),
-        Flexible(
-          child: BlocProvider<MapConfigurationFormBloc>(
-            create: (context) => getIt<MapConfigurationFormBloc>(),
-            child: const SourceOptionsSectionWidget(),
+    return WillPopScope(
+      onWillPop: () async {
+        context.beamToNamed('/map');
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).canvasColor,
+        appBar: AppBar(
+          title: Text(
+            'Opciones',
+            style: Theme.of(context).textTheme.headline6,
           ),
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: true,
         ),
-        const Divider(
-          height: 16,
-          thickness: 1,
-        ),
-      ],
+        body: const _Body(),
+      ),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 10),
+          //TODO: OPTION TO NAVEGATE TO CATEGORIES
+          const Divider(
+            height: 16,
+            thickness: 1,
+          ),
+          Text(
+            'Configuración de los tipos',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            'Selección Statica (StaticSelection)', //TODO: NAVIGATE TO TYPE STATIC SELECTION LIST
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          const Divider(
+            height: 16,
+            thickness: 1,
+          ),
+          Text(
+            'Configuración del Mapa',
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(height: 5),
+          Flexible(
+            child: BlocProvider<MapConfigurationFormBloc>(
+              create: (context) => getIt<MapConfigurationFormBloc>(),
+              child: const SourceOptionsSectionWidget(),
+            ),
+          ),
+          const Divider(
+            height: 16,
+            thickness: 1,
+          ),
+        ],
+      ),
     );
   }
 }

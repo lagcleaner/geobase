@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
+import 'package:icon_picker/material_icons%20all.dart';
 import 'package:latlong2/latlong.dart';
 
 export 'layer_utils.dart';
@@ -23,11 +24,12 @@ class GeoBaseMap extends StatelessWidget {
         return FlutterMap(
           options: MapOptions(
             controller: state.mapController,
-            center: LatLng(51.5, -0.09),
+            center: LatLng(23.12, -82.30),
             //TODO: start position loaded from settings or something
-            zoom: 5.0,
-            maxZoom: 14.0,
-            minZoom: 2.0,
+            zoom: 14.0,
+            maxZoom: 18.0,
+            minZoom: 4.0,
+            onLongPress: (posx) => null, //TODO: ADD A NEW GEODATA
           ),
           layers: [
             mapLayerOptions(context, state.mapConfiguration),
@@ -53,7 +55,8 @@ class GeoBaseMap extends StatelessWidget {
                   point: e.location,
                   builder: (context) => IconButton(
                     icon: Icon(
-                      Icons.blur_circular_outlined,
+                      MaterialIcons.mIcons[e.icon] ??
+                          Icons.blur_circular_outlined,
                       color: e.color != null ? Color(e.color!) : Colors.black54,
                     ),
                     onPressed: () {
@@ -78,7 +81,7 @@ class GeoBaseMap extends StatelessWidget {
                   point: enableState.location,
                   builder: (context) => IconButton(
                     icon: const Icon(
-                      Icons.location_on_outlined,
+                      Icons.location_on_rounded,
                       color: Colors.black,
                     ),
                     onPressed: () => null,

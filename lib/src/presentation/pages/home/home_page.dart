@@ -38,31 +38,34 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               context.beamToNamed('/options');
             },
-            icon: const Icon(Icons.settings_rounded),
+            icon: const Icon(
+              Icons.settings_rounded,
+              color: Colors.white,
+            ),
             label: const SizedBox(),
           ),
         ],
       ),
-      body: SlidingUpPanel(
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<MapCubit>(
-              create: (context) => getIt<MapCubit>(param1: initialLocation),
-              //TODO: recieve initial location as optional arg
-            ),
-            BlocProvider<MarkerCubit>(
-              create: (context) => getIt<MarkerCubit>(),
-            ),
-            BlocProvider<LocationCubit>(
-              create: (context) => getIt<LocationCubit>(),
-            ),
-          ],
-          child: const _MapScreen(),
-        ),
-        panel: const SizedBox(
-          height: 8,
-        ),
+      // body: SlidingUpPanel(
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<MapCubit>(
+            create: (context) => getIt<MapCubit>(param1: initialLocation),
+            //TODO: recieve initial location as optional arg
+          ),
+          BlocProvider<MarkerCubit>(
+            create: (context) => getIt<MarkerCubit>(),
+          ),
+          BlocProvider<LocationCubit>(
+            create: (context) => getIt<LocationCubit>(),
+          ),
+        ],
+        child: const _MapScreen(),
       ),
+      //   panel: const SizedBox(
+      //       // height: 8,
+      //       ),
+      // ),
     );
   }
 }
@@ -79,9 +82,9 @@ class _MapScreen extends StatelessWidget {
       children: [
         const GeoBaseMap(),
         //Left top
-        const Positioned(top: 200, left: 20, child: _OptionsButton()),
+        const Positioned(top: 110, left: 20, child: _OptionsButton()),
         //Right top
-        const Positioned(top: 200, right: 20, child: _FiltersButton()),
+        const Positioned(top: 110, right: 20, child: _FiltersButton()),
         //Right bottom
         Positioned(
           bottom: 20,
@@ -97,7 +100,7 @@ class _MapScreen extends StatelessWidget {
         ),
         //Left bottom
         Positioned(
-          top: 200,
+          top: 110,
           left: 20,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -119,6 +122,7 @@ class _GeodataListButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       elevation: 0,
       onPressed: () {
         context.beamToNamed('/geodata');
@@ -136,6 +140,7 @@ class _FiltersButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       elevation: 0,
       onPressed: () {
         //TODO: SHOW DIALOG TO FILTER MAP MARKERS
@@ -176,6 +181,7 @@ class _OptionsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       elevation: 0,
       onPressed: () {
         context.beamToNamed('/options');
@@ -193,6 +199,7 @@ class _LocationButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      heroTag: null,
       elevation: 0,
       onPressed: context.watch<LocationCubit>().state.maybeMap(
             enable: (_) => context.read<LocationCubit>().disableLocation,

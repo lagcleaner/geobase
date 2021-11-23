@@ -35,15 +35,11 @@ class LocationProvider implements ILocationProvider {
     var permissionGranted = false;
     try {
       final serviceEnabled = await _location.serviceEnabled();
-      permissionGranted =
-          serviceEnabled && (await permission) == PermissionStatus.granted;
+      if (!serviceEnabled) throw Exception('Service Location Unavailable');
+      final perm = await permission;
+      permissionGranted = PermissionStatus.granted == perm;
     } catch (e) {
       log(e.toString());
-      // if (e.code == 'PERMISSION_DENIED') {
-      //   _serviceError = e.message;
-      // } else if (e.code == 'SERVICE_STATUS_ERROR') {
-      //   _serviceError = e.message;
-      // }
     }
     return permissionGranted;
   }
@@ -73,11 +69,7 @@ class LocationProvider implements ILocationProvider {
   }
 
   Future<void> _checkInitializationOrThrowException() async {
-    if (await permission != PermissionStatus.granted) {
-      final isInitialized = await initialize();
-      if (!isInitialized) throw Exception('Location service not initialized.');
-    } else {
-      throw Exception('Location service not permited.');
-    }
+    final isInitialized = await initialize();
+    if (!isInitialized) throw Exception('Location service not initialized.');
   }
 }

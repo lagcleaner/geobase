@@ -11,13 +11,11 @@ import 'package:injectable/injectable.dart';
 class ConfigurationRepository implements IConfigurationRepository {
   ConfigurationRepository(
     this.provider,
-  ) {
-    _changesUserPreferencesNotifier =
-        ObjectChangeNotifier<UserPreferencesEntity>();
-  }
+  );
 
-  late final ObjectChangeNotifier<UserPreferencesEntity>
-      _changesUserPreferencesNotifier;
+  final ObjectChangeNotifier<UserPreferencesEntity>
+      _changesUserPreferencesNotifier =
+      ObjectChangeNotifier<UserPreferencesEntity>();
 
   final ILocalPreferencesProvider provider;
 

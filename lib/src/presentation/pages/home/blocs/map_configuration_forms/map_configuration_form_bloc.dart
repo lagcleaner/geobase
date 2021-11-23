@@ -14,7 +14,7 @@ class MapConfigurationFormBloc
   MapConfigurationFormBloc({
     required this.readerService,
     required this.writterService,
-  }) {
+  }) : super(isLoading: true) {
     addFieldBlocs(
       fieldBlocs: [
         source,
@@ -64,31 +64,15 @@ class MapConfigurationFormBloc
     ],
   );
 
-  final MultiSelectFieldBloc<String, dynamic> subdomains = MultiSelectFieldBloc(
-    items: ['a', 'b', 'c', 'd', 'e'],
-  );
-
   final ListFieldBloc<TextFieldBloc> wmsLayers = ListFieldBloc();
+
+  final ListFieldBloc<TextFieldBloc> subdomains = ListFieldBloc();
 
   final IMapConfigurationReaderService readerService;
   final IMapConfigurationWritterService writterService;
 
-  Future<void> addNewLayer() async {
-    wmsLayers.addFieldBloc(
-      TextFieldBloc(
-        validators: [
-          StringValidator.required,
-        ],
-      ),
-    );
-  }
-
-  void removeLayer(int index) {
-    if (index == 0) return;
-    wmsLayers.removeFieldBlocAt(index);
-  }
-
   void _addFieldBlocsBySource(MapConfigurationEntity configs) {
+    source.updateValue(configs.mapSourceType);
     switch (configs.mapSourceType) {
       case MapSource.WMS:
         addFieldBlocs(
@@ -103,29 +87,21 @@ class MapConfigurationFormBloc
                     'image/png',
               ),
             wmsLayers,
-            subdomains
-              ..updateInitialValue(
-                configs.options[MAP_SOURCE_SUBDOMAINS] as List<String>?,
-              ),
+            subdomains,
           ],
         );
-        final layersSaved =
-            configs.options[MAP_SOURCE_WMS_LAYERS] as List<String>?;
-        if (layersSaved?.isNotEmpty ?? true) {
-          wmsLayers.removeFieldBlocsWhere((f) => true);
-          wmsLayers.addFieldBloc(
-            TextFieldBloc(validators: [StringValidator.required]),
-          );
-          for (final layer in layersSaved!) {
-            wmsLayers.addFieldBloc(
-              TextFieldBloc(
-                initialValue: layer,
-                validators: [StringValidator.required],
-              ),
-            );
-          }
-        }
-
+        _initiailizeListFieldBloc(
+          wmsLayers,
+          (configs.options[MAP_SOURCE_WMS_LAYERS] as List?)
+              ?.map((item) => item as String)
+              .toList(),
+        );
+        _initiailizeListFieldBloc(
+          subdomains,
+          (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
+              ?.map((item) => item as String)
+              .toList(),
+        );
         break;
       case MapSource.TMS:
         addFieldBlocs(
@@ -142,13 +118,16 @@ class MapConfigurationFormBloc
           fieldBlocs: [
             urlTemplate
               ..updateInitialValue(
-                configs.options[MAP_SOURCE_WMS_BASE_URL] as String?,
+                configs.options[MAP_SOURCE_URL_TEMPLATE] as String?,
               ),
-            subdomains
-              ..updateInitialValue(
-                configs.options[MAP_SOURCE_SUBDOMAINS] as List<String>?,
-              ),
+            subdomains,
           ],
+        );
+        _initiailizeListFieldBloc(
+          subdomains,
+          (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
+              ?.map((item) => item as String)
+              .toList(),
         );
         break;
       case MapSource.Empty:
@@ -188,13 +167,15 @@ class MapConfigurationFormBloc
     final configs = MapConfigurationEntity(
       sourceType: source.value,
       sourceProperties: {
-        MAP_SOURCE_URL_TEMPLATE: urlTemplate.state.value,
-        MAP_SOURCE_SUBDOMAINS: subdomains.state.value,
+        MAP_SOURCE_URL_TEMPLATE: urlTemplate.value,
+        MAP_SOURCE_SUBDOMAINS:
+            subdomains.value.map((e) => e.value).where((e) => e != '').toList(),
         // MAP_SOURCE_ADITIONAL_OPTIONS: aditionalOptions.state.value,
         // MAP_SOURCE_WMS_OTHER_PARAMS: wmsOtherParams.state.value,
-        MAP_SOURCE_WMS_BASE_URL: wmsBaseUrl.state.value,
-        MAP_SOURCE_WMS_LAYERS: wmsLayers.value.map((e) => e.value).toList(),
-        MAP_SOURCE_WMS_FORMAT: wmsFormat.state.value,
+        MAP_SOURCE_WMS_BASE_URL: wmsBaseUrl.value,
+        MAP_SOURCE_WMS_LAYERS:
+            wmsLayers.value.map((e) => e.value).where((e) => e != '').toList(),
+        MAP_SOURCE_WMS_FORMAT: wmsFormat.value,
       },
     );
     final result = await writterService.setMapConfigurations(configs);
@@ -208,4 +189,58 @@ class MapConfigurationFormBloc
       },
     );
   }
+}
+
+void _initiailizeListFieldBloc(
+  ListFieldBloc<TextFieldBloc> listBloc,
+  List<String>? defaultValues,
+) {
+  listBloc.removeFieldBlocsWhere((f) => true);
+  if (defaultValues?.isNotEmpty ?? false) {
+    for (final element in defaultValues!) {
+      _addAutoRemovableField(listBloc, element);
+    }
+  }
+  _addAutoRemovableField(listBloc, '');
+}
+
+void _addAutoRemovableField(
+  ListFieldBloc<TextFieldBloc> listBloc,
+  String? initialValue,
+) {
+  final self = TextFieldBloc(
+    initialValue: initialValue,
+    validators: [],
+  );
+  self.addValidators([notRequiredLastIfIsNotAlone(listBloc, self)]);
+
+  listBloc.addFieldBloc(
+    self
+      ..onValueChanges(
+        onData: (prev, curr) async* {
+          if (listBloc.value.last != self && (curr.value ?? '') == '') {
+            listBloc.removeFieldBlocsWhere((element) {
+              return element == self;
+            });
+          }
+          if (listBloc.value.last == self &&
+              (prev.value ?? '') == '' &&
+              (curr.value ?? '') != '') {
+            _addAutoRemovableField(listBloc, '');
+          }
+        },
+      ),
+  );
+}
+
+String? Function(String?) notRequiredLastIfIsNotAlone(
+  ListFieldBloc<TextFieldBloc> listBloc,
+  TextFieldBloc self,
+) {
+  return (e) {
+    if (listBloc.value.length > 1 && listBloc.value.last == self) {
+      return null;
+    }
+    return StringValidator.required(e);
+  };
 }

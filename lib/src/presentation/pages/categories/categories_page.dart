@@ -107,6 +107,9 @@ class _Body extends StatelessWidget {
           },
           fetchSuccess: (categories) {
             return ListView(
+              physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
               children: [
                 _QueryInput(
                   key: queryWidgetKey,

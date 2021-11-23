@@ -25,23 +25,34 @@ LayerOptions mapLayerOptions(
             baseUrl: configs.options.getCastedOrCrash(
               MAP_SOURCE_WMS_BASE_URL,
             ),
-            layers: configs.options.getCastedOrDefault(
-              MAP_SOURCE_WMS_LAYERS,
-              defaultValue: const [],
-            ),
+            layers: configs.options
+                .getCastedOrDefault<List>(
+                  MAP_SOURCE_WMS_LAYERS,
+                  defaultValue: const [],
+                )
+                .map((e) => e as String)
+                .toList(),
             format: configs.options.getCastedOrDefault(
               MAP_SOURCE_WMS_FORMAT,
               defaultValue: 'image/png',
             ),
-            otherParameters: configs.options.getCastedOrDefault(
-              MAP_SOURCE_WMS_OTHER_PARAMS,
-              defaultValue: const {},
+            otherParameters: Map.fromEntries(
+              configs.options
+                  .getCastedOrDefault<Map>(
+                    MAP_SOURCE_WMS_OTHER_PARAMS,
+                    defaultValue: const {},
+                  )
+                  .entries
+                  .map((e) => e as MapEntry<String, String>),
             ),
           ),
-    subdomains: configs.options.getCastedOrDefault(
-      MAP_SOURCE_SUBDOMAINS,
-      defaultValue: const [],
-    ),
+    subdomains: configs.options
+        .getCastedOrDefault<List>(
+          MAP_SOURCE_SUBDOMAINS,
+          defaultValue: const [],
+        )
+        .map((e) => e as String)
+        .toList(),
     tileProvider: const CachedTileProvider(),
     additionalOptions: configs.options.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,

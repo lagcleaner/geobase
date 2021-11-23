@@ -36,18 +36,24 @@ class _GeodataPageInternal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
-        title: Text(
-          '$APP_NAME Datos Georeferenciados',
-          style: Theme.of(context).textTheme.headline6,
+    return WillPopScope(
+      onWillPop: () async {
+        context.beamToNamed('/map');
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).canvasColor,
+        appBar: AppBar(
+          title: Text(
+            'Datos Almacenados',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: true,
         ),
-        iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
+        body: _Body(),
+        floatingActionButton: const _FloatingActionButton(),
       ),
-      body: _Body(),
-      floatingActionButton: const _FloatingActionButton(),
     );
   }
 }
@@ -101,6 +107,9 @@ class _Body extends StatelessWidget {
           },
           fetchSuccess: (geodataList) {
             return ListView(
+              physics: const AlwaysScrollableScrollPhysics(
+                parent: BouncingScrollPhysics(),
+              ),
               children: [
                 _QueryInput(key: queryWidgetKey),
                 for (final geodata in geodataList)

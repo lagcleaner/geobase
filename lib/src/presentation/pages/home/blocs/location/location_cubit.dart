@@ -48,6 +48,7 @@ class LocationCubit extends Cubit<LocationState> {
       },
       orElse: () async {},
     );
+    await Future.delayed(const Duration(seconds: 1), _loadInitialState);
   }
 
   Future<void> disableLocation() async {
@@ -59,6 +60,7 @@ class LocationCubit extends Cubit<LocationState> {
       },
       orElse: () async {},
     );
+    await Future.delayed(const Duration(seconds: 1), _loadInitialState);
   }
 
   Future<void> _loadInitialState() async {
