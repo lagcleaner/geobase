@@ -19,7 +19,7 @@ Future initializeApp() async {
 
   configureInjection(Environment.prod);
 
-  await getIt<GeobaseModel>().initialize();
+  await GeobaseModel().initialize();
 
   FieldRenderResolver.initializResolver();
 

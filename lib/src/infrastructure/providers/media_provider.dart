@@ -9,7 +9,6 @@ import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 class MediaSQLiteProvider implements IFieldTypeMediaProvider {
   @override
   Future<int> create(FieldTypeMediaPostModel model) async {
-    await GeobaseModel().batchStart();
     final fieldTypeId = await FieldTypeDBModel.withFields(
       model.name,
       model.metaType,
@@ -22,10 +21,8 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
         fieldTypeId,
       ).save();
       if (id == null) throw Exception('Create Media Denied');
-      await GeobaseModel().batchCommit();
       return id;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }

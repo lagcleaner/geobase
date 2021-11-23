@@ -8,7 +8,6 @@ import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 class CategoriesSQLiteProvider implements ICategoriesProvider {
   @override
   Future<int> create(CategoryPostModel model) async {
-    await GeobaseModel().batchStart();
     try {
       final categoryId = await CategoryDBModel.withFields(
         model.name,
@@ -26,17 +25,14 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
           ),
         );
       }
-      await GeobaseModel().batchCommit();
       return categoryId;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }
 
   @override
   Future<int> edit(CategoryPutModel model) async {
-    await GeobaseModel().batchStart();
     try {
       final categoryId = await CategoryDBModel.withId(
         model.id,
@@ -49,10 +45,8 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
       for (final col in model.columns) {
         await getIt<IColumnsProvider>().edit(col);
       }
-      await GeobaseModel().batchCommit();
       return categoryId;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }

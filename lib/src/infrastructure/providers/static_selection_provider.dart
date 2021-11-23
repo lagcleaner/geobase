@@ -10,7 +10,6 @@ class StaticSelectionSQLiteProvider
     implements IFieldTypeStaticSelectionProvider {
   @override
   Future<int> create(FieldTypeStaticSelectionPostModel model) async {
-    await GeobaseModel().batchStart();
     final fieldTypeId = await FieldTypeDBModel.withFields(
       model.name,
       model.metaType,
@@ -23,10 +22,8 @@ class StaticSelectionSQLiteProvider
         fieldTypeId,
       ).save();
       if (id == null) throw Exception('Create StaticSelection Denied');
-      await GeobaseModel().batchCommit();
       return id;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }

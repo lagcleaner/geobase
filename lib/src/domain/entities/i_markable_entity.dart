@@ -1,4 +1,3 @@
-import 'package:geobase/src/presentation/core/app.dart';
 import 'package:latlong2/latlong.dart';
 
 abstract class IMarkable {

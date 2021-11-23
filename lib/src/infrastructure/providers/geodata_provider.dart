@@ -9,7 +9,6 @@ import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 class GeodataSQLiteProvider implements IGeodataProvider {
   @override
   Future<int> create(GeodataPostModel model) async {
-    await GeobaseModel().batchStart();
     try {
       final geodataId = await GeodataDBModel.withFields(
         model.longitude,
@@ -26,17 +25,14 @@ class GeodataSQLiteProvider implements IGeodataProvider {
           ),
         );
       }
-      await GeobaseModel().batchCommit();
       return geodataId;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }
 
   @override
   Future<int> edit(GeodataPutModel model) async {
-    await GeobaseModel().batchStart();
     try {
       final geodataId = await GeodataDBModel.withId(
         model.id,
@@ -48,10 +44,8 @@ class GeodataSQLiteProvider implements IGeodataProvider {
       for (final fv in model.fieldValues) {
         await getIt<IFieldValueProvider>().edit(fv);
       }
-      await GeobaseModel().batchCommit();
       return geodataId;
     } catch (e) {
-      GeobaseModel().batchRollback();
       rethrow;
     }
   }

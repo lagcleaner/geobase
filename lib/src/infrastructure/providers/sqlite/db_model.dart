@@ -1,3 +1,10 @@
+import 'dart:convert';
+// import 'dart:typed_data';
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:http/http.dart' as http;
 import 'package:sqfentity/sqfentity.dart';
 import 'package:sqfentity_gen/sqfentity_gen.dart';
 
@@ -99,40 +106,6 @@ const tableMedia = SqfEntityTable(
   ],
 );
 
-const VIEW_FTStaticSelections = SqfEntityTable(
-  tableName: 'VStaticSelections',
-  objectType: ObjectType.view,
-  fields: [
-    SqfEntityField('name', DbType.text, isUnique: true, isNotNull: true),
-    SqfEntityField('meta_type', DbType.text, isNotNull: true),
-    SqfEntityField('render_name', DbType.text, isNotNull: true),
-    SqfEntityField('options', DbType.text, isNotNull: true),
-    SqfEntityFieldRelationship(
-      parentTable: tableFieldType,
-      fieldName: 'field_type_id',
-      isNotNull: true,
-      deleteRule: DeleteRule.NO_ACTION,
-    ),
-    SqfEntityFieldRelationship(
-      parentTable: tableStaticSelection,
-      isNotNull: true,
-      deleteRule: DeleteRule.NO_ACTION,
-      fieldName: 'static_selection_id',
-      isPrimaryKeyField: false,
-    ),
-  ],
-  sqlStatement: '''
-    SELECT
-    static_selection_id,
-    field_type_id,
-    FieldType.name AS name,
-    FieldType.meta_type AS meta_type,
-    StaticSelection.options AS options
-  FROM
-    StaticSelection
-  INNER JOIN FieldType ON FieldType.field_type_id = StaticSelection.field_type_id''',
-);
-
 const tableColumn = SqfEntityTable(
   tableName: COLUMN_TABLE_NAME,
   modelName: 'ColumnDBModel',
@@ -178,32 +151,6 @@ const tableFieldValue = SqfEntityTable(
   ],
 );
 
-const VIEW_Markers = SqfEntityTable(
-  tableName: 'VMarkers',
-  objectType: ObjectType.view,
-  fields: [
-    SqfEntityField('kind', DbType.text, isNotNull: true),
-    SqfEntityField('icon', DbType.text),
-    SqfEntityField('color', DbType.integer),
-    SqfEntityFieldRelationship(
-      parentTable: tableGeodata,
-      isNotNull: true,
-      deleteRule: DeleteRule.NO_ACTION,
-      fieldName: 'geodata_id',
-      isPrimaryKeyField: false,
-    ),
-  ],
-  sqlStatement: '''
-    SELECT
-    geodata_id,
-    Category.name AS kind,
-    Category.icon AS icon,
-    Category.color AS color
-  FROM
-    Geodata
-  INNER JOIN Category ON Category.category_id = Geodata.category_id''',
-);
-
 @SqfEntityBuilder(geobaseDBModel)
 const geobaseDBModel = SqfEntityModel(
   modelName: 'GeobaseModel',
@@ -216,8 +163,6 @@ const geobaseDBModel = SqfEntityModel(
     tableStaticSelection,
     tableMedia,
     tableFieldValue,
-    VIEW_Markers,
-    VIEW_FTStaticSelections,
   ],
   dbVersion: 1,
 );

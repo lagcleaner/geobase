@@ -24,13 +24,13 @@ const _extensionKey = 'extensions';
 const _mediaTypesInitialRows = [
   {
     _nameKey: 'Image',
-    _extensionKey: ['jpg', 'jpeg', 'png'],
+    _extensionKey: ['*'],
     _renderClassKey:
         '${MEDIA_METATYPE_NAME}Image$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
   },
   {
     _nameKey: 'Audio',
-    _extensionKey: ['mp3', 'm3a'],
+    _extensionKey: ['*'],
     _renderClassKey:
         '${MEDIA_METATYPE_NAME}Audio$DEFAULT_RENDER_CLASS_NAME_SUFFIX',
   },
@@ -48,7 +48,6 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
   }
 
   Future<void> populateDB() async {
-    await batchStart();
     try {
       // test if is already initialized
       final entries = await FieldTypeDBModel().select().toCount();
@@ -73,7 +72,8 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
             FieldTypeMediaPostModel(
               name: (row[_nameKey] as String?)!,
               metaType: MEDIA_METATYPE_NAME,
-              extensions: (row[_renderClassKey] as List<String>?)!,
+              renderClass: (row[_renderClassKey] as String?)!,
+              extensions: (row[_extensionKey] as List<String>?)!,
             ),
           );
         } catch (e) {
@@ -81,9 +81,7 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
           throw Exception('Invalid Insert Database Action At init.');
         }
       }
-      await batchCommit();
     } catch (e) {
-      batchRollback();
       rethrow;
     }
   }

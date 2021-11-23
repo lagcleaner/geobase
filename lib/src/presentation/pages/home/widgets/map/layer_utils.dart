@@ -1,4 +1,4 @@
-import 'package:beamer/src/beamer.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
@@ -8,7 +8,9 @@ import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.dart';
 
 LayerOptions mapLayerOptions(
-    BuildContext context, MapConfigurationEntity configs) {
+  BuildContext context,
+  MapConfigurationEntity configs,
+) {
   if (configs.mapSourceType == MapSource.Empty) return EmptyLayerOptions();
 
   return TileLayerOptions(
