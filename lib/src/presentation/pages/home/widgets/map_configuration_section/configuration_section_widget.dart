@@ -16,49 +16,60 @@ class SourceOptionsSectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocBuilder<
-        MapConfigurationFormBloc,
-        FormBlocState<MapConfigurationEntity, String>,
-        MapConfigurationEntity,
-        String>(
-      bloc: context.read<MapConfigurationFormBloc>(),
-      onLoadFailed: (failure) => FailureAndRetryWidget(
-        errorText:
-            'Tenemos problemas para cargar la configuración :( ${failure ?? ''}',
-        onPressed: () {
-          return context.read<MapConfigurationFormBloc>().reload();
-        },
-      ),
-      onFailure: (failure) => FailureAndRetryWidget(
-        errorText:
-            'Tenemos problemas para guardar la configuración :( ${failure ?? ''}',
-        onPressed: () {
-          return context.read<MapConfigurationFormBloc>().reload();
-        },
-      ),
-      onLoading: () => Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          color: Theme.of(context).primaryColor,
+    return FormBlocListener(
+      formBloc: context.read<MapConfigurationFormBloc>(),
+      onSuccess: (context, state) => ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green.shade900,
+            content: const Text('Se actualizó la configuración del mapa.'),
+          ),
         ),
-      ),
-      orElse: () => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          const Flexible(child: _SourceSelector()),
-          const Flexible(child: _UrlTemplateInput()),
-          const Flexible(child: _WMSBaseUrlInput()),
-          const Flexible(child: _WMSFormatInput()),
-          const Flexible(child: _WMSLayersInput()),
-          const Flexible(child: _SubdomainsInput()),
-          const SizedBox(height: 10),
-          MainButton(
-            text: 'Guardar Configuración',
-            onPressed: () {
-              context.read<MapConfigurationFormBloc>().submit();
-            },
-          )
-        ],
+      child: FormBlocBuilder<
+          MapConfigurationFormBloc,
+          FormBlocState<MapConfigurationEntity, String>,
+          MapConfigurationEntity,
+          String>(
+        bloc: context.read<MapConfigurationFormBloc>(),
+        onLoadFailed: (failure) => FailureAndRetryWidget(
+          errorText:
+              'Tenemos problemas para cargar la configuración :( ${failure ?? ''}',
+          onPressed: () {
+            return context.read<MapConfigurationFormBloc>().reload();
+          },
+        ),
+        onFailure: (failure) => FailureAndRetryWidget(
+          errorText:
+              'Tenemos problemas para guardar la configuración :( ${failure ?? ''}',
+          onPressed: () {
+            return context.read<MapConfigurationFormBloc>().reload();
+          },
+        ),
+        onLoading: () => Center(
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        orElse: () => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Flexible(child: _SourceSelector()),
+            const Flexible(child: _UrlTemplateInput()),
+            const Flexible(child: _WMSBaseUrlInput()),
+            const Flexible(child: _WMSFormatInput()),
+            const Flexible(child: _WMSLayersInput()),
+            const Flexible(child: _SubdomainsInput()),
+            const SizedBox(height: 10),
+            MainButton(
+              text: 'Guardar Configuración',
+              onPressed: () {
+                context.read<MapConfigurationFormBloc>().submit();
+              },
+            )
+          ],
+        ),
       ),
     );
   }

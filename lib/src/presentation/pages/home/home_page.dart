@@ -157,10 +157,8 @@ class _GotoLocationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      icon: const Icon(Icons.my_location_rounded),
-      label: const SizedBox(),
-      style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
+    return FloatingActionButton(
+      // style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
       onPressed: context.watch<LocationCubit>().state.map(
             loading: (loading) => null,
             disable: (disable) => null,
@@ -169,6 +167,7 @@ class _GotoLocationButton extends StatelessWidget {
               controller.move(enable.location, controller.zoom);
             },
           ),
+      child: const Icon(Icons.moving_outlined),
     );
   }
 }
