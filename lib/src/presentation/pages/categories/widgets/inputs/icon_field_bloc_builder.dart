@@ -198,13 +198,13 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
 
   void _showPicker(BuildContext context) async {
     FocusScope.of(context).requestFocus(FocusNode());
-
     final Map<String, dynamic>? iconPicked = await showDialog(
       context: context,
       useRootNavigator: widget.useRootNavigator,
       useSafeArea: true,
       builder: (BuildContext context) => IconPickerDialog(
         title: 'Seleccione un Icono',
+        iconCollection: MaterialIcons.mIcons,
         cancelBtn: 'Cancelar',
       ),
     );
@@ -276,16 +276,20 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
 
               return GestureDetector(
                 onTap: !isEnabled ? null : () => _showPicker(context),
-                child: InputDecorator(
-                  decoration:
-                      _buildDecoration(context, state, isEnabled).copyWith(
-                    prefixIcon: state.value != null
-                        ? Icon(MaterialIcons.mIcons[state.value])
-                        : null,
+                child: Padding(
+                  padding:
+                      widget.padding ?? const EdgeInsets.symmetric(vertical: 7),
+                  child: InputDecorator(
+                    decoration:
+                        _buildDecoration(context, state, isEnabled).copyWith(
+                      prefixIcon: state.value != null
+                          ? Icon(MaterialIcons.mIcons[state.value])
+                          : null,
+                    ),
+                    isEmpty: state.value == null &&
+                        widget.decoration.hintText == null,
+                    child: child,
                   ),
-                  isEmpty:
-                      state.value == null && widget.decoration.hintText == null,
-                  child: child,
                 ),
               );
             },

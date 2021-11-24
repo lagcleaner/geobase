@@ -24,32 +24,38 @@ class NotFoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  wrongUrl,
-                  style: Theme.of(context).textTheme.headline4,
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 50),
-                const Text(
-                  'Página No Encontrada',
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 10),
-                MainButton(
-                  onPressed: () {
-                    context.beamToNamed('/map');
-                  },
-                  text: 'Regresar',
-                ),
-              ],
+    return WillPopScope(
+      onWillPop: () async {
+        context.beamToNamed('/map');
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    wrongUrl,
+                    style: Theme.of(context).textTheme.headline4,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 50),
+                  const Text(
+                    'Página No Encontrada',
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 10),
+                  MainButton(
+                    onPressed: () {
+                      context.beamToNamed('/map');
+                    },
+                    text: 'Regresar',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

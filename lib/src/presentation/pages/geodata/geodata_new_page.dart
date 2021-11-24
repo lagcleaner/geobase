@@ -58,10 +58,7 @@ class _GeodataCreatePageInternal extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: Text(
-            'Nuevo Punto de Interés',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          title: const Text('Nuevo Punto de Interés'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),

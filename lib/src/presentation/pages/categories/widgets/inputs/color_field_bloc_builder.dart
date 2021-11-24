@@ -195,18 +195,24 @@ class _ColorFieldBlocBuilderBaseState extends State<ColorFieldBlocBuilderBase> {
     }
   }
 
-  void _showPicker(BuildContext context) async {
+  Future<void> _showPicker(BuildContext context) async {
     FocusScope.of(context).requestFocus(FocusNode());
+    var curColor = widget.colorFieldBloc.value != null
+        ? Color(widget.colorFieldBloc.value!.value)
+        : Colors.white;
     final Color? result = await showDialog(
       context: context,
-      useRootNavigator: widget.useRootNavigator,
+      useRootNavigator: false, //widget.useRootNavigator,
       builder: (BuildContext context) => AlertDialog(
         titlePadding: EdgeInsets.zero,
         contentPadding: EdgeInsets.zero,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(15)),
+        ),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: widget.colorFieldBloc.value ?? Colors.white,
-            onColorChanged: (newColor) => Navigator.pop(context, newColor),
+            pickerColor: curColor,
+            onColorChanged: (newColor) => curColor = newColor,
             pickerAreaHeightPercent: 0.7,
             displayThumbColor: true,
             pickerAreaBorderRadius: const BorderRadius.only(
@@ -215,6 +221,13 @@ class _ColorFieldBlocBuilderBaseState extends State<ColorFieldBlocBuilderBase> {
             ),
           ),
         ),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(curColor);
+              },
+              child: const Text('Aceptar'))
+        ],
       ),
     );
     if (result != null) {
@@ -283,19 +296,23 @@ class _ColorFieldBlocBuilderBaseState extends State<ColorFieldBlocBuilderBase> {
 
               return GestureDetector(
                 onTap: !isEnabled ? null : () => _showPicker(context),
-                child: InputDecorator(
-                  decoration:
-                      _buildDecoration(context, state, isEnabled).copyWith(
-                    prefixIcon: state.value != null
-                        ? Icon(
-                            Icons.circle,
-                            color: state.value,
-                          )
-                        : null,
+                child: Padding(
+                  padding:
+                      widget.padding ?? const EdgeInsets.symmetric(vertical: 7),
+                  child: InputDecorator(
+                    decoration:
+                        _buildDecoration(context, state, isEnabled).copyWith(
+                      prefixIcon: state.value != null
+                          ? Icon(
+                              Icons.circle,
+                              color: state.value,
+                            )
+                          : null,
+                    ),
+                    isEmpty: state.value == null &&
+                        widget.decoration.hintText == null,
+                    child: child,
                   ),
-                  isEmpty:
-                      state.value == null && widget.decoration.hintText == null,
-                  child: child,
                 ),
               );
             },

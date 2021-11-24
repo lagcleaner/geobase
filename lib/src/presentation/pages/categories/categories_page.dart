@@ -4,10 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
-import 'package:geobase/src/presentation/pages/categories/blocS/categories/categories_bloc.dart';
-import 'package:icon_picker/material_icons%20all.dart';
+import 'package:geobase/src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart';
+import 'package:icon_picker/material_icons.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({Key? key}) : super(key: key);
@@ -23,7 +22,7 @@ class CategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CategoriesBloc>(),
+      create: (_) => getIt<CategoryListBloc>(),
       child: const _CategoriesPageInternal(),
     );
   }
@@ -34,18 +33,21 @@ class _CategoriesPageInternal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
-        title: Text(
-          '$APP_NAME Categorías',
-          style: Theme.of(context).textTheme.headline6,
+    return WillPopScope(
+      onWillPop: () async {
+        context.beamToNamed('/options');
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).canvasColor,
+        appBar: AppBar(
+          title: const Text('Lista de Categorías'),
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: true,
         ),
-        iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
+        body: _Body(),
+        floatingActionButton: const _FloatingActionButton(),
       ),
-      body: _Body(),
-      floatingActionButton: const _FloatingActionButton(),
     );
   }
 }
@@ -61,7 +63,8 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoriesBloc, CategoriesState>(
+    return BlocBuilder<CategoryListBloc, CategoryListState>(
+      bloc: context.read<CategoryListBloc>(),
       builder: (context, state) {
         return state.when(
           initial: () {
@@ -186,12 +189,12 @@ class _CategoryWidget extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+        color: category.color != null
+            ? Color(category.color!).withOpacity(0.5)
+            : null,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListTile(
-            tileColor: category.color != null
-                ? Color(category.color!).withOpacity(0.5)
-                : null,
             title: SelectableText(category.name),
             subtitle: SelectableText(category.id.toString()),
             leading: Icon(MaterialIcons.mIcons[category.icon]),
@@ -231,8 +234,8 @@ class _QueryInput extends StatelessWidget {
         focusNode: focusNode,
         onChanged: (text) {
           context
-              .read<CategoriesBloc>()
-              .add(CategoriesEvent.fetched(query: text));
+              .read<CategoryListBloc>()
+              .add(CategoryListEvent.fetched(query: text));
           focusNode.requestFocus();
         },
         keyboardType: TextInputType.text,
@@ -243,8 +246,8 @@ class _QueryInput extends StatelessWidget {
             onPressed: () {
               controller.text = '';
               context
-                  .read<CategoriesBloc>()
-                  .add(const CategoriesEvent.fetched(query: ''));
+                  .read<CategoryListBloc>()
+                  .add(const CategoryListEvent.fetched(query: ''));
               focusNode.requestFocus();
             },
           ),
@@ -265,6 +268,7 @@ class _FloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       tooltip: 'Agregar Categoría',
+      heroTag: null,
       child: const Icon(Icons.add),
       onPressed: () {
         context.beamToNamed('/categories/new');

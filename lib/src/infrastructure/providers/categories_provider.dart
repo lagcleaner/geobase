@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
@@ -17,11 +19,11 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
       ).save();
       if (categoryId == null) throw Exception('Create Category Denied');
       for (final col in model.columns) {
-        await getIt<IColumnsProvider>().create(
+        final preResult = await getIt<IColumnsProvider>().create(
           ColumnPostModel(
             name: col.name,
             typeId: col.typeId,
-            categoryId: col.categoryId,
+            categoryId: categoryId,
           ),
         );
       }
@@ -53,7 +55,6 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
 
   @override
   Future<List<CategoryGetModel>> getAll() async {
-    //TODO: use a view_table to get category get models with their columns.
     final categories = await CategoryDBModel().select().toList();
     final result = <CategoryGetModel>[];
     for (final cat in categories) {
@@ -95,5 +96,33 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
     if (result.errorMessage?.isNotEmpty ?? false) {
       throw Exception(result.errorMessage);
     }
+  }
+
+  @override
+  Future<List<CategoryGetModel>> getByNameSubstring(
+    String nameSubstring,
+  ) async {
+    final categories = await CategoryDBModel()
+        .select()
+        .where("name LIKE '%$nameSubstring%'")
+        //also: instr(column, 'cats') > 0
+        .toList();
+    final r = await ColumnDBModel().select().toList();
+    log(r.toString());
+    final result = <CategoryGetModel>[];
+    for (final cat in categories) {
+      result.add(
+        CategoryGetModel(
+          id: cat.category_id!,
+          name: cat.name!,
+          description: cat.description,
+          color: cat.color,
+          icon: cat.icon!,
+          columns: await getIt<IColumnsProvider>()
+              .getAllFromCategory(cat.category_id!),
+        ),
+      );
+    }
+    return result;
   }
 }

@@ -18,8 +18,8 @@ class ColumnsSQLiteProvider implements IColumnsProvider {
 
   @override
   Future<int> edit(ColumnPutModel model) async {
-    return await ColumnDBModel.withFields(
-          // model.id,
+    return await ColumnDBModel.withId(
+          model.id,
           model.name,
           model.categoryId,
           model.typeId,

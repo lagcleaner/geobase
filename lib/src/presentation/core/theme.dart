@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //general
-const primaryBrandColor = Color(0xff35d8ff);
+const primaryBrandColor = Color(0xFF2196F3);
 const secondaryBrandColor = Color(0xff386db9);
 const highlightColor = Color(0xff97e9fc);
 const alternativeHighlightColor = Color(0xff89aee4);
@@ -10,8 +10,8 @@ const titlesAndParagraphsColor = Color(0xff5d6f6f);
 const subtitlesColor = Color(0xffa1b5b5);
 const linesColor = Color(0xffdff1f1);
 //per background
-const backgroundColor = Color(0xffcde8e0);
-const backgroundAccentColor = Color(0xfff6ffff);
+const backgroundColor = Color(0xfffbffff);
+const backgroundAccentColor = Color(0xffffffff);
 const backgroundCategoriesColor = Color(0xfff8f5f5);
 const backgroundSecundaryColor = Color(0xfff1fff8);
 

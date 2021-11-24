@@ -2,10 +2,12 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:get_it/get_it.dart';
+import 'package:icon_picker/material_icons%20all.dart';
 
 class CategoryViewPage extends StatelessWidget {
   const CategoryViewPage({
@@ -28,7 +30,7 @@ class CategoryViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CategoryViewCubit>(
-      create: (_) => GetIt.I()..fetch(categoryId),
+      create: (_) => getIt<CategoryViewCubit>()..fetch(categoryId),
       child: _CategoryViewPageInternal(categoryId: categoryId),
     );
   }
@@ -47,15 +49,15 @@ class _CategoryViewPageInternal extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
-        title: Text(
-          'Detalles de la Categoría',
-          style: Theme.of(context).textTheme.headline6,
-        ),
+        title: const Text('Detalles de la Categoría'),
         iconTheme: Theme.of(context).iconTheme,
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
             onPressed: () =>
                 context.read<CategoryViewCubit>().fetch(categoryId),
           ),
@@ -145,7 +147,6 @@ class _CategoryViewBodyFetchSucessBottom extends StatelessWidget {
             child: MainButton(
               text: 'Editar',
               onPressed: () {
-                //TODO: DEFINIR SI SE PERMITIRA EDITAR CATEGORIAS
                 context.beamToNamed(
                   '/categories/$categoryId/edit',
                 );
@@ -252,31 +253,43 @@ class _CategoryViewBasicInfo extends StatelessWidget {
           children: [
             Expanded(
               child: ListTile(
-                dense: true,
+                // dense: true,
                 title: Text(category.id.toString()),
                 subtitle: const Text('Id'),
               ),
             ),
             Expanded(
               child: ListTile(
-                dense: true,
-                title: Text(category.color?.toString() ?? 'No Especificado'),
-                subtitle: const Text('Color(RGB)'),
+                // dense: true,
+                title: Icon(
+                  MaterialIcons.mIcons[category.icon],
+                  color: category.color != null
+                      ? Color(category.color!)
+                      : Theme.of(context).primaryColor,
+                ),
+                subtitle: Text(
+                  category.color != null
+                      ? Color(category.color!).toString()
+                      : 'No Especificado',
+                ),
               ),
             ),
           ],
         ),
         ListTile(
-          dense: true,
           title: Text(category.name),
-          subtitle: const Text('Nombre'),
+          subtitle: Text(category.description ?? 'Sin descripción'),
         ),
         const Divider(),
-        const Center(child: Text('Columnas')),
+        Center(
+          child: Text(
+            'Columnas',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+        ),
         ...[
           for (final field in category.columns)
             ListTile(
-              dense: true,
               title: Text(
                 '${field.name}*',
               ),
@@ -284,7 +297,7 @@ class _CategoryViewBasicInfo extends StatelessWidget {
             ),
         ],
         if (category.columns.isEmpty)
-          const ListTile(dense: true, title: Text('Sin Columnas')),
+          const ListTile(title: Text('Sin Columnas')),
       ],
     );
   }

@@ -11,6 +11,7 @@ const String LOCATION = 'location';
 
 const String DATA_ID = 'data_id';
 const String CATEGORY_ID = 'category_id';
+const String FIELD_TYPE_ID = 'field_type_id';
 
 extension _BeamStateParams on BeamState {
   LatLng? get ubication {
@@ -21,6 +22,10 @@ extension _BeamStateParams on BeamState {
 
   int? get dataId {
     return int.tryParse(pathParameters[DATA_ID] ?? '');
+  }
+
+  int? get fieldTypeId {
+    return int.tryParse(pathParameters[FIELD_TYPE_ID] ?? '');
   }
 
   int? get categoryId {
@@ -41,7 +46,6 @@ class HomeLocation extends BeamLocation<BeamState> {
   List<String> get pathPatterns => [
         '/map',
         // '/map?location=', //TODO: Test if is working well
-        '/options',
       ];
 
   @override
@@ -50,9 +54,60 @@ class HomeLocation extends BeamLocation<BeamState> {
     BeamState state,
   ) {
     return [
-      if (state.contains(0, 'map'))
-        HomePage.getPage(context, initialLocation: state.ubication),
-      if (state.contains(0, 'options')) OptionsPage.getPage(context),
+      HomePage.getPage(context, initialLocation: state.ubication),
+    ];
+  }
+}
+
+class OptionsLocation extends BeamLocation<BeamState> {
+  @override
+  List<String> get pathPatterns => [
+        '/options',
+        '/options/mapserver',
+        '/options/staticselection',
+        '/options/staticselection/new',
+        '/options/staticselection/:$FIELD_TYPE_ID',
+      ];
+
+  @override
+  List<BeamPage> buildPages(
+    BuildContext context,
+    BeamState state,
+  ) {
+    return [
+      OptionsPage.getPage(context),
+      if (state.contains(1, 'mapserver')) MapServerPage.getPage(context),
+      if (state.contains(1, 'staticselection'))
+        StaticSelectionListPage.getPage(context),
+      ...[
+        if (state.fieldTypeId != null)
+          StaticSelectionViewPage.getPage(context, state.fieldTypeId!)
+        else if (state.contains(2, 'new'))
+          StaticSelectionNewPage.getPage(context),
+      ]
+    ];
+  }
+}
+
+class StaticSelectionLocation extends BeamLocation<BeamState> {
+  @override
+  List<String> get pathPatterns => [
+        '/staticselection',
+        '/staticselection/new',
+        '/staticselection/:$FIELD_TYPE_ID',
+      ];
+
+  @override
+  List<BeamPage> buildPages(
+    BuildContext context,
+    BeamState state,
+  ) {
+    return [
+      StaticSelectionListPage.getPage(context),
+      if (state.fieldTypeId != null)
+        StaticSelectionViewPage.getPage(context, state.fieldTypeId!)
+      else if (state.contains(1, 'new'))
+        StaticSelectionNewPage.getPage(context),
     ];
   }
 }

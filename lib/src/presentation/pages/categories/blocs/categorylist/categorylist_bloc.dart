@@ -5,36 +5,36 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
 import 'package:rxdart/rxdart.dart';
 
-part 'categories_event.dart';
-part 'categories_state.dart';
-part 'categories_bloc.freezed.dart';
+part 'categorylist_event.dart';
+part 'categorylist_state.dart';
+part 'categorylist_bloc.freezed.dart';
 
 @injectable
-class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
-  CategoriesBloc(this.categoryService)
-      : super(const CategoriesState.initial()) {
-    on<CategoriesEvent>(
+class CategoryListBloc extends Bloc<CategoryListEvent, CategoryListState> {
+  CategoryListBloc(this.categoryService)
+      : super(const CategoryListState.initial()) {
+    on<CategoryListEvent>(
       (event, emit) async {
         await event.when(
           fetched: (query) async {
             if (query.isEmpty) {
-              emit(const CategoriesState.initial());
+              emit(const CategoryListState.initial());
               return;
             }
-            emit(const CategoriesState.fetchInProgress());
+            emit(const CategoryListState.fetchInProgress());
             final response = await categoryService.loadCategoriesWhere(
               FilterCategoriesOptionsEntity(nameSubstring: query),
             );
             response.fold(
               (error) => emit(
-                CategoriesState.fetchFailure(
+                CategoryListState.fetchFailure(
                   error: error.message ?? error.toString(),
                 ),
               ),
               (categories) => emit(
                 categories.isEmpty
-                    ? const CategoriesState.fetchSuccessNotFound()
-                    : CategoriesState.fetchSuccess(categories: categories),
+                    ? const CategoryListState.fetchSuccessNotFound()
+                    : CategoryListState.fetchSuccess(categories: categories),
               ),
             );
           },

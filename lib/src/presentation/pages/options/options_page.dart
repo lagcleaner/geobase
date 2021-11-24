@@ -3,8 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
-import 'package:geobase/src/presentation/pages/home/widgets/widgets.dart';
 
 class OptionsPage extends StatelessWidget {
   const OptionsPage({Key? key}) : super(key: key);
@@ -36,10 +34,7 @@ class _OptionsInternalPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: Text(
-            'Opciones',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          title: const Text('Opciones'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
@@ -56,46 +51,44 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final headline6 = Theme.of(context).textTheme.headline6;
     return SingleChildScrollView(
-      physics: const AlwaysScrollableScrollPhysics(
-        parent: BouncingScrollPhysics(),
-      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 10),
-          //TODO: OPTION TO NAVEGATE TO CATEGORIES
-          const Divider(
-            height: 16,
-            thickness: 1,
-          ),
-          Text(
-            'Configuración de los tipos',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'Selección Statica (StaticSelection)', //TODO: NAVIGATE TO TYPE STATIC SELECTION LIST
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          const Divider(
-            height: 16,
-            thickness: 1,
-          ),
-          Text(
-            'Configuración del Mapa',
-            style: Theme.of(context).textTheme.headline4,
-          ),
-          const SizedBox(height: 5),
-          Flexible(
-            child: BlocProvider<MapConfigurationFormBloc>(
-              create: (context) => getIt<MapConfigurationFormBloc>(),
-              child: const SourceOptionsSectionWidget(),
+          ListTile(
+            title: Text(
+              'Categorías',
+              style: headline6,
             ),
+            trailing: const Icon(Icons.category),
+            onTap: () => context.beamToNamed('/categories'),
           ),
-          const Divider(
-            height: 16,
-            thickness: 1,
+          ExpansionTile(
+            title: Text(
+              'Tipos',
+              style: headline6,
+            ),
+            children: [
+              ListTile(
+                title: Text(
+                  'Selección Stática (StaticSelection)',
+                  style: headline6?.copyWith(
+                    color: headline6.color?.withOpacity(0.7),
+                  ),
+                ),
+                trailing: const Icon(Icons.account_tree_rounded),
+                onTap: () => context.beamToNamed('/staticselection'),
+              ),
+            ],
+          ),
+          ListTile(
+            title: Text(
+              'Servidor de Mapas',
+              style: headline6,
+            ),
+            trailing: const Icon(Icons.map_outlined),
+            onTap: () => context.beamToNamed('/options/mapserver'),
           ),
         ],
       ),

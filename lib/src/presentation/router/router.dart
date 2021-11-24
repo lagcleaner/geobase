@@ -14,6 +14,8 @@ class Routes {
         HomeLocation(),
         CategoriesLocation(),
         GeodataLocation(),
+        OptionsLocation(),
+        StaticSelectionLocation(),
         NotFoundLocation(),
       ],
     ),

@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
@@ -44,10 +43,7 @@ class _GeodataPageInternal extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: Text(
-            'Datos Almacenados',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          title: const Text('Datos Almacenados'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
@@ -70,6 +66,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GeodataListBloc, GeodataListState>(
+      bloc: context.read<GeodataListBloc>(),
       builder: (context, state) {
         return state.when(
           initial: () {

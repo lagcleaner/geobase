@@ -21,13 +21,19 @@ class FieldTypeStaticSelectionService
   }
 
   @override
-  Future<Either<Failure, FieldTypeStaticSelectionGetEntity>>
-      loadStaticSelection(int fieldTypeId) async {
+  Future<Either<Failure, FieldTypeStaticSelectionGetEntity>> loadById(
+    int fieldTypeId,
+  ) async {
     return repository.getFromFieldType(fieldTypeId);
   }
 
   @override
   Future<Either<Failure, Unit>> removeStaticSelection(int fieldTypeId) async {
     return repository.removeStaticSelection(fieldTypeId);
+  }
+
+  @override
+  Future<Either<Failure, List<FieldTypeStaticSelectionGetEntity>>> loadAll() {
+    return repository.loadStaticSelections();
   }
 }

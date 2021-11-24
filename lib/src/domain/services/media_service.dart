@@ -21,7 +21,7 @@ class FieldTypeMediaService implements IFieldTypeMediaService {
   }
 
   @override
-  Future<Either<Failure, FieldTypeMediaGetEntity>> loadMedia(
+  Future<Either<Failure, FieldTypeMediaGetEntity>> loadById(
     int fieldTypeId,
   ) async {
     return repository.getFromFieldType(fieldTypeId);
@@ -30,5 +30,10 @@ class FieldTypeMediaService implements IFieldTypeMediaService {
   @override
   Future<Either<Failure, Unit>> removeMedia(int fieldTypeId) async {
     return repository.removeMedia(fieldTypeId);
+  }
+
+  @override
+  Future<Either<Failure, List<FieldTypeMediaGetEntity>>> loadAll() {
+    return repository.loadMedias();
   }
 }

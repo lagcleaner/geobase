@@ -47,10 +47,7 @@ class _GeodataViewPageInternal extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
-        title: Text(
-          'Detalles del Punto',
-          style: Theme.of(context).textTheme.headline6,
-        ),
+        title: const Text('Detalles del Punto'),
         iconTheme: Theme.of(context).iconTheme,
         centerTitle: true,
         actions: [

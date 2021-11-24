@@ -53,10 +53,7 @@ class _GeodataEditPageInternal extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: Text(
-            'Editar información del Punto',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          title: const Text('Editar información del Punto'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),

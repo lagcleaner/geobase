@@ -40,6 +40,7 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyleButton = Theme.of(context).primaryTextTheme.button;
     return ConstrainedBox(
       constraints: BoxConstraints.tightForFinite(
         height: 60,
@@ -60,7 +61,9 @@ class MainButton extends StatelessWidget {
         child: child ??
             Text(
               text!,
-              style: Theme.of(context).primaryTextTheme.button,
+              style: textStyleButton?.copyWith(
+                fontSize: (textStyleButton.fontSize ?? 14) + 2,
+              ),
             ),
       ),
     );

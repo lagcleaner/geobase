@@ -9,7 +9,7 @@ import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@Injectable()
+@injectable
 class CategoryCreateFormBloc extends FormBloc<Unit, String> {
   CategoryCreateFormBloc({
     required this.categoryService,
@@ -28,7 +28,7 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
 
   late final name = TextFieldBloc(
     asyncValidatorDebounceTime: const Duration(seconds: 1),
-    asyncValidators: [_nameIsTaken],
+    asyncValidators: [nameIsTaken],
     validators: [
       StringValidator.required,
     ],
@@ -50,7 +50,7 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
 
   final IFieldTypeService fieldTypeService;
 
-  Future<String?> _nameIsTaken(String? name) async {
+  Future<String?> nameIsTaken(String? name) async {
     if (name?.isEmpty ?? true) return null;
     final allCat = await categoryService.loadCategoriesWhere();
     return allCat.fold(
@@ -61,10 +61,10 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
     );
   }
 
-  String? _columnNameIsUsed(String? name) {
+  String? columnNameIsTaken(String? name) {
     if (name?.isEmpty ?? true) return null;
     return columns.state.fieldBlocs.any((e) => e.columnName.state.value == name)
-        ? 'The name is already Used.'
+        ? 'The name is already taken.'
         : null;
   }
 
@@ -74,7 +74,6 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
       (failure) {
         log(failure.toString());
         emitFailure(failureResponse: failure.toString());
-        //TODO: SEND AN ALERT OR SOMETHING,
       },
       (types) {
         columns.addFieldBloc(
@@ -82,11 +81,11 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
             columnName: TextFieldBloc(
               validators: [
                 StringValidator.required,
-                _columnNameIsUsed,
+                columnNameIsTaken,
               ],
             ),
             type: SelectFieldBloc(
-              items: [],
+              items: types,
               validators: [
                 DynamicValidator.required,
               ],

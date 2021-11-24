@@ -23,9 +23,9 @@ import 'src/domain/services/geodata_filter_service.dart' as _i45;
 import 'src/domain/services/goedata_service.dart' as _i48;
 import 'src/domain/services/interfaces/i_field_type.dart' as _i31;
 import 'src/domain/services/interfaces/interfaces.dart' as _i16;
-import 'src/domain/services/location_reader_service.dart' as _i65;
-import 'src/domain/services/map_conf_reader_service.dart' as _i66;
-import 'src/domain/services/map_conf_writter_service.dart' as _i67;
+import 'src/domain/services/location_reader_service.dart' as _i68;
+import 'src/domain/services/map_conf_reader_service.dart' as _i69;
+import 'src/domain/services/map_conf_writter_service.dart' as _i70;
 import 'src/domain/services/map_filters_service.dart' as _i54;
 import 'src/domain/services/map_markers_service.dart' as _i55;
 import 'src/domain/services/media_service.dart' as _i26;
@@ -33,7 +33,7 @@ import 'src/domain/services/services.dart' as _i6;
 import 'src/domain/services/static_selection_service.dart' as _i37;
 import 'src/domain/services/user_preferences_reader_service.dart' as _i56;
 import 'src/domain/services/user_preferences_writter_service.dart' as _i58;
-import 'src/infrastructure/core/registers/external_registers.dart' as _i72;
+import 'src/infrastructure/core/registers/external_registers.dart' as _i75;
 import 'src/infrastructure/providers/categories_provider.dart' as _i13;
 import 'src/infrastructure/providers/columns_provider.dart' as _i21;
 import 'src/infrastructure/providers/field_type_provider.dart' as _i28;
@@ -57,7 +57,7 @@ import 'src/infrastructure/providers/media_provider.dart' as _i23;
 import 'src/infrastructure/providers/static_selection_provider.dart' as _i34;
 import 'src/infrastructure/repositories/categories_repository.dart' as _i15;
 import 'src/infrastructure/repositories/columns_repository.dart' as _i19;
-import 'src/infrastructure/repositories/configuration_repository.dart' as _i64;
+import 'src/infrastructure/repositories/configuration_repository.dart' as _i67;
 import 'src/infrastructure/repositories/field_type_repository.dart' as _i30;
 import 'src/infrastructure/repositories/field_values_repository.dart' as _i40;
 import 'src/infrastructure/repositories/geodata_filters_repository.dart'
@@ -69,33 +69,38 @@ import 'src/infrastructure/repositories/static_selection_repository.dart'
     as _i36;
 import 'src/presentation/core/utils/simple_bloc_observer.dart' as _i4;
 import 'src/presentation/core/widgets/render_classes/reflect.dart' as _i9;
-import 'src/presentation/pages/categories/blocs/categories/categories_bloc.dart'
+import 'src/presentation/pages/categories/blocs/category_form/category_create_form_bloc.dart'
     as _i5;
-import 'src/presentation/pages/categories/blocs/category_create_form/category_create_form_bloc.dart'
-    as _i7;
+import 'src/presentation/pages/categories/blocs/category_form/category_edit_form_bloc.dart'
+    as _i66;
 import 'src/presentation/pages/categories/blocs/category_view/categoryview_cubit.dart'
     as _i8;
+import 'src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart'
+    as _i7;
 import 'src/presentation/pages/geodata/blocs/blocs.dart' as _i42;
 import 'src/presentation/pages/geodata/blocs/categories_shower/categoriesshower_cubit.dart'
-    as _i63;
+    as _i65;
 import 'src/presentation/pages/geodata/blocs/geodata_create/geodata_create_cubit.dart'
-    as _i71;
+    as _i74;
 import 'src/presentation/pages/geodata/blocs/geodata_form/create_form_bloc.dart'
     as _i41;
 import 'src/presentation/pages/geodata/blocs/geodata_form/create_form_bloc2.dart'
-    as _i70;
+    as _i73;
 import 'src/presentation/pages/geodata/blocs/geodata_form/edit_form_bloc.dart'
     as _i43;
 import 'src/presentation/pages/geodata/blocs/geodatalist/geodatalist_bloc.dart'
     as _i10;
 import 'src/presentation/pages/geodata/blocs/geodataview/geodataview_cubit.dart'
     as _i11;
-import 'src/presentation/pages/home/blocs/location/location_cubit.dart' as _i68;
+import 'src/presentation/pages/home/blocs/location/location_cubit.dart' as _i71;
 import 'src/presentation/pages/home/blocs/map/map_cubit.dart' as _i59;
-import 'src/presentation/pages/home/blocs/map_configuration_forms/map_configuration_form_bloc.dart'
-    as _i69;
-import 'src/presentation/pages/home/blocs/markers/marker_cubit.dart'
-    as _i61; // ignore_for_file: unnecessary_lambdas
+import 'src/presentation/pages/home/blocs/markers/marker_cubit.dart' as _i61;
+import 'src/presentation/pages/options/blocs/map_configuration_forms/map_configuration_form_bloc.dart'
+    as _i72;
+import 'src/presentation/pages/staticselection/blocs/static_selection_list/static_selection_list_cubit.dart'
+    as _i63;
+import 'src/presentation/pages/staticselection/blocs/static_selection_view/static_selection_view_cubit.dart'
+    as _i64; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -104,11 +109,11 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   final registerModule = _$RegisterModule();
   gh.lazySingleton<_i3.BlocObserver>(() => _i4.SimpleBlocObserver());
-  gh.factory<_i5.CategoriesBloc>(
-      () => _i5.CategoriesBloc(get<_i6.ICategoryService>()));
-  gh.factory<_i7.CategoryCreateFormBloc>(() => _i7.CategoryCreateFormBloc(
+  gh.factory<_i5.CategoryCreateFormBloc>(() => _i5.CategoryCreateFormBloc(
       categoryService: get<_i6.ICategoryService>(),
       fieldTypeService: get<_i6.IFieldTypeService>()));
+  gh.factory<_i7.CategoryListBloc>(
+      () => _i7.CategoryListBloc(get<_i6.ICategoryService>()));
   gh.factory<_i8.CategoryViewCubit>(
       () => _i8.CategoryViewCubit(get<_i6.ICategoryService>()));
   gh.lazySingleton<_i9.FieldRenderResolver>(() => _i9.FieldRenderResolver());
@@ -190,30 +195,39 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       _i61.MarkerCubit(markerGetterService: get<_i16.IMarkerGetterService>()));
   await gh.factoryAsync<_i62.SharedPreferences>(() => registerModule.prefs,
       preResolve: true);
-  gh.factory<_i63.CategoriesShowerCubit>(
-      () => _i63.CategoriesShowerCubit(get<_i16.ICategoryService>()));
+  gh.factory<_i63.StaticSelectionListCubit>(() => _i63.StaticSelectionListCubit(
+      get<_i16.IFieldTypeStaticSelectionService>()));
+  gh.factory<_i64.StaticSelectionViewCubit>(() => _i64.StaticSelectionViewCubit(
+      get<_i16.IFieldTypeStaticSelectionService>()));
+  gh.factory<_i65.CategoriesShowerCubit>(
+      () => _i65.CategoriesShowerCubit(get<_i16.ICategoryService>()));
+  gh.factoryParam<_i66.CategoryEditFormBloc, int?, dynamic>((categoryId, _) =>
+      _i66.CategoryEditFormBloc(
+          categoryId: categoryId,
+          categoryService: get<_i16.ICategoryService>(),
+          fieldTypeService: get<_i16.IFieldTypeService>()));
   gh.factory<_i14.IConfigurationRepository>(() =>
-      _i64.ConfigurationRepository(get<_i49.ILocalPreferencesProvider>()));
-  gh.lazySingleton<_i6.ILocationReaderService>(() => _i65.LocationReaderService(
+      _i67.ConfigurationRepository(get<_i49.ILocalPreferencesProvider>()));
+  gh.lazySingleton<_i6.ILocationReaderService>(() => _i68.LocationReaderService(
       get<_i14.IConfigurationRepository>(), get<_i14.ILocationRepository>()));
   gh.lazySingleton<_i16.IMapConfigurationReaderService>(() =>
-      _i66.MapConfigurationReaderService(get<_i14.IConfigurationRepository>()));
+      _i69.MapConfigurationReaderService(get<_i14.IConfigurationRepository>()));
   gh.lazySingleton<_i16.IMapConfigurationWritterService>(() =>
-      _i67.MapConfigurationWritterService(
+      _i70.MapConfigurationWritterService(
           get<_i14.IConfigurationRepository>()));
-  gh.factory<_i68.LocationCubit>(() => _i68.LocationCubit(
+  gh.factory<_i71.LocationCubit>(() => _i71.LocationCubit(
       userPreferencesReaderService: get<_i6.IUserPreferencesReaderService>(),
       userPreferencesWritterService: get<_i6.IUserPreferencesWritterService>(),
       locationService: get<_i6.ILocationReaderService>()));
-  gh.factory<_i69.MapConfigurationFormBloc>(() => _i69.MapConfigurationFormBloc(
+  gh.factory<_i72.MapConfigurationFormBloc>(() => _i72.MapConfigurationFormBloc(
       readerService: get<_i16.IMapConfigurationReaderService>(),
       writterService: get<_i16.IMapConfigurationWritterService>()));
-  gh.factory<_i70.CategoryCreateFormBloc>(() => _i70.CategoryCreateFormBloc(
+  gh.factory<_i73.CategoryCreateFormBloc>(() => _i73.CategoryCreateFormBloc(
       categoryService: get<_i6.ICategoryService>(),
       locationService: get<_i6.ILocationReaderService>()));
-  gh.factory<_i71.GeodataCreateCubit>(() => _i71.GeodataCreateCubit(
+  gh.factory<_i74.GeodataCreateCubit>(() => _i74.GeodataCreateCubit(
       get<_i6.ICategoryService>(), get<_i6.ILocationReaderService>()));
   return get;
 }
 
-class _$RegisterModule extends _i72.RegisterModule {}
+class _$RegisterModule extends _i75.RegisterModule {}

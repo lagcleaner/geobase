@@ -3,18 +3,14 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
+import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/inputs/color_field_bloc_builder.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/widgets.dart';
-import 'package:form_bloc/form_bloc.dart';
-
-import 'blocs/column/column_field_bloc.dart';
 
 class CategoryNewPage extends StatelessWidget {
   const CategoryNewPage({
@@ -32,7 +28,7 @@ class CategoryNewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<CategoryCreateFormBloc>(
-      create: getIt(),
+      create: (_) => getIt<CategoryCreateFormBloc>(),
       child: const _CategoryCreatePageInternal(),
     );
   }
@@ -48,10 +44,7 @@ class _CategoryCreatePageInternal extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: Text(
-            'Nueva Categoría',
-            style: Theme.of(context).textTheme.headline6,
-          ),
+          title: const Text('Nueva Categoría'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
@@ -80,7 +73,7 @@ class _CategoryCreatePageInternal extends StatelessWidget {
                 backgroundColor: Colors.red.shade900,
                 content: Text(
                   state.failureResponse ??
-                      'Ha ocurrido un error, vuelve a intentarlo.',
+                      'Ha ocurrido un error, vuelva a intentarlo.',
                 ),
               ),
             ),
@@ -114,7 +107,7 @@ class _CategoryCreateForm extends StatelessWidget {
         Flexible(child: _IconInput()),
         SizedBox(height: 15),
         Flexible(child: _FieldsInput()),
-        SizedBox(height: 10),
+        SizedBox(height: 75),
       ],
     );
   }
@@ -193,21 +186,31 @@ class _FieldsInput extends StatelessWidget {
         ListFieldBlocState<ColumnFieldBloc>>(
       bloc: formBloc.columns,
       builder: (context, state) {
-        if (state.fieldBlocs.isNotEmpty) {
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: state.fieldBlocs.length,
-            itemBuilder: (context, i) {
-              return _ColumnCardInput(
-                columnIndex: i,
-                columnField: state.fieldBlocs[i],
-                onRemoveMember: () => formBloc.removeColumn(i),
-              );
-            },
-          );
-        }
-        return const SizedBox();
+        return Column(
+          children: [
+            if (state.fieldBlocs.isNotEmpty) ...[
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: state.fieldBlocs.length,
+                itemBuilder: (context, i) {
+                  return _ColumnCardInput(
+                    columnIndex: i,
+                    columnField: state.fieldBlocs[i],
+                    onRemoveMember: () => formBloc.removeColumn(i),
+                  );
+                },
+              ),
+            ],
+            TextButton.icon(
+              icon: const Icon(Icons.add),
+              label: const Text('Añadir Columna'),
+              onPressed: () {
+                formBloc.addNewColumn();
+              },
+            ),
+          ],
+        );
       },
     );
   }
@@ -236,21 +239,30 @@ class _ColumnCardInput extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    'Columna #${columnIndex + 1}',
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.highlight_remove_rounded),
-                  onPressed: onRemoveMember,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Columna #${columnIndex + 1}',
+                style: Theme.of(context).textTheme.headline5,
+              ),
+            ),
+            TextFieldBlocBuilder(
+              textFieldBloc: columnField.columnName,
+              decoration: TextFieldDecorations.decoration(
+                labelText: 'Nombre*',
+              ),
+            ),
+            DropdownFieldBlocBuilder(
+              selectFieldBloc: columnField.type,
+              decoration: TextFieldDecorations.decoration(
+                labelText: 'Tipo de Datos*',
+              ),
+              itemBuilder: (context, FieldTypeGetEntity value) =>
+                  '${value.metaType} - ${value.name}',
+            ),
+            IconButton(
+              icon: const Icon(Icons.highlight_remove_rounded),
+              onPressed: onRemoveMember,
             ),
           ],
         ),
