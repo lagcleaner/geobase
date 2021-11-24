@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart';
 import 'package:icon_picker/material_icons.dart';
@@ -183,20 +184,27 @@ class _CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = category.color != null
+        ? Color(category.color!).withOpacity(0.5)
+        : Colors.white;
+    final subtitle2 = Theme.of(context).textTheme.subtitle2;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        color: category.color != null
-            ? Color(category.color!).withOpacity(0.5)
-            : null,
+        color: color,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListTile(
-            title: SelectableText(category.name),
-            subtitle: SelectableText(category.id.toString()),
+            title: SelectableText(
+              category.name,
+              style: subtitle2?.copyWith(
+                color: subtitle2.color?.getContrastColor(color),
+              ),
+            ),
+            subtitle: SelectableText(category.description ?? ''),
             leading: Icon(MaterialIcons.mIcons[category.icon]),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Categoría',

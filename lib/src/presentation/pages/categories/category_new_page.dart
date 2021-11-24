@@ -138,7 +138,7 @@ class _DescriptionInput extends StatelessWidget {
     return TextFieldBlocBuilder(
       textFieldBloc: formBloc.description,
       decoration: TextFieldDecorations.decoration(
-        labelText: 'Descripción*',
+        labelText: 'Descripción',
         prefixIcon: Icons.text_fields_outlined,
         maxLines: 4,
       ),

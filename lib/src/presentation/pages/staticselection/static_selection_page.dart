@@ -41,6 +41,15 @@ class _StaticSelectionListInternalPage extends StatelessWidget {
           title: const Text('Selecciones Estáticas Configuradas'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
+          actions: [
+            IconButton(
+              onPressed: () => context.read<StaticSelectionListCubit>().fetch(),
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+            )
+          ],
         ),
         body: const _Body(),
         floatingActionButton: const _FloatingActionButton(),
@@ -160,7 +169,8 @@ class _StaticSelectionWidget extends StatelessWidget {
           child: ListTile(
             title: SelectableText(staticSelection.name),
             subtitle: SelectableText(
-              staticSelection.extradata.toString().substring(0, 100),
+              staticSelection.options.toString(),
+              // maxLines: 2,
             ),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Selección Estática',

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 
-import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 
-class GeodataForm extends StatelessWidget {
+class GeodataForm<T extends IGeodataFormBloc> extends StatelessWidget {
   const GeodataForm({
     Key? key,
     required this.submmitButtonText,
@@ -19,7 +17,7 @@ class GeodataForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formBloc = context.watch<IGeodataFormBloc>();
+    final IGeodataFormBloc formBloc = context.watch<T>();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -32,28 +30,29 @@ class GeodataForm extends StatelessWidget {
           ],
         ),
         const Divider(height: 10),
-        ...formBloc.fieldValues.entries
-            .map(
-              (e) => [
-                Flexible(
-                  child: FieldRenderResolver.getInputWidget(e.key, e.value),
-                ),
-                const SizedBox(height: 8),
-              ],
-            )
-            .reduce((value, element) => value..addAll(element)),
-        SubmmitButton<IGeodataFormBloc>(label: submmitButtonText),
+        if (formBloc.fieldValues.isNotEmpty)
+          ...formBloc.fieldValues.entries
+              .map(
+                (e) => [
+                  Flexible(
+                    child: FieldRenderResolver.getInputWidget(e.key, e.value),
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              )
+              .reduce((value, element) => value..addAll(element)),
+        SubmmitButton<T>(label: submmitButtonText),
       ],
     );
   }
 }
 
-class _LatitudeInput extends StatelessWidget {
+class _LatitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
   const _LatitudeInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final formBloc = context.read<IGeodataFormBloc>();
+    final formBloc = context.read<T>();
     return InputBlocBuilder<String>(
       bloc: formBloc.latitude,
       builder: (context, state) => TextInputWidget(
@@ -68,12 +67,12 @@ class _LatitudeInput extends StatelessWidget {
   }
 }
 
-class _LongitudeInput extends StatelessWidget {
+class _LongitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
   const _LongitudeInput({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final formBloc = context.read<IGeodataFormBloc>();
+    final formBloc = context.read<T>();
     return InputBlocBuilder<String>(
       bloc: formBloc.longitude,
       builder: (context, state) => TextInputWidget(

@@ -39,7 +39,10 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
           metaType: fieldType.meta_type!,
           fieldTypeId: media.field_type_id!,
           renderClass: fieldType.render_class!,
-          extensions: json.decode(media.extensions!) as List<String>,
+          extensions: (json.decode(media.extensions!) as List?)
+                  ?.map((e) => e as String)
+                  .toList() ??
+              [],
         ),
       );
     }
@@ -59,7 +62,10 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
       metaType: media.plFieldTypeDBModel!.meta_type!,
       fieldTypeId: media.field_type_id!,
       renderClass: media.plFieldTypeDBModel!.render_class!,
-      extensions: json.decode(media.extensions!) as List<String>,
+      extensions: (json.decode(media.extensions!) as List?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
   }
 
@@ -67,6 +73,11 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
   Future<void> remove(int id) async {
     final result =
         await MediaDBModel().select().field_type_id.equals(id).delete();
+    if (result.errorMessage?.isNotEmpty ?? false) {
+      throw Exception(result.errorMessage);
+    }
+    final result1 =
+        await FieldTypeDBModel().select().field_type_id.equals(id).delete();
     if (result.errorMessage?.isNotEmpty ?? false) {
       throw Exception(result.errorMessage);
     }

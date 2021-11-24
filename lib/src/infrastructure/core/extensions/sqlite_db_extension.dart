@@ -72,7 +72,10 @@ extension GeobaseModelDatabaseExtension on GeobaseModel {
               name: (row[_nameKey] as String?)!,
               metaType: MEDIA_METATYPE_NAME,
               renderClass: row[_renderClassKey] as String?,
-              extensions: (row[_extensionKey] as List<String>?)!,
+              extensions: (row[_extensionKey] as List?)
+                      ?.map((e) => e as String)
+                      .toList() ??
+                  [],
             ),
           );
         } catch (e) {

@@ -53,7 +53,10 @@ class _StaticSelectioViewInternalPage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
             onPressed: () =>
                 context.read<StaticSelectionViewCubit>().fetch(fieldTypeId),
           ),
@@ -248,38 +251,38 @@ class _StaticSelectionViewBasicInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: ListTile(
-                dense: true,
-                title: Text(staticSelection.id.toString()),
-                subtitle: const Text('Id'),
-              ),
-            ),
-            Expanded(
-              child: ListTile(
-                dense: true,
-                title: Text(staticSelection.name),
-                subtitle: Text(staticSelection.metaType),
-              ),
-            ),
-          ],
-        ),
-        ExpansionTile(
-          title: const Text('Elementos'),
-          children: staticSelection.options
-              .map(
-                (e) => ListTile(
-                  dense: true,
-                  title: Text(e),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  title: Text(staticSelection.id.toString()),
+                  subtitle: const Text('Id'),
                 ),
-              )
-              .toList(),
-        ),
-      ],
+              ),
+              Expanded(
+                child: ListTile(
+                  title: Text(staticSelection.name),
+                  subtitle: Text(staticSelection.metaType),
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Elementos'),
+            children: staticSelection.options
+                .map(
+                  (e) => ListTile(
+                    dense: true,
+                    title: Text(e),
+                  ),
+                )
+                .toList(),
+          ),
+        ],
+      ),
     );
   }
 }

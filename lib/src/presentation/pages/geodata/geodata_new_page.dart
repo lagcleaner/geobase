@@ -108,10 +108,10 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        const SizedBox(height: 8),
         const Text('Seleccione una categoría para el nuevo punto.'),
-        const SizedBox(height: 20),
         DropdownButtonFormField<int>(
           items: categories.map((CategoryGetEntity categ) {
             return DropdownMenuItem(
@@ -131,6 +131,7 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
             labelText: 'Categoría',
           ),
         ),
+        const SizedBox(height: 8),
       ],
     );
   }
@@ -141,8 +142,8 @@ class _GeodataCreateFormBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocListener<IGeodataFormBloc, void, Failure>(
-      bloc: context.read<IGeodataFormBloc>(),
+    return FormBlocListener<IGeodataCreateFormBloc, void, Failure>(
+      bloc: context.read<IGeodataCreateFormBloc>(),
       onSuccess: (_) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
@@ -167,7 +168,7 @@ class _GeodataCreateFormBody extends StatelessWidget {
       child: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(10.0),
-          child: GeodataForm(
+          child: GeodataForm<IGeodataCreateFormBloc>(
             submmitButtonText: 'Añadir Punto',
           ),
         ),

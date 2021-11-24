@@ -182,10 +182,8 @@ class _GeodataWidget extends StatelessWidget {
               '${geodata.category.name}(${geodata.location.visualString()})',
             ),
             subtitle: SelectableText(
-              geodata.fields
-                  .map((e) => e.value.toString())
-                  .join(',')
-                  .substring(0, 100), //if contains a file is a risks
+              geodata.fields.map((e) => e.value.toString()).join(','),
+              maxLines: 3, //if contains a file is a risks
               // overflow: TextOverflow.fade,
             ),
             trailing: IconButton(

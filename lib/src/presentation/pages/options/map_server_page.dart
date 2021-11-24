@@ -8,6 +8,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/form_bloc/form_bloc_builder.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
+import 'package:geobase/src/presentation/pages/categories/widgets/inputs/autoremovable_input_bloc.dart';
 import 'package:geobase/src/presentation/pages/options/blocs/map_configuration_forms/map_configuration_form_bloc.dart';
 
 class MapServerPage extends StatelessWidget {
@@ -116,9 +117,7 @@ class _SourceOptionsForm extends StatelessWidget {
                 const SizedBox(height: 10),
                 MainButton(
                   text: 'Guardar Servidor',
-                  onPressed: () {
-                    context.read<MapConfigurationFormBloc>().submit();
-                  },
+                  onPressed: context.read<MapConfigurationFormBloc>().submit,
                 )
               ],
             ),
@@ -223,7 +222,7 @@ class _WMSLayersInput extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: state.fieldBlocs.length,
                       itemBuilder: (context, i) {
-                        return _AutoremovableListFieldBlocInput(
+                        return AutoremovableListFieldBlocInput(
                           bloc: state.fieldBlocs[i],
                           index: i,
                           label: 'Capa #(${i + 1})*',
@@ -248,62 +247,39 @@ class _SubdomainsInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final formBloc = context.read<MapConfigurationFormBloc>();
     return CanShowFieldBlocBuilder(
-        fieldBloc: formBloc.subdomains,
-        builder: (context, show) {
-          return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-              ListFieldBlocState<TextFieldBloc>>(
-            bloc: formBloc.subdomains,
-            builder: (context, state) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (show ?? false) ...[
-                    const Divider(),
-                    Text(
-                      'Subdominios*',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.fieldBlocs.length,
-                      itemBuilder: (context, i) {
-                        return _AutoremovableListFieldBlocInput(
-                          bloc: state.fieldBlocs[i],
-                          index: i,
-                          label: 'Subdominio #(${i + 1})*',
-                        );
-                      },
-                    ),
-                  ],
+      fieldBloc: formBloc.subdomains,
+      builder: (context, show) {
+        return BlocBuilder<ListFieldBloc<TextFieldBloc>,
+            ListFieldBlocState<TextFieldBloc>>(
+          bloc: formBloc.subdomains,
+          builder: (context, state) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (show ?? false) ...[
+                  const Divider(),
+                  Text(
+                    'Subdominios*',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.fieldBlocs.length,
+                    itemBuilder: (context, i) {
+                      return AutoremovableListFieldBlocInput(
+                        bloc: state.fieldBlocs[i],
+                        index: i,
+                        label: 'Subdominio #(${i + 1})*',
+                      );
+                    },
+                  ),
                 ],
-              );
-            },
-          );
-        });
-  }
-}
-
-class _AutoremovableListFieldBlocInput extends StatelessWidget {
-  const _AutoremovableListFieldBlocInput({
-    Key? key,
-    required this.bloc,
-    required this.index,
-    required this.label,
-  }) : super(key: key);
-
-  final TextFieldBloc bloc;
-  final int index;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFieldBlocBuilder(
-      textFieldBloc: bloc,
-      // padding: const EdgeInsets.symmetric(vertical: 4),
-      decoration: TextFieldDecorations.decoration(
-        labelText: label,
-      ),
+              ],
+            );
+          },
+        );
+      },
     );
   }
 }

@@ -40,7 +40,10 @@ class StaticSelectionSQLiteProvider
           metaType: fieldType.meta_type!,
           fieldTypeId: ss.field_type_id!,
           renderClass: fieldType.render_class!,
-          options: json.decode(ss.options!) as List<String>,
+          options: (json.decode(ss.options!) as List?)
+                  ?.map((e) => e as String)
+                  .toList() ??
+              [],
         ),
       );
     }
@@ -60,7 +63,10 @@ class StaticSelectionSQLiteProvider
       metaType: ss.plFieldTypeDBModel!.meta_type!,
       fieldTypeId: ss.field_type_id!,
       renderClass: ss.plFieldTypeDBModel!.render_class!,
-      options: json.decode(ss.options!) as List<String>,
+      options: (json.decode(ss.options!) as List?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
   }
 
@@ -71,6 +77,11 @@ class StaticSelectionSQLiteProvider
         .field_type_id
         .equals(id)
         .delete();
+    if (result.errorMessage?.isNotEmpty ?? false) {
+      throw Exception(result.errorMessage);
+    }
+    final result1 =
+        await FieldTypeDBModel().select().field_type_id.equals(id).delete();
     if (result.errorMessage?.isNotEmpty ?? false) {
       throw Exception(result.errorMessage);
     }

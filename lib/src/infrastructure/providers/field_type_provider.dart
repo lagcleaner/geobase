@@ -43,11 +43,21 @@ class FieldTypeSQLiteProvider implements IFieldTypeProvider {
       *
     FROM
       ${type.meta_type}
-    INNER JOIN FieldType ON FieldType.field_type_id = ${type.meta_type}.field_type_id''',
+    INNER JOIN FieldType 
+      ON FieldType.field_type_id = ${type.meta_type}.field_type_id
+    WHERE
+      ${type.meta_type}.field_type_id = ${type.field_type_id!}
+      ''',
     ) as List<Map<String, dynamic>?>?;
+    //TODO: REVIEW IF THIS CASTING IS WORKING
 
     if ((result?.isEmpty ?? true) || result!.first == null) {
-      throw Exception('Type Definition Incomplete');
+      final deleteResult = await FieldTypeDBModel()
+          .select()
+          .field_type_id
+          .equals(type.field_type_id)
+          .delete();
+      throw Exception('Type Definition For ${type.name} Incomplete');
     }
 
     return FieldTypeGetModel(

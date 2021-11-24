@@ -90,13 +90,13 @@ class MapConfigurationFormBloc
             subdomains,
           ],
         );
-        _initiailizeListFieldBloc(
+        _initiailizeAutoRemovableListFieldBloc(
           wmsLayers,
           (configs.options[MAP_SOURCE_WMS_LAYERS] as List?)
               ?.map((item) => item as String)
               .toList(),
         );
-        _initiailizeListFieldBloc(
+        _initiailizeAutoRemovableListFieldBloc(
           subdomains,
           (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
               ?.map((item) => item as String)
@@ -123,7 +123,7 @@ class MapConfigurationFormBloc
             subdomains,
           ],
         );
-        _initiailizeListFieldBloc(
+        _initiailizeAutoRemovableListFieldBloc(
           subdomains,
           (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
               ?.map((item) => item as String)
@@ -191,7 +191,7 @@ class MapConfigurationFormBloc
   }
 }
 
-void _initiailizeListFieldBloc(
+void _initiailizeAutoRemovableListFieldBloc(
   ListFieldBloc<TextFieldBloc> listBloc,
   List<String>? defaultValues,
 ) {
