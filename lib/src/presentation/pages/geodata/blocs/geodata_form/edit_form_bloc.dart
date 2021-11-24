@@ -5,7 +5,6 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
-import 'package:latlong2/latlong.dart';
 
 abstract class IGeodataEditFormBloc extends IGeodataFormBloc {
   InputBloc<int> get geodataId;

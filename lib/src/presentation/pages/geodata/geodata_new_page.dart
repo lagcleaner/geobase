@@ -107,32 +107,35 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const SizedBox(height: 8),
-        const Text('Seleccione una categoría para el nuevo punto.'),
-        DropdownButtonFormField<int>(
-          items: categories.map((CategoryGetEntity categ) {
-            return DropdownMenuItem(
-              value: categ.id,
-              child: Row(
-                children: <Widget>[
-                  Text(categ.name),
-                ],
-              ),
-            );
-          }).toList(),
-          onChanged: (selected) =>
-              selected != null ? onSelectedCategory(selected) : null,
-          decoration: TextFieldDecorations.decoration(
-            suffixIcon: const Icon(Icons.arrow_drop_down_circle_outlined),
-            prefixIcon: Icons.category,
-            labelText: 'Categoría',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          const SizedBox(height: 8),
+          const Text('Seleccione una categoría para el nuevo punto.'),
+          DropdownButtonFormField<int>(
+            items: categories.map((CategoryGetEntity categ) {
+              return DropdownMenuItem(
+                value: categ.id,
+                child: Row(
+                  children: <Widget>[
+                    Text(categ.name),
+                  ],
+                ),
+              );
+            }).toList(),
+            onChanged: (selected) =>
+                selected != null ? onSelectedCategory(selected) : null,
+            decoration: TextFieldDecorations.decoration(
+              suffixIcon: const Icon(Icons.arrow_drop_down_circle_outlined),
+              prefixIcon: Icons.category,
+              labelText: 'Categoría',
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-      ],
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }

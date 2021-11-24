@@ -93,8 +93,8 @@ class _GeodataEditFormBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocListener<IGeodataFormBloc, void, Failure>(
-      bloc: context.read<IGeodataFormBloc>(),
+    return FormBlocListener<IGeodataEditFormBloc, void, Failure>(
+      bloc: context.read<IGeodataEditFormBloc>(),
       onSuccess: (_) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
@@ -119,7 +119,7 @@ class _GeodataEditFormBody extends StatelessWidget {
       child: const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(10.0),
-          child: GeodataForm(
+          child: GeodataForm<IGeodataEditFormBloc>(
             submmitButtonText: 'Aplicar cambios',
           ),
         ),

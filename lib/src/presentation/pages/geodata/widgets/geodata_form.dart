@@ -17,16 +17,16 @@ class GeodataForm<T extends IGeodataFormBloc> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final IGeodataFormBloc formBloc = context.watch<T>();
+    final T formBloc = context.watch<T>();
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 10),
         Row(
-          children: const [
-            Flexible(child: _LatitudeInput()),
-            SizedBox(width: 8),
-            Flexible(child: _LongitudeInput()),
+          children: [
+            Flexible(child: _LatitudeInput<T>()),
+            const SizedBox(width: 8),
+            Flexible(child: _LongitudeInput<T>()),
           ],
         ),
         const Divider(height: 10),
@@ -47,8 +47,22 @@ class GeodataForm<T extends IGeodataFormBloc> extends StatelessWidget {
   }
 }
 
-class _LatitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
+class _LatitudeInput<T extends IGeodataFormBloc> extends StatefulWidget {
   const _LatitudeInput({Key? key}) : super(key: key);
+
+  @override
+  State<_LatitudeInput<T>> createState() => _LatitudeInputState<T>();
+}
+
+class _LatitudeInputState<T extends IGeodataFormBloc>
+    extends State<_LatitudeInput<T>> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +70,8 @@ class _LatitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
     return InputBlocBuilder<String>(
       bloc: formBloc.latitude,
       builder: (context, state) => TextInputWidget(
-        controller: TextEditingCustom.fromValue(state.value),
-        labelText: 'Latitud',
+        controller: _controller..setValue(state.value),
+        labelText: 'Latitud*',
         errorText: state.error,
         onChanged: (value) => formBloc.latitude.dirty(
           value.trim(),
@@ -67,8 +81,22 @@ class _LatitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
   }
 }
 
-class _LongitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
+class _LongitudeInput<T extends IGeodataFormBloc> extends StatefulWidget {
   const _LongitudeInput({Key? key}) : super(key: key);
+
+  @override
+  State<_LongitudeInput<T>> createState() => _LongitudeInputState<T>();
+}
+
+class _LongitudeInputState<T extends IGeodataFormBloc>
+    extends State<_LongitudeInput<T>> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    _controller = TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,8 +104,8 @@ class _LongitudeInput<T extends IGeodataFormBloc> extends StatelessWidget {
     return InputBlocBuilder<String>(
       bloc: formBloc.longitude,
       builder: (context, state) => TextInputWidget(
-        controller: TextEditingCustom.fromValue(state.value),
-        labelText: 'Longitud',
+        controller: _controller..setValue(state.value),
+        labelText: 'Longitud*',
         errorText: state.error,
         onChanged: (value) => formBloc.longitude.dirty(
           value.trim(),

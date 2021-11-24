@@ -7,6 +7,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
+import 'package:icon_picker/material_icons.dart';
 
 class GeodataViewPage extends StatelessWidget {
   const GeodataViewPage({
@@ -143,36 +144,50 @@ class _GeodataViewBasicInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          dense: true,
-          title: Text(geodata.category.name),
-          subtitle: const Text('Categoría'),
+        Row(
+          children: [
+            Expanded(
+              child: ListTile(
+                title: Text(geodata.category.name),
+                subtitle: const Text('Categoría'),
+              ),
+            ),
+            Expanded(
+              child: ListTile(
+                title: Text(
+                    'Latitud: ${geodata.latitude}\nLongitud: ${geodata.longitude}'),
+                subtitle: const Text('Ubicación'),
+              ),
+            ),
+          ],
         ),
         Row(
           children: [
             Expanded(
               child: ListTile(
-                dense: true,
                 title: Text(geodata.id.toString()),
                 subtitle: const Text('Id'),
               ),
             ),
             Expanded(
               child: ListTile(
-                dense: true,
-                title: Text(geodata.color?.toString() ?? 'No Especificado'),
-                subtitle: const Text('Color'),
-                trailing: Icon(
-                  Icons.circle,
-                  color: Color(geodata.color ?? Colors.transparent.value),
+                title: Icon(
+                  MaterialIcons.mIcons[geodata.icon],
+                  color: geodata.color != null
+                      ? Color(geodata.color!)
+                      : Theme.of(context).primaryColor,
+                ),
+                subtitle: Text(
+                  geodata.color != null
+                      ? Color(geodata.color!).toString()
+                      : 'Color No Especificado',
                 ),
               ),
             ),
           ],
         ),
         const Divider(),
-        if (geodata.fields.isEmpty)
-          const ListTile(dense: true, title: Text('Sin Campos')),
+        if (geodata.fields.isEmpty) const ListTile(title: Text('Sin Campos')),
         if (geodata.fields.isNotEmpty) const Center(child: Text('Campos')),
         ...[
           for (final field in geodata.fields)

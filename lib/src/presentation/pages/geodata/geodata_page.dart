@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
@@ -166,23 +167,30 @@ class _GeodataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = geodata.color != null
+        ? Color(geodata.color!).withOpacity(0.5)
+        : Colors.white;
+    final subtitle2 = Theme.of(context).textTheme.subtitle2;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+        color: color,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListTile(
-            tileColor: geodata.color != null
-                ? Color(geodata.color!).withOpacity(0.5)
-                : null,
             title: SelectableText(
-              '${geodata.category.name}(${geodata.location.visualString()})',
+              '${geodata.category.name}${geodata.location.visualString()}',
+              style: subtitle2?.copyWith(
+                color: subtitle2.color?.getContrastColor(color),
+              ),
             ),
             subtitle: SelectableText(
-              geodata.fields.map((e) => e.value.toString()).join(','),
+              geodata.fields.isNotEmpty
+                  ? geodata.fields.map((e) => e.value.toString()).join(',')
+                  : 'Sin Campos',
               maxLines: 3, //if contains a file is a risks
               // overflow: TextOverflow.fade,
             ),
@@ -212,11 +220,13 @@ class _QueryInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final categoriesShower = getIt<CategoriesShowerCubit>();
     return BlocConsumer<CategoriesShowerCubit, CategoriesShowerState>(
-      bloc: categoriesShower,
+      bloc: categoriesShower..loadCategories(),
       listener: (context, state) {
-        context
-            .read<GeodataListBloc>()
-            .add(GeodataListEvent.fetched(categoryId: state.selected));
+        if (state.selected != null) {
+          context
+              .read<GeodataListBloc>()
+              .add(GeodataListEvent.fetched(categoryId: state.selected));
+        }
       },
       builder: (context, state) {
         return Padding(

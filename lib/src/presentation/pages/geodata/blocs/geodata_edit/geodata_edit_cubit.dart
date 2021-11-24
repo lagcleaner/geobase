@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geobase/injection.dart';
 
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
@@ -7,6 +8,7 @@ import 'package:geobase/src/domain/services/services.dart';
 part 'geodata_edit_cubit.freezed.dart';
 part 'geodata_edit_state.dart';
 
+@injectable
 class GeodataEditCubit extends Cubit<GeodataEditState> {
   GeodataEditCubit(
     this.service,

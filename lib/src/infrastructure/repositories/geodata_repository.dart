@@ -74,7 +74,7 @@ class GeodataRepository implements IGeodataRepository {
   @override
   Future<Either<Failure, Unit>> removeGeodata(int geoDataId) async {
     try {
-      await provider.getById(geoDataId);
+      await provider.remove(geoDataId);
       return const Right(unit);
     } catch (e) {
       return catchMethod(e);

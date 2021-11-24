@@ -270,7 +270,7 @@ class _CategoryViewBasicInfo extends StatelessWidget {
                 subtitle: Text(
                   category.color != null
                       ? Color(category.color!).toString()
-                      : 'No Especificado',
+                      : 'Color No Especificado',
                 ),
               ),
             ),
