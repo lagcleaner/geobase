@@ -33,7 +33,7 @@ import 'src/domain/services/services.dart' as _i6;
 import 'src/domain/services/static_selection_service.dart' as _i39;
 import 'src/domain/services/user_preferences_reader_service.dart' as _i58;
 import 'src/domain/services/user_preferences_writter_service.dart' as _i60;
-import 'src/infrastructure/core/registers/external_registers.dart' as _i77;
+import 'src/infrastructure/core/registers/external_registers.dart' as _i78;
 import 'src/infrastructure/providers/categories_provider.dart' as _i14;
 import 'src/infrastructure/providers/columns_provider.dart' as _i23;
 import 'src/infrastructure/providers/field_type_provider.dart' as _i30;
@@ -82,11 +82,13 @@ import 'src/presentation/pages/geodata/blocs/blocs.dart' as _i44;
 import 'src/presentation/pages/geodata/blocs/categories_shower/categoriesshower_cubit.dart'
     as _i68;
 import 'src/presentation/pages/geodata/blocs/geodata_create/geodata_create_cubit.dart'
-    as _i76;
+    as _i77;
 import 'src/presentation/pages/geodata/blocs/geodata_edit/geodata_edit_cubit.dart'
     as _i10;
 import 'src/presentation/pages/geodata/blocs/geodata_form/create_form_bloc.dart'
     as _i43;
+import 'src/presentation/pages/geodata/blocs/geodata_form/create_form_bloc2.dart'
+    as _i76;
 import 'src/presentation/pages/geodata/blocs/geodata_form/edit_form_bloc.dart'
     as _i45;
 import 'src/presentation/pages/geodata/blocs/geodatalist/geodatalist_bloc.dart'
@@ -231,9 +233,12 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
   gh.factory<_i75.MapConfigurationFormBloc>(() => _i75.MapConfigurationFormBloc(
       readerService: get<_i18.IMapConfigurationReaderService>(),
       writterService: get<_i18.IMapConfigurationWritterService>()));
-  gh.factory<_i76.GeodataCreateCubit>(() => _i76.GeodataCreateCubit(
+  gh.factory<_i76.CategoryCreateFormBloc>(() => _i76.CategoryCreateFormBloc(
+      categoryService: get<_i6.ICategoryService>(),
+      locationService: get<_i6.ILocationReaderService>()));
+  gh.factory<_i77.GeodataCreateCubit>(() => _i77.GeodataCreateCubit(
       get<_i6.ICategoryService>(), get<_i6.ILocationReaderService>()));
   return get;
 }
 
-class _$RegisterModule extends _i77.RegisterModule {}
+class _$RegisterModule extends _i78.RegisterModule {}

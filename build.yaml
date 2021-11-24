@@ -3,4 +3,6 @@ targets:
     builders:
       reflectable:
         generate_for:
-          - lib/
+          - lib/main.dart
+          # - lib/src/presentation/core/widgets/render_clases/*.dart
+          - lib/src/presentation/core/widgets/render_clases/**.dart

@@ -6,7 +6,7 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/reflectable_extensions.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/not_implemented_list_tile_widget.dart';
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/field_render_class.dart';
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/field_render_classes.dart';
 import 'package:reflectable/reflectable.dart';
 
 class FieldRenderReflectable extends Reflectable {
