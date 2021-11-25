@@ -23,6 +23,20 @@ class StringValidator {
           ? 'error_invalid_number_input'
           : null;
 
+  static String? Function(String? value) numberBetween({
+    num? min,
+    num? max,
+    required String errorMessage,
+  }) =>
+      (String? value) {
+        final numVal = double.tryParse(value ?? '');
+        if (numVal == null) return null;
+        if (min != null && numVal <= min || max != null && numVal >= max) {
+          return errorMessage;
+        }
+        return null;
+      };
+
   static String? integer(String? value) => value == null
       ? null
       : int.tryParse(value) == null
