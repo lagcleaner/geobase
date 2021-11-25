@@ -116,12 +116,10 @@ class _GeodataEditFormBody extends StatelessWidget {
             ),
           ),
         ),
-      child: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: GeodataForm<IGeodataEditFormBloc>(
-            submmitButtonText: 'Aplicar cambios',
-          ),
+      child: const Padding(
+        padding: EdgeInsets.all(10.0),
+        child: GeodataForm<IGeodataEditFormBloc>(
+          submmitButtonText: 'Aplicar cambios',
         ),
       ),
     );

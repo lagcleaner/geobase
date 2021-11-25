@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
+import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
-import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 
 class StaticSelectionFieldInputWidget extends FieldInputWidget {
   const StaticSelectionFieldInputWidget({
@@ -21,29 +21,32 @@ class StaticSelectionFieldInputWidget extends FieldInputWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return DropdownButtonFormField(items: ,)
-    return ListTile(
+    final items = (column.type.extradata?['options'] as List?)
+            ?.map((e) => e as String)
+            .toList() ??
+        [];
+    final value = fieldValue.value as String?;
+    if (value != null && !items.contains(value)) {
+      items.add(value);
+    }
+
+    return DropdownButtonFormField<String>(
       key: key,
-      title: Text(fieldValue.value != null ? '[File]' : ''),
-      subtitle: Text(column.name),
-      trailing: errorText != null
-          ? Icon(
-              Icons.info_outline_rounded,
-              color: Colors.red.withOpacity(0.5),
-            )
-          : null,
-      onLongPress: () async {
-        //TODO: ALL OF THIS
-        // final result = await showPhotoPicker(
-        //   context: context,
-        //   current: value,
-        // );
-        // // if (result != null)
-        onChanged('');
-      },
-      onTap: () async {
-        //show a preview
-      },
+      items: items
+          .map(
+            (e) => DropdownMenuItem<String>(
+              value: e,
+              child: Text(e),
+            ),
+          )
+          .toList(),
+      icon: const SizedBox(),
+      onChanged: onChanged,
+      decoration: TextFieldDecorations.decoration(
+        errorText: errorText,
+        labelText: column.name,
+        suffixIcon: const Icon(Icons.arrow_circle_down_rounded),
+      ),
     );
   }
 }

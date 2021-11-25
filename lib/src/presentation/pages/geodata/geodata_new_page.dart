@@ -173,12 +173,10 @@ class _GeodataCreateFormBody extends StatelessWidget {
             ),
           ),
         ),
-      child: const SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: GeodataForm<IGeodataCreateFormBloc>(
-            submmitButtonText: 'Añadir Punto',
-          ),
+      child: const Padding(
+        padding: EdgeInsets.all(10.0),
+        child: GeodataForm<IGeodataCreateFormBloc>(
+          submmitButtonText: 'Añadir Punto',
         ),
       ),
     );

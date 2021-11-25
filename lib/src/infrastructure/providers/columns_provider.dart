@@ -55,7 +55,9 @@ class ColumnsSQLiteProvider implements IColumnsProvider {
         .column_id
         .equals(id)
         .toSingle(preload: true);
-    if (column == null) throw Exception('Column Not Found');
+    if (column == null) {
+      throw Exception('Column Not Found');
+    }
 
     return ColumnGetModel(
       id: id,

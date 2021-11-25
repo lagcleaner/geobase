@@ -53,7 +53,10 @@ class _GeodataViewPageInternal extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
             onPressed: () => context.read<GeodataViewCubit>().fetch(geodataId),
           ),
         ],
@@ -142,58 +145,75 @@ class _GeodataViewBasicInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: ListTile(
-                title: Text(geodata.category.name),
-                subtitle: const Text('Categoría'),
-              ),
-            ),
-            Expanded(
-              child: ListTile(
-                title: Text(
-                    'Latitud: ${geodata.latitude}\nLongitud: ${geodata.longitude}'),
-                subtitle: const Text('Ubicación'),
-              ),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: ListTile(
-                title: Text(geodata.id.toString()),
-                subtitle: const Text('Id'),
-              ),
-            ),
-            Expanded(
-              child: ListTile(
-                title: Icon(
-                  MaterialIcons.mIcons[geodata.icon],
-                  color: geodata.color != null
-                      ? Color(geodata.color!)
-                      : Theme.of(context).primaryColor,
-                ),
-                subtitle: Text(
-                  geodata.color != null
-                      ? Color(geodata.color!).toString()
-                      : 'Color No Especificado',
+    return SingleChildScrollView(
+      physics:
+          const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Flexible(
+                child: ListTile(
+                  title: Text(geodata.category.name),
+                  subtitle: const Text('Categoría'),
                 ),
               ),
+              Flexible(
+                child: ListTile(
+                  title: Text(
+                      'Latitud: ${geodata.latitude}\nLongitud: ${geodata.longitude}'),
+                  subtitle: const Text('Ubicación'),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Flexible(
+                child: ListTile(
+                  title: Text(geodata.id.toString()),
+                  subtitle: const Text('Id'),
+                ),
+              ),
+              Flexible(
+                child: ListTile(
+                  title: Icon(
+                    MaterialIcons.mIcons[geodata.icon],
+                    color: geodata.color != null
+                        ? Color(geodata.color!)
+                        : Theme.of(context).primaryColor,
+                  ),
+                  subtitle: Text(
+                    geodata.color != null
+                        ? Color(geodata.color!).toString()
+                        : 'Color No Especificado',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const Divider(),
+          if (geodata.fields.isEmpty)
+            ListTile(
+              title: Text(
+                'Sin Campos',
+                style: Theme.of(context).textTheme.headline6,
+              ),
             ),
+          if (geodata.fields.isNotEmpty)
+            Center(
+              child: Text(
+                'Campos',
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+          ...[
+            for (final field in geodata.fields)
+              FieldRenderResolver.getViewWidget(field)
           ],
-        ),
-        const Divider(),
-        if (geodata.fields.isEmpty) const ListTile(title: Text('Sin Campos')),
-        if (geodata.fields.isNotEmpty) const Center(child: Text('Campos')),
-        ...[
-          for (final field in geodata.fields)
-            FieldRenderResolver.getViewWidget(field)
         ],
-      ],
+      ),
     );
   }
 }

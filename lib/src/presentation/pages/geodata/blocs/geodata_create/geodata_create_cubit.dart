@@ -19,6 +19,7 @@ class GeodataCreateCubit extends Cubit<GeodataCreateState> {
   final ILocationReaderService locationService;
 
   Future<void> loadCategories() async {
+    emit(const GeodataCreateState.loading());
     final categoriesEither = await categoryService.loadCategoriesWhere();
     categoriesEither.fold(
       (failure) => emit(
@@ -31,6 +32,7 @@ class GeodataCreateCubit extends Cubit<GeodataCreateState> {
   }
 
   Future<void> loadTemplate(int categoryId, [LatLng? location]) async {
+    emit(const GeodataCreateState.loading());
     LatLng? dfltLocation = location;
     if (location == null) {
       //if location is null set as default location the current location.

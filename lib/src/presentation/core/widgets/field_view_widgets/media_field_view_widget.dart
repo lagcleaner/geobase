@@ -14,7 +14,6 @@ class MediaFieldView extends FieldViewWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      dense: true,
       title: Text(fieldValue.value != null ? '[FILE]' : ''),
       subtitle: Text(
         '${fieldValue.column.name} '

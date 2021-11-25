@@ -3,8 +3,10 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
+import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
+import 'package:latlong2/latlong.dart';
 
 abstract class IGeodataCreateFormBloc extends IGeodataFormBloc {}
 
@@ -30,11 +32,35 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
   @override
   late final InputBloc<String> latitude = InputBloc<String>(
     pureValue: initialData.location?.latitude.toString() ?? '',
+    validationType: ValidationType.explicit,
+    validator: ListValidator(
+      [
+        StringValidator.required,
+        StringValidator.number,
+        StringValidator.numberBetween(
+          min: -90,
+          max: 90,
+          errorMessage: 'Latitude must be between -90 and 90 degrees',
+        ),
+      ],
+    ),
   );
 
   @override
   late final InputBloc<String> longitude = InputBloc<String>(
     pureValue: initialData.location?.longitude.toString() ?? '',
+    validationType: ValidationType.explicit,
+    validator: ListValidator(
+      [
+        StringValidator.required,
+        StringValidator.number,
+        StringValidator.numberBetween(
+          min: -180,
+          max: 180,
+          errorMessage: 'Longitude must be between -180 and 180 degrees',
+        ),
+      ],
+    ),
   );
 
   @override

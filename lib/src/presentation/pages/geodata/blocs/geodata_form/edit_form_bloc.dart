@@ -3,6 +3,7 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
+import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 
@@ -51,28 +52,52 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   @override
   late final InputBloc<String> latitude = InputBloc<String>(
     pureValue: defaultData.location.latitude.toString(),
+    validationType: ValidationType.explicit,
+    validator: ListValidator(
+      [
+        StringValidator.required,
+        StringValidator.number,
+        StringValidator.numberBetween(
+          min: -90,
+          max: 90,
+          errorMessage: 'Latitude must be between -90 and 90 degrees',
+        ),
+      ],
+    ),
   );
 
   @override
   late final InputBloc<String> longitude = InputBloc<String>(
     pureValue: defaultData.location.longitude.toString(),
+    validationType: ValidationType.explicit,
+    validator: ListValidator(
+      [
+        StringValidator.required,
+        StringValidator.number,
+        StringValidator.numberBetween(
+          min: -180,
+          max: 180,
+          errorMessage: 'Longitude must be between -180 and 180 degrees',
+        ),
+      ],
+    ),
   );
 
   @override
-  late final Map<ColumnGetEntity, InputBloc<FieldValuePutEntity>> fieldValues =
+  late final Map<ColumnGetEntity, InputBloc<FieldValueEntity>> fieldValues =
       Map.fromEntries(
     defaultData.fields.map(
       (e) => MapEntry(
         e.column,
-        (FieldRenderResolver.getInputBloc(
+        FieldRenderResolver.getInputBloc(
           e.column,
           FieldValuePutEntity(
             id: e.id,
             geodataId: e.geodataId,
             value: e.value,
-            columnId: e.id,
+            columnId: e.column.id,
           ),
-        ) as InputBloc<FieldValuePutEntity>?)!,
+        )!,
       ),
     ),
   );
@@ -85,8 +110,9 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
         categoryId: categoryId.state.value,
         latitude: double.parse(latitude.state.value),
         longitude: double.parse(longitude.state.value),
-        fieldValues:
-            fieldValues.values.map((value) => value.state.value).toList(),
+        fieldValues: fieldValues.values
+            .map((value) => value.state.value as FieldValuePutEntity)
+            .toList(),
       ),
     );
     return response.fold(
