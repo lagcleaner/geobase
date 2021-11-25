@@ -38,7 +38,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
   );
 
   @override
-  late final Map<ColumnGetEntity, InputBloc<FieldValuePostEntity>> fieldValues =
+  late final Map<ColumnGetEntity, InputBloc<FieldValueEntity>> fieldValues =
       Map.fromEntries(
     category.columns.map(
       (e) => MapEntry(
@@ -46,8 +46,8 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
         FieldRenderResolver.getInputBloc(
               e,
               FieldValuePostEntity(value: null, columnId: e.id),
-            ) as InputBloc<FieldValuePostEntity>? ??
-            InputBloc<FieldValuePostEntity>(
+            ) ??
+            InputBloc<FieldValueEntity>(
               pureValue: FieldValuePostEntity(
                 columnId: e.id,
                 value: null,
@@ -64,8 +64,9 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
         categoryId: categoryId.state.value,
         latitude: double.parse(latitude.state.value),
         longitude: double.parse(longitude.state.value),
-        fieldValues:
-            fieldValues.values.map((value) => value.state.value).toList(),
+        fieldValues: fieldValues.values
+            .map((value) => value.state.value as FieldValuePostEntity)
+            .toList(),
       ),
     );
     return response.fold(

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
@@ -45,4 +47,23 @@ class MediaFileFieldInputWidget extends FieldInputWidget {
       },
     );
   }
+
+  // Future<File> get _localFile async {
+  //   final path = await _filePath;
+  //   return File('$path');
+  // }
+
+  // Future<int> readContents() async {
+  //   try {
+  //     final file = await _localFile;
+
+  //     // Read the file
+  //     String contents = await file.readAsString();
+
+  //     return int.parse(contents);
+  //   } catch (e) {
+  //     // If we encounter an error, return 0
+  //     return 0;
+  //   }
+  // }
 }

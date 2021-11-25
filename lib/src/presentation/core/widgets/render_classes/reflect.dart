@@ -22,13 +22,6 @@ const fieldRenderReflectable = FieldRenderReflectable();
 
 @LazySingleton()
 class FieldRenderResolver {
-  static bool isInitialized = false;
-  static void initializResolver() {
-    // reflectable
-    // initializateReflectable(); //TODO: THIS SHIT IS FUCKING IMPORTANT
-    isInitialized = true;
-  }
-
   /// Unsave internal
   static IFieldRenderClass _getInstance(String renderClassName) {
     final interfaceImplemented =
@@ -36,7 +29,10 @@ class FieldRenderResolver {
     final classMirror = fieldRenderReflectable.getClassMirrorWhere(
       exactName: renderClassName,
       aditionalCondition: (cm) {
-        return cm.superclass?.isSubtypeOf(interfaceImplemented) ?? false;
+        if (cm.isAbstract) return false;
+        final interfaces = cm.superinterfaces;
+        return interfaces
+            .any((e) => interfaceImplemented.simpleName == e.simpleName);
       },
     );
     if (classMirror == null) throw UnimplementedError();
@@ -48,7 +44,6 @@ class FieldRenderResolver {
     ColumnGetEntity column,
     FieldValueEntity fieldValue,
   ) {
-    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(column.type.renderClass);
       final inputBloc = instance.getInputBloc(fieldValue);
@@ -63,7 +58,6 @@ class FieldRenderResolver {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> inputBloc,
   ) {
-    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(column.type.renderClass);
       final inputWidget = instance.getInputWidget(column, inputBloc);
@@ -77,7 +71,6 @@ class FieldRenderResolver {
   static Widget getViewWidget(
     FieldValueGetEntity fieldValue,
   ) {
-    if (!isInitialized) initializResolver();
     try {
       final instance = _getInstance(fieldValue.column.type.renderClass);
       final inputWidget = instance.getViewWidget(fieldValue);

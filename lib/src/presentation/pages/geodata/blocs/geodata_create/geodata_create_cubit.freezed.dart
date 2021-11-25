@@ -20,6 +20,10 @@ class _$GeodataCreateStateTearOff {
     return const _Initial();
   }
 
+  _Loading loading() {
+    return const _Loading();
+  }
+
   _GeodataCategorySelectionState categorySelection(
       {required List<CategoryGetEntity> categories}) {
     return _GeodataCategorySelectionState(
@@ -48,6 +52,7 @@ mixin _$GeodataCreateState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryGetEntity> categories)
         categorySelection,
     required TResult Function(GeodataCreateInitialData fetchData) inputData,
@@ -57,6 +62,7 @@ mixin _$GeodataCreateState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories)? categorySelection,
     TResult Function(GeodataCreateInitialData fetchData)? inputData,
     TResult Function(Failure failure)? failure,
@@ -66,6 +72,7 @@ mixin _$GeodataCreateState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_GeodataCategorySelectionState value)
         categorySelection,
     required TResult Function(_GeodataCreateState value) inputData,
@@ -76,6 +83,7 @@ mixin _$GeodataCreateState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_GeodataCategorySelectionState value)? categorySelection,
     TResult Function(_GeodataCreateState value)? inputData,
     TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
@@ -139,6 +147,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryGetEntity> categories)
         categorySelection,
     required TResult Function(GeodataCreateInitialData fetchData) inputData,
@@ -151,6 +160,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories)? categorySelection,
     TResult Function(GeodataCreateInitialData fetchData)? inputData,
     TResult Function(Failure failure)? failure,
@@ -166,6 +176,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_GeodataCategorySelectionState value)
         categorySelection,
     required TResult Function(_GeodataCreateState value) inputData,
@@ -179,6 +190,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_GeodataCategorySelectionState value)? categorySelection,
     TResult Function(_GeodataCreateState value)? inputData,
     TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
@@ -193,6 +205,104 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements GeodataCreateState {
   const factory _Initial() = _$_Initial;
+}
+
+/// @nodoc
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LoadingCopyWithImpl<$Res>
+    extends _$GeodataCreateStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
+
+  @override
+  _Loading get _value => super._value as _Loading;
+}
+
+/// @nodoc
+class _$_Loading implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString() {
+    return 'GeodataCreateState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<CategoryGetEntity> categories)
+        categorySelection,
+    required TResult Function(GeodataCreateInitialData fetchData) inputData,
+    required TResult Function(Failure failure) failure,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_GeodataCategorySelectionState value)
+        categorySelection,
+    required TResult Function(_GeodataCreateState value) inputData,
+    required TResult Function(_GeodataLoadingCategoriesErrorState value)
+        failure,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements GeodataCreateState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -266,6 +376,7 @@ class _$_GeodataCategorySelectionState
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryGetEntity> categories)
         categorySelection,
     required TResult Function(GeodataCreateInitialData fetchData) inputData,
@@ -278,6 +389,7 @@ class _$_GeodataCategorySelectionState
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories)? categorySelection,
     TResult Function(GeodataCreateInitialData fetchData)? inputData,
     TResult Function(Failure failure)? failure,
@@ -293,6 +405,7 @@ class _$_GeodataCategorySelectionState
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_GeodataCategorySelectionState value)
         categorySelection,
     required TResult Function(_GeodataCreateState value) inputData,
@@ -306,6 +419,7 @@ class _$_GeodataCategorySelectionState
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_GeodataCategorySelectionState value)? categorySelection,
     TResult Function(_GeodataCreateState value)? inputData,
     TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
@@ -395,6 +509,7 @@ class _$_GeodataCreateState implements _GeodataCreateState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryGetEntity> categories)
         categorySelection,
     required TResult Function(GeodataCreateInitialData fetchData) inputData,
@@ -407,6 +522,7 @@ class _$_GeodataCreateState implements _GeodataCreateState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories)? categorySelection,
     TResult Function(GeodataCreateInitialData fetchData)? inputData,
     TResult Function(Failure failure)? failure,
@@ -422,6 +538,7 @@ class _$_GeodataCreateState implements _GeodataCreateState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_GeodataCategorySelectionState value)
         categorySelection,
     required TResult Function(_GeodataCreateState value) inputData,
@@ -435,6 +552,7 @@ class _$_GeodataCreateState implements _GeodataCreateState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_GeodataCategorySelectionState value)? categorySelection,
     TResult Function(_GeodataCreateState value)? inputData,
     TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
@@ -537,6 +655,7 @@ class _$_GeodataLoadingCategoriesErrorState
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(List<CategoryGetEntity> categories)
         categorySelection,
     required TResult Function(GeodataCreateInitialData fetchData) inputData,
@@ -549,6 +668,7 @@ class _$_GeodataLoadingCategoriesErrorState
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories)? categorySelection,
     TResult Function(GeodataCreateInitialData fetchData)? inputData,
     TResult Function(Failure failure)? failure,
@@ -564,6 +684,7 @@ class _$_GeodataLoadingCategoriesErrorState
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_GeodataCategorySelectionState value)
         categorySelection,
     required TResult Function(_GeodataCreateState value) inputData,
@@ -577,6 +698,7 @@ class _$_GeodataLoadingCategoriesErrorState
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_GeodataCategorySelectionState value)? categorySelection,
     TResult Function(_GeodataCreateState value)? inputData,
     TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
