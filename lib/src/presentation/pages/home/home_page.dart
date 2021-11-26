@@ -93,8 +93,6 @@ class _MapScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: const [
-              _LocationButton(),
-              SizedBox(height: 8),
               _GotoLocationButton(),
             ],
           ),
@@ -158,17 +156,37 @@ class _GotoLocationButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      // style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
-      onPressed: context.watch<LocationCubit>().state.map(
+    return BlocBuilder<LocationCubit, LocationState>(
+      builder: (context, state) {
+        return FloatingActionButton.extended(
+          icon: Stack(
+            children: [
+              state.maybeMap(
+                enable: (_) => const Icon(Icons.navigation_rounded),
+                disable: (_) => const Icon(Icons.navigation_outlined),
+                orElse: () => const
+                    // SizedBox(),
+                    CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ),
+              ),
+            ],
+          ),
+          // style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
+          onPressed: state.map(
             loading: (loading) => null,
-            disable: (disable) => null,
+            disable: (disable) => context.read<LocationCubit>().enableLocation,
             enable: (enable) => () {
-              final controller = context.watch<MapCubit>().state.mapController;
-              controller.move(enable.location, controller.zoom);
+              context.read<MapCubit>().state.mapController.move(
+                    enable.location,
+                    context.read<MapCubit>().state.mapController.zoom,
+                  );
             },
           ),
-      label: const Text('Ir a mi ubicación'),
+          label: const Text('Ir a mi ubicación'),
+        );
+      },
     );
   }
 }
@@ -187,30 +205,6 @@ class _OptionsButton extends StatelessWidget {
         context.beamToNamed('/options');
       },
       child: const Icon(Icons.settings),
-    );
-  }
-}
-
-class _LocationButton extends StatelessWidget {
-  const _LocationButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      heroTag: null,
-      elevation: 0,
-      onPressed: context.watch<LocationCubit>().state.maybeMap(
-            enable: (_) => context.read<LocationCubit>().disableLocation,
-            disable: (_) => context.read<LocationCubit>().enableLocation,
-            orElse: () => null,
-          ),
-      child: context.watch<LocationCubit>().state.maybeMap(
-            enable: (_) => const Icon(Icons.my_location_rounded),
-            disable: (_) => const Icon(Icons.location_disabled_rounded),
-            orElse: () => const CircularProgressIndicator(),
-          ),
     );
   }
 }

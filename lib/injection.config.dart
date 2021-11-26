@@ -217,17 +217,15 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
           fieldTypeService: get<_i18.IFieldTypeService>()));
   gh.factory<_i15.IConfigurationRepository>(() =>
       _i70.ConfigurationRepository(get<_i51.ILocalPreferencesProvider>()));
-  gh.lazySingleton<_i6.ILocationReaderService>(() => _i71.LocationReaderService(
-      get<_i15.IConfigurationRepository>(), get<_i15.ILocationRepository>()));
+  gh.lazySingleton<_i6.ILocationReaderService>(
+      () => _i71.LocationReaderService(get<_i15.ILocationRepository>()));
   gh.lazySingleton<_i18.IMapConfigurationReaderService>(() =>
       _i72.MapConfigurationReaderService(get<_i15.IConfigurationRepository>()));
   gh.lazySingleton<_i18.IMapConfigurationWritterService>(() =>
       _i73.MapConfigurationWritterService(
           get<_i15.IConfigurationRepository>()));
-  gh.factory<_i74.LocationCubit>(() => _i74.LocationCubit(
-      userPreferencesReaderService: get<_i6.IUserPreferencesReaderService>(),
-      userPreferencesWritterService: get<_i6.IUserPreferencesWritterService>(),
-      locationService: get<_i6.ILocationReaderService>()));
+  gh.factory<_i74.LocationCubit>(() =>
+      _i74.LocationCubit(locationService: get<_i6.ILocationReaderService>()));
   gh.factory<_i75.MapConfigurationFormBloc>(() => _i75.MapConfigurationFormBloc(
       readerService: get<_i18.IMapConfigurationReaderService>(),
       writterService: get<_i18.IMapConfigurationWritterService>()));

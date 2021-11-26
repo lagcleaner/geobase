@@ -22,9 +22,10 @@ class GeoBaseMap extends StatelessWidget {
           );
         }
         return FlutterMap(
+          mapController: state.mapController,
           options: MapOptions(
             controller: state.mapController,
-            center: LatLng(23.12, -82.30),
+            center: LatLng(23.1255, -82.37),
             //TODO: start position loaded from settings or something
             zoom: 14.0,
             maxZoom: 18.0,

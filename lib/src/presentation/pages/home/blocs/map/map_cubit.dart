@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map/plugin_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
@@ -19,7 +20,7 @@ class MapCubit extends Cubit<MapState> {
     @factoryParam this.initialLocation,
   }) : super(
           MapState.state(
-            mapController: MapController(),
+            mapController: MapControllerImpl(),
             mapConfiguration: MapConfigurationEntity.empty(),
           ),
         );
@@ -55,6 +56,7 @@ class MapCubit extends Cubit<MapState> {
   }
 
   Future<void> markerTouched(IMarkable marker) async {
+    await state.mapController.onReady;
     state.mapController.move(marker.location, state.mapController.zoom);
 
     ///store the last location touched to start at this point next time...

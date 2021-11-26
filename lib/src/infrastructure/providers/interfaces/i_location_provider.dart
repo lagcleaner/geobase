@@ -1,12 +1,11 @@
 import 'package:latlong2/latlong.dart';
 
 abstract class ILocationProvider {
-  // Future<bool> initialize();
-  Future<bool> changeRefreshInterval(Duration refreshInterval);
+  Future<bool> get isEnabled;
 
   Future<LatLng> get location;
 
   Stream<LatLng> get onLocationChanged;
 
-  Future<bool> disable();
+  Future<void> requestEnable();
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:geobase/src/infrastructure/providers/interfaces/i_location_provider.dart';
 import 'package:injectable/injectable.dart';
@@ -10,58 +9,46 @@ import 'package:location/location.dart';
 class LocationProvider implements ILocationProvider {
   LocationProvider();
 
-  Location get _location => Location.instance;
+  Location get _locationInstance => Location();
 
-  int _refreshInterval = 1000;
-
-  Future<PermissionStatus> get permission async {
-    return _location.requestPermission();
+  @override
+  Future<void> requestEnable() async {
+    await _requestService();
+    await _requestPermission();
   }
 
   @override
-  Future<bool> changeRefreshInterval(Duration refreshInterval) async {
-    if (refreshInterval.inMilliseconds == _refreshInterval) return true;
+  Future<bool> get isEnabled async => _locationInstance.serviceEnabled();
 
-    assert(refreshInterval.inMilliseconds >= 1000);
-    _refreshInterval = refreshInterval.inMilliseconds;
-
-    return _location.changeSettings(
-      interval: refreshInterval.inMilliseconds,
-    );
+  Future<void> _requestService() async {
+    var serviceEnabled = await _locationInstance.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await _locationInstance.requestService();
+    }
+    if (!serviceEnabled) return;
   }
 
-  Future<bool> initialize() async {
-    final serviceEnabled = await _location.serviceEnabled();
-    if (!serviceEnabled) throw Exception('Service Location Unavailable');
-    final perm = await permission;
-    return PermissionStatus.granted == perm;
+  Future<void> _requestPermission() async {
+    var _permissionGranted = await _locationInstance.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await _locationInstance.requestPermission();
+    }
+    if (_permissionGranted != PermissionStatus.granted) return;
   }
 
   @override
   Future<LatLng> get location async {
-    await initialize();
+    // await requestEnable();
+    if (!await isEnabled) throw Exception('Location Service Disabled');
 
-    final data = await _location.getLocation();
+    final data = await _locationInstance.getLocation();
     return LatLng(data.latitude!, data.longitude!);
   }
 
   @override
   Stream<LatLng> get onLocationChanged {
-    // _checkInitializationOrThrowException();
-    return _location.onLocationChanged
+    return _locationInstance.onLocationChanged
         .where((event) => event.latitude != null && event.longitude != null)
         .map<LatLng>((event) => LatLng(event.latitude!, event.longitude!));
-  }
-
-  @override
-  Future<bool> disable() async {
-    return true;
-    // TODO: implement disable
-    // throw UnimplementedError();
-  }
-
-  Future<void> _checkInitializationOrThrowException() async {
-    final isInitialized = await initialize();
-    if (!isInitialized) throw Exception('Location service not initialized.');
   }
 }

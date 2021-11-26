@@ -8,14 +8,10 @@ import 'package:latlong2/latlong.dart';
 @LazySingleton(as: ILocationReaderService)
 class LocationReaderService implements ILocationReaderService {
   LocationReaderService(
-    this.configRepository,
     this.locationRepository,
   );
 
-  final IConfigurationRepository configRepository;
   final ILocationRepository locationRepository;
-  //
-  bool? _onOrOff;
 
   @override
   Stream<Either<Failure, LatLng>> get onLocationChanged =>
@@ -27,8 +23,7 @@ class LocationReaderService implements ILocationReaderService {
   }
 
   @override
-  Stream<bool> get onUserSwitchOnOrOffLocationChanged =>
-      configRepository.onUserPrefChanged
-          .where((prefs) => prefs.showLocation != _onOrOff)
-          .map((prefs) => _onOrOff = prefs.showLocation);
+  Future<void> requestEnable() async {
+    return locationRepository.requestEnable();
+  }
 }

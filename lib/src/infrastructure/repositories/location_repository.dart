@@ -23,6 +23,7 @@ class LocationRepository implements ILocationRepository {
       },
     );
   }
+  // ignore: cancel_subscriptions
   late final StreamSubscription _onLocationChanged;
 
   late final StreamController<Either<Failure, LatLng>>
@@ -42,4 +43,10 @@ class LocationRepository implements ILocationRepository {
   @override
   Stream<Either<Failure, LatLng>> get onLocationChanged =>
       _onLocationChangedStreamController.stream;
+
+  @override
+  Future<void> requestEnable() async {
+    if (await provider.isEnabled) return;
+    await provider.requestEnable();
+  }
 }

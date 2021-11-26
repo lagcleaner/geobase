@@ -3,6 +3,8 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:latlong2/latlong.dart';
 
 abstract class ILocationRepository {
+  Future<void> requestEnable();
+
   Stream<Either<Failure, LatLng>> get onLocationChanged;
 
   Future<Either<Failure, LatLng>> currentLocation();
