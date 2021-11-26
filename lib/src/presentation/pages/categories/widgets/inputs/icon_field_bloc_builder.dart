@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:geobase/src/presentation/core/widgets/icon_picker/icon_picker_dialog.dart';
 import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
 import 'package:icon_picker/icon_picker.dart';
 import 'package:icon_picker/material_icons.dart';
@@ -204,7 +205,7 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
       context: context,
       useRootNavigator: widget.useRootNavigator,
       useSafeArea: true,
-      builder: (BuildContext context) => IconPickerDialog(
+      builder: (BuildContext context) => const MyIconPickerDialog(
         title: 'Seleccione un Icono',
         iconCollection: MaterialIcons.mIcons,
         cancelBtn: 'Cancelar',
