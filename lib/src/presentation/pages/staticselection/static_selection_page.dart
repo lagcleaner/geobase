@@ -38,7 +38,7 @@ class _StaticSelectionListInternalPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
         appBar: AppBar(
-          title: const Text('Selecciones Estáticas Configuradas'),
+          title: const Text('Selecciones Estáticas'),
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
           actions: [

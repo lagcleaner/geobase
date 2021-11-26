@@ -104,9 +104,6 @@ class GeodataSQLiteProvider implements IGeodataProvider {
   Future<void> remove(int id) async {
     final result =
         await GeodataDBModel().select().geodata_id.equals(id).delete();
-    //TODO: test if delete de fieldValues too
-    final secondresult =
-        await FieldValueDBModel().select().geodata_id.equals(id).toList();
     if (result.errorMessage?.isNotEmpty ?? false) {
       throw Exception(result.errorMessage);
     }

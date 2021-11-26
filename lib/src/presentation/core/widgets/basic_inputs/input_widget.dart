@@ -6,6 +6,7 @@ class TextInputWidget extends StatelessWidget {
     Key? key,
     this.controller,
     this.onChanged,
+    this.onTap,
     this.errorText,
     this.hintText,
     this.onSubmitted,
@@ -16,6 +17,7 @@ class TextInputWidget extends StatelessWidget {
 
   final TextEditingController? controller;
   final TextInputType keyboardType;
+  final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final String? errorText;
@@ -27,6 +29,7 @@ class TextInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      onTap: onTap,
       keyboardType: keyboardType,
       maxLines: keyboardType == TextInputType.multiline ? null : 1,
       onChanged: onChanged,

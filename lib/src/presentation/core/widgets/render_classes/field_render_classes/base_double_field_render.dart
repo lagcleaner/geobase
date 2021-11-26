@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
@@ -25,7 +26,8 @@ class BaseDoubleFieldRender implements IFieldRenderClass {
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
       validator: ListValidator([
-        FieldValueValidator.from(DoubleValidator.required),
+        FieldValueValidator.from(StringValidator.required),
+        FieldValueValidator.from(StringValidator.number),
       ]),
     );
   }
@@ -35,19 +37,10 @@ class BaseDoubleFieldRender implements IFieldRenderClass {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> fieldInputBloc,
   ) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: fieldInputBloc,
-      builder: (context, state) {
-        return DoubleFieldValueInputWidget(
-          key: Key('FieldInput${column.name}${column.id}'),
-          column: column,
-          errorText: state.error,
-          fieldValue: state.value,
-          onChanged: (newValue) {
-            fieldInputBloc.dirty(state.value.copyWithValue(newValue));
-          },
-        );
-      },
+    return DoubleFieldInputWidget(
+      key: Key('FieldInput${column.name}${column.id}'),
+      column: column,
+      inputBloc: fieldInputBloc,
     );
   }
 

@@ -22,6 +22,10 @@ class BaseDateFieldRender implements IFieldRenderClass {
   ) {
     return InputBloc<FieldValueEntity>(
       pureValue: fieldValue,
+      validationType: ValidationType.explicit,
+      validator: ListValidator([
+        FieldValueValidator.from(StringValidator.required),
+      ]),
     );
   }
 
@@ -30,19 +34,10 @@ class BaseDateFieldRender implements IFieldRenderClass {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> fieldInputBloc,
   ) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: fieldInputBloc,
-      builder: (context, state) {
-        return DateFieldInputWidget(
-          key: Key('FieldInput${column.name}${column.id}'),
-          column: column,
-          errorText: state.error,
-          fieldValue: state.value,
-          onChanged: (newValue) {
-            fieldInputBloc.dirty(state.value.copyWithValue(newValue));
-          },
-        );
-      },
+    return DateFieldInputWidget(
+      key: Key('FieldInput${column.name}${column.id}'),
+      column: column,
+      inputBloc: fieldInputBloc,
     );
   }
 

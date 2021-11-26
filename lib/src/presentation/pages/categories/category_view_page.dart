@@ -6,7 +6,6 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
-import 'package:get_it/get_it.dart';
 import 'package:icon_picker/material_icons%20all.dart';
 
 class CategoryViewPage extends StatelessWidget {
@@ -46,24 +45,30 @@ class _CategoryViewPageInternal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
-        title: const Text('Detalles de la Categoría'),
-        iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.refresh,
-              color: Colors.white,
+    return WillPopScope(
+      onWillPop: () async {
+        context.beamToNamed('/categories');
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).canvasColor,
+        appBar: AppBar(
+          title: const Text('Detalles de la Categoría'),
+          iconTheme: Theme.of(context).iconTheme,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.white,
+              ),
+              onPressed: () =>
+                  context.read<CategoryViewCubit>().fetch(categoryId),
             ),
-            onPressed: () =>
-                context.read<CategoryViewCubit>().fetch(categoryId),
-          ),
-        ],
+          ],
+        ),
+        body: _CategoryViewBody(categoryId: categoryId),
       ),
-      body: _CategoryViewBody(categoryId: categoryId),
     );
   }
 }
@@ -89,42 +94,15 @@ class _CategoryViewBody extends StatelessWidget {
               category: category,
             );
           },
-          fetchFailure: (_) {
-            return _CategoryViewBodyFetchFailure(
-              categoryId: categoryId,
+          fetchFailure: (failure) {
+            return FailureAndRetryWidget(
+              errorText: failure,
+              onPressed: () =>
+                  context.read<CategoryViewCubit>().fetch(categoryId),
             );
           },
         );
       },
-    );
-  }
-}
-
-class _CategoryViewBodyFetchFailure extends StatelessWidget {
-  const _CategoryViewBodyFetchFailure({
-    Key? key,
-    required this.categoryId,
-  }) : super(key: key);
-
-  final int categoryId;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          const Text(
-            'Ha ocurrido un error durante'
-            ' la obtención de la información de la Categoría.',
-          ),
-          MainButton(
-            text: 'Reintentar',
-            onPressed: () {
-              context.read<CategoryViewCubit>().fetch(categoryId);
-            },
-          ),
-        ],
-      ),
     );
   }
 }
@@ -223,6 +201,7 @@ class _CategoryViewBodyFetchSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
           child: _CategoryViewBasicInfo(
@@ -247,58 +226,64 @@ class _CategoryViewBasicInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: ListTile(
-                // dense: true,
-                title: Text(category.id.toString()),
-                subtitle: const Text('Id'),
-              ),
-            ),
-            Expanded(
-              child: ListTile(
-                // dense: true,
-                title: Icon(
-                  MaterialIcons.mIcons[category.icon],
-                  color: category.color != null
-                      ? Color(category.color!)
-                      : Theme.of(context).primaryColor,
-                ),
-                subtitle: Text(
-                  category.color != null
-                      ? Color(category.color!).toString()
-                      : 'Color No Especificado',
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: ListTile(
+                  // dense: true,
+                  title: Text(category.id.toString()),
+                  subtitle: const Text('Id'),
                 ),
               ),
-            ),
-          ],
-        ),
-        ListTile(
-          title: Text(category.name),
-          subtitle: Text(category.description ?? 'Sin descripción'),
-        ),
-        const Divider(),
-        Center(
-          child: Text(
-            'Columnas',
-            style: Theme.of(context).textTheme.headline6,
+              Expanded(
+                child: ListTile(
+                  // dense: true,
+                  title: Icon(
+                    MaterialIcons.mIcons[category.icon],
+                    color: category.color != null
+                        ? Color(category.color!)
+                        : Theme.of(context).primaryColor,
+                  ),
+                  subtitle: Text(
+                    category.color != null
+                        ? Color(category.color!).toString()
+                        : 'Color No Especificado',
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-        ...[
-          for (final field in category.columns)
-            ListTile(
-              title: Text(
-                '${field.name}*',
-              ),
-              subtitle: Text(field.type.name),
+          ListTile(
+            title: Text(category.name),
+            subtitle: Text(category.description ?? 'Sin descripción'),
+          ),
+          const Divider(),
+          Center(
+            child: Text(
+              'Columnas',
+              style: Theme.of(context).textTheme.headline6,
             ),
+          ),
+          ...[
+            for (final field in category.columns)
+              ListTile(
+                title: Text(
+                  '${field.name}*',
+                ),
+                subtitle: Text(field.type.name),
+              ),
+          ],
+          if (category.columns.isEmpty)
+            const ListTile(title: Text('Sin Columnas')),
         ],
-        if (category.columns.isEmpty)
-          const ListTile(title: Text('Sin Columnas')),
-      ],
+      ),
     );
   }
 }

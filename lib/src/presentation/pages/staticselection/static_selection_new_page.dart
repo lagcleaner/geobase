@@ -36,14 +36,9 @@ class _StaticSelectionNewInternalPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
-        title: const Text('Nueva Selección Estática'),
+        title: const Text('Nueva Selección'),
         iconTheme: Theme.of(context).iconTheme,
         centerTitle: true,
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: context.read<StaticSelectionCreateFormBloc>().submit,
-        icon: const Icon(Icons.send_rounded),
-        label: const Text('Añadir Selección Estática'),
       ),
       body: const _Body(),
     );
@@ -51,48 +46,41 @@ class _StaticSelectionNewInternalPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({Key? key}) : super(key: key);
+  const _Body({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics:
-          const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: FormBlocListener<StaticSelectionCreateFormBloc, Unit, String>(
-          formBloc: context.read<StaticSelectionCreateFormBloc>(),
-          onSuccess: (contex, state) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.green.shade900,
-                  content: const Text(
-                    'La selección estática fue correctamente creada.',
-                  ),
-                ),
-              );
-            context.beamToNamed('/staticselection');
-          },
-          onFailure: (context, state) => ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red.shade900,
-                content: Text(
-                  state.failureResponse ??
-                      'Ha ocurrido un error, vuelva a intentarlo.',
-                ),
+    return FormBlocListener<StaticSelectionCreateFormBloc, Unit, String>(
+      formBloc: context.read<StaticSelectionCreateFormBloc>(),
+      onSuccess: (contex, state) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.green.shade900,
+              content: const Text(
+                'La selección estática fue correctamente creada.',
               ),
             ),
-          child: const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: _StaticSelectionCreateForm(),
+          );
+        context.beamToNamed('/staticselection');
+      },
+      onFailure: (context, state) => ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.red.shade900,
+            content: Text(
+              state.failureResponse ??
+                  'Ha ocurrido un error, vuelva a intentarlo.',
             ),
           ),
         ),
+      child: const Padding(
+        padding: EdgeInsets.all(10.0),
+        child: _StaticSelectionCreateForm(),
       ),
     );
   }
@@ -104,14 +92,38 @@ class _StaticSelectionCreateForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: const [
-        SizedBox(height: 10),
-        Flexible(child: _NameInput()),
-        SizedBox(height: 15),
-        Flexible(child: _OptionsInput()),
-        SizedBox(height: 75),
+      children: [
+        const Expanded(child: _Inputs()),
+        MainButton(
+          onPressed: context.read<StaticSelectionCreateFormBloc>().submit,
+          text: 'Añadir Selección Estática',
+        )
       ],
+    );
+  }
+}
+
+class _Inputs extends StatelessWidget {
+  const _Inputs({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(height: 10),
+          Flexible(child: _NameInput()),
+          SizedBox(height: 15),
+          Flexible(child: _OptionsInput()),
+          SizedBox(height: 75),
+        ],
+      ),
     );
   }
 }

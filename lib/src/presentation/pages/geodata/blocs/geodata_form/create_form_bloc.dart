@@ -6,7 +6,6 @@ import 'package:geobase/src/domain/services/services.dart';
 import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
-import 'package:latlong2/latlong.dart';
 
 abstract class IGeodataCreateFormBloc extends IGeodataFormBloc {}
 
@@ -40,7 +39,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
         StringValidator.numberBetween(
           min: -90,
           max: 90,
-          errorMessage: 'Latitude must be between -90 and 90 degrees',
+          errorMessage: '-90 < latitud (en grados) < 90',
         ),
       ],
     ),
@@ -57,7 +56,7 @@ class GeodataCreateFormBloc extends IGeodataCreateFormBloc {
         StringValidator.numberBetween(
           min: -180,
           max: 180,
-          errorMessage: 'Longitude must be between -180 and 180 degrees',
+          errorMessage: '-180 < longitud (en grados) < 180',
         ),
       ],
     ),

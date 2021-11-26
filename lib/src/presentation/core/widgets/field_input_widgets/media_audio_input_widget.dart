@@ -1,67 +1,73 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/utils/file_byte_converter.dart';
+import 'package:geobase/src/presentation/core/utils/file_utilis.dart';
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 
 class MediaAudioFieldInputWidget extends FieldInputWidget {
   const MediaAudioFieldInputWidget({
     Key? key,
     required ColumnGetEntity column,
-    required FieldValueEntity fieldValue,
-    String? errorText,
-    required ValueChanged onChanged,
+    required InputBloc<FieldValueEntity> inputBloc,
   }) : super(
           key: key,
           column: column,
-          fieldValue: fieldValue,
-          errorText: errorText,
-          onChanged: onChanged,
+          inputBloc: inputBloc,
         );
 
   @override
   Widget build(BuildContext context) {
-    final Uint8List? fileBytes =
-        fieldValue.value != null ? getFileBytes(fieldValue.value) : null;
-    return ListTile(
-      title: Text(fieldValue.value != null ? '[Sonido]' : ''),
-      subtitle: Text(column.name),
-      leading: CircleAvatar(
-        radius: 50,
-        backgroundColor: Theme.of(context).primaryColor,
-        child: Container(
-          decoration: BoxDecoration(
-            color: fileBytes != null ? Colors.transparent : Colors.grey[200],
-            borderRadius: BorderRadius.circular(45),
+    return InputBlocBuilder<FieldValueEntity>(
+      bloc: inputBloc,
+      builder: (context, state) {
+        return ListTile(
+          title: Text(
+            state.value.value != null
+                ? '${state.value.value.split('/').last}'
+                : '',
           ),
-          width: 80,
-          height: 80,
-          child: Icon(
-            Icons.file_present_rounded,
-            color: fileBytes != null ? Colors.green[300] : Colors.grey[800],
+          subtitle: Text(column.name),
+          leading: CircleAvatar(
+            radius: 50,
+            backgroundColor: Theme.of(context).primaryColor,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(45),
+              ),
+              width: 80,
+              height: 80,
+              child: Icon(
+                Icons.file_present_rounded,
+                color: state.value.value != null
+                    ? Colors.green[300]
+                    : Colors.grey[800],
+              ),
+            ),
           ),
-        ),
-      ),
-      trailing: errorText != null
-          ? Icon(
-              Icons.info_outline_rounded,
-              color: Colors.red.withOpacity(0.5),
-            )
-          : null,
-      onTap: () async {
-        final result = await _showPicker(context);
-        if (result != null && fieldValue.value != result) {
-          onChanged(result);
-        }
+          trailing: state.error != null
+              ? Icon(
+                  Icons.info_outline_rounded,
+                  color: Colors.red.withOpacity(0.5),
+                )
+              : null,
+          onTap: () async {
+            final result = await _showPicker(context);
+            if (result != null && state.value.value != result) {
+              inputBloc.dirty(state.value.copyWithValue(result));
+            }
+          },
+        );
       },
     );
   }
 }
 
-Future<Uint8List?> _imgFromMicrofone() async {
+Future<String?> _noteFromMicrofone() async {
   //TODO: HEERREE
 
   // final XFile? image = await ImagePicker().pickImage(
@@ -71,19 +77,22 @@ Future<Uint8List?> _imgFromMicrofone() async {
   // return await image?.readAsBytes();
 }
 
-Future<Uint8List?> _imgFromFiles() async {
+Future<String?> _audioFromFiles() async {
   final FilePickerResult? result = await FilePicker.platform.pickFiles(
     type: FileType.audio,
     withData: true,
     // allowedExtensions: ['jpg', 'pdf', 'doc'],
   );
-  if (result?.files.isNotEmpty ?? false) {
-    return result!.files.first.bytes;
+  if ((result?.files.isNotEmpty ?? false) && result!.files.first.path != null) {
+    final file = await saveFile(
+      File(result.files.first.path!),
+    );
+    return file?.path;
   }
 }
 
-Future<Uint8List?> _showPicker(BuildContext context) async {
-  return showModalBottomSheet<Uint8List?>(
+Future<String?> _showPicker(BuildContext context) async {
+  return showModalBottomSheet<String?>(
     context: context,
     builder: (BuildContext bc) {
       return SafeArea(
@@ -93,7 +102,7 @@ Future<Uint8List?> _showPicker(BuildContext context) async {
               leading: const Icon(Icons.file_present),
               title: const Text('Notas Almacenadas'),
               onTap: () async {
-                await _imgFromFiles()
+                await _audioFromFiles()
                     .then((value) => Navigator.of(context).pop(value));
               },
             ),

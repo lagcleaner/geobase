@@ -51,7 +51,7 @@ class _Inputs<T extends IGeodataFormBloc> extends StatelessWidget {
               Flexible(child: _LongitudeInput<T>()),
             ],
           ),
-          const Divider(height: 10),
+          const Divider(height: 30),
           if (formBloc.fieldValues.isNotEmpty)
             ...formBloc.fieldValues.entries
                 .map(
@@ -59,7 +59,7 @@ class _Inputs<T extends IGeodataFormBloc> extends StatelessWidget {
                     Flexible(
                       child: FieldRenderResolver.getInputWidget(e.key, e.value),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                   ],
                 )
                 .reduce((value, element) => value..addAll(element)),

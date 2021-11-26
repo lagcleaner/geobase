@@ -50,7 +50,10 @@ class _GeodataPageInternal extends StatelessWidget {
           centerTitle: true,
         ),
         body: _Body(),
-        floatingActionButton: const _FloatingActionButton(),
+        floatingActionButton: BlocProvider<CategoriesShowerCubit>(
+          create: (context) => getIt<CategoriesShowerCubit>(),
+          child: const _FloatingActionButton(),
+        ),
       ),
     );
   }
@@ -210,6 +213,7 @@ class _GeodataWidget extends StatelessWidget {
               ),
               onPressed: () {
                 context.beamToNamed('/geodata/${geodata.id}');
+                context.read<CategoriesShowerCubit>().clear();
               },
             ),
           ),
@@ -228,7 +232,27 @@ class _QueryInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CategoriesShowerCubit, CategoriesShowerState>(
       bloc: context.read<CategoriesShowerCubit>()..loadCategories(),
-      listener: (context, state) {},
+      listener: (context, state) async {
+        if (state.selected == null) {
+          context
+              .read<GeodataListBloc>()
+              .add(GeodataListEvent.fetched(categoryId: state.selected));
+        }
+        if (state.categories.isEmpty) {
+          await Future.delayed(
+            const Duration(seconds: 1),
+            () => ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'No hay categorías configuradas.',
+                  ),
+                ),
+              ),
+          );
+        }
+      },
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(15),
@@ -273,11 +297,19 @@ class _FloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      tooltip: 'Agregar Punto de Interés',
-      child: const Icon(Icons.add),
-      onPressed: () {
-        context.beamToNamed('/geodata/new');
+    return BlocBuilder<CategoriesShowerCubit, CategoriesShowerState>(
+      bloc: context.read<CategoriesShowerCubit>()..loadCategories(),
+      builder: (context, state) {
+        if (state.categories.isEmpty) {
+          return const SizedBox();
+        }
+        return FloatingActionButton(
+          tooltip: 'Agregar Punto de Interés',
+          child: const Icon(Icons.add),
+          onPressed: () {
+            context.beamToNamed('/geodata/new');
+          },
+        );
       },
     );
   }

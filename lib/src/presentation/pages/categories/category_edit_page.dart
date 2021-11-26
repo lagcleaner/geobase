@@ -52,11 +52,6 @@ class _CategoryEditPageInternal extends StatelessWidget {
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: context.read<CategoryEditFormBloc>().submit,
-          icon: const Icon(Icons.send_rounded),
-          label: const Text('Aceptar Cambios'),
-        ),
         body: FormBlocListener<CategoryEditFormBloc, Unit, String>(
           formBloc: context.read<CategoryEditFormBloc>(),
           onSuccess: (contex, state) {
@@ -90,11 +85,9 @@ class _CategoryEditPageInternal extends StatelessWidget {
                 content: const Text('La solicitud está siendo procesada.'),
               ),
             ),
-          child: const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: CategoryForm(),
-            ),
+          child: const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: CategoryForm(),
           ),
         ),
       ),
@@ -109,19 +102,44 @@ class CategoryForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: const [
-        SizedBox(height: 10),
-        Flexible(child: _NameInput()),
-        SizedBox(height: 15),
-        Flexible(child: _DescriptionInput()),
-        SizedBox(height: 15),
-        Flexible(child: _ColorInput()),
-        SizedBox(height: 15),
-        Flexible(child: _IconInput()),
-        SizedBox(height: 15),
-        Flexible(child: _FieldsInput()),
-        SizedBox(height: 75),
+      children: [
+        const Expanded(child: _Inputs()),
+        MainButton(
+          onPressed: context.read<CategoryEditFormBloc>().submit,
+          text: 'Aceptar Cambios',
+        ),
       ],
+    );
+  }
+}
+
+class _Inputs extends StatelessWidget {
+  const _Inputs({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(height: 10),
+          Flexible(child: _NameInput()),
+          SizedBox(height: 15),
+          Flexible(child: _DescriptionInput()),
+          SizedBox(height: 15),
+          Flexible(child: _ColorInput()),
+          SizedBox(height: 15),
+          Flexible(child: _IconInput()),
+          SizedBox(height: 15),
+          Flexible(child: _FieldsInput()),
+          SizedBox(height: 75),
+        ],
+      ),
     );
   }
 }
@@ -150,10 +168,10 @@ class _DescriptionInput extends StatelessWidget {
     final formBloc = context.read<CategoryEditFormBloc>();
     return TextFieldBlocBuilder(
       textFieldBloc: formBloc.description,
+      maxLines: 3,
       decoration: TextFieldDecorations.decoration(
         labelText: 'Descripción*',
         prefixIcon: Icons.text_fields_outlined,
-        maxLines: 4,
       ),
     );
   }

@@ -14,11 +14,10 @@ class BaseFieldView extends FieldViewWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      dense: true,
       title: Text(fieldValue.value?.toString() ?? ''),
       subtitle: Text(
         '${fieldValue.column.name} '
-        '(${fieldValue.column.type.metaType}.${fieldValue.column.type.name})',
+        '(${fieldValue.column.type.metaType} - ${fieldValue.column.type.name})',
       ),
     );
   }

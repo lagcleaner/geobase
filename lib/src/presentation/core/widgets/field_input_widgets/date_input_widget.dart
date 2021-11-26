@@ -1,45 +1,65 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
+import 'package:geobase/src/presentation/core/utils/utils.dart';
 
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 
 class DateFieldInputWidget extends FieldInputWidget {
   const DateFieldInputWidget({
     Key? key,
     required ColumnGetEntity column,
-    required FieldValueEntity fieldValue,
-    String? errorText,
-    required ValueChanged onChanged,
+    required InputBloc<FieldValueEntity> inputBloc,
   }) : super(
           key: key,
           column: column,
-          fieldValue: fieldValue,
-          errorText: errorText,
-          onChanged: onChanged,
+          inputBloc: inputBloc,
         );
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      key: key,
-      title: Text(fieldValue.value?.toString() ?? ''),
-      subtitle: Text(column.name),
-      trailing: errorText != null
-          ? Icon(
-              Icons.info_outline_rounded,
-              color: Colors.red.withOpacity(0.5),
-            )
-          : null,
-      onTap: () async {
-        final result = await showDatePicker(
-          context: context,
-          initialDate: DateTime.now(),
-          firstDate: DateTime(1900),
-          lastDate: DateTime(DateTime.now().year + 100),
-          currentDate: DateTime.tryParse(fieldValue.value?.toString() ?? ''),
+    return InputBlocBuilder<FieldValueEntity>(
+      bloc: inputBloc,
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () async {
+            final result = await showDatePicker(
+              context: context,
+              helpText: 'Seleccione una Fecha',
+              cancelText: 'Cancelar',
+              confirmText: 'Aceptar',
+              fieldLabelText: 'Fecha',
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1900),
+              lastDate: DateTime(DateTime.now().year + 100),
+              currentDate:
+                  DateTime.tryParse(state.value.value?.toString() ?? ''),
+            );
+            if (result != null) {
+              inputBloc.dirty(
+                state.value.copyWithValue(
+                  result.toString().split(' ')[0],
+                ),
+              );
+            }
+          },
+          child: AbsorbPointer(
+            child: TextInputWidget(
+              key: key,
+              labelText: column.name,
+              onChanged: (newValue) {
+                FocusScope.of(context).unfocus();
+                // inputBloc.dirty(state.value.copyWithValue(newValue));
+              },
+              controller: TextEditingCustom.fromValue(
+                state.value.value?.toString() ?? '',
+              ),
+              errorText: state.error,
+            ),
+          ),
         );
-        if (result != null) onChanged.call(result.toString().split(' ')[0]);
       },
     );
   }

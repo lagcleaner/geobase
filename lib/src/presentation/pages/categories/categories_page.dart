@@ -2,6 +2,7 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lyform/src/utils/extensions.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
@@ -214,6 +215,9 @@ class _CategoryWidget extends StatelessWidget {
               ),
               onPressed: () {
                 context.beamToNamed('/categories/${category.id}');
+                context
+                    .read<CategoryListBloc>()
+                    .add(const CategoryListEvent.fetched(query: ''));
               },
             ),
           ),
@@ -238,7 +242,10 @@ class _QueryInput extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextField(
-        controller: controller,
+        controller: context.watch<CategoryListBloc>().state.maybeMap(
+              initial: (_) => controller..setValue(''),
+              orElse: () => controller,
+            ),
         focusNode: focusNode,
         onChanged: (text) {
           context
@@ -280,6 +287,9 @@ class _FloatingActionButton extends StatelessWidget {
       child: const Icon(Icons.add),
       onPressed: () {
         context.beamToNamed('/categories/new');
+        context
+            .read<CategoryListBloc>()
+            .add(const CategoryListEvent.fetched(query: ''));
       },
     );
   }

@@ -29,26 +29,19 @@ class BaseBoolFieldRender implements IFieldRenderClass {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> fieldInputBloc,
   ) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: fieldInputBloc,
-      builder: (context, state) {
-        return BoolFieldInputWidget(
-          key: Key('FieldInput${column.name}${column.id}'),
-          column: column,
-          errorText: state.error,
-          fieldValue: state.value,
-          onChanged: (newValue) {
-            fieldInputBloc.dirty(state.value.copyWithValue(newValue));
-          },
-        );
-      },
+    return BoolFieldInputWidget(
+      key: Key('FieldInput${column.name}${column.id}'),
+      column: column,
+      inputBloc: fieldInputBloc,
     );
   }
 
   @override
   FieldViewWidget getViewWidget(FieldValueGetEntity fieldValue) {
     return BaseFieldView(
-      fieldValue: fieldValue,
+      fieldValue: fieldValue.copyWithValue(
+        ((fieldValue.value as bool?) ?? false) ? 'Si' : 'No',
+      ) as FieldValueGetEntity,
     );
   }
 }

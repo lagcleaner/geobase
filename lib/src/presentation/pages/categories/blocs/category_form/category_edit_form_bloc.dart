@@ -69,7 +69,7 @@ class CategoryEditFormBloc extends CategoryCreateFormBloc {
     FieldTypeGetEntity? fixedType,
   ) {
     return (newType) =>
-        fixedType?.id != newType?.id ? 'The type is not editable' : null;
+        fixedType?.id != newType?.id ? 'El tipo no es editable' : null;
   }
 
   @override
@@ -81,7 +81,7 @@ class CategoryEditFormBloc extends CategoryCreateFormBloc {
       (categories) => categories.any(
         (element) => element.name == name && categoryId != element.id,
       )
-          ? 'The name is already taken.'
+          ? 'Ya existe otra categoría con este nombre'
           : null,
     );
   }

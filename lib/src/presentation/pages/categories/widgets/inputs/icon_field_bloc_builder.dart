@@ -196,9 +196,11 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
     }
   }
 
-  void _showPicker(BuildContext context) async {
-    FocusScope.of(context).requestFocus(FocusNode());
-    final Map<String, dynamic>? iconPicked = await showDialog(
+  Future<void> _showPicker(BuildContext context) async {
+    FocusScope.of(context).unfocus();
+
+    final Map<String, dynamic>? iconPicked =
+        await showDialog<Map<String, dynamic>?>(
       context: context,
       useRootNavigator: widget.useRootNavigator,
       useSafeArea: true,
@@ -206,6 +208,7 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
         title: 'Seleccione un Icono',
         iconCollection: MaterialIcons.mIcons,
         cancelBtn: 'Cancelar',
+        searchHint: 'Buscar por Nombre',
       ),
     );
     final result = iconPicked?['name'] as String?;

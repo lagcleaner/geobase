@@ -35,19 +35,10 @@ class MediaFileFieldRender implements IFieldRenderClass {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> fieldInputBloc,
   ) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: fieldInputBloc,
-      builder: (context, state) {
-        return MediaFileFieldInputWidget(
-          key: Key('FieldInput${column.name}${column.id}'),
-          column: column,
-          errorText: state.error,
-          fieldValue: state.value,
-          onChanged: (newValue) {
-            fieldInputBloc.dirty(state.value.copyWithValue(newValue));
-          },
-        );
-      },
+    return MediaFileFieldInputWidget(
+      key: Key('FieldInput${column.name}${column.id}'),
+      column: column,
+      inputBloc: fieldInputBloc,
     );
   }
 

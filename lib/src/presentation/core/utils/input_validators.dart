@@ -4,23 +4,23 @@ typedef InputFunctionValidator<T> = String? Function(T value);
 
 class DynamicValidator {
   static String? required(dynamic value) =>
-      value == null ? 'error_empty_input' : null;
+      value == null ? 'Campo requerido' : null;
 }
 
 class IterableValidator {
   static String? notEmpty(Iterable? value) =>
-      value?.isEmpty ?? true ? 'error_empty_input' : null;
+      value?.isEmpty ?? true ? 'Campo requerido' : null;
 }
 
 class StringValidator {
   /// assert when [value] is [null] or is not empty
   static String? required(String? value) =>
-      value?.isEmpty ?? true ? 'error_empty_input' : null;
+      value?.isEmpty ?? true ? 'Campo requerido' : null;
 
   static String? number(String? value) => value == null
       ? null
       : double.tryParse(value) == null
-          ? 'error_invalid_number_input'
+          ? 'Número inválido - "$value"'
           : null;
 
   static String? Function(String? value) numberBetween({
@@ -40,7 +40,7 @@ class StringValidator {
   static String? integer(String? value) => value == null
       ? null
       : int.tryParse(value) == null
-          ? 'error_invalid_number_input'
+          ? 'Entero inválido - "$value..."'
           : null;
 
   static InputFunctionValidator<String?> lengthGreaterThan(int len) =>
@@ -48,14 +48,14 @@ class StringValidator {
           ? null
           : value.length > len
               ? null
-              : 'error_too_short_input';
+              : 'Debe tener más de $len caracteres.';
 
   static InputFunctionValidator<String?> lengthLowerThan(int len) =>
       (String? value) => value == null
           ? null
           : value.length < len
               ? null
-              : 'error_too_long_input';
+              : 'Debe tener menos de $len caracteres.';
 
   static InputFunctionValidator<String> stringPasswordMatch(
     String Function() match,

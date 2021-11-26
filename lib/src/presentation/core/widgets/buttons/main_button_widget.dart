@@ -43,7 +43,7 @@ class MainButton extends StatelessWidget {
     final textStyleButton = Theme.of(context).primaryTextTheme.button;
     return ConstrainedBox(
       constraints: BoxConstraints.tightForFinite(
-        height: 60,
+        height: 50,
         width: MediaQuery.of(context).size.width,
       ),
       child: ElevatedButton(
@@ -63,6 +63,7 @@ class MainButton extends StatelessWidget {
               text!,
               style: textStyleButton?.copyWith(
                 fontSize: (textStyleButton.fontSize ?? 14) + 2,
+                backgroundColor: Colors.transparent,
               ),
             ),
       ),

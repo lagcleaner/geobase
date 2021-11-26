@@ -48,11 +48,11 @@ class _CategoryCreatePageInternal extends StatelessWidget {
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: context.read<CategoryCreateFormBloc>().submit,
-          icon: const Icon(Icons.send_rounded),
-          label: const Text('Añadir Categoría'),
-        ),
+        // floatingActionButton: FloatingActionButton.extended(
+        //   icon: const Icon(Icons.send_rounded),
+        //   onPressed: context.read<CategoryCreateFormBloc>().submit,
+        //   label: const Text('Añadir Categoría'),
+        // ),
         body: FormBlocListener<CategoryCreateFormBloc, Unit, String>(
           formBloc: context.read<CategoryCreateFormBloc>(),
           onSuccess: (contex, state) {
@@ -77,11 +77,9 @@ class _CategoryCreatePageInternal extends StatelessWidget {
                 ),
               ),
             ),
-          child: const SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: _CategoryCreateForm(),
-            ),
+          child: const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: _CategoryCreateForm(),
           ),
         ),
       ),
@@ -96,19 +94,44 @@ class _CategoryCreateForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      children: const [
-        SizedBox(height: 10),
-        Flexible(child: _NameInput()),
-        SizedBox(height: 15),
-        Flexible(child: _DescriptionInput()),
-        SizedBox(height: 15),
-        Flexible(child: _ColorInput()),
-        SizedBox(height: 15),
-        Flexible(child: _IconInput()),
-        SizedBox(height: 15),
-        Flexible(child: _FieldsInput()),
-        SizedBox(height: 75),
+      children: [
+        const Expanded(child: _Inputs()),
+        MainButton(
+          onPressed: context.read<CategoryCreateFormBloc>().submit,
+          text: 'Añadir Categoría',
+        )
       ],
+    );
+  }
+}
+
+class _Inputs extends StatelessWidget {
+  const _Inputs({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          SizedBox(height: 10),
+          Flexible(child: _NameInput()),
+          SizedBox(height: 15),
+          Flexible(child: _DescriptionInput()),
+          SizedBox(height: 15),
+          Flexible(child: _ColorInput()),
+          SizedBox(height: 15),
+          Flexible(child: _IconInput()),
+          SizedBox(height: 15),
+          Flexible(child: _FieldsInput()),
+          SizedBox(height: 75),
+        ],
+      ),
     );
   }
 }

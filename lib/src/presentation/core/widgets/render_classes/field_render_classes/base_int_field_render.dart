@@ -24,9 +24,10 @@ class BaseIntFieldRender implements IFieldRenderClass {
       pureValue: fieldValue,
       validationType: ValidationType.explicit,
       validator: ListValidator([
-        FieldValueValidator.from(IntValidator.required),
+        FieldValueValidator.from(StringValidator.required),
+        FieldValueValidator.from(StringValidator.integer),
       ]),
-    );
+    )..state;
   }
 
   @override
@@ -34,19 +35,10 @@ class BaseIntFieldRender implements IFieldRenderClass {
     ColumnGetEntity column,
     InputBloc<FieldValueEntity> fieldInputBloc,
   ) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: fieldInputBloc,
-      builder: (context, state) {
-        return IntFieldInputWidget(
-          key: Key('FieldInput${column.name}${column.id}'),
-          column: column,
-          errorText: state.error,
-          fieldValue: state.value,
-          onChanged: (newValue) {
-            fieldInputBloc.dirty(state.value.copyWithValue(newValue));
-          },
-        );
-      },
+    return IntFieldInputWidget(
+      key: Key('FieldInput${column.name}${column.id}'),
+      column: column,
+      inputBloc: fieldInputBloc,
     );
   }
 
