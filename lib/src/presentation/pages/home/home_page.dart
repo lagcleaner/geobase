@@ -1,12 +1,14 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
+import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/widgets.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -28,6 +30,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider<SlidingUpPanelCubit>(
+      create: (context) => getIt<SlidingUpPanelCubit>(),
+      child: _InternalHomePage(initialLocation: initialLocation),
+    );
+  }
+}
+
+class _InternalHomePage extends StatelessWidget {
+  const _InternalHomePage({
+    Key? key,
+    required this.initialLocation,
+  }) : super(key: key);
+
+  final LatLng? initialLocation;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -46,26 +65,57 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      // body: SlidingUpPanel(
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider<MapCubit>(
-            create: (context) => getIt<MapCubit>(param1: initialLocation),
-            //TODO: recieve initial location as optional arg
-          ),
-          BlocProvider<MarkerCubit>(
-            create: (context) => getIt<MarkerCubit>(),
-          ),
-          BlocProvider<LocationCubit>(
-            create: (context) => getIt<LocationCubit>(),
-          ),
-        ],
-        child: const _MapScreen(),
+      body: BlocBuilder<SlidingUpPanelCubit, SlidingUpPanelState>(
+        bloc: context.read<SlidingUpPanelCubit>(),
+        builder: (context, state) {
+          return SlidingUpPanel(
+            minHeight: 50,
+            maxHeight: MediaQuery.of(context).size.height * 0.30,
+            backdropOpacity: 0,
+            isDraggable: false,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
+            ),
+            color: Colors.transparent,
+            controller: context.read<SlidingUpPanelCubit>().panelController,
+            body: MultiBlocProvider(
+              providers: [
+                BlocProvider<MapCubit>(
+                  create: (context) => getIt<MapCubit>(param1: initialLocation),
+                ),
+                BlocProvider<MarkerCubit>(
+                  create: (context) => getIt<MarkerCubit>(),
+                ),
+                BlocProvider<LocationCubit>(
+                  create: (context) => getIt<LocationCubit>(),
+                ),
+              ],
+              child: const _MapScreen(),
+            ),
+            panel: const SizedBox(
+                // height: 8,
+
+                ),
+            collapsed: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
+                ),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.blueGrey.withOpacity(.5),
+                    Colors.white,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+          );
+        },
       ),
-      //   panel: const SizedBox(
-      //       // height: 8,
-      //       ),
-      // ),
     );
   }
 }
@@ -79,35 +129,14 @@ class _MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
-      children: [
-        const GeoBaseMap(),
-        //Left top
-        const Positioned(top: 110, left: 20, child: _OptionsButton()),
+      children: const [
+        GeoBaseMap(),
         //Right top
-        const Positioned(top: 110, right: 20, child: _FiltersButton()),
+        Positioned(top: 110, right: 20, child: _FiltersButton()),
         //Right bottom
-        Positioned(
-          bottom: 20,
-          right: 20,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
-              _GotoLocationButton(),
-            ],
-          ),
-        ),
-        //Left bottom
-        Positioned(
-          top: 110,
-          left: 20,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const [
-              _GeodataListButton(),
-            ],
-          ),
-        ),
+        Positioned(bottom: 80, right: 20, child: _GotoLocationButton()),
+        //Left top
+        Positioned(top: 110, left: 20, child: _GeodataListButton()),
       ],
     );
   }
@@ -120,13 +149,11 @@ class _GeodataListButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      heroTag: null,
-      elevation: 0,
+    return _FloatingActionButtonWidget(
       onPressed: () {
         context.beamToNamed('/geodata');
       },
-      child: const Icon(Icons.view_list_rounded),
+      iconData: Icons.view_list_rounded,
     );
   }
 }
@@ -138,13 +165,11 @@ class _FiltersButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      heroTag: null,
-      elevation: 0,
+    return _FloatingActionButtonWidget(
       onPressed: () {
         //TODO: SHOW DIALOG TO FILTER MAP MARKERS
       },
-      child: const Icon(Icons.filter_alt_rounded),
+      iconData: Icons.filter_alt_rounded,
     );
   }
 }
@@ -159,21 +184,17 @@ class _GotoLocationButton extends StatelessWidget {
     return BlocBuilder<LocationCubit, LocationState>(
       builder: (context, state) {
         return FloatingActionButton.extended(
-          icon: Stack(
-            children: [
-              state.maybeMap(
-                enable: (_) => const Icon(Icons.navigation_rounded),
-                disable: (_) => const Icon(Icons.navigation_outlined),
-                orElse: () => const
-                    // SizedBox(),
-                    CircularProgressIndicator(
-                  color: Colors.white,
-                  strokeWidth: 2,
-                ),
-              ),
-            ],
+          heroTag: false,
+          icon: state.maybeMap(
+            enable: (_) => const Icon(Icons.navigation_rounded),
+            disable: (_) => const Icon(Icons.navigation_outlined),
+            orElse: () => const
+                // SizedBox(),
+                CircularProgressIndicator(
+              color: Colors.white,
+              strokeWidth: 2,
+            ),
           ),
-          // style: TextButton.styleFrom(elevation: 0, side: const BorderSide()),
           onPressed: state.map(
             loading: (loading) => null,
             disable: (disable) => context.read<LocationCubit>().enableLocation,
@@ -184,6 +205,11 @@ class _GotoLocationButton extends StatelessWidget {
                   );
             },
           ),
+          elevation: 0,
+          backgroundColor: Colors.blueGrey.withOpacity(0.5),
+          shape: StadiumBorder(
+            side: BorderSide(color: Colors.blue.withOpacity(.3), width: 2),
+          ),
           label: const Text('Ir a mi ubicación'),
         );
       },
@@ -191,20 +217,28 @@ class _GotoLocationButton extends StatelessWidget {
   }
 }
 
-class _OptionsButton extends StatelessWidget {
-  const _OptionsButton({
+class _FloatingActionButtonWidget extends StatelessWidget {
+  const _FloatingActionButtonWidget({
     Key? key,
+    required this.onPressed,
+    required this.iconData,
   }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final IconData iconData;
 
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      heroTag: null,
+      heroTag: 0,
+      backgroundColor: Colors.blueGrey.withOpacity(0.5),
+      splashColor: Colors.black,
+      onPressed: onPressed,
+      shape: const StadiumBorder(
+        side: BorderSide(color: Colors.white, width: 2),
+      ),
       elevation: 0,
-      onPressed: () {
-        context.beamToNamed('/options');
-      },
-      child: const Icon(Icons.settings),
+      child: Icon(iconData),
     );
   }
 }

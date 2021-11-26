@@ -69,8 +69,7 @@ class MediaFileFieldInputWidget extends FieldInputWidget {
 
 Future<String?> _showPicker() async {
   final FilePickerResult? result = await FilePicker.platform.pickFiles(
-    withData: true, //TODO: REVIEW THIS STUFF
-    // allowedExtensions: ['jpg', 'pdf', 'doc'],
+    withData: true,
   );
   if ((result?.files.isNotEmpty ?? false) && result!.files.first.path != null) {
     final file = await saveFile(

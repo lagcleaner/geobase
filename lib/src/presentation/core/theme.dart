@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 //general
-const primaryBrandColor = Color(0xFF2196F3);
+const primaryBrandColor = Color(0xFF64818F);
 const secondaryBrandColor = Color(0xff386db9);
-const highlightColor = Color(0xff97e9fc);
+const highlightColor = Color(0xff90e2f5);
 const alternativeHighlightColor = Color(0xff89aee4);
 //per texts
 const titlesAndParagraphsColor = Color(0xff5d6f6f);
@@ -53,12 +53,16 @@ final ThemeData geobaseLightTheme = light.copyWith(
     space: 5,
     thickness: 0,
   ),
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: primaryBrandColor.withBlue(0x70)),
   primaryColor: primaryBrandColor,
+
   // accentColor: secondaryBrandColor,
   highlightColor: highlightColor,
   scaffoldBackgroundColor: backgroundColor,
   canvasColor: backgroundColor,
   backgroundColor: backgroundColor,
+
   buttonTheme: light.buttonTheme.copyWith(
     buttonColor: primaryBrandColor,
     textTheme: ButtonTextTheme.primary,
@@ -129,6 +133,12 @@ final ThemeData geobaseLightTheme = light.copyWith(
       ),
     ),
   ),
+  // buttonColor: primaryBrandColor,
+  //   textTheme: ButtonTextTheme.primary,
+  //   shape: const RoundedRectangleBorder(
+  //     borderRadius: BorderRadius.all(Radius.circular(50)),
+  //   ),
+  // ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: light.elevatedButtonTheme.style?.copyWith(
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -137,6 +147,8 @@ final ThemeData geobaseLightTheme = light.copyWith(
           side: BorderSide(color: light.primaryColor),
         ),
       ),
+      foregroundColor: MaterialStateProperty.all<Color>(Colors.white70),
+      backgroundColor: MaterialStateProperty.all<Color>(primaryBrandColor),
       textStyle: MaterialStateProperty.all<TextStyle>(
         bodyTextStyle.copyWith(
           color: light.backgroundColor,

@@ -1,8 +1,7 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/app.dart';
+import 'package:geobase/src/presentation/router/locations.dart';
 
 class OptionsPage extends StatelessWidget {
   const OptionsPage({Key? key}) : super(key: key);

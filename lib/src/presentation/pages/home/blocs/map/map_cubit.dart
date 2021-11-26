@@ -51,14 +51,15 @@ class MapCubit extends Cubit<MapState> {
       },
     );
     if (initialLocation != null) {
-      state.mapController.move(initialLocation!, state.mapController.zoom);
+      await state.mapController.onReady;
+      state.mapController.move(initialLocation!, 17.0);
     }
   }
 
   Future<void> markerTouched(IMarkable marker) async {
     await state.mapController.onReady;
-    state.mapController.move(marker.location, state.mapController.zoom);
-
-    ///store the last location touched to start at this point next time...
+    state.mapController.move(marker.location, 17.0);
+    //TODO: SHOW DETAILS IN SLIDING_UP_PANEL
+    /// store the last location touched to start at this point next time...
   }
 }
