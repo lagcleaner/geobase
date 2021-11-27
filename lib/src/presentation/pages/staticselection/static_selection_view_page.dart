@@ -146,7 +146,7 @@ class _StaticSelectionViewBodyFetchSucessBottom extends StatelessWidget {
           //   child: MainButton(
           //     text: 'Editar',
           //     onPressed: () {
-          //       //TODO: DEFINIR SI SE PERMITIRA EDITAR static selections
+          //       // DEFINIR SI SE PERMITIRA EDITAR static selections
 
           //       // context.beamToNamed(
           //       //   '/staticselection/$fieldTypeId/edit',

@@ -7,6 +7,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
+import 'package:geobase/src/presentation/router/locations.dart';
 import 'package:icon_picker/material_icons.dart';
 
 class GeodataViewPage extends StatelessWidget {
@@ -30,7 +31,7 @@ class GeodataViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<GeodataViewCubit>(
-      create: (_) => GetIt.I()..fetch(geodataId),
+      create: (_) => getIt<GeodataViewCubit>()..fetch(geodataId),
       child: _GeodataViewPageInternal(geodataId: geodataId),
     );
   }
@@ -154,16 +155,29 @@ class _GeodataViewBasicInfo extends StatelessWidget {
           Row(
             children: [
               Flexible(
+                flex: 2,
                 child: ListTile(
                   title: Text(geodata.category.name),
                   subtitle: const Text('Categoría'),
                 ),
               ),
               Flexible(
+                flex: 3,
                 child: ListTile(
-                  title: Text(
-                      'Latitud: ${geodata.latitude}\nLongitud: ${geodata.longitude}'),
+                  leading: const Icon(Icons.navigation_rounded),
+                  title: Wrap(
+                    children: [
+                      Text(
+                        'Latitud: ${geodata.latitude}\nLongitud: ${geodata.longitude}',
+                      ),
+                    ],
+                  ),
                   subtitle: const Text('Ubicación'),
+                  onTap: () => context.beamToNamed(
+                    '/map?'
+                    '$LAT_PARAM=${geodata.latitude}&'
+                    '$LNG_PARAM=${geodata.longitude}',
+                  ),
                 ),
               ),
             ],

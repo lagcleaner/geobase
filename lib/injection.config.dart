@@ -23,9 +23,9 @@ import 'src/domain/services/geodata_filter_service.dart' as _i47;
 import 'src/domain/services/goedata_service.dart' as _i50;
 import 'src/domain/services/interfaces/i_field_type.dart' as _i33;
 import 'src/domain/services/interfaces/interfaces.dart' as _i18;
-import 'src/domain/services/location_reader_service.dart' as _i72;
-import 'src/domain/services/map_conf_reader_service.dart' as _i73;
-import 'src/domain/services/map_conf_writter_service.dart' as _i74;
+import 'src/domain/services/location_reader_service.dart' as _i74;
+import 'src/domain/services/map_conf_reader_service.dart' as _i75;
+import 'src/domain/services/map_conf_writter_service.dart' as _i76;
 import 'src/domain/services/map_filters_service.dart' as _i56;
 import 'src/domain/services/map_markers_service.dart' as _i57;
 import 'src/domain/services/media_service.dart' as _i28;
@@ -33,7 +33,7 @@ import 'src/domain/services/services.dart' as _i6;
 import 'src/domain/services/static_selection_service.dart' as _i39;
 import 'src/domain/services/user_preferences_reader_service.dart' as _i58;
 import 'src/domain/services/user_preferences_writter_service.dart' as _i60;
-import 'src/infrastructure/core/registers/external_registers.dart' as _i78;
+import 'src/infrastructure/core/registers/external_registers.dart' as _i80;
 import 'src/infrastructure/providers/categories_provider.dart' as _i14;
 import 'src/infrastructure/providers/columns_provider.dart' as _i23;
 import 'src/infrastructure/providers/field_type_provider.dart' as _i30;
@@ -58,7 +58,7 @@ import 'src/infrastructure/providers/providers.dart' as _i13;
 import 'src/infrastructure/providers/static_selection_provider.dart' as _i36;
 import 'src/infrastructure/repositories/categories_repository.dart' as _i16;
 import 'src/infrastructure/repositories/columns_repository.dart' as _i21;
-import 'src/infrastructure/repositories/configuration_repository.dart' as _i71;
+import 'src/infrastructure/repositories/configuration_repository.dart' as _i73;
 import 'src/infrastructure/repositories/field_type_repository.dart' as _i32;
 import 'src/infrastructure/repositories/field_values_repository.dart' as _i42;
 import 'src/infrastructure/repositories/geodata_filters_repository.dart'
@@ -82,7 +82,7 @@ import 'src/presentation/pages/geodata/blocs/blocs.dart' as _i44;
 import 'src/presentation/pages/geodata/blocs/categories_shower/categoriesshower_cubit.dart'
     as _i69;
 import 'src/presentation/pages/geodata/blocs/geodata_create/geodata_create_cubit.dart'
-    as _i77;
+    as _i79;
 import 'src/presentation/pages/geodata/blocs/geodata_edit/geodata_edit_cubit.dart'
     as _i10;
 import 'src/presentation/pages/geodata/blocs/geodata_form/create_form_bloc.dart'
@@ -93,13 +93,17 @@ import 'src/presentation/pages/geodata/blocs/geodatalist/geodatalist_bloc.dart'
     as _i11;
 import 'src/presentation/pages/geodata/blocs/geodataview/geodataview_cubit.dart'
     as _i12;
-import 'src/presentation/pages/home/blocs/location/location_cubit.dart' as _i75;
+import 'src/presentation/pages/home/blocs/location/location_cubit.dart' as _i77;
 import 'src/presentation/pages/home/blocs/map/map_cubit.dart' as _i61;
 import 'src/presentation/pages/home/blocs/markers/marker_cubit.dart' as _i63;
+import 'src/presentation/pages/home/blocs/panel_geodata_new/geodata_new_cubit.dart'
+    as _i71;
+import 'src/presentation/pages/home/blocs/panel_geodata_preview/geodata_preview_cubit.dart'
+    as _i72;
 import 'src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart'
     as _i65;
 import 'src/presentation/pages/options/blocs/map_configuration_forms/map_configuration_form_bloc.dart'
-    as _i76;
+    as _i78;
 import 'src/presentation/pages/staticselection/blocs/static_selection_form/static_selection_create_form_bloc.dart'
     as _i66;
 import 'src/presentation/pages/staticselection/blocs/static_selection_list/static_selection_list_cubit.dart'
@@ -218,23 +222,27 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
           categoryId: categoryId,
           categoryService: get<_i18.ICategoryService>(),
           fieldTypeService: get<_i18.IFieldTypeService>()));
+  gh.factory<_i71.GeodataNewCubit>(
+      () => _i71.GeodataNewCubit(get<_i18.ICategoryService>()));
+  gh.factory<_i72.GeodataPreviewCubit>(
+      () => _i72.GeodataPreviewCubit(get<_i18.IGeodataService>()));
   gh.factory<_i15.IConfigurationRepository>(() =>
-      _i71.ConfigurationRepository(get<_i51.ILocalPreferencesProvider>()));
+      _i73.ConfigurationRepository(get<_i51.ILocalPreferencesProvider>()));
   gh.lazySingleton<_i6.ILocationReaderService>(
-      () => _i72.LocationReaderService(get<_i15.ILocationRepository>()));
+      () => _i74.LocationReaderService(get<_i15.ILocationRepository>()));
   gh.lazySingleton<_i18.IMapConfigurationReaderService>(() =>
-      _i73.MapConfigurationReaderService(get<_i15.IConfigurationRepository>()));
+      _i75.MapConfigurationReaderService(get<_i15.IConfigurationRepository>()));
   gh.lazySingleton<_i18.IMapConfigurationWritterService>(() =>
-      _i74.MapConfigurationWritterService(
+      _i76.MapConfigurationWritterService(
           get<_i15.IConfigurationRepository>()));
-  gh.factory<_i75.LocationCubit>(() =>
-      _i75.LocationCubit(locationService: get<_i6.ILocationReaderService>()));
-  gh.factory<_i76.MapConfigurationFormBloc>(() => _i76.MapConfigurationFormBloc(
+  gh.factory<_i77.LocationCubit>(() =>
+      _i77.LocationCubit(locationService: get<_i6.ILocationReaderService>()));
+  gh.factory<_i78.MapConfigurationFormBloc>(() => _i78.MapConfigurationFormBloc(
       readerService: get<_i18.IMapConfigurationReaderService>(),
       writterService: get<_i18.IMapConfigurationWritterService>()));
-  gh.factory<_i77.GeodataCreateCubit>(() => _i77.GeodataCreateCubit(
+  gh.factory<_i79.GeodataCreateCubit>(() => _i79.GeodataCreateCubit(
       get<_i6.ICategoryService>(), get<_i6.ILocationReaderService>()));
   return get;
 }
 
-class _$RegisterModule extends _i78.RegisterModule {}
+class _$RegisterModule extends _i80.RegisterModule {}

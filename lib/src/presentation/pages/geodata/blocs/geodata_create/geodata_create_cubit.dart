@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:latlong2/latlong.dart';
+
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/services.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:geobase/src/presentation/router/locations.dart';
 
 part 'geodata_create_cubit.freezed.dart';
 part 'geodata_create_state.dart';
@@ -17,6 +19,13 @@ class GeodataCreateCubit extends Cubit<GeodataCreateState> {
 
   final ICategoryService categoryService;
   final ILocationReaderService locationService;
+
+  Future<void> initialize([GeodataCreateParameters? params]) async {
+    if (params?.categoryId != null) {
+      return loadTemplate(params!.categoryId!, params.latlong);
+    }
+    await loadCategories();
+  }
 
   Future<void> loadCategories() async {
     emit(const GeodataCreateState.loading());
@@ -34,7 +43,7 @@ class GeodataCreateCubit extends Cubit<GeodataCreateState> {
   Future<void> loadTemplate(int categoryId, [LatLng? location]) async {
     emit(const GeodataCreateState.loading());
     LatLng? dfltLocation = location;
-    if (location == null) {
+    if (dfltLocation == null) {
       //if location is null set as default location the current location.
       final eitherLocation = await locationService.currentLocation();
       dfltLocation = eitherLocation.fold((l) => location, (r) => r);
@@ -54,6 +63,16 @@ class GeodataCreateCubit extends Cubit<GeodataCreateState> {
       ),
     );
   }
+}
+
+class GeodataCreateParameters {
+  const GeodataCreateParameters({
+    this.categoryId,
+    this.latlong,
+  });
+
+  final int? categoryId;
+  final LatLng? latlong;
 }
 
 class GeodataCreateInitialData {

@@ -32,7 +32,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SlidingUpPanelCubit>(
       create: (context) => getIt<SlidingUpPanelCubit>(),
-      child: _InternalHomePage(initialLocation: initialLocation),
+      child: _InternalHomePage(
+        initialLocation: initialLocation,
+        panelHeight: MediaQuery.of(context).size.height * 0.40,
+      ),
     );
   }
 }
@@ -41,9 +44,12 @@ class _InternalHomePage extends StatelessWidget {
   const _InternalHomePage({
     Key? key,
     required this.initialLocation,
+    required this.panelHeight,
   }) : super(key: key);
 
   final LatLng? initialLocation;
+
+  final double panelHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +75,14 @@ class _InternalHomePage extends StatelessWidget {
         bloc: context.read<SlidingUpPanelCubit>(),
         builder: (context, state) {
           return SlidingUpPanel(
-            minHeight: 50,
-            maxHeight: MediaQuery.of(context).size.height * 0.30,
+            minHeight: 0,
+            maxHeight: panelHeight,
             backdropOpacity: 0,
-            isDraggable: false,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30.0),
               topRight: Radius.circular(30.0),
             ),
-            color: Colors.transparent,
+            color: Colors.blueGrey.shade100,
             controller: context.read<SlidingUpPanelCubit>().panelController,
             body: MultiBlocProvider(
               providers: [
@@ -85,7 +90,7 @@ class _InternalHomePage extends StatelessWidget {
                   create: (context) => getIt<MapCubit>(param1: initialLocation),
                 ),
                 BlocProvider<MarkerCubit>(
-                  create: (context) => getIt<MarkerCubit>(),
+                  create: (context) => getIt<MarkerCubit>()..refreshMarkers(),
                 ),
                 BlocProvider<LocationCubit>(
                   create: (context) => getIt<LocationCubit>(),
@@ -93,26 +98,67 @@ class _InternalHomePage extends StatelessWidget {
               ],
               child: const _MapScreen(),
             ),
-            panel: const SizedBox(
-                // height: 8,
+            panel: _SlidingUpPanelWidget(panelHeight: panelHeight),
+            // collapsed: const _SlidingUpCollapsedWidget(),
+          );
+        },
+      ),
+    );
+  }
+}
 
-                ),
-            collapsed: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
-                ),
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blueGrey.withOpacity(.5),
-                    Colors.white,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
-              ),
+class _SlidingUpCollapsedWidget extends StatelessWidget {
+  const _SlidingUpCollapsedWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30.0),
+            topRight: Radius.circular(30.0),
+          ),
+          color: Theme.of(context).primaryColor.withAlpha(50)
+          // gradient: LinearGradient(
+          //   colors: [
+          //     Theme.of(context).primaryColor,
+          //     Colors.white,
+          //   ],
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          // ),
+          ),
+    );
+  }
+}
+
+class _SlidingUpPanelWidget extends StatelessWidget {
+  const _SlidingUpPanelWidget({
+    Key? key,
+    required this.panelHeight,
+  }) : super(key: key);
+
+  final double panelHeight;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: panelHeight,
+      child: BlocBuilder<SlidingUpPanelCubit, SlidingUpPanelState>(
+        builder: (context, state) {
+          return state.maybeMap(
+            detailsPanel: (detailsPanel) => SlideUpInformationalPanel(
+              key: Key('${detailsPanel.geodataId}'),
+              geodataId: detailsPanel.geodataId,
+              panelHeight: panelHeight,
             ),
+            newPanel: (newPanel) => SlideUpAddNewPanel(
+              key: Key('${newPanel.ubication}'),
+              ubication: newPanel.ubication,
+            ),
+            orElse: () => const SizedBox(),
           );
         },
       ),
@@ -134,7 +180,7 @@ class _MapScreen extends StatelessWidget {
         //Right top
         Positioned(top: 110, right: 20, child: _FiltersButton()),
         //Right bottom
-        Positioned(bottom: 80, right: 20, child: _GotoLocationButton()),
+        Positioned(bottom: 50, right: 10, child: _GotoLocationButton()),
         //Left top
         Positioned(top: 110, left: 20, child: _GeodataListButton()),
       ],
@@ -184,7 +230,7 @@ class _GotoLocationButton extends StatelessWidget {
     return BlocBuilder<LocationCubit, LocationState>(
       builder: (context, state) {
         return FloatingActionButton.extended(
-          heroTag: false,
+          heroTag: null,
           icon: state.maybeMap(
             enable: (_) => const Icon(Icons.navigation_rounded),
             disable: (_) => const Icon(Icons.navigation_outlined),
@@ -230,7 +276,7 @@ class _FloatingActionButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      heroTag: 0,
+      heroTag: null,
       backgroundColor: Colors.blueGrey.withOpacity(0.5),
       splashColor: Colors.black,
       onPressed: onPressed,

@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
@@ -160,10 +161,10 @@ class _DescriptionInput extends StatelessWidget {
     final formBloc = context.read<CategoryCreateFormBloc>();
     return TextFieldBlocBuilder(
       textFieldBloc: formBloc.description,
+      maxLines: 3,
       decoration: TextFieldDecorations.decoration(
-        labelText: 'Descripción',
+        labelText: 'Descripción*',
         prefixIcon: Icons.text_fields_outlined,
-        maxLines: 4,
       ),
     );
   }

@@ -22,9 +22,12 @@ class _$MarkerStateTearOff {
     );
   }
 
-  _Filtered filteredOut({required Set<IMarkable> markers}) {
+  _Filtered filteredOut(
+      {required Set<IMarkable> markers,
+      required Set<IMarkable> temporalMarkers}) {
     return _Filtered(
       markers: markers,
+      temporalMarkers: temporalMarkers,
     );
   }
 }
@@ -37,13 +40,16 @@ mixin _$MarkerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<IMarkable> markers) filteredOut,
+    required TResult Function(
+            Set<IMarkable> markers, Set<IMarkable> temporalMarkers)
+        filteredOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+        filteredOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -149,7 +155,9 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<IMarkable> markers) filteredOut,
+    required TResult Function(
+            Set<IMarkable> markers, Set<IMarkable> temporalMarkers)
+        filteredOut,
   }) {
     return failure(this.failure);
   }
@@ -158,7 +166,8 @@ class _$_Failure implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+        filteredOut,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -203,7 +212,7 @@ abstract class _Failure implements MarkerState {
 abstract class _$FilteredCopyWith<$Res> {
   factory _$FilteredCopyWith(_Filtered value, $Res Function(_Filtered) then) =
       __$FilteredCopyWithImpl<$Res>;
-  $Res call({Set<IMarkable> markers});
+  $Res call({Set<IMarkable> markers, Set<IMarkable> temporalMarkers});
 }
 
 /// @nodoc
@@ -218,11 +227,16 @@ class __$FilteredCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? markers = freezed,
+    Object? temporalMarkers = freezed,
   }) {
     return _then(_Filtered(
       markers: markers == freezed
           ? _value.markers
           : markers // ignore: cast_nullable_to_non_nullable
+              as Set<IMarkable>,
+      temporalMarkers: temporalMarkers == freezed
+          ? _value.temporalMarkers
+          : temporalMarkers // ignore: cast_nullable_to_non_nullable
               as Set<IMarkable>,
     ));
   }
@@ -230,14 +244,16 @@ class __$FilteredCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Filtered implements _Filtered {
-  const _$_Filtered({required this.markers});
+  const _$_Filtered({required this.markers, required this.temporalMarkers});
 
   @override
   final Set<IMarkable> markers;
+  @override
+  final Set<IMarkable> temporalMarkers;
 
   @override
   String toString() {
-    return 'MarkerState.filteredOut(markers: $markers)';
+    return 'MarkerState.filteredOut(markers: $markers, temporalMarkers: $temporalMarkers)';
   }
 
   @override
@@ -245,12 +261,18 @@ class _$_Filtered implements _Filtered {
     return identical(this, other) ||
         (other is _Filtered &&
             (identical(other.markers, markers) ||
-                const DeepCollectionEquality().equals(other.markers, markers)));
+                const DeepCollectionEquality()
+                    .equals(other.markers, markers)) &&
+            (identical(other.temporalMarkers, temporalMarkers) ||
+                const DeepCollectionEquality()
+                    .equals(other.temporalMarkers, temporalMarkers)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(markers);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(markers) ^
+      const DeepCollectionEquality().hash(temporalMarkers);
 
   @JsonKey(ignore: true)
   @override
@@ -261,20 +283,23 @@ class _$_Filtered implements _Filtered {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Failure failure) failure,
-    required TResult Function(Set<IMarkable> markers) filteredOut,
+    required TResult Function(
+            Set<IMarkable> markers, Set<IMarkable> temporalMarkers)
+        filteredOut,
   }) {
-    return filteredOut(markers);
+    return filteredOut(markers, temporalMarkers);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers)? filteredOut,
+    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+        filteredOut,
     required TResult orElse(),
   }) {
     if (filteredOut != null) {
-      return filteredOut(markers);
+      return filteredOut(markers, temporalMarkers);
     }
     return orElse();
   }
@@ -303,9 +328,12 @@ class _$_Filtered implements _Filtered {
 }
 
 abstract class _Filtered implements MarkerState {
-  const factory _Filtered({required Set<IMarkable> markers}) = _$_Filtered;
+  const factory _Filtered(
+      {required Set<IMarkable> markers,
+      required Set<IMarkable> temporalMarkers}) = _$_Filtered;
 
   Set<IMarkable> get markers => throw _privateConstructorUsedError;
+  Set<IMarkable> get temporalMarkers => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$FilteredCopyWith<_Filtered> get copyWith =>
       throw _privateConstructorUsedError;

@@ -7,7 +7,7 @@ import 'package:latlong2/latlong.dart';
 
 const String LAT_PARAM = 'lat';
 const String LNG_PARAM = 'lng';
-const String LOCATION = 'location';
+const String CATEGORY_ID_PARAM = 'category';
 
 const String DATA_ID = 'data_id';
 const String CATEGORY_ID = 'category_id';
@@ -29,7 +29,8 @@ extension _BeamStateParams on BeamState {
   }
 
   int? get categoryId {
-    return int.tryParse(pathParameters[CATEGORY_ID] ?? '');
+    return int.tryParse(pathParameters[CATEGORY_ID] ?? '') ??
+        int.tryParse(queryParameters[CATEGORY_ID_PARAM] ?? '');
   }
 
   bool contains(int index, String match) {
@@ -45,7 +46,7 @@ class HomeLocation extends BeamLocation<BeamState> {
   @override
   List<String> get pathPatterns => [
         '/map',
-        // '/map?location=', //TODO: Test if is working well
+        // '/map?lat=xx.xx&lng=xx.xx',
       ];
 
   @override
@@ -64,9 +65,6 @@ class OptionsLocation extends BeamLocation<BeamState> {
   List<String> get pathPatterns => [
         '/options',
         '/options/mapserver',
-        '/options/staticselection',
-        '/options/staticselection/new',
-        '/options/staticselection/:$FIELD_TYPE_ID',
       ];
 
   @override
@@ -77,14 +75,6 @@ class OptionsLocation extends BeamLocation<BeamState> {
     return [
       OptionsPage.getPage(context),
       if (state.contains(1, 'mapserver')) MapServerPage.getPage(context),
-      if (state.contains(1, 'staticselection'))
-        StaticSelectionListPage.getPage(context),
-      ...[
-        if (state.fieldTypeId != null)
-          StaticSelectionViewPage.getPage(context, state.fieldTypeId!)
-        else if (state.contains(2, 'new'))
-          StaticSelectionNewPage.getPage(context),
-      ]
     ];
   }
 }
@@ -145,6 +135,7 @@ class GeodataLocation extends BeamLocation<BeamState> {
   List<String> get pathPatterns => [
         '/geodata',
         '/geodata/new',
+        // '/geodata/new?lat=xx.xx&lng=xx.xx',
         '/geodata/:$DATA_ID',
         '/geodata/:$DATA_ID/edit',
       ];
@@ -154,12 +145,11 @@ class GeodataLocation extends BeamLocation<BeamState> {
     BuildContext context,
     BeamState state,
   ) {
-    final locationData = data as LatLng?;
     return [
       GeodataPage.getPage(context),
       if (state.lenGreaterThan(1))
         if (state.contains(1, 'new'))
-          GeodataNewPage.getPage(context, locationData)
+          GeodataNewPage.getPage(context, state.ubication, state.categoryId)
         else if (state.dataId != null) ...[
           GeodataViewPage.getPage(context, state.dataId!),
           if (state.contains(2, 'edit'))

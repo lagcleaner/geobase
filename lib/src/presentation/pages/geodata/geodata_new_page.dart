@@ -3,24 +3,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:latlong2/latlong.dart';
+
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
-import 'package:latlong2/latlong.dart';
 
 class GeodataNewPage extends StatelessWidget {
   const GeodataNewPage({
     Key? key,
     this.ubication,
+    this.categoryId,
   }) : super(key: key);
 
   final LatLng? ubication;
+  final int? categoryId;
 
   static BeamPage getPage(
     BuildContext context,
     LatLng? latLng,
+    int? categoryId,
   ) {
     // navigate from map with latLng, or from geodata list to manually enter the latLng
     return BeamPage(
@@ -28,6 +32,7 @@ class GeodataNewPage extends StatelessWidget {
       title: 'Nuevo punto georeferenciado',
       child: GeodataNewPage(
         ubication: latLng,
+        categoryId: categoryId,
       ),
     );
   }
@@ -35,10 +40,14 @@ class GeodataNewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<GeodataCreateCubit>(
-      create: (_) => getIt()..loadCategories(),
-      child: _GeodataCreatePageInternal(
-        location: ubication,
-      ),
+      create: (_) => getIt<GeodataCreateCubit>()
+        ..initialize(
+          GeodataCreateParameters(
+            categoryId: categoryId,
+            latlong: ubication,
+          ),
+        ),
+      child: const _GeodataCreatePageInternal(),
     );
   }
 }
@@ -46,10 +55,7 @@ class GeodataNewPage extends StatelessWidget {
 class _GeodataCreatePageInternal extends StatelessWidget {
   const _GeodataCreatePageInternal({
     Key? key,
-    this.location,
   }) : super(key: key);
-
-  final LatLng? location;
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +69,13 @@ class _GeodataCreatePageInternal extends StatelessWidget {
           centerTitle: true,
         ),
         body: BlocBuilder<GeodataCreateCubit, GeodataCreateState>(
-          bloc: context.read(),
+          bloc: context.read<GeodataCreateCubit>(),
           builder: (context, state) => state.maybeMap(
             categorySelection: (categorySelection) =>
                 _GeodataCategorySelectionBody(
               categories: categorySelection.categories,
-              onSelectedCategory: (categoryId) => context
-                  .read<GeodataCreateCubit>()
-                  .loadTemplate(categoryId, location),
+              onSelectedCategory: (categoryId) =>
+                  context.read<GeodataCreateCubit>().loadTemplate(categoryId),
             ),
             inputData: (inputData) => BlocProvider<IGeodataCreateFormBloc>(
               create: (context) =>
@@ -111,10 +116,14 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          const Expanded(
-            flex: 1,
+          Expanded(
             child: Center(
-                child: Text('Seleccione una categoría para el nuevo punto.')),
+              child: Text(
+                'Seleccione una categoría para el nuevo punto.',
+                style: Theme.of(context).textTheme.headline6,
+                textScaleFactor: 0.9,
+              ),
+            ),
           ),
           Expanded(
             child: DropdownButtonFormField<int>(
@@ -138,7 +147,23 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
               ),
             ),
           ),
-          const Expanded(flex: 4, child: SizedBox()),
+          const Expanded(flex: 5, child: SizedBox()),
+          Expanded(
+            child: Icon(
+              Icons.info_outline_rounded,
+              size: 30,
+              color: Colors.orange[200],
+            ),
+          ),
+          const Expanded(
+            child: Center(
+              child: Text(
+                'Si su ubicación es accesible sus datos se entrarán de forma predeterminada para el nuevo punto, no obstante se mantiene editable.',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          const Expanded(child: SizedBox()),
         ],
       ),
     );

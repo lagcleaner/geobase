@@ -59,7 +59,7 @@ class MapCubit extends Cubit<MapState> {
   Future<void> markerTouched(IMarkable marker) async {
     await state.mapController.onReady;
     state.mapController.move(marker.location, 17.0);
-    //TODO: SHOW DETAILS IN SLIDING_UP_PANEL
+
     /// store the last location touched to start at this point next time...
   }
 }
