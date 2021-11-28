@@ -37,10 +37,10 @@ class LocationCubit extends Cubit<LocationState> {
     )) {
       emit(const LocationState.loading());
       await locationService.requestEnable();
-      Future.delayed(
-        const Duration(seconds: 5),
-        () => emit(const LocationState.disable()),
-      );
+      // Future.delayed(
+      //   const Duration(seconds: 5),
+      //   () => emit(const LocationState.disable()),
+      // );
     }
   }
 

@@ -18,7 +18,9 @@ class LocationProvider implements ILocationProvider {
   }
 
   @override
-  Future<bool> get isEnabled async => _locationInstance.serviceEnabled();
+  Future<bool> get isEnabled async =>
+      (await _locationInstance.serviceEnabled()) &&
+      (await _locationInstance.hasPermission()) == PermissionStatus.granted;
 
   Future<void> _requestService() async {
     var serviceEnabled = await _locationInstance.serviceEnabled();

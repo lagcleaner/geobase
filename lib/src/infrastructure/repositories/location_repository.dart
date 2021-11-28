@@ -16,6 +16,19 @@ class LocationRepository implements ILocationRepository {
     _onLocationChangedStreamController = StreamController.broadcast();
     _onLocationChanged = provider.onLocationChanged.listen(
       (event) {
+        if (_verifiedLocationStatus?.isActive ?? false) {
+          _verifiedLocationStatus!.cancel();
+        }
+        _verifiedLocationStatus = Timer(
+          const Duration(seconds: 15),
+          () async {
+            if (!await provider.isEnabled) {
+              _onLocationChangedStreamController.add(
+                const Left(Failure.connection()),
+              );
+            }
+          },
+        );
         _onLocationChangedStreamController.add(Right(event));
       },
       onError: (error) {
@@ -23,6 +36,8 @@ class LocationRepository implements ILocationRepository {
       },
     );
   }
+
+  Timer? _verifiedLocationStatus;
   // ignore: cancel_subscriptions
   late final StreamSubscription _onLocationChanged;
 
