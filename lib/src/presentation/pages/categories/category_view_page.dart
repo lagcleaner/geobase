@@ -45,30 +45,24 @@ class _CategoryViewPageInternal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        context.beamToNamed('/categories');
-        return false;
-      },
-      child: Scaffold(
-        backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
-          title: const Text('Detalles de la Categoría'),
-          iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.refresh,
-                color: Colors.white,
-              ),
-              onPressed: () =>
-                  context.read<CategoryViewCubit>().fetch(categoryId),
+    return Scaffold(
+      backgroundColor: Theme.of(context).canvasColor,
+      appBar: AppBar(
+        title: const Text('Detalles de la Categoría'),
+        iconTheme: Theme.of(context).iconTheme,
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(
+              Icons.refresh,
+              color: Colors.white,
             ),
-          ],
-        ),
-        body: _CategoryViewBody(categoryId: categoryId),
+            onPressed: () =>
+                context.read<CategoryViewCubit>().fetch(categoryId),
+          ),
+        ],
       ),
+      body: _CategoryViewBody(categoryId: categoryId),
     );
   }
 }

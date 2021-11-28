@@ -6,6 +6,7 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/commons.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
@@ -95,27 +96,15 @@ class _GeodataEditFormBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBlocListener<IGeodataEditFormBloc, void, Failure>(
       bloc: context.read<IGeodataEditFormBloc>(),
-      onSuccess: (_) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green.shade900,
-              content: const Text('El punto fue correctamente actualizado.'),
-            ),
-          );
-        context.beamToNamed('/geodata/$geodataId');
-      },
-      onError: (error) => ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red.shade900,
-            content: Text(
-              error.message ?? 'Ha ocurrido un error, vuelve a intentarlo.',
-            ),
-          ),
-        ),
+      onSuccess: (_) => NotificationHelper.showSuccessSnackbar(
+        context,
+        message: 'El punto fue correctamente actualizado.',
+        onShow: () => context.beamToNamed('/geodata/$geodataId'),
+      ),
+      onError: (error) => NotificationHelper.showSuccessSnackbar(
+        context,
+        message: error.message ?? 'Ha ocurrido un error, vuelve a intentarlo.',
+      ),
       child: const Padding(
         padding: EdgeInsets.all(10.0),
         child: GeodataForm<IGeodataEditFormBloc>(

@@ -55,7 +55,9 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
     final allCat = await categoryService.loadCategoriesWhere();
     return allCat.fold(
       (failure) => null,
-      (categories) => categories.any((element) => element.name == name)
+      (categories) => categories.any(
+        (element) => element.name.toLowerCase() == name?.toLowerCase(),
+      )
           ? 'Ya existe otra categoría con este nombre'
           : null,
     );
@@ -64,7 +66,7 @@ class CategoryCreateFormBloc extends FormBloc<Unit, String> {
   String? columnNameIsTaken(String? name) {
     if (name?.isEmpty ?? true) return null;
     return columns.state.fieldBlocs.any((e) => e.columnName.state.value == name)
-        ? 'No pueden haber columnas del mismo nombre.'
+        ? 'No puede haber columnas con igual nombre.'
         : null;
   }
 

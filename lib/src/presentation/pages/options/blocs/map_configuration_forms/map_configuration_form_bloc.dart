@@ -6,6 +6,7 @@ import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
+import 'package:geobase/src/presentation/core/extensions/list_bloc_field_extensions.dart';
 import 'package:geobase/src/presentation/core/utils/input_validators.dart';
 
 @injectable
@@ -69,6 +70,7 @@ class MapConfigurationFormBloc
   final ListFieldBloc<TextFieldBloc> subdomains = ListFieldBloc();
 
   final IMapConfigurationReaderService readerService;
+
   final IMapConfigurationWritterService writterService;
 
   void _addFieldBlocsBySource(MapConfigurationEntity configs) {
@@ -90,15 +92,13 @@ class MapConfigurationFormBloc
             subdomains,
           ],
         );
-        _initiailizeAutoRemovableListFieldBloc(
-          wmsLayers,
-          (configs.options[MAP_SOURCE_WMS_LAYERS] as List?)
+        wmsLayers.initiailizeAutoRemovableListFieldBloc(
+          defaultValues: (configs.options[MAP_SOURCE_WMS_LAYERS] as List?)
               ?.map((item) => item as String)
               .toList(),
         );
-        _initiailizeAutoRemovableListFieldBloc(
-          subdomains,
-          (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
+        subdomains.initiailizeAutoRemovableListFieldBloc(
+          defaultValues: (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
               ?.map((item) => item as String)
               .toList(),
         );
@@ -123,9 +123,8 @@ class MapConfigurationFormBloc
             subdomains,
           ],
         );
-        _initiailizeAutoRemovableListFieldBloc(
-          subdomains,
-          (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
+        subdomains.initiailizeAutoRemovableListFieldBloc(
+          defaultValues: (configs.options[MAP_SOURCE_SUBDOMAINS] as List?)
               ?.map((item) => item as String)
               .toList(),
         );
@@ -189,58 +188,4 @@ class MapConfigurationFormBloc
       },
     );
   }
-}
-
-void _initiailizeAutoRemovableListFieldBloc(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  List<String>? defaultValues,
-) {
-  listBloc.removeFieldBlocsWhere((f) => true);
-  if (defaultValues?.isNotEmpty ?? false) {
-    for (final element in defaultValues!) {
-      _addAutoRemovableField(listBloc, element);
-    }
-  }
-  _addAutoRemovableField(listBloc, '');
-}
-
-void _addAutoRemovableField(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  String? initialValue,
-) {
-  final self = TextFieldBloc(
-    initialValue: initialValue,
-    validators: [],
-  );
-  self.addValidators([notRequiredLastIfIsNotAlone(listBloc, self)]);
-
-  listBloc.addFieldBloc(
-    self
-      ..onValueChanges(
-        onData: (prev, curr) async* {
-          if (listBloc.value.last != self && (curr.value ?? '') == '') {
-            listBloc.removeFieldBlocsWhere((element) {
-              return element == self;
-            });
-          }
-          if (listBloc.value.last == self &&
-              (prev.value ?? '') == '' &&
-              (curr.value ?? '') != '') {
-            _addAutoRemovableField(listBloc, '');
-          }
-        },
-      ),
-  );
-}
-
-String? Function(String?) notRequiredLastIfIsNotAlone(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  TextFieldBloc self,
-) {
-  return (e) {
-    if (listBloc.value.length > 1 && listBloc.value.last == self) {
-      return null;
-    }
-    return StringValidator.required(e);
-  };
 }

@@ -7,6 +7,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
@@ -49,35 +50,18 @@ class _CategoryCreatePageInternal extends StatelessWidget {
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   icon: const Icon(Icons.send_rounded),
-        //   onPressed: context.read<CategoryCreateFormBloc>().submit,
-        //   label: const Text('Añadir Categoría'),
-        // ),
         body: FormBlocListener<CategoryCreateFormBloc, Unit, String>(
           formBloc: context.read<CategoryCreateFormBloc>(),
-          onSuccess: (contex, state) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  backgroundColor: Colors.green.shade900,
-                  content: const Text('La Categoría fue correctamente creada.'),
-                ),
-              );
-            context.beamToNamed('/categories');
-          },
-          onFailure: (context, state) => ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.red.shade900,
-                content: Text(
-                  state.failureResponse ??
-                      'Ha ocurrido un error, vuelva a intentarlo.',
-                ),
-              ),
-            ),
+          onSuccess: (contex, state) => NotificationHelper.showSuccessSnackbar(
+            context,
+            message: 'La Categoría fue correctamente creada.',
+            onShow: () => context.beamToNamed('/categories'),
+          ),
+          onFailure: (context, state) => NotificationHelper.showErrorSnackbar(
+            context,
+            message: state.failureResponse ??
+                'Ha ocurrido un error, vuelva a intentarlo.',
+          ),
           child: const Padding(
             padding: EdgeInsets.all(10.0),
             child: _CategoryCreateForm(),

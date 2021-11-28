@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:latlong2/latlong.dart';
 
 import 'package:geobase/injection.dart';
@@ -177,27 +178,15 @@ class _GeodataCreateFormBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBlocListener<IGeodataCreateFormBloc, void, Failure>(
       bloc: context.read<IGeodataCreateFormBloc>(),
-      onSuccess: (_) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green.shade900,
-              content: const Text('El punto fue correctamente añadido.'),
-            ),
-          );
-        context.beamToNamed('/geodata');
-      },
-      onError: (error) => ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red.shade900,
-            content: Text(
-              error.message ?? 'Ha ocurrido un error, vuelve a intentarlo.',
-            ),
-          ),
-        ),
+      onSuccess: (_) => NotificationHelper.showSuccessSnackbar(
+        context,
+        message: 'El punto fue correctamente añadido.',
+        onShow: () => context.beamToNamed('/geodata'),
+      ),
+      onError: (error) => NotificationHelper.showErrorSnackbar(
+        context,
+        message: error.message ?? 'Ha ocurrido un error, vuelve a intentarlo.',
+      ),
       child: const Padding(
         padding: EdgeInsets.all(10.0),
         child: GeodataForm<IGeodataCreateFormBloc>(

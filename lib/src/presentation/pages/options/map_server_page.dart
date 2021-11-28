@@ -5,6 +5,7 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/core/extensions/enums_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/form_bloc/form_bloc_builder.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
@@ -71,14 +72,10 @@ class _SourceOptionsForm extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: FormBlocListener(
           formBloc: context.read<MapConfigurationFormBloc>(),
-          onSuccess: (context, state) => ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.green.shade900,
-                content: const Text('Se actualizó la configuración del mapa.'),
-              ),
-            ),
+          onSuccess: (context, state) => NotificationHelper.showSuccessSnackbar(
+            context,
+            message: 'Se actualizó la configuración del mapa.',
+          ),
           child: FormBlocBuilder<
               MapConfigurationFormBloc,
               FormBlocState<MapConfigurationEntity, String>,
@@ -87,14 +84,13 @@ class _SourceOptionsForm extends StatelessWidget {
             bloc: context.read<MapConfigurationFormBloc>(),
             onLoadFailed: (failure) => FailureAndRetryWidget(
               errorText:
-                  'Tenemos problemas para cargar la configuración :( ${failure ?? ''}',
+                  'Tenemos problemas para cargar la configuración\n ${failure ?? ''}',
               onPressed: () {
                 return context.read<MapConfigurationFormBloc>().reload();
               },
             ),
             onFailure: (failure) => FailureAndRetryWidget(
-              errorText:
-                  'Tenemos problemas para guardar la configuración :( ${failure ?? ''}',
+              errorText: failure ?? '',
               onPressed: () {
                 return context.read<MapConfigurationFormBloc>().reload();
               },

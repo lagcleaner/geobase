@@ -211,7 +211,10 @@ class _CategoryWidget extends StatelessWidget {
               tooltip: 'Ver detalles de la Categoría',
               icon: Icon(
                 Icons.keyboard_arrow_right,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context)
+                    .colorScheme
+                    .secondary
+                    .getContrastColor(color),
               ),
               onPressed: () {
                 context.beamToNamed('/categories/${category.id}');

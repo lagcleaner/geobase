@@ -4,6 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
+import 'package:geobase/src/presentation/core/extensions/list_bloc_field_extensions.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 
 @injectable
@@ -48,7 +49,9 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
 
   @override
   Future<void> onLoading() async {
-    _initiailizeAutoRemovableListFieldBloc(options, []);
+    options.initiailizeAutoRemovableListFieldBloc(
+      validationBuilders: [valueIsRepeated],
+    );
     emitLoaded();
   }
 
@@ -74,63 +77,6 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
   }
 }
 
-void _initiailizeAutoRemovableListFieldBloc(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  List<String>? defaultValues,
-) {
-  listBloc.removeFieldBlocsWhere((f) => true);
-  if (defaultValues?.isNotEmpty ?? false) {
-    for (final element in defaultValues!) {
-      _addAutoRemovableField(listBloc, element);
-    }
-  }
-  _addAutoRemovableField(listBloc, '');
-}
-
-void _addAutoRemovableField(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  String? initialValue,
-) {
-  final self = TextFieldBloc(
-    initialValue: initialValue,
-    validators: [],
-  );
-  self.addValidators([
-    notRequiredLastIfIsNotAlone(listBloc, self),
-    valueIsRepeated(listBloc, self),
-  ]);
-
-  listBloc.addFieldBloc(
-    self
-      ..onValueChanges(
-        onData: (prev, curr) async* {
-          if (listBloc.value.last != self && (curr.value ?? '') == '') {
-            listBloc.removeFieldBlocsWhere((element) {
-              return element == self;
-            });
-          }
-          if (listBloc.value.last == self &&
-              (prev.value ?? '') == '' &&
-              (curr.value ?? '') != '') {
-            _addAutoRemovableField(listBloc, '');
-          }
-        },
-      ),
-  );
-}
-
-String? Function(String?) notRequiredLastIfIsNotAlone(
-  ListFieldBloc<TextFieldBloc> listBloc,
-  TextFieldBloc self,
-) {
-  return (e) {
-    if (listBloc.value.length > 1 && listBloc.value.last == self) {
-      return null;
-    }
-    return StringValidator.required(e);
-  };
-}
-
 String? Function(String?) valueIsRepeated(
   ListFieldBloc<TextFieldBloc> listBloc,
   TextFieldBloc self,
@@ -138,7 +84,7 @@ String? Function(String?) valueIsRepeated(
   return (String? value) {
     if (listBloc.value.length > 1 &&
         listBloc.value.any((e) => e.value == self.value && self != e)) {
-      return 'The value is repeated';
+      return 'Los valores no puede repetirse.';
     }
   };
 }

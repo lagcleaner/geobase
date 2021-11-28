@@ -135,7 +135,7 @@ class GeodataLocation extends BeamLocation<BeamState> {
   List<String> get pathPatterns => [
         '/geodata',
         '/geodata/new',
-        // '/geodata/new?lat=xx.xx&lng=xx.xx',
+        // '/geodata/new?lat=<xx.xx>&lng=<xx.xx>&category=<id>',
         '/geodata/:$DATA_ID',
         '/geodata/:$DATA_ID/edit',
       ];

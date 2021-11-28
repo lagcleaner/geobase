@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/inputs/autoremovable_input_bloc.dart';
 import 'package:geobase/src/presentation/pages/staticselection/blocs/static_selection_form/static_selection_create_form_bloc.dart';
@@ -54,30 +55,16 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBlocListener<StaticSelectionCreateFormBloc, Unit, String>(
       formBloc: context.read<StaticSelectionCreateFormBloc>(),
-      onSuccess: (contex, state) {
-        ScaffoldMessenger.of(context)
-          ..hideCurrentSnackBar()
-          ..showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.green.shade900,
-              content: const Text(
-                'La selección estática fue correctamente creada.',
-              ),
-            ),
-          );
-        context.beamToNamed('/staticselection');
-      },
-      onFailure: (context, state) => ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.red.shade900,
-            content: Text(
-              state.failureResponse ??
-                  'Ha ocurrido un error, vuelva a intentarlo.',
-            ),
-          ),
-        ),
+      onSuccess: (contex, state) => NotificationHelper.showSuccessSnackbar(
+        context,
+        message: 'La selección estática fue correctamente creada.',
+        onShow: () => context.beamToNamed('/staticselection'),
+      ),
+      onFailure: (context, state) => NotificationHelper.showErrorSnackbar(
+        context,
+        message: state.failureResponse ??
+            'Ha ocurrido un error, vuelva a intentarlo.',
+      ),
       child: const Padding(
         padding: EdgeInsets.all(10.0),
         child: _StaticSelectionCreateForm(),

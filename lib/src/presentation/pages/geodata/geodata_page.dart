@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/utils/shorten_str.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
@@ -209,7 +210,10 @@ class _GeodataWidget extends StatelessWidget {
               tooltip: 'Ver detalles del punto',
               icon: Icon(
                 Icons.keyboard_arrow_right,
-                color: Theme.of(context).colorScheme.secondary,
+                color: Theme.of(context)
+                    .colorScheme
+                    .secondary
+                    .getContrastColor(color),
               ),
               onPressed: () {
                 context.beamToNamed('/geodata/${geodata.id}');
@@ -241,15 +245,10 @@ class _QueryInput extends StatelessWidget {
         if (state.categories.isEmpty) {
           await Future.delayed(
             const Duration(seconds: 1),
-            () => ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                const SnackBar(
-                  content: Text(
-                    'No hay categorías configuradas.',
-                  ),
-                ),
-              ),
+            () => NotificationHelper.showInfoSnackbar(
+              context,
+              message: 'No hay categorías configuradas.',
+            ),
           );
         }
       },

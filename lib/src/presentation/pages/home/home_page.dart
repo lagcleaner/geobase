@@ -107,33 +107,6 @@ class _InternalHomePage extends StatelessWidget {
   }
 }
 
-class _SlidingUpCollapsedWidget extends StatelessWidget {
-  const _SlidingUpCollapsedWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30.0),
-            topRight: Radius.circular(30.0),
-          ),
-          color: Theme.of(context).primaryColor.withAlpha(50)
-          // gradient: LinearGradient(
-          //   colors: [
-          //     Theme.of(context).primaryColor,
-          //     Colors.white,
-          //   ],
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          // ),
-          ),
-    );
-  }
-}
-
 class _SlidingUpPanelWidget extends StatelessWidget {
   const _SlidingUpPanelWidget({
     Key? key,
