@@ -48,6 +48,11 @@ class _InternalPanel extends StatelessWidget {
                 'Nuevo Punto',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
+              Text(
+                '(${ubication.latitude.toStringAsFixed(6)}, ${ubication.longitude.toStringAsFixed(6)})',
+                style: Theme.of(context).textTheme.subtitle2,
+                textScaleFactor: 0.95,
+              ),
             ],
           ),
           const SizedBox(height: 20),

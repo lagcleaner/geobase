@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -19,9 +17,13 @@ class MarkerCubit extends Cubit<MarkerState> {
 
   final IMarkerGetterService markerGetterService;
 
-  Future<void> refreshMarkers([LatLng? currentCenter, double? zoom]) async {
+  Future<void> refreshMarkers({
+    FilterDataOptionsEntity? filters,
+    LatLng? currentCenter,
+    double? zoom,
+  }) async {
     final either = await markerGetterService.getMarkers(
-      FilterDataOptionsEntity.clean(),
+      filters ?? FilterDataOptionsEntity.clean(),
     );
     final Set<IMarkable> temporals = state.maybeMap(
       orElse: () => {},
@@ -52,13 +54,15 @@ class MarkerCubit extends Cubit<MarkerState> {
     );
   }
 
-  Future<void> addTemporaryMarker(LatLng position) async {
+  Future<void> onMapLongPress(LatLng position) async {
     state.map(
       failure: (failure) => null,
       filteredOut: (filteredOut) {
-        final newSet = filteredOut.temporalMarkers.toSet()
-          ..add(TemporalMarkerEntity(location: position));
-        emit(filteredOut.copyWith(temporalMarkers: newSet));
+        emit(
+          filteredOut.copyWith(
+            temporalMarkers: {TemporalMarkerEntity(location: position)},
+          ),
+        );
       },
     );
   }
