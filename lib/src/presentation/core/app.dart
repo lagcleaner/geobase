@@ -13,6 +13,7 @@ class GeoBaseApp extends StatelessWidget {
       routerDelegate: Routes.routerDelegate,
       child: MaterialApp.router(
         title: APP_NAME,
+        debugShowCheckedModeBanner: false,
         theme: geobaseLightTheme,
         //Beamer
         backButtonDispatcher: Routes.backButtonDispatcher,

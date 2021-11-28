@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -164,7 +166,10 @@ class _GeodataViewBasicInfo extends StatelessWidget {
               Flexible(
                 flex: 3,
                 child: ListTile(
-                  leading: const Icon(Icons.navigation_rounded),
+                  leading: Transform.rotate(
+                    angle: -math.pi * 300 / 180,
+                    child: const Icon(Icons.navigation_rounded),
+                  ),
                   title: Wrap(
                     children: [
                       Text(
