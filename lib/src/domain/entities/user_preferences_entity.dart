@@ -1,7 +1,9 @@
 class UserPreferencesEntity {
   const UserPreferencesEntity({
-    required this.showLocation,
+    required this.initialLat,
+    required this.initialLng,
   });
 
-  final bool showLocation;
+  final double? initialLat;
+  final double? initialLng;
 }

@@ -12,7 +12,10 @@ const _MAP_CONFIG_KEY = 'map.config';
 const _PREFERENCES_KEY = 'user.preferences';
 
 // DEFAULT VALUES
-const _DEFAULT_PREFERENCES = UserPreferencesModel(showLocation: false);
+const _DEFAULT_PREFERENCES = UserPreferencesModel(
+  initialLat: 23.1255,
+  initialLng: -82.37,
+);
 const _DEFAULT_MAP_CONFIG = _OSM_MAP_CONFIG;
 
 const _WMS_MAP_CONFIG = MapConfigurationModel(
@@ -73,6 +76,5 @@ class LocalPreferencesProvider extends ILocalPreferencesProvider {
     final prefs = getIt<SharedPreferences>();
 
     await prefs.setString(_PREFERENCES_KEY, json.encode(configs.toJson()));
-    ;
   }
 }

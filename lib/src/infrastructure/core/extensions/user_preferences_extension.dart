@@ -4,7 +4,8 @@ import 'package:geobase/src/infrastructure/models/models.dart';
 extension UserPreferencesModelExtension on UserPreferencesModel {
   UserPreferencesEntity toEntity() {
     return UserPreferencesEntity(
-      showLocation: showLocation,
+      initialLat: initialLat,
+      initialLng: initialLng,
     );
   }
 }
@@ -12,7 +13,8 @@ extension UserPreferencesModelExtension on UserPreferencesModel {
 extension UserPreferencesEntityExtension on UserPreferencesEntity {
   UserPreferencesModel toModel() {
     return UserPreferencesModel(
-      showLocation: showLocation,
+      initialLat: initialLat,
+      initialLng: initialLng,
     );
   }
 }

@@ -3,8 +3,6 @@ import 'package:dartz/dartz.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 
 abstract class IConfigurationRepository {
-  Stream<UserPreferencesEntity> get onUserPrefChanged;
-
   Future<Either<Failure, MapConfigurationEntity>> loadMapConfigurations();
 
   Future<Either<Failure, Unit>> setMapConfigurations(

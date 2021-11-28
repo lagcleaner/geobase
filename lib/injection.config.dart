@@ -200,8 +200,10 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       _i60.UserPreferencesWritterService(get<_i59.IConfigurationRepository>()));
   gh.factoryParam<_i61.MapCubit, _i62.LatLng?, dynamic>((initialLocation, _) =>
       _i61.MapCubit(
+          initialLocation: initialLocation,
           confReader: get<_i6.IMapConfigurationReaderService>(),
-          initialLocation: initialLocation));
+          usPrefsReader: get<_i6.IUserPreferencesReaderService>(),
+          usPrefsWritter: get<_i6.IUserPreferencesWritterService>()));
   gh.factory<_i63.MarkerCubit>(() =>
       _i63.MarkerCubit(markerGetterService: get<_i18.IMarkerGetterService>()));
   await gh.factoryAsync<_i64.SharedPreferences>(() => registerModule.prefs,

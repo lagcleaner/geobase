@@ -11,12 +11,9 @@ class UserPreferencesReaderService implements IUserPreferencesReaderService {
   );
 
   final IConfigurationRepository repository;
+
   @override
   Future<Either<Failure, UserPreferencesEntity>> loadUserPreferences() async {
     return repository.loadUserPreferences();
   }
-
-  @override
-  Stream<UserPreferencesEntity> get onUserPrefChanged =>
-      repository.onUserPrefChanged;
 }

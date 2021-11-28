@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/repositories/repositories.dart';
-import 'package:geobase/src/infrastructure/core/changes_notifier_streamcontroller.dart';
 import 'package:geobase/src/infrastructure/core/error_handling.dart';
 import 'package:geobase/src/infrastructure/core/extensions/extensions.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_local_preferences_provider.dart';
@@ -13,15 +12,7 @@ class ConfigurationRepository implements IConfigurationRepository {
     this.provider,
   );
 
-  final ObjectChangeNotifier<UserPreferencesEntity>
-      _changesUserPreferencesNotifier =
-      ObjectChangeNotifier<UserPreferencesEntity>();
-
   final ILocalPreferencesProvider provider;
-
-  @override
-  Stream<UserPreferencesEntity> get onUserPrefChanged =>
-      _changesUserPreferencesNotifier.stream;
 
   @override
   Future<Either<Failure, MapConfigurationEntity>>
@@ -62,11 +53,6 @@ class ConfigurationRepository implements IConfigurationRepository {
   ) async {
     try {
       await provider.saveUserPrefs(preferences.toModel());
-      _changesUserPreferencesNotifier.add(
-        UserPreferencesEntity(
-          showLocation: preferences.showLocation,
-        ),
-      );
       return const Right(unit);
     } catch (e) {
       return catchMethod(e);

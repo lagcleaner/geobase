@@ -3,7 +3,7 @@ import 'package:latlong2/latlong.dart';
 
 class TemporalMarkerEntity extends IMarkable {
   TemporalMarkerEntity({
-    this.color = 0x88888888, //TODO: PUT A DEFAULT ICON AND COLOR HERE
+    this.color = 0xAA888888,
     this.icon,
     required this.location,
   });
