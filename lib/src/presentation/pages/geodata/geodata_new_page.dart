@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
-import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
-import 'package:latlong2/latlong.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
+import 'package:latlong2/latlong.dart';
 
 class GeodataNewPage extends StatelessWidget {
   const GeodataNewPage({
@@ -127,7 +127,7 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: DropdownButtonFormField<int>(
+            child: DropdownButtonFormFieldWidget<int>(
               items: categories.map((CategoryGetEntity categ) {
                 return DropdownMenuItem(
                   value: categ.id,
@@ -138,14 +138,10 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
                   ),
                 );
               }).toList(),
-              icon: const SizedBox(),
               onChanged: (selected) =>
                   selected != null ? onSelectedCategory(selected) : null,
-              decoration: TextFieldDecorations.decoration(
-                suffixIcon: const Icon(Icons.arrow_drop_down_circle_outlined),
-                prefixIcon: Icons.category,
-                labelText: 'Categoría',
-              ),
+              labelText: 'Categoría',
+              prefixIcon: Icons.category,
             ),
           ),
           const Expanded(flex: 5, child: SizedBox()),
@@ -159,7 +155,8 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
           const Expanded(
             child: Center(
               child: Text(
-                'Si su ubicación es accesible sus datos se entrarán de forma predeterminada para el nuevo punto, no obstante se mantiene editable.',
+                'Si su ubicación es accesible sus datos se entrarán de forma predeterminada '
+                'para el nuevo punto, no obstante se mantiene editable.',
                 textAlign: TextAlign.center,
               ),
             ),

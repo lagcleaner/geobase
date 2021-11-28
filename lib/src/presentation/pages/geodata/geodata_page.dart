@@ -7,6 +7,7 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/utils/shorten_str.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
@@ -255,7 +256,7 @@ class _QueryInput extends StatelessWidget {
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(15),
-          child: DropdownButtonFormField<int>(
+          child: DropdownButtonFormFieldWidget<int>(
             items: state.categories.map((CategoryGetEntity categ) {
               return DropdownMenuItem(
                 value: categ.id,
@@ -273,15 +274,12 @@ class _QueryInput extends StatelessWidget {
                   .add(GeodataListEvent.fetched(categoryId: newValue));
             },
             value: state.selected,
-            icon: const SizedBox(),
-            decoration: TextFieldDecorations.decoration(
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.clear),
-                onPressed: context.read<CategoriesShowerCubit>().clear,
-              ),
-              prefixIcon: Icons.manage_search_rounded,
-              labelText: 'Buscar por Categoría',
+            suffixIcon: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: context.read<CategoriesShowerCubit>().clear,
             ),
+            prefixIcon: Icons.manage_search_rounded,
+            labelText: 'Buscar por Categoría',
           ),
         );
       },

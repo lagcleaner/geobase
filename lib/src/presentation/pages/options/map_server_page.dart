@@ -198,39 +198,40 @@ class _WMSLayersInput extends StatelessWidget {
   Widget build(BuildContext context) {
     final formBloc = context.read<MapConfigurationFormBloc>();
     return CanShowFieldBlocBuilder(
-        fieldBloc: formBloc.wmsLayers,
-        builder: (context, show) {
-          return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-              ListFieldBlocState<TextFieldBloc>>(
-            bloc: formBloc.wmsLayers,
-            builder: (context, state) {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  if (show ?? false) ...[
-                    const Divider(),
-                    Text(
-                      'Capas del mapa*',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: state.fieldBlocs.length,
-                      itemBuilder: (context, i) {
-                        return AutoremovableListFieldBlocInput(
-                          bloc: state.fieldBlocs[i],
-                          index: i,
-                          label: 'Capa #(${i + 1})*',
-                        );
-                      },
-                    ),
-                  ],
+      fieldBloc: formBloc.wmsLayers,
+      builder: (context, show) {
+        return BlocBuilder<ListFieldBloc<TextFieldBloc>,
+            ListFieldBlocState<TextFieldBloc>>(
+          bloc: formBloc.wmsLayers,
+          builder: (context, state) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (show ?? false) ...[
+                  const Divider(),
+                  Text(
+                    'Capas del mapa*',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: state.fieldBlocs.length,
+                    itemBuilder: (context, i) {
+                      return AutoremovableListFieldBlocInput(
+                        bloc: state.fieldBlocs[i],
+                        index: i,
+                        label: 'Capa #(${i + 1})*',
+                      );
+                    },
+                  ),
                 ],
-              );
-            },
-          );
-        });
+              ],
+            );
+          },
+        );
+      },
+    );
   }
 }
 

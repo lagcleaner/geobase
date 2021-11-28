@@ -5,6 +5,7 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 
 class StaticSelectionFieldInputWidget extends FieldInputWidget {
@@ -28,24 +29,18 @@ class StaticSelectionFieldInputWidget extends FieldInputWidget {
         if (value != null && !items.contains(value)) {
           items.add(value);
         }
-        return DropdownButtonFormField<String>(
+        return DropdownButtonFormFieldWidget<String>(
           key: key,
           items: items
               .map(
-                (e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ),
+                (e) => DropdownMenuItem<String>(value: e, child: Text(e)),
               )
               .toList(),
           value: state.value.value as String?,
-          icon: const SizedBox(),
-          onChanged: (newValue) =>
-              inputBloc.dirty(state.value.copyWithValue(newValue)),
-          decoration: TextFieldDecorations.decoration(
-            errorText: state.error,
-            labelText: column.name,
-            suffixIcon: const Icon(Icons.arrow_circle_down_rounded),
+          errorText: state.error,
+          labelText: column.name,
+          onChanged: (newValue) => inputBloc.dirty(
+            state.value.copyWithValue(newValue),
           ),
         );
       },

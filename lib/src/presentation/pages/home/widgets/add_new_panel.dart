@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/widgets/buttons/buttons.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/commons.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/panel_geodata_new/geodata_new_cubit.dart';
 import 'package:geobase/src/presentation/router/locations.dart';
@@ -63,13 +64,8 @@ class _InternalPanel extends StatelessWidget {
                           style: Theme.of(context).textTheme.subtitle2,
                           textScaleFactor: 0.95,
                         ),
-                        DropdownButtonFormField<int>(
-                          icon: const SizedBox(),
-                          decoration: TextFieldDecorations.decoration(
-                            labelText: 'Seleccione una Categoría',
-                            suffixIcon:
-                                const Icon(Icons.arrow_circle_down_rounded),
-                          ),
+                        DropdownButtonFormFieldWidget<int>(
+                          labelText: 'Seleccione una Categoría',
                           items: state.categories
                               .map(
                                 (e) => DropdownMenuItem<int>(
