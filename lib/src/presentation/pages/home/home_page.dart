@@ -1,6 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/widgets/buttons/buttons.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
+import 'package:geobase/src/presentation/pages/geodata/blocs/categories_shower/categoriesshower_cubit.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -53,55 +59,78 @@ class _InternalHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: const Color(0x33000000),
-        title: const Text(APP_NAME),
-        actions: [
-          TextButton.icon(
-            onPressed: () {
-              context.beamToNamed('/options');
-            },
-            icon: const Icon(
-              Icons.settings_rounded,
-              color: Colors.white,
+    return WillPopScope(
+      onWillPop: () async {
+        return await showDialog<bool>(
+              context: context,
+              builder: (context) => AlertDialog(
+                actionsAlignment: MainAxisAlignment.center,
+                title: const Text('¿Quiere salir?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text('Si'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('No'),
+                  )
+                ],
+              ),
+            ) ??
+            false;
+      },
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: const Color(0x33000000),
+          title: const Text(APP_NAME),
+          actions: [
+            TextButton.icon(
+              onPressed: () {
+                context.beamToNamed('/options');
+              },
+              icon: const Icon(
+                Icons.settings_rounded,
+                color: Colors.white,
+              ),
+              label: const SizedBox(),
             ),
-            label: const SizedBox(),
-          ),
-        ],
-      ),
-      body: BlocBuilder<SlidingUpPanelCubit, SlidingUpPanelState>(
-        bloc: context.read<SlidingUpPanelCubit>(),
-        builder: (context, state) {
-          return SlidingUpPanel(
-            minHeight: 0,
-            maxHeight: panelHeight,
-            backdropOpacity: 0,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(30.0),
-              topRight: Radius.circular(30.0),
-            ),
-            color: Colors.blueGrey.shade100,
-            controller: context.read<SlidingUpPanelCubit>().panelController,
-            body: MultiBlocProvider(
-              providers: [
-                BlocProvider<MapCubit>(
-                  create: (context) => getIt<MapCubit>(param1: initialLocation),
-                ),
-                BlocProvider<MarkerCubit>(
-                  create: (context) => getIt<MarkerCubit>()..refreshMarkers(),
-                ),
-                BlocProvider<LocationCubit>(
-                  create: (context) => getIt<LocationCubit>(),
-                ),
-              ],
-              child: const _MapScreen(),
-            ),
-            panel: _SlidingUpPanelWidget(panelHeight: panelHeight),
-            // collapsed: const _SlidingUpCollapsedWidget(),
-          );
-        },
+          ],
+        ),
+        body: BlocBuilder<SlidingUpPanelCubit, SlidingUpPanelState>(
+          bloc: context.read<SlidingUpPanelCubit>(),
+          builder: (context, state) {
+            return SlidingUpPanel(
+              minHeight: 0,
+              maxHeight: panelHeight,
+              backdropOpacity: 0,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0),
+              ),
+              color: Colors.blueGrey.shade100,
+              controller: context.read<SlidingUpPanelCubit>().panelController,
+              body: MultiBlocProvider(
+                providers: [
+                  BlocProvider<MapCubit>(
+                    create: (context) =>
+                        getIt<MapCubit>(param1: initialLocation),
+                  ),
+                  BlocProvider<MarkerCubit>(
+                    create: (context) => getIt<MarkerCubit>()..refreshMarkers(),
+                  ),
+                  BlocProvider<LocationCubit>(
+                    create: (context) => getIt<LocationCubit>(),
+                  ),
+                ],
+                child: const _MapScreen(),
+              ),
+              panel: _SlidingUpPanelWidget(panelHeight: panelHeight),
+              // collapsed: const _SlidingUpCollapsedWidget(),
+            );
+          },
+        ),
       ),
     );
   }
@@ -185,8 +214,52 @@ class _FiltersButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _FloatingActionButtonWidget(
-      onPressed: () {
-        //TODO: SHOW DIALOG TO FILTER MAP MARKERS
+      onPressed: () async {
+        final filters = await showDialog<FilterDataOptionsEntity>(
+          context: context,
+          builder: (context) {
+            return BlocBuilder<CategoriesShowerCubit, CategoriesShowerState>(
+              bloc: getIt<CategoriesShowerCubit>()..loadCategories(),
+              builder: (context, state) {
+                return SimpleDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  contentPadding: const EdgeInsets.all(16.0),
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  children: [
+                    Text(
+                      'Seleccione la categoría que se mostrarán en el mapa:',
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                    const SizedBox(height: 8),
+                    DropdownButtonFormFieldWidget<int>(
+                      items: state.categories
+                          .map(
+                            (e) => DropdownMenuItem<int>(
+                              value: e.id,
+                              child: Text(e.name),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: (newValue) => newValue != null
+                          ? Navigator.of(context).pop(
+                              FilterDataOptionsEntity(categoryId: newValue),
+                            )
+                          : null,
+                      labelText: 'Categoría a Mostrar',
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                );
+              },
+            );
+          },
+        );
+        if (filters != null) {
+          // ignore: unawaited_futures
+          context.read<MarkerCubit>().refreshMarkers(filters: filters);
+        }
       },
       iconData: Icons.filter_alt_rounded,
     );

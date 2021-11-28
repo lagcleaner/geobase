@@ -1,9 +1,12 @@
 import 'dart:developer';
 
+import 'package:beamer/src/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/widgets/commons/commons.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
@@ -20,33 +23,44 @@ class GeoBaseMap extends StatelessWidget {
     return BlocBuilder<MapCubit, MapState>(
       bloc: context.read<MapCubit>()..initialConfigurationsRequested(),
       builder: (context, state) {
-        if (state.loadingConfigs) {
-          return const Center(
-            child: CircularProgressIndicator(strokeWidth: 2),
-          );
-        }
-        return FlutterMap(
-          mapController: state.mapController,
-          options: MapOptions(
-            controller: state.mapController,
-            center: LatLng(23.1255, -82.37),
-            zoom: 14.0,
-            maxZoom: 18.0,
-            minZoom: 4.0,
-            screenSize: MediaQuery.of(context).size,
-            onTap: (_) {
-              context.read<MarkerCubit>().clearTemporaryMarker();
-              context.read<SlidingUpPanelCubit>().closePanel();
-            },
-            onLongPress: (posx) {
-              context.read<MarkerCubit>().addTemporaryMarker(posx);
-              context.read<SlidingUpPanelCubit>().openNewPanel(posx);
-            },
-          ),
-          layers: [
-            mapLayerOptions(context, state.mapConfiguration),
-            markerLayerOptions(context),
-            liveLocationLayerOptions(context)
+        return Stack(
+          children: [
+            FlutterMap(
+              mapController: state.mapController,
+              options: MapOptions(
+                controller: state.mapController,
+                center: LatLng(23.1255, -82.37),
+                zoom: 14.0,
+                maxZoom: 18.0,
+                minZoom: 4.0,
+                screenSize: MediaQuery.of(context).size,
+                onTap: (_) {
+                  context.read<MarkerCubit>().clearTemporaryMarker();
+                  context.read<SlidingUpPanelCubit>().closePanel();
+                },
+                onLongPress: (posx) {
+                  context.read<MarkerCubit>().onMapLongPress(posx);
+                  context.read<SlidingUpPanelCubit>().openNewPanel(posx);
+                },
+              ),
+              layers: [
+                mapLayerOptions(context, state.mapConfiguration),
+                markerLayerOptions(context),
+                liveLocationLayerOptions(context)
+              ],
+            ),
+            if (state.loadingConfigs)
+              const Center(
+                child: CircularProgressIndicator(strokeWidth: 2),
+              ),
+            if (state.failure?.maybeMap(
+                  connection: (state) => true,
+                  orElse: () => false,
+                ) ??
+                false)
+              _FailureGetTilesAndRetry(
+                message: state.failure!.message ?? '',
+              ),
           ],
         );
       },
@@ -78,6 +92,19 @@ class GeoBaseMap extends StatelessWidget {
                     ),
                   ),
                 )
+                .followedBy(
+                  markerState.temporalMarkers.map(
+                    (e) => Marker(
+                      key: UniqueKey(),
+                      point: e.location,
+                      builder: (context) => Icon(
+                        MaterialIcons.mIcons[e.icon] ?? Icons.circle,
+                        color:
+                            e.color != null ? Color(e.color!) : Colors.blueGrey,
+                      ),
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         );
@@ -97,16 +124,69 @@ class GeoBaseMap extends StatelessWidget {
                       Icons.location_on_outlined,
                       color: Colors.black.withOpacity(.7),
                     ),
-                    onPressed: () {
-                      // context.read<SlidingUpPanelCubit>().markerTouched(
-                      //       TemporalMarkerEntity(
-                      //         location: enableState.location,
-                      //       ),
-                      //     );
-                    },
+                    onPressed: () {},
                   ),
                 ),
               ],
             ),
           );
+}
+
+class _FailureGetTilesAndRetry extends StatelessWidget {
+  const _FailureGetTilesAndRetry({
+    Key? key,
+    required this.message,
+  }) : super(key: key);
+
+  final String message;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Spacer(
+            flex: 2,
+          ),
+          Text(
+            'Su conexión con el servidor de mapas es inestable o inexistente.',
+            style: Theme.of(context).textTheme.subtitle1,
+            textAlign: TextAlign.center,
+          ),
+          Icon(
+            Icons.info_outline_rounded,
+            color: Colors.orange.shade300,
+            size: 30,
+          ),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+          ),
+          const Spacer(),
+          MainButton(
+            text: 'Reintentar',
+            onPressed: () =>
+                context.read<MapCubit>().initialConfigurationsRequested(),
+          ),
+          const SizedBox(height: 16),
+          MainButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text('Configurar otro servidor de mapas'),
+                Icon(Icons.miscellaneous_services_sharp),
+              ],
+            ),
+            onPressed: () => context.beamToNamed('/options/mapserver'),
+          ),
+          const Spacer(
+            flex: 2,
+          ),
+        ],
+      ),
+    );
+  }
 }
