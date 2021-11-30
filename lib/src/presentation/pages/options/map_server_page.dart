@@ -41,19 +41,10 @@ class _MapServerInternalPage extends StatelessWidget {
         iconTheme: Theme.of(context).iconTheme,
         centerTitle: true,
       ),
-      body: const _Body(),
-    );
-  }
-}
-
-class _Body extends StatelessWidget {
-  const _Body({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<MapConfigurationFormBloc>(
-      create: (context) => getIt<MapConfigurationFormBloc>(),
-      child: const _SourceOptionsForm(),
+      body: BlocProvider<MapConfigurationFormBloc>(
+        create: (context) => getIt<MapConfigurationFormBloc>(),
+        child: const _SourceOptionsForm(),
+      ),
     );
   }
 }
@@ -65,60 +56,72 @@ class _SourceOptionsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics:
-          const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: FormBlocListener(
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: FormBlocListener(
+        formBloc: context.read<MapConfigurationFormBloc>(),
+        onSuccess: (context, state) => NotificationHelper.showSuccessSnackbar(
+          context,
+          message: 'Se actualizó la configuración del mapa.',
+        ),
+        child: FormBlocBuilder<MapConfigurationFormBloc, MapConfigurationEntity,
+            String>(
           formBloc: context.read<MapConfigurationFormBloc>(),
-          onSuccess: (context, state) => NotificationHelper.showSuccessSnackbar(
-            context,
-            message: 'Se actualizó la configuración del mapa.',
+          onLoadFailed: (context, state) => FailureAndRetryWidget(
+            errorText:
+                'Tenemos problemas para cargar la configuración\n ${state.failureResponse ?? ''}',
+            onPressed: context.read<MapConfigurationFormBloc>().reload,
           ),
-          child: FormBlocBuilder<
-              MapConfigurationFormBloc,
-              FormBlocState<MapConfigurationEntity, String>,
-              MapConfigurationEntity,
-              String>(
-            bloc: context.read<MapConfigurationFormBloc>(),
-            onLoadFailed: (failure) => FailureAndRetryWidget(
-              errorText:
-                  'Tenemos problemas para cargar la configuración\n ${failure ?? ''}',
-              onPressed: () {
-                return context.read<MapConfigurationFormBloc>().reload();
-              },
+          onFailure: (context, state) => FailureAndRetryWidget(
+            errorText: state.failureResponse ?? '',
+            onPressed: context.read<MapConfigurationFormBloc>().reload,
+          ),
+          onLoading: (context, state) => Center(
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: Theme.of(context).primaryColor,
             ),
-            onFailure: (failure) => FailureAndRetryWidget(
-              errorText: failure ?? '',
-              onPressed: () {
-                return context.read<MapConfigurationFormBloc>().reload();
-              },
-            ),
-            onLoading: () => Center(
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-            orElse: () => Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Flexible(child: _SourceSelector()),
-                const Flexible(child: _UrlTemplateInput()),
-                const Flexible(child: _WMSBaseUrlInput()),
-                const Flexible(child: _WMSFormatInput()),
-                const Flexible(child: _WMSLayersInput()),
-                const Flexible(child: _SubdomainsInput()),
-                const SizedBox(height: 10),
-                MainButton(
-                  text: 'Guardar Servidor',
-                  onPressed: context.read<MapConfigurationFormBloc>().submit,
-                )
-              ],
-            ),
+          ),
+          orElse: (context, state) => Column(
+            children: [
+              const Expanded(child: _Inputs()),
+              MainButton(
+                text: 'Guardar Servidor',
+                onPressed: state.canSubmit
+                    ? () {
+                        context.read<MapConfigurationFormBloc>().submit();
+                      }
+                    : null,
+              )
+            ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Inputs extends StatelessWidget {
+  const _Inputs({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(
+        parent: BouncingScrollPhysics(),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Flexible(child: _SourceSelector()),
+          Flexible(child: _UrlTemplateInput()),
+          Flexible(child: _WMSBaseUrlInput()),
+          Flexible(child: _WMSFormatInput()),
+          Flexible(child: _WMSLayersInput()),
+          Flexible(child: _SubdomainsInput()),
+        ],
       ),
     );
   }

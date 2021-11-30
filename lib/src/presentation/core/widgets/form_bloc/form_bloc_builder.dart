@@ -1,56 +1,164 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:form_bloc/form_bloc.dart' as form_bloc;
 
-class FormBlocBuilder<T extends FormBloc<Dat, Err>,
-    S extends FormBlocState<Dat, Err>, Dat, Err> extends StatelessWidget {
-  const FormBlocBuilder({
+typedef FormBlocBuilderCallback<
+        FormBlocState extends form_bloc
+            .FormBlocState<SuccessResponse, ErrorResponse>,
+        SuccessResponse,
+        ErrorResponse>
+    = Widget Function(BuildContext context, FormBlocState state);
+
+class FormBlocBuilder<
+        FormBloc extends form_bloc.FormBloc<SuccessResponse, ErrorResponse>,
+        SuccessResponse,
+        ErrorResponse>
+    extends BlocBuilder<FormBloc,
+        form_bloc.FormBlocState<SuccessResponse, ErrorResponse>> {
+  FormBlocBuilder({
     Key? key,
-    this.bloc,
+    this.formBloc,
     this.onLoading,
-    this.onLoadFailed,
     this.onLoaded,
+    this.onLoadFailed,
+    this.onSubmitting,
     this.onSuccess,
     this.onFailure,
+    this.onSubmissionCancelled,
+    this.onSubmissionFailed,
+    this.onDeleting,
+    this.onDeleteFailed,
+    this.onDeleteSuccessful,
     required this.orElse,
-  }) : super(key: key);
+  }) : super(
+          key: key,
+          bloc: formBloc,
+          // buildWhen: (previousState, state) =>
+          //     previousState.runtimeType != state.runtimeType,
+          builder: (context, state) {
+            if (state is form_bloc
+                    .FormBlocLoading<SuccessResponse, ErrorResponse> &&
+                onLoading != null) {
+              return onLoading(context, state);
+            } else if (state is form_bloc
+                    .FormBlocLoaded<SuccessResponse, ErrorResponse> &&
+                onLoaded != null) {
+              return onLoaded(context, state);
+            } else if (state is form_bloc
+                    .FormBlocLoadFailed<SuccessResponse, ErrorResponse> &&
+                onLoadFailed != null) {
+              return onLoadFailed(context, state);
+            } else if (state is form_bloc
+                    .FormBlocSubmitting<SuccessResponse, ErrorResponse> &&
+                onSubmitting != null) {
+              return onSubmitting(context, state);
+            } else if (state is form_bloc
+                    .FormBlocSuccess<SuccessResponse, ErrorResponse> &&
+                onSuccess != null) {
+              return onSuccess(context, state);
+            } else if (state is form_bloc
+                    .FormBlocFailure<SuccessResponse, ErrorResponse> &&
+                onFailure != null) {
+              return onFailure(context, state);
+            } else if (state is form_bloc.FormBlocSubmissionCancelled<
+                    SuccessResponse, ErrorResponse> &&
+                onSubmissionCancelled != null) {
+              return onSubmissionCancelled(context, state);
+            } else if (state is form_bloc
+                    .FormBlocSubmissionFailed<SuccessResponse, ErrorResponse> &&
+                onSubmissionFailed != null) {
+              return onSubmissionFailed(context, state);
+            } else if (state is form_bloc
+                    .FormBlocDeleting<SuccessResponse, ErrorResponse> &&
+                onDeleting != null) {
+              return onDeleting(context, state);
+            } else if (state is form_bloc
+                    .FormBlocDeleteFailed<SuccessResponse, ErrorResponse> &&
+                onDeleteFailed != null) {
+              return onDeleteFailed(context, state);
+            } else if (state is form_bloc
+                    .FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse> &&
+                onDeleteSuccessful != null) {
+              return onDeleteSuccessful(context, state);
+            }
+            return orElse(context, state);
+          },
+        );
 
-  final T? bloc;
-  final Widget Function(Err? failure)? onLoadFailed;
-  final Widget Function()? onLoading;
-  final Widget Function()? onLoaded;
-  final Widget Function(Dat? data)? onSuccess;
-  final Widget Function(Err? failure)? onFailure;
-  final Widget Function() orElse;
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocState<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse> orElse;
 
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<T, FormBlocState<Dat, Err>>(
-      bloc: bloc,
-      buildWhen: (previous, current) =>
-          previous.runtimeType != current.runtimeType ||
-          previous is FormBlocLoading && current is FormBlocLoading,
-      builder: (context, state) {
-        return _build(context, state) ?? orElse();
-      },
-    );
-  }
+  /// {@macro form_bloc.form_state.FormBlocLoading}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocLoading<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onLoading;
 
-  Widget? _build(BuildContext context, FormBlocState<Dat, Err> state) {
-    if (state is FormBlocFailure<Dat, Err>) {
-      return onFailure?.call(state.failureResponse);
-    }
-    if (state is FormBlocLoading) {
-      return onLoading?.call();
-    }
-    if (state is FormBlocLoadFailed<Dat, Err>) {
-      return onLoadFailed?.call(state.failureResponse);
-    }
-    if (state is FormBlocLoaded) {
-      return onLoaded?.call();
-    }
-    if (state is FormBlocSuccess<Dat, Err>) {
-      return onSuccess?.call(state.successResponse);
-    }
-  }
+  /// {@macro form_bloc.form_state.FormBlocLoaded}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocLoaded<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onLoaded;
+
+  /// {@macro form_bloc.form_state.FormBlocLoadFailed}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocLoadFailed<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onLoadFailed;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmitting}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocSubmitting<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onSubmitting;
+
+  /// {@macro form_bloc.form_state.FormBlocSuccess}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocSuccess<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onSuccess;
+
+  /// {@macro form_bloc.form_state.FormBlocFailure}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocFailure<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onFailure;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmissionCancelled}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocSubmissionCancelled<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onSubmissionCancelled;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocSubmissionFailed<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onSubmissionFailed;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocDeleting<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onDeleting;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocDeleteFailed<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onDeleteFailed;
+
+  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  final FormBlocBuilderCallback<
+      form_bloc.FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse>,
+      SuccessResponse,
+      ErrorResponse>? onDeleteSuccessful;
+
+  /// If the [formBloc] parameter is omitted, [FormBlocBuilder]
+  /// will automatically perform a lookup using
+  /// [BlocProvider].of<[FormBloc]> and the current [BuildContext].
+  final FormBloc? formBloc;
 }

@@ -74,7 +74,7 @@ class MapConfigurationFormBloc
   final IMapConfigurationWritterService writterService;
 
   void _addFieldBlocsBySource(MapConfigurationEntity configs) {
-    source.updateValue(configs.mapSourceType);
+    source.updateInitialValue(configs.mapSourceType);
     switch (configs.mapSourceType) {
       case MapSource.WMS:
         addFieldBlocs(
@@ -184,7 +184,8 @@ class MapConfigurationFormBloc
         emitFailure(failureResponse: failure.message);
       },
       (_) {
-        emitSuccess(successResponse: configs);
+        emitSuccess(successResponse: configs, canSubmitAgain: true);
+        emitLoaded();
       },
     );
   }

@@ -87,6 +87,16 @@ class MapCubit extends Cubit<MapState> {
     );
   }
 
+  Future<void> savePosition(LatLng posx) async {
+    /// stored the last location touched to start at this point next time...
+    await usPrefsWritter.setUserPreferences(
+      UserPreferencesEntity(
+        initialLat: posx.latitude,
+        initialLng: posx.longitude,
+      ),
+    );
+  }
+
   Future<void> onErrorTile(dynamic error) async {
     emit(
       state.copyWith(

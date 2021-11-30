@@ -1,11 +1,7 @@
-import 'dart:developer';
-
-import 'package:beamer/src/beamer.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/widgets/commons/commons.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
@@ -39,6 +35,7 @@ class GeoBaseMap extends StatelessWidget {
                   context.read<SlidingUpPanelCubit>().closePanel();
                 },
                 onLongPress: (posx) {
+                  context.read<MapCubit>().savePosition(posx);
                   context.read<MarkerCubit>().onMapLongPress(posx);
                   context.read<SlidingUpPanelCubit>().openNewPanel(posx);
                 },
@@ -114,21 +111,24 @@ class GeoBaseMap extends StatelessWidget {
       context.watch<LocationCubit>().state.map(
             loading: (_) => MarkerLayerOptions(),
             disable: (_) => MarkerLayerOptions(),
-            enable: (enableState) => MarkerLayerOptions(
-              rotate: true,
-              markers: [
-                Marker(
-                  point: enableState.location,
-                  builder: (context) => IconButton(
-                    icon: Icon(
-                      Icons.location_on_outlined,
-                      color: Colors.black.withOpacity(.7),
+            enable: (enableState) {
+              context.read<MapCubit>().savePosition(enableState.location);
+              return MarkerLayerOptions(
+                rotate: true,
+                markers: [
+                  Marker(
+                    point: enableState.location,
+                    builder: (context) => IconButton(
+                      icon: Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.black.withOpacity(.7),
+                      ),
+                      onPressed: () {},
                     ),
-                    onPressed: () {},
                   ),
-                ),
-              ],
-            ),
+                ],
+              );
+            },
           );
 }
 
