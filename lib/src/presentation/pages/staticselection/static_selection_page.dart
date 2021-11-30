@@ -85,16 +85,17 @@ class _Body extends StatelessWidget {
           },
           fetchInProgress: () {
             return Column(
-              children: const [
+              children: [
                 Flexible(
                   flex: 3,
                   child: Center(
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),
-                Flexible(flex: 2, child: SizedBox.shrink()),
+                const Flexible(flex: 2, child: SizedBox.shrink()),
               ],
             );
           },

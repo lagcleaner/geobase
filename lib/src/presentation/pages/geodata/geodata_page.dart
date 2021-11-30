@@ -99,11 +99,12 @@ class _Body extends StatelessWidget {
               return Column(
                 children: [
                   _QueryInput(key: queryWidgetKey),
-                  const Flexible(
+                  Flexible(
                     flex: 3,
                     child: Center(
                       child: CircularProgressIndicator(
                         strokeWidth: 2,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),

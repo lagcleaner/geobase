@@ -98,11 +98,12 @@ class _Body extends StatelessWidget {
                   controller: queryController,
                   focusNode: focusNode,
                 ),
-                const Flexible(
+                Flexible(
                   flex: 3,
                   child: Center(
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                 ),

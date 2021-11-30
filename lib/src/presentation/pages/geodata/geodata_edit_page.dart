@@ -73,8 +73,8 @@ class _GeodataEditPageInternal extends StatelessWidget {
             ),
             orElse: () => Center(
               child: CircularProgressIndicator(
-                color: Theme.of(context).primaryColor,
                 strokeWidth: 2.0,
+                color: Theme.of(context).primaryColor,
               ),
             ),
           ),

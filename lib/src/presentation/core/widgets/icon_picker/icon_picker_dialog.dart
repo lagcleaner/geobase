@@ -84,8 +84,11 @@ class _IconPickerDialogState extends State<MyIconPickerDialog> {
         mainAxisSize: MainAxisSize.min,
         children: [
           if (_iQtIcons == -1)
-            const Center(
-              child: CircularProgressIndicator(strokeWidth: 2),
+            Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
           if (_iQtIcons == 0)
             const Center(

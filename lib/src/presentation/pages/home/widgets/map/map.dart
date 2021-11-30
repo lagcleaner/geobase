@@ -47,8 +47,11 @@ class GeoBaseMap extends StatelessWidget {
               ],
             ),
             if (state.loadingConfigs)
-              const Center(
-                child: CircularProgressIndicator(strokeWidth: 2),
+              Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
             if (state.failure?.maybeMap(
                   connection: (state) => true,
