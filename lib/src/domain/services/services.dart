@@ -1,12 +1,10 @@
 export 'categories_service.dart';
 export 'field_type_service.dart';
-export 'geodata_filter_service.dart';
 export 'goedata_service.dart';
 export 'interfaces/interfaces.dart';
 export 'location_reader_service.dart';
 export 'map_conf_reader_service.dart';
 export 'map_conf_writter_service.dart';
-export 'map_filters_service.dart';
 export 'map_markers_service.dart';
 export 'media_service.dart';
 export 'static_selection_service.dart';

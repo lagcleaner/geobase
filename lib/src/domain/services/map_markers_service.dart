@@ -14,7 +14,6 @@ class GetMarkers implements IMarkerGetterService {
   Future<Either<Failure, List<IMarkable>>> getMarkers([
     FilterDataOptionsEntity? filters,
   ]) async {
-    // return const Right([]);
     if (filters == null) {
       return repository.loadAllGeodata();
     } else {

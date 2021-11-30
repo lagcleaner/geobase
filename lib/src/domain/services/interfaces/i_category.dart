@@ -17,6 +17,5 @@ abstract class ICategoryService {
     CategoryPutEntity editedCategory,
   );
 
-  //TODO: DEFINE WHEN THIS ACTION IS POSSIBLE WITHOUT REMOVE ALL ROWS OF GEODATA
   Future<Either<Failure, Unit>> removeCategory(int categoryId);
 }

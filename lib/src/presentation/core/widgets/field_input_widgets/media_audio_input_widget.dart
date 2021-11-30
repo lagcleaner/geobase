@@ -67,21 +67,10 @@ class MediaAudioFieldInputWidget extends FieldInputWidget {
   }
 }
 
-Future<String?> _noteFromMicrofone() async {
-  //TODO: HEERREE MICROPHONE STUFF
-
-  // final XFile? image = await ImagePicker().pickImage(
-  //   source: ImageSource.camera,
-  //   imageQuality: 10,
-  // );
-  // return await image?.readAsBytes();
-}
-
 Future<String?> _audioFromFiles() async {
   final FilePickerResult? result = await FilePicker.platform.pickFiles(
     type: FileType.audio,
     withData: true,
-    // allowedExtensions: ['jpg', 'pdf', 'doc'],
   );
   if ((result?.files.isNotEmpty ?? false) && result!.files.first.path != null) {
     final file = await saveFile(
@@ -113,7 +102,7 @@ Future<String?> _showPicker(BuildContext context) async {
             //   leading: const Icon(Icons.mic),
             //   title: const Text('Grabar Sonido'),
             //   onTap: () async {
-            //     await _imgFromMicrofone()
+            //     await _audioFromMicrofone(context)
             //         .then((value) => Navigator.of(context).pop(value));
             //   },
             // ),
@@ -123,3 +112,17 @@ Future<String?> _showPicker(BuildContext context) async {
     },
   );
 }
+
+// Future<String?> _audioFromMicrofone(BuildContext context) async {
+//   final audioPath = showDialog(
+//     context: context,
+//     builder: (context) => Dialog(
+//       child: Padding(
+//         padding: EdgeInsets.all(8),
+//         child: SimpleRecorder,
+//       ),
+//     ),
+//   );
+
+//   return audioPath;
+// }

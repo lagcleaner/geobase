@@ -48,7 +48,6 @@ Left<Failure, T> catchMethod<T>(Object e) {
           error = Failure.unhandled(message: except.message ?? except.code);
       }
       break;
-    //TODO: Add new kind of failures
   }
   log('error: ${error.toString()}');
   return Left(error);
