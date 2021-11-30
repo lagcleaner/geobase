@@ -43,10 +43,10 @@ class SlidingUpPanelCubit extends Cubit<SlidingUpPanelState> {
     }
   }
 
-  Future<void> hidePanel() async {
-    if (panelController.isAttached) {
-      await panelController.hide();
-      emit(const SlidingUpPanelState.hiden());
-    }
-  }
+  // Future<void> hidePanel() async {
+  //   if (panelController.isAttached) {
+  //     await panelController.hide();
+  //     emit(const SlidingUpPanelState.hiden());
+  //   }
+  // }
 }

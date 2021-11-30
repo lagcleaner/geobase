@@ -78,37 +78,6 @@ class _IconPickerDialogState extends State<MyIconPickerDialog> {
     );
   }
 
-  Widget _contentOld() {
-    if (_iQtIcons == -1) {
-      return const Center(child: CircularProgressIndicator());
-    } else if (_iQtIcons == 0) {
-      return const Center(
-        child: Text('No se encontraron iconos.'),
-      );
-    }
-
-    return SingleChildScrollView(
-      child: Column(children: <Widget>[
-        Wrap(
-          spacing: 10,
-          children: _mIconsShow
-              .map(
-                (e) => IconButton(
-                  onPressed: () {
-                    Navigator.pop(
-                      context,
-                      {'name': e.key, 'icon': e.value},
-                    );
-                  },
-                  icon: Icon(e.value),
-                ),
-              )
-              .toList(),
-        )
-      ]),
-    );
-  }
-
   Widget _content() {
     return SingleChildScrollView(
       child: Column(

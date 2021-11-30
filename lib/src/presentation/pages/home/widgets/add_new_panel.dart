@@ -105,10 +105,11 @@ class _InternalPanel extends StatelessWidget {
                       context.read<GeodataNewCubit>().loadCategories(),
                 ),
                 orElse: () {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20.0),
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
+                      color: Theme.of(context).primaryColor,
                     ),
                   );
                 },

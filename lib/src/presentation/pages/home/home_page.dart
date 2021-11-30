@@ -61,6 +61,14 @@ class _InternalHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        if (context.read<SlidingUpPanelCubit>().panelController.isAttached &&
+            !context
+                .read<SlidingUpPanelCubit>()
+                .panelController
+                .isPanelClosed) {
+          await context.read<SlidingUpPanelCubit>().closePanel();
+          return false;
+        }
         return await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
@@ -149,6 +157,7 @@ class _SlidingUpPanelWidget extends StatelessWidget {
     return SizedBox(
       height: panelHeight,
       child: BlocBuilder<SlidingUpPanelCubit, SlidingUpPanelState>(
+        bloc: context.read<SlidingUpPanelCubit>(),
         builder: (context, state) {
           return state.maybeMap(
             detailsPanel: (detailsPanel) => SlideUpInformationalPanel(
@@ -222,17 +231,11 @@ class _FiltersButton extends StatelessWidget {
               bloc: getIt<CategoriesShowerCubit>()..loadCategories(),
               builder: (context, state) {
                 return SimpleDialog(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
                   contentPadding: const EdgeInsets.all(16.0),
-                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  title: const Text(
+                    'Seleccione la categoría que se mostrará en el mapa:',
+                  ),
                   children: [
-                    Text(
-                      'Seleccione la categoría que se mostrarán en el mapa:',
-                      style: Theme.of(context).textTheme.subtitle1,
-                    ),
-                    const SizedBox(height: 8),
                     DropdownButtonFormFieldWidget<int>(
                       items: state.categories
                           .map(

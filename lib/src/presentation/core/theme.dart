@@ -48,13 +48,26 @@ final TextTheme primaryTextTheme = textTheme.copyWith(
 );
 
 final ThemeData geobaseLightTheme = light.copyWith(
+  dialogTheme: light.dialogTheme.copyWith(
+    backgroundColor: backgroundColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    titleTextStyle: textTheme.headline6,
+    contentTextStyle: textTheme.subtitle1,
+  ),
+  progressIndicatorTheme: light.progressIndicatorTheme.copyWith(),
+  checkboxTheme: light.checkboxTheme.copyWith(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+    fillColor: MaterialStateProperty.all(primaryBrandColor),
+    materialTapTargetSize: MaterialTapTargetSize.padded,
+  ),
   dividerTheme: light.dividerTheme.copyWith(
-    color: Colors.black87,
+    color: primaryBrandColor,
     space: 5,
     thickness: 0,
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: primaryBrandColor.withBlue(0x70)),
+    backgroundColor: primaryBrandColor.withBlue(0x70),
+  ),
   primaryColor: primaryBrandColor,
 
   // accentColor: secondaryBrandColor,
@@ -75,6 +88,10 @@ final ThemeData geobaseLightTheme = light.copyWith(
   accentTextTheme: primaryTextTheme,
   iconTheme: light.iconTheme.copyWith(
     color: primaryBrandColor,
+  ),
+  primaryIconTheme: light.primaryIconTheme.copyWith(
+    color: primaryBrandColor,
+    size: 25,
   ),
   inputDecorationTheme: light.inputDecorationTheme.copyWith(
     filled: true,

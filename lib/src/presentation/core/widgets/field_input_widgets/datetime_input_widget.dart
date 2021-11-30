@@ -38,6 +38,22 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
               lastDate: DateTime(DateTime.now().year + 100),
               currentDate:
                   DateTime.tryParse(state.value.value?.toString() ?? ''),
+              builder: (context, child) {
+                return Theme(
+                  data: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.light(
+                      primary: Theme.of(context)
+                          .primaryColor, // header background color
+                      onPrimary: Theme.of(context)
+                          .backgroundColor, // header text color
+                      onSurface: Theme.of(context).textTheme.bodyText1?.color ??
+                          Colors.black, // body text color
+                      background: Theme.of(context).backgroundColor,
+                    ),
+                  ),
+                  child: child ?? const SizedBox(),
+                );
+              },
             );
             if (resultDate != null) {
               final resultTime = await showTimePicker(
@@ -53,6 +69,23 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
                         minute: initialValue.minute,
                       )
                     : TimeOfDay.now(),
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.light(
+                        primary: Theme.of(context)
+                            .primaryColor, // header background color
+                        onPrimary: Theme.of(context)
+                            .backgroundColor, // header text color
+                        onSurface:
+                            Theme.of(context).textTheme.bodyText1?.color ??
+                                Colors.black, // body text color
+                        background: Theme.of(context).backgroundColor,
+                      ),
+                    ),
+                    child: child ?? const SizedBox(),
+                  );
+                },
               );
               if (resultTime != null) {
                 inputBloc.dirty(
