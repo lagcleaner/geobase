@@ -92,6 +92,7 @@ class _InternalPanel extends StatelessWidget {
                                     '$LAT_PARAM=${ubication.latitude}&'
                                     '$LNG_PARAM=${ubication.longitude}&'
                                     '$CATEGORY_ID_PARAM=${state.selected}',
+                                    popToNamed: '/map',
                                   )
                               : null,
                         ),

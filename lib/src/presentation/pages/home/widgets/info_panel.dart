@@ -108,8 +108,10 @@ class _InternalPanel extends StatelessWidget {
                         const Divider(),
                         MainButton(
                           text: 'Ver detalles',
-                          onPressed: () =>
-                              context.beamToNamed('/geodata/$geodataId'),
+                          onPressed: () => context.beamToNamed(
+                            '/geodata/$geodataId',
+                            popToNamed: '/map',
+                          ),
                         ),
                       ],
                     ),

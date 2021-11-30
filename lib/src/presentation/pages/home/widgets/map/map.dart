@@ -180,7 +180,10 @@ class _FailureGetTilesAndRetry extends StatelessWidget {
                 Icon(Icons.miscellaneous_services_sharp),
               ],
             ),
-            onPressed: () => context.beamToNamed('/options/mapserver'),
+            onPressed: () => context.beamToNamed(
+              '/options/mapserver',
+              popToNamed: '/map',
+            ),
           ),
           const Spacer(
             flex: 2,
