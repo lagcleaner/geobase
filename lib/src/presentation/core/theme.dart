@@ -130,8 +130,12 @@ final ThemeData geobaseLightTheme = light.copyWith(
     backgroundColor: primaryBrandColor,
     elevation: 0,
     brightness: Brightness.light,
+    foregroundColor: backgroundColor,
     iconTheme: light.iconTheme.copyWith(
-      color: primaryBrandColor,
+      color: backgroundColor,
+    ),
+    actionsIconTheme: light.iconTheme.copyWith(
+      color: backgroundColor,
     ),
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
