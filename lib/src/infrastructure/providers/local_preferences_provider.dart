@@ -18,6 +18,7 @@ const _DEFAULT_PREFERENCES = UserPreferencesModel(
 );
 const _DEFAULT_MAP_CONFIG = _OSM_MAP_CONFIG;
 
+// ignore: unused_element
 const _WMS_MAP_CONFIG = MapConfigurationModel(
   sourceType: MapSource.WMS,
   properties: {

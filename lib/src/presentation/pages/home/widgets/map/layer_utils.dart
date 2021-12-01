@@ -1,14 +1,12 @@
-import 'package:beamer/beamer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/core/extensions/extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.dart';
-import 'package:provider/src/provider.dart';
 
 LayerOptions mapLayerOptions(
   BuildContext context,

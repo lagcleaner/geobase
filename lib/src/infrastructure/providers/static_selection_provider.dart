@@ -82,7 +82,7 @@ class StaticSelectionSQLiteProvider
     }
     final result1 =
         await FieldTypeDBModel().select().field_type_id.equals(id).delete();
-    if (result.errorMessage?.isNotEmpty ?? false) {
+    if (result1.errorMessage?.isNotEmpty ?? false) {
       throw Exception(result.errorMessage);
     }
   }

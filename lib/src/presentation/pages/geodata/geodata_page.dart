@@ -8,7 +8,6 @@ import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/utils/shorten_str.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
-import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
 
@@ -51,7 +50,7 @@ class _GeodataPageInternal extends StatelessWidget {
           iconTheme: Theme.of(context).iconTheme,
           centerTitle: true,
         ),
-        body: _Body(),
+        body: const _Body(),
         floatingActionButton: BlocProvider<CategoriesShowerCubit>(
           create: (context) => getIt<CategoriesShowerCubit>(),
           child: const _FloatingActionButton(),
@@ -62,11 +61,12 @@ class _GeodataPageInternal extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  _Body({
+  const _Body({
     Key? key,
+    this.queryWidgetKey = const Key('queryWidgetKey'),
   }) : super(key: key);
 
-  final Key queryWidgetKey = const Key('queryWidgetKey');
+  final Key queryWidgetKey;
   // final queryController = TextEditingController();
   // final focusNode = FocusNode();
 

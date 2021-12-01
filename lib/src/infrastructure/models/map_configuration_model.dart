@@ -5,8 +5,10 @@ part 'map_configuration_model.g.dart';
 
 @JsonSerializable()
 class MapConfigurationModel {
-  const MapConfigurationModel(
-      {required this.sourceType, required this.properties});
+  const MapConfigurationModel({
+    required this.sourceType,
+    required this.properties,
+  });
 
   factory MapConfigurationModel.fromJson(Map<String, dynamic> json) =>
       _$MapConfigurationModelFromJson(json);

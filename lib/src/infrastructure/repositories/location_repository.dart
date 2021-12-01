@@ -38,7 +38,7 @@ class LocationRepository implements ILocationRepository {
   }
 
   Timer? _verifiedLocationStatus;
-  // ignore: cancel_subscriptions
+  // ignore: cancel_subscriptions, unused_field
   late final StreamSubscription _onLocationChanged;
 
   late final StreamController<Either<Failure, LatLng>>

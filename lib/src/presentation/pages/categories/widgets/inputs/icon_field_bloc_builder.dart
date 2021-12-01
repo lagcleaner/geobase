@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/src/presentation/core/widgets/icon_picker/icon_picker_dialog.dart';
 import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
-import 'package:icon_picker/icon_picker.dart';
 import 'package:icon_picker/material_icons.dart';
 
 class IconFieldBlocBuilder extends StatelessWidget {
   const IconFieldBlocBuilder({
     Key? key,
     required this.iconFieldBloc,
+    // ignore: tighten_type_of_initializing_formals
     this.enableOnlyWhenFormBlocCanSubmit = false,
     this.isEnabled = true,
     this.errorBuilder,
@@ -174,7 +174,7 @@ class IconFieldBlocBuilderBase extends StatefulWidget {
 }
 
 class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   FocusNode get _effectiveFocusNode => widget.focusNode ?? _focusNode;
 

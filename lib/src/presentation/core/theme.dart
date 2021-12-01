@@ -85,6 +85,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
   ),
   textTheme: textTheme,
   primaryTextTheme: primaryTextTheme,
+  // ignore: deprecated_member_use
   accentTextTheme: primaryTextTheme,
   iconTheme: light.iconTheme.copyWith(
     color: primaryBrandColor,

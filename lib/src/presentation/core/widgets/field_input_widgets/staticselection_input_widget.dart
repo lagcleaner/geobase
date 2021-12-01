@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/app.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/basic_inputs.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_input_widget.dart';
 

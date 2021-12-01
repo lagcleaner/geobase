@@ -19,7 +19,7 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
       ).save();
       if (categoryId == null) throw Exception('Create Category Denied');
       for (final col in model.columns) {
-        final preResult = await getIt<IColumnsProvider>().create(
+        await getIt<IColumnsProvider>().create(
           ColumnPostModel(
             name: col.name,
             typeId: col.typeId,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:form_bloc/form_bloc.dart' as form_bloc;
 
 typedef FormBlocBuilderCallback<

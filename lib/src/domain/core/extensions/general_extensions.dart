@@ -1,4 +1,4 @@
-extension getOrExtension on Map<String, dynamic> {
+extension GetOrExtension on Map<String, dynamic> {
   T getCastedOrDefault<T>(String? key, {required T defaultValue}) {
     if (key != null && this[key] != null && this[key] is T) {
       return this[key] as T;

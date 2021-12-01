@@ -7,6 +7,7 @@ class ColorFieldBlocBuilder extends StatelessWidget {
   const ColorFieldBlocBuilder({
     Key? key,
     required this.colorFieldBloc,
+    // ignore: tighten_type_of_initializing_formals
     this.enableOnlyWhenFormBlocCanSubmit = false,
     this.isEnabled = true,
     this.errorBuilder,
@@ -172,7 +173,7 @@ class ColorFieldBlocBuilderBase extends StatefulWidget {
 }
 
 class _ColorFieldBlocBuilderBaseState extends State<ColorFieldBlocBuilderBase> {
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   FocusNode get _effectiveFocusNode => widget.focusNode ?? _focusNode;
 
@@ -223,10 +224,11 @@ class _ColorFieldBlocBuilderBaseState extends State<ColorFieldBlocBuilderBase> {
         ),
         actions: [
           TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(curColor);
-              },
-              child: const Text('Aceptar'))
+            onPressed: () {
+              Navigator.of(context).pop(curColor);
+            },
+            child: const Text('Aceptar'),
+          )
         ],
       ),
     );

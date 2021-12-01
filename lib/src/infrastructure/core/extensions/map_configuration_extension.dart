@@ -14,7 +14,7 @@ extension MapConfigurationEntityExtension on MapConfigurationEntity {
   MapConfigurationModel toModel() {
     return MapConfigurationModel(
       sourceType: mapSourceType,
-      properties: this.options,
+      properties: options,
     );
   }
 }
