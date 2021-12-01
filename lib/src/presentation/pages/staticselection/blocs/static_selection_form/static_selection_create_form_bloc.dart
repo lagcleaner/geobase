@@ -83,8 +83,8 @@ String? Function(String?) valueIsRepeated(
 ) {
   return (String? value) {
     if (listBloc.value.length > 1 &&
-        listBloc.value.any((e) => e.value == self.value && self != e)) {
-      return 'Los valores no puede repetirse.';
+        listBloc.value.any((e) => e.value == value && self != e)) {
+      return 'Los valores no pueden repetirse.';
     }
   };
 }
