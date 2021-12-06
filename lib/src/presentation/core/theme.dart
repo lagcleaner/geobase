@@ -60,6 +60,10 @@ final ThemeData geobaseLightTheme = light.copyWith(
     fillColor: MaterialStateProperty.all(primaryBrandColor),
     materialTapTargetSize: MaterialTapTargetSize.padded,
   ),
+  radioTheme: light.radioTheme.copyWith(
+    fillColor: MaterialStateProperty.all(primaryBrandColor),
+    materialTapTargetSize: MaterialTapTargetSize.padded,
+  ),
   dividerTheme: light.dividerTheme.copyWith(
     color: primaryBrandColor,
     space: 5,
@@ -69,7 +73,6 @@ final ThemeData geobaseLightTheme = light.copyWith(
     backgroundColor: primaryBrandColor.withBlue(0x70),
   ),
   primaryColor: primaryBrandColor,
-
   // accentColor: secondaryBrandColor,
   highlightColor: highlightColor,
   scaffoldBackgroundColor: backgroundColor,
