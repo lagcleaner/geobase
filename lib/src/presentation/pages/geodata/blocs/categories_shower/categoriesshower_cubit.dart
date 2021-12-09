@@ -4,8 +4,8 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
 
-part 'categoriesshower_state.dart';
 part 'categoriesshower_cubit.freezed.dart';
+part 'categoriesshower_state.dart';
 
 @injectable
 class CategoriesShowerCubit extends Cubit<CategoriesShowerState> {

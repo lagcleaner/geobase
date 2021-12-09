@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/core/constants.dart';
 import 'package:geobase/src/domain/core/enums/enums.dart';
+import 'package:geobase/src/infrastructure/models/map_mode_model.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/i_local_preferences_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,7 @@ const _PREFERENCES_KEY = 'user.preferences';
 
 // DEFAULT VALUES
 const _DEFAULT_PREFERENCES = UserPreferencesModel(
+  mapMode: MapModeModel(),
   initialLat: 23.1255,
   initialLng: -82.37,
 );
@@ -76,6 +78,13 @@ class LocalPreferencesProvider extends ILocalPreferencesProvider {
   Future<void> saveUserPrefs(UserPreferencesModel configs) async {
     final prefs = getIt<SharedPreferences>();
 
-    await prefs.setString(_PREFERENCES_KEY, json.encode(configs.toJson()));
+    final previus = await loadUserPrefs().then((value) => value.toJson());
+    final currentChanges = configs.toJson();
+
+    final toStored = previus.map(
+      (key, value) => MapEntry(key, currentChanges[key] ?? value),
+    );
+
+    await prefs.setString(_PREFERENCES_KEY, json.encode(toStored));
   }
 }
