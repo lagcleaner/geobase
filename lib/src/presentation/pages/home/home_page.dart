@@ -7,7 +7,6 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/constants/constants.dart';
 import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
-import 'package:geobase/src/presentation/pages/geodata/blocs/categories_shower/categoriesshower_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/widgets.dart';
@@ -222,16 +221,17 @@ class _FiltersButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return _FloatingActionButtonWidget(
       onPressed: () async {
-        final filters = await showDialog<FilterDataOptionsEntity>(
+        final mapMode = await showDialog<MapModeEntity>(
           context: context,
           builder: (context) {
-            return BlocBuilder<CategoriesShowerCubit, CategoriesShowerState>(
-              bloc: getIt<CategoriesShowerCubit>()..loadCategories(),
+            return BlocBuilder<CategoriesMapSelectorCubit,
+                CategoriesMapSelectorState>(
+              bloc: getIt<CategoriesMapSelectorCubit>()..loadCategories(),
               builder: (context, state) {
                 return SimpleDialog(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: const Text(
-                    'Seleccione la categoría que se mostrará en el mapa:',
+                    'Seleccione la categoría que se mostrará y usará:',
                   ),
                   children: [
                     DropdownButtonFormFieldWidget<int>(
@@ -243,12 +243,17 @@ class _FiltersButton extends StatelessWidget {
                             ),
                           )
                           .toList(),
-                      onChanged: (newValue) => newValue != null
-                          ? Navigator.of(context).pop(
-                              FilterDataOptionsEntity(categoryId: newValue),
-                            )
-                          : null,
-                      labelText: 'Categoría a Mostrar',
+                      onChanged: (newValue) => Navigator.of(context).pop(
+                        MapModeEntity(categoryUsed: newValue),
+                      ),
+                      value: state.selected,
+                      labelText: 'Categoría a Usar',
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () => Navigator.of(context).pop(
+                          const MapModeEntity(),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 8),
                   ],
@@ -257,12 +262,15 @@ class _FiltersButton extends StatelessWidget {
             );
           },
         );
-        if (filters != null) {
+        if (mapMode != null) {
           // ignore: unawaited_futures
-          context.read<MarkerCubit>().refreshMarkers(filters: filters);
+          await context
+              .read<MapCubit>()
+              .setMapMode(mapMode)
+              .whenComplete(() => context.read<MarkerCubit>().refreshMarkers());
         }
       },
-      iconData: Icons.filter_alt_rounded,
+      iconData: Icons.manage_accounts_rounded,
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
+import 'package:geobase/src/presentation/router/locations.dart';
 import 'package:icon_picker/material_icons%20all.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -37,7 +38,17 @@ class GeoBaseMap extends StatelessWidget {
                 onLongPress: (posx) {
                   context.read<MapCubit>().savePosition(posx);
                   context.read<MarkerCubit>().onMapLongPress(posx);
-                  context.read<SlidingUpPanelCubit>().openNewPanel(posx);
+                  if (state.mapMode.categoryUsed != null) {
+                    context.beamToNamed(
+                      '/geodata/new?'
+                      '$LAT_PARAM=${posx.latitude}&'
+                      '$LNG_PARAM=${posx.longitude}&'
+                      '$CATEGORY_ID_PARAM=${state.mapMode.categoryUsed}',
+                      popToNamed: '/map',
+                    );
+                  } else {
+                    context.read<SlidingUpPanelCubit>().openNewPanel(posx);
+                  }
                 },
               ),
               layers: [

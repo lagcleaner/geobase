@@ -24,6 +24,7 @@ class MapCubit extends Cubit<MapState> {
           MapState.state(
             mapController: MapControllerImpl(),
             mapConfiguration: MapConfigurationEntity.empty(),
+            mapMode: const MapModeEntity(),
           ),
         );
 
@@ -67,6 +68,9 @@ class MapCubit extends Cubit<MapState> {
               LatLng(uprefs.initialLat!, uprefs.initialLng!),
               state.mapController.zoom,
             );
+            emit(
+              state.copyWith(mapMode: uprefs.mapMode ?? const MapModeEntity()),
+            );
           }
         },
       );
@@ -104,6 +108,17 @@ class MapCubit extends Cubit<MapState> {
         ),
         loadingConfigs: false,
       ),
+    );
+  }
+
+  Future<void> setMapMode(MapModeEntity mode) async {
+    //
+    final result = await usPrefsWritter.setUserPreferences(
+      UserPreferencesEntity(mapMode: mode),
+    );
+    result.fold(
+      (failure) => null,
+      (_) => emit(state.copyWith(mapMode: mode)),
     );
   }
 }

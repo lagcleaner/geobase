@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
@@ -13,17 +12,32 @@ part 'marker_state.dart';
 class MarkerCubit extends Cubit<MarkerState> {
   MarkerCubit({
     required this.markerGetterService,
+    required this.uPrefsReader,
   }) : super(const MarkerState.filteredOut(markers: {}, temporalMarkers: {}));
 
   final IMarkerGetterService markerGetterService;
+  final IUserPreferencesReaderService uPrefsReader;
 
   Future<void> refreshMarkers({
     FilterDataOptionsEntity? filters,
     LatLng? currentCenter,
     double? zoom,
   }) async {
+    FilterDataOptionsEntity? filtersToUse = filters;
+    if (filtersToUse == null) {
+      final eitherPrefs = await uPrefsReader.loadUserPreferences();
+      eitherPrefs.fold(
+        (_) => null,
+        (uprefs) {
+          filtersToUse = FilterDataOptionsEntity(
+            categoryId: uprefs.mapMode?.categoryUsed,
+          );
+        },
+      );
+    }
+
     final either = await markerGetterService.getMarkers(
-      filters ?? FilterDataOptionsEntity.clean(),
+      filtersToUse ?? FilterDataOptionsEntity.clean(),
     );
     final Set<IMarkable> temporals = state.maybeMap(
       orElse: () => {},
