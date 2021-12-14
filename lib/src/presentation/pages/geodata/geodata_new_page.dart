@@ -178,7 +178,7 @@ class _GeodataCreateFormBody extends StatelessWidget {
       onSuccess: (_) => NotificationHelper.showSuccessSnackbar(
         context,
         message: 'El punto fue correctamente añadido.',
-        onShow: () => context.beamToNamed('/geodata'),
+        onShow: () => context.beamBack(),
       ),
       onError: (error) => NotificationHelper.showErrorSnackbar(
         context,
