@@ -25,8 +25,9 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
       builder: (context, state) {
         return GestureDetector(
           onTap: () async {
-            final initialValue =
-                DateTime.tryParse(state.value.value?.toString() ?? '');
+            final initialValue = DateTime.tryParse(
+              state.value.value?.toString().split('.')[0] ?? '',
+            );
             final resultDate = await showDatePicker(
               context: context,
               helpText: 'Seleccione una Fecha',
@@ -36,8 +37,9 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
               initialDate: DateTime.now(),
               firstDate: DateTime(1900),
               lastDate: DateTime(DateTime.now().year + 100),
-              currentDate:
-                  DateTime.tryParse(state.value.value?.toString() ?? ''),
+              currentDate: DateTime.tryParse(
+                state.value.value?.toString().split('.')[0] ?? '',
+              ),
               builder: (context, child) {
                 return Theme(
                   data: Theme.of(context).copyWith(
@@ -96,7 +98,7 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
                       resultDate.day,
                       resultTime.hour,
                       resultTime.minute,
-                    ).toString(),
+                    ).toString().split('.')[0],
                   ),
                 );
               }
@@ -111,7 +113,7 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
                 // inputBloc.dirty(state.value.copyWithValue(newValue));
               },
               controller: TextEditingCustom.fromValue(
-                state.value.value?.toString() ?? '',
+                state.value.value?.toString().split('.')[0] ?? '',
               ),
               errorText: state.error,
             ),

@@ -21,7 +21,9 @@ class BaseDateFieldRender implements IFieldRenderClass {
     FieldValueEntity fieldValue,
   ) {
     return InputBloc<FieldValueEntity>(
-      pureValue: fieldValue,
+      pureValue: fieldValue.copyWithValue(
+        fieldValue.value ?? DateTime.now().toString().split(' ')[0],
+      ),
       validationType: ValidationType.explicit,
       validator: ListValidator([
         FieldValueValidator.from(StringValidator.required),
