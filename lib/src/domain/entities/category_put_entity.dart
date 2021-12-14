@@ -1,14 +1,15 @@
-import 'package:geobase/src/domain/entities/category_entity.dart';
-import 'package:geobase/src/domain/entities/column_put_entity.dart';
+import 'package:geobase/src/domain/entities/entities.dart';
 
 class CategoryPutEntity extends CategoryEntity {
   CategoryPutEntity({
-    required this.id,
     required String name,
     required String? description,
     required int? color,
     required String icon,
-    required this.columns,
+    required this.id,
+    required this.editedColumns,
+    required this.removedColumns,
+    required this.newColumns,
   }) : super(
           name: name,
           description: description,
@@ -18,5 +19,9 @@ class CategoryPutEntity extends CategoryEntity {
 
   final int id;
 
-  final List<ColumnPutEntity> columns;
+  final List<ColumnPutEntity> editedColumns;
+
+  final List<int> removedColumns;
+
+  final List<ColumnPostEntity> newColumns;
 }

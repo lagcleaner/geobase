@@ -9,9 +9,11 @@ import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
 class CategoriesService implements ICategoryService {
   CategoriesService(
     this.categoriesRepository,
+    this.geodataRepository,
   );
 
   final ICategoriesRepository categoriesRepository;
+  final IGeodataRepository geodataRepository;
 
   @override
   Future<Either<Failure, CategoryGetEntity>> getCategory(int categoryId) async {
@@ -42,5 +44,15 @@ class CategoriesService implements ICategoryService {
     CategoryPutEntity editedCategory,
   ) async {
     return categoriesRepository.editCategory(editedCategory);
+  }
+
+  @override
+  Future<Either<Failure, bool>> hasRelatedData(int categoryId) async {
+    final eitherData = await geodataRepository.loadGeodataWhere(
+      FilterDataOptionsEntity(
+        categoryId: categoryId,
+      ),
+    );
+    return eitherData.fold((l) => Left(l), (r) => Right(r.isNotEmpty));
   }
 }

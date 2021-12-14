@@ -257,7 +257,11 @@ class _CategoryViewBasicInfo extends StatelessWidget {
           ),
           ListTile(
             title: Text(category.name),
-            subtitle: Text(category.description ?? 'Sin descripción'),
+            subtitle: Text(
+              (category.description ?? '').isNotEmpty
+                  ? category.description!
+                  : 'Sin descripción',
+            ),
           ),
           const Divider(),
           Center(

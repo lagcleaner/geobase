@@ -13,6 +13,8 @@ abstract class ICategoryService {
     CategoryPostEntity newCategory,
   );
 
+  Future<Either<Failure, bool>> hasRelatedData(int categoryId);
+
   Future<Either<Failure, int>> editCategory(
     CategoryPutEntity editedCategory,
   );

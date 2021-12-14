@@ -44,8 +44,14 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
         model.icon,
       ).save();
       if (categoryId == null) throw Exception('Edit Category Denied');
-      for (final col in model.columns) {
+      for (final col in model.editedColumns) {
         await getIt<IColumnsProvider>().edit(col);
+      }
+      for (final id in model.removedColumns) {
+        await getIt<IColumnsProvider>().remove(id);
+      }
+      for (final col in model.newColumns) {
+        await getIt<IColumnsProvider>().create(col);
       }
       return categoryId;
     } catch (e) {

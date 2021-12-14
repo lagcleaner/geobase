@@ -35,7 +35,9 @@ extension CategoryPutEntityExtension on CategoryPutEntity {
       description: description,
       color: color,
       icon: icon,
-      columns: columns.map((e) => e.toModel()).toList(),
+      editedColumns: editedColumns.map((e) => e.toModel()).toList(),
+      newColumns: newColumns.map((e) => e.toModel()).toList(),
+      removedColumns: removedColumns.toList(),
     );
   }
 }
