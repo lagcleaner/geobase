@@ -2,11 +2,11 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
 import 'package:geobase/src/presentation/router/locations.dart';
-import 'package:icon_picker/material_icons%20all.dart';
 import 'package:latlong2/latlong.dart';
 
 export 'layer_utils.dart';

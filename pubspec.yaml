@@ -36,7 +36,6 @@ dependencies:
   sqfentity_gen: ^2.0.0
   reflectable: ^3.0.1
   flutter_form_bloc: ^0.20.6
-  icon_picker: ^2.0.1
   image_picker: ^0.8.4+4
   file_picker: ^4.2.4
   open_file: ^3.2.1
