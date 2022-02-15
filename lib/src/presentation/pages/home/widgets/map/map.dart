@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
-import 'package:geobase/src/presentation/pages/home/blocs/sliding_up_panel/sliding_up_panel_cubit.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
 import 'package:geobase/src/presentation/router/locations.dart';
 import 'package:icon_picker/material_icons%20all.dart';

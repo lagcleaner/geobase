@@ -1,5 +1,4 @@
 import 'package:beamer/beamer.dart';
-import 'package:flutter/widgets.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 
 class OptionsPage extends StatelessWidget {

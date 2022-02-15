@@ -1,5 +1,3 @@
-import 'package:geobase/src/infrastructure/models/category_get_model.dart';
-import 'package:geobase/src/infrastructure/models/geodata_model.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
 
 class GeodataGetModel extends GeodataModel {

@@ -1,5 +1,4 @@
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/entities/geodata_entity.dart';
 
 class GeodataPostEntity extends GeodataEntity {
   GeodataPostEntity({

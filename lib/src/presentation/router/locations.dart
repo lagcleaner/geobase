@@ -1,7 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
-import 'package:geobase/src/presentation/pages/categories/category_view_page.dart';
-import 'package:geobase/src/presentation/pages/geodata/geodata_view_page.dart';
 import 'package:geobase/src/presentation/pages/pages.dart';
 import 'package:latlong2/latlong.dart';
 

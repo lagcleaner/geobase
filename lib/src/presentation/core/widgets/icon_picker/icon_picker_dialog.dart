@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class MyIconPickerDialog extends StatefulWidget {
   const MyIconPickerDialog({

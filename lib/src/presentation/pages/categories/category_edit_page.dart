@@ -1,17 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
-import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
-import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/category_form/category_edit_form_bloc.dart';
-import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/category_form_widget.dart';
-import 'package:geobase/src/presentation/pages/categories/widgets/widgets.dart';
 
 class CategoryEditPage extends StatelessWidget {
   const CategoryEditPage({

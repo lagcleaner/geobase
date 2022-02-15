@@ -2,9 +2,7 @@ import 'dart:developer';
 
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
-import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
 import 'package:geobase/src/infrastructure/providers/providers.dart';
-import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
 @LazySingleton(as: ICategoriesProvider)
 class CategoriesSQLiteProvider implements ICategoriesProvider {

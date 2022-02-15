@@ -6,7 +6,6 @@ import 'package:geobase/src/domain/core/enums/enums.dart';
 import 'package:geobase/src/domain/core/extensions/enums_extensions.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/form_bloc/form_bloc_builder.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/inputs/autoremovable_input_bloc.dart';

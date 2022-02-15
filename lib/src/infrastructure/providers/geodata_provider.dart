@@ -1,7 +1,6 @@
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/infrastructure/models/models.dart';
 
-import 'package:geobase/src/infrastructure/providers/interfaces/i_geodata_provider.dart';
 import 'package:geobase/src/infrastructure/providers/interfaces/interfaces.dart';
 import 'package:geobase/src/infrastructure/providers/sqlite/db_model.dart';
 
