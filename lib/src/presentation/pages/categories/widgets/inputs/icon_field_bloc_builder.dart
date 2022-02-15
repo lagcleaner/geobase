@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:geobase/src/presentation/core/widgets/icon_picker/icon_picker_dialog.dart';
 import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
 import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
@@ -200,20 +203,34 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
   Future<void> _showPicker(BuildContext context) async {
     FocusScope.of(context).unfocus();
 
-    final Map<String, dynamic>? iconPicked =
-        await showDialog<Map<String, dynamic>?>(
-      context: context,
-      useRootNavigator: widget.useRootNavigator,
-      useSafeArea: true,
-      builder: (BuildContext context) => const MyIconPickerDialog(
-        title: 'Seleccione un Icono',
-        iconCollection: MaterialIcons.mIcons,
-        cancelBtn: 'Cancelar',
-        searchHint: 'Buscar por Nombre',
-      ),
+    final IconData? iconPicked = await FlutterIconPicker.showIconPicker(
+      context,
+      iconPackModes: [IconPack.material],
+      title: const Text('Seleccione un Icono'),
+      closeChild: const Text('Cancelar'),
+      searchHintText: 'Buscar por nombre',
     );
-    final result = iconPicked?['name'] as String?;
 
+    //  showDialog<Map<String, dynamic>?>(
+    //   context: context,
+    //   useRootNavigator: widget.useRootNavigator,
+    //   useSafeArea: true,
+    //   builder: (BuildContext context) => const MyIconPickerDialog(
+    //     title: 'Seleccione un Icono',
+    //     iconCollection: MaterialIcons.mIcons,
+    //     cancelBtn: 'Cancelar',
+    //     searchHint: 'Buscar por Nombre',
+    //   ),
+    // );
+    // final result = iconPicked?['name'] as String?;
+    final result = iconPicked != null
+        ? jsonEncode(
+            serializeIcon(
+              iconPicked,
+              iconPack: IconPack.material,
+            ),
+          )
+        : null;
     if (result != null) {
       fieldBlocBuilderOnChange<String>(
         isEnabled: widget.isEnabled ?? true,
@@ -287,7 +304,12 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
                     decoration:
                         _buildDecoration(context, state, isEnabled).copyWith(
                       prefixIcon: state.value != null
-                          ? Icon(MaterialIcons.mIcons[state.value])
+                          ? Icon(
+                              deserializeIcon(
+                                jsonDecode(state.value!)
+                                    as Map<String, dynamic>,
+                              ),
+                            )
                           : null,
                     ),
                     isEmpty: state.value == null &&
@@ -336,6 +358,14 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
   }
 
   String _tryFormat(String? value) {
-    return value.toString();
+    try {
+      if (value != null) {
+        return deserializeIcon(jsonDecode(value) as Map<String, dynamic>)
+            .toString();
+      }
+      return '';
+    } catch (e) {
+      return value.toString();
+    }
   }
 }

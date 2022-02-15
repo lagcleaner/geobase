@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
@@ -206,7 +209,11 @@ class _CategoryWidget extends StatelessWidget {
               ),
             ),
             subtitle: SelectableText(category.description ?? ''),
-            leading: Icon(MaterialIcons.mIcons[category.icon]),
+            leading: Icon(
+              deserializeIcon(
+                jsonDecode(category.icon) as Map<String, dynamic>,
+              ),
+            ),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Categoría',
               icon: Icon(

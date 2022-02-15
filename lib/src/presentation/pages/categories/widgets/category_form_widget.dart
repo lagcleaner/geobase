@@ -6,9 +6,8 @@ import 'package:geobase/src/presentation/pages/categories/blocs/category_form/ca
 import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/inputs/inputs.dart';
 
-class CategoryCreateForm<FBloc extends CategoryFormBloc>
-    extends StatelessWidget {
-  const CategoryCreateForm({
+class CategoryForm<FBloc extends CategoryFormBloc> extends StatelessWidget {
+  const CategoryForm({
     Key? key,
     required this.submitButtonText,
   }) : super(key: key);

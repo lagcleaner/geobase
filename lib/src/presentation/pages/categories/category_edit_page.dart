@@ -74,7 +74,7 @@ class _CategoryEditPageInternal extends StatelessWidget {
           ),
           child: const Padding(
             padding: EdgeInsets.all(10.0),
-            child: CategoryCreateForm<CategoryEditFormBloc>(
+            child: CategoryForm<CategoryEditFormBloc>(
               submitButtonText: 'Aceptar Cambios',
             ),
           ),

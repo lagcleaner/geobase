@@ -58,7 +58,7 @@ class _CategoryCreatePageInternal extends StatelessWidget {
           ),
           child: const Padding(
             padding: EdgeInsets.all(10.0),
-            child: CategoryCreateForm<CategoryCreateFormBloc>(
+            child: CategoryForm<CategoryCreateFormBloc>(
               submitButtonText: 'Añadir Categoría',
             ),
           ),

@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconpicker/Serialization/iconDataSerialization.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
@@ -61,7 +64,10 @@ class _InternalPanel extends StatelessWidget {
                             Row(
                               children: [
                                 Icon(
-                                  MaterialIcons.mIcons[state.geodata.icon],
+                                  deserializeIcon(
+                                    jsonDecode(state.geodata.icon)
+                                        as Map<String, dynamic>,
+                                  ),
                                   color: state.geodata.color != null
                                       ? Color(state.geodata.color!)
                                       : Theme.of(context).primaryColor,

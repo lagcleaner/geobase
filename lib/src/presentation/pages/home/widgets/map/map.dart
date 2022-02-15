@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/widgets/map/layer_utils.dart';
@@ -90,8 +92,11 @@ class GeoBaseMap extends StatelessWidget {
                     point: e.location,
                     builder: (context) => IconButton(
                       icon: Icon(
-                        MaterialIcons.mIcons[e.icon] ??
-                            Icons.blur_circular_outlined,
+                        e.icon != null
+                            ? deserializeIcon(
+                                jsonDecode(e.icon!) as Map<String, dynamic>,
+                              )
+                            : Icons.blur_circular_outlined,
                         color:
                             e.color != null ? Color(e.color!) : Colors.black54,
                       ),
@@ -108,7 +113,11 @@ class GeoBaseMap extends StatelessWidget {
                       key: UniqueKey(),
                       point: e.location,
                       builder: (context) => Icon(
-                        MaterialIcons.mIcons[e.icon] ?? Icons.circle,
+                        e.icon != null
+                            ? deserializeIcon(
+                                jsonDecode(e.icon!) as Map<String, dynamic>,
+                              )
+                            : Icons.circle,
                         color:
                             e.color != null ? Color(e.color!) : Colors.blueGrey,
                       ),
