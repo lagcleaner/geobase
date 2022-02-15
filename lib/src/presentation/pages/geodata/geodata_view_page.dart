@@ -1,13 +1,11 @@
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
+import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
@@ -200,9 +198,7 @@ class _GeodataViewBasicInfo extends StatelessWidget {
               Flexible(
                 child: ListTile(
                   title: Icon(
-                    deserializeIcon(
-                      jsonDecode(geodata.icon) as Map<String, dynamic>,
-                    ),
+                    IconCodeUtils.decode(geodata.icon),
                     color: geodata.color != null
                         ? Color(geodata.color!)
                         : Theme.of(context).primaryColor,

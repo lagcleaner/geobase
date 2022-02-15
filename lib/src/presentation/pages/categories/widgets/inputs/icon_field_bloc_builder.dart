@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:geobase/src/presentation/core/widgets/icon_picker/icon_picker_dialog.dart';
-import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
+import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
 
 class IconFieldBlocBuilder extends StatelessWidget {
@@ -223,14 +220,7 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
     //   ),
     // );
     // final result = iconPicked?['name'] as String?;
-    final result = iconPicked != null
-        ? jsonEncode(
-            serializeIcon(
-              iconPicked,
-              iconPack: IconPack.material,
-            ),
-          )
-        : null;
+    final result = iconPicked != null ? IconCodeUtils.encode(iconPicked) : null;
     if (result != null) {
       fieldBlocBuilderOnChange<String>(
         isEnabled: widget.isEnabled ?? true,
@@ -304,12 +294,7 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
                     decoration:
                         _buildDecoration(context, state, isEnabled).copyWith(
                       prefixIcon: state.value != null
-                          ? Icon(
-                              deserializeIcon(
-                                jsonDecode(state.value!)
-                                    as Map<String, dynamic>,
-                              ),
-                            )
+                          ? Icon(IconCodeUtils.decode(state.value))
                           : null,
                     ),
                     isEmpty: state.value == null &&
@@ -359,11 +344,8 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
 
   String _tryFormat(String? value) {
     try {
-      if (value != null) {
-        return deserializeIcon(jsonDecode(value) as Map<String, dynamic>)
-            .toString();
-      }
-      return '';
+      final res = IconCodeUtils.decode(value);
+      return res?.toString() ?? '';
     } catch (e) {
       return value.toString();
     }

@@ -1,15 +1,11 @@
-import 'dart:convert';
-
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_iconpicker/flutter_iconpicker.dart';
-import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
+import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
-import 'package:geobase/src/presentation/core/widgets/icon_picker/material_icons.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -210,9 +206,7 @@ class _CategoryWidget extends StatelessWidget {
             ),
             subtitle: SelectableText(category.description ?? ''),
             leading: Icon(
-              deserializeIcon(
-                jsonDecode(category.icon) as Map<String, dynamic>,
-              ),
+              IconCodeUtils.decode(category.icon),
             ),
             trailing: IconButton(
               tooltip: 'Ver detalles de la Categoría',
@@ -253,7 +247,7 @@ class _QueryInput extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: TextField(
         controller: context.watch<CategoryListBloc>().state.maybeMap(
-              initial: (_) => controller..setValue(''),
+              initial: (_) => controller..clear(),
               orElse: () => controller,
             ),
         focusNode: focusNode,
@@ -269,7 +263,7 @@ class _QueryInput extends StatelessWidget {
           suffixIcon: IconButton(
             icon: const Icon(Icons.clear),
             onPressed: () {
-              controller.text = '';
+              controller.clear();
               context
                   .read<CategoryListBloc>()
                   .add(const CategoryListEvent.fetched(query: ''));
