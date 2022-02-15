@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //general
 const primaryBrandColor = Color(0xFF64818F);
@@ -108,7 +109,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
       borderRadius: const BorderRadius.all(Radius.circular(18)),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: light.accentColor, width: 2.0),
+      borderSide: BorderSide(color: light.colorScheme.secondary, width: 2.0),
       borderRadius: const BorderRadius.all(Radius.circular(18)),
     ),
     enabledBorder: OutlineInputBorder(
@@ -133,7 +134,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
   appBarTheme: light.appBarTheme.copyWith(
     backgroundColor: primaryBrandColor,
     elevation: 0,
-    brightness: Brightness.light,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
     foregroundColor: backgroundColor,
     iconTheme: light.iconTheme.copyWith(
       color: backgroundColor,
