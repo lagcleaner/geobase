@@ -130,8 +130,8 @@ class _FieldsInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formBloc = context.read<FBloc>();
-    return BlocBuilder<ListFieldBloc<ColumnFieldBloc>,
-        ListFieldBlocState<ColumnFieldBloc>>(
+    return BlocBuilder<ListFieldBloc<ColumnFieldBloc, dynamic>,
+        ListFieldBlocState<ColumnFieldBloc, dynamic>>(
       bloc: formBloc.columns,
       builder: (context, state) {
         return Column(
@@ -205,8 +205,11 @@ class _ColumnCardInput extends StatelessWidget {
               decoration: TextFieldDecorations.decoration(
                 labelText: 'Tipo de Datos*',
               ),
-              itemBuilder: (context, FieldTypeGetEntity value) =>
+              itemBuilder: (context, FieldTypeGetEntity value) => FieldItem(
+                child: Text(
                   '${value.metaType} - ${value.name}',
+                ),
+              ),
             ),
             IconButton(
               icon: const Icon(Icons.highlight_remove_rounded),

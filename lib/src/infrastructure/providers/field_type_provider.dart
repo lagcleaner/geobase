@@ -37,7 +37,7 @@ class FieldTypeSQLiteProvider implements IFieldTypeProvider {
       );
     }
 
-    final List<Map<String, dynamic>?>? result =
+    final List<Map<String, dynamic>> result =
         await GeobaseModel().execDataTable(
       '''
     SELECT
@@ -49,9 +49,9 @@ class FieldTypeSQLiteProvider implements IFieldTypeProvider {
     WHERE
       ${type.meta_type}.field_type_id = ${type.field_type_id!}
       ''',
-    ) as List<Map<String, dynamic>?>?;
+    );
 
-    if ((result?.isEmpty ?? true) || result!.first == null) {
+    if (result.isEmpty) {
       await FieldTypeDBModel()
           .select()
           .field_type_id

@@ -81,4 +81,5 @@ Future<String?> _showPicker(List<String>? extensions) async {
     );
     return file?.path;
   }
+  return null;
 }

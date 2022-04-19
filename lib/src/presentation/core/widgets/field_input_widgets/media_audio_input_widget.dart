@@ -77,6 +77,7 @@ Future<String?> _audioFromFiles() async {
     );
     return file?.path;
   }
+  return null;
 }
 
 Future<String?> _showPicker(BuildContext context) async {

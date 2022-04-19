@@ -23,4 +23,5 @@ Future<File?> saveFile(File file) async {
   } catch (e) {
     log(e.toString());
   }
+  return null;
 }

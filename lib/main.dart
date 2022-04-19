@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/main.reflectable.dart';
 import 'package:geobase/src/infrastructure/core/extensions/sqlite_db_extension.dart';
@@ -25,5 +24,5 @@ Future initializeApp() async {
 
   initializeReflectable();
 
-  Bloc.observer = getIt<BlocObserver>();
+  // Bloc.observer = getIt<BlocObserver>();
 }

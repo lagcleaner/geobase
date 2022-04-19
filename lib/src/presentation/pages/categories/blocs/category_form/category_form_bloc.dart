@@ -38,15 +38,18 @@ abstract class CategoryFormBloc extends FormBloc<Unit, String> {
   );
   final TextFieldBloc description = TextFieldBloc();
 
-  final InputFieldBloc<Color?, dynamic> color = InputFieldBloc();
+  final InputFieldBloc<Color?, dynamic> color = InputFieldBloc(
+    initialValue: null,
+  );
 
-  final InputFieldBloc<String, dynamic> icon = InputFieldBloc(
+  final InputFieldBloc<String?, dynamic> icon = InputFieldBloc(
+    initialValue: null,
     validators: [
       StringValidator.required,
     ],
   );
 
-  final ListFieldBloc<ColumnFieldBloc> columns = ListFieldBloc();
+  final ListFieldBloc<ColumnFieldBloc, dynamic> columns = ListFieldBloc();
 
   // validators
 

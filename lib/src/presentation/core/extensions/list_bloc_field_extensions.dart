@@ -2,12 +2,12 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 
 typedef ListFieldValidationBuilder = Validator<String> Function(
-  ListFieldBloc<TextFieldBloc>,
+  ListFieldBloc<TextFieldBloc, dynamic>,
   TextFieldBloc,
 );
 
 extension ListFieldBlocOfTextFieldBlocsExtension
-    on ListFieldBloc<TextFieldBloc> {
+    on ListFieldBloc<TextFieldBloc, dynamic> {
   void initiailizeAutoRemovableListFieldBloc({
     List<String>? defaultValues,
     List<ListFieldValidationBuilder> validationBuilders = const [],
@@ -26,7 +26,7 @@ extension ListFieldBlocOfTextFieldBlocsExtension
     List<ListFieldValidationBuilder> validationBuilders = const [],
   ]) {
     final currentField = TextFieldBloc(
-      initialValue: initialValue,
+      initialValue: initialValue ?? '',
       validators: [],
     );
     currentField.addValidators([
@@ -38,14 +38,14 @@ extension ListFieldBlocOfTextFieldBlocsExtension
       currentField
         ..onValueChanges(
           onData: (prev, curr) async* {
-            if (value.last != currentField && (curr.value ?? '') == '') {
+            if (value.last != currentField && curr.value == '') {
               removeFieldBlocsWhere((element) {
                 return element == currentField;
               });
             }
             if (value.last == currentField &&
-                (prev.value ?? '') == '' &&
-                (curr.value ?? '') != '') {
+                prev.value == '' &&
+                curr.value != '') {
               _addAutoRemovableField('', validationBuilders);
             }
           },

@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'static_selection_list_cubit.dart';
 
@@ -59,6 +60,17 @@ mixin _$StaticSelectionListState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? fetchInProgress,
@@ -77,6 +89,15 @@ mixin _$StaticSelectionListState {
     required TResult Function(_FetchSuccess value) fetchSuccess,
     required TResult Function(_FetchSuccessNotFound value) fetchSuccessNotFound,
     required TResult Function(_FetchFailure value) fetchFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -126,6 +147,7 @@ class __$InitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -136,7 +158,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -154,6 +177,20 @@ class _$_Initial implements _Initial {
     required TResult Function(String error) fetchFailure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -184,6 +221,18 @@ class _$_Initial implements _Initial {
     required TResult Function(_FetchFailure value) fetchFailure,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return initial?.call(this);
   }
 
   @override
@@ -227,6 +276,7 @@ class __$FetchInProgressCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FetchInProgress implements _FetchInProgress {
   const _$_FetchInProgress();
 
@@ -237,7 +287,8 @@ class _$_FetchInProgress implements _FetchInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FetchInProgress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _FetchInProgress);
   }
 
   @override
@@ -255,6 +306,20 @@ class _$_FetchInProgress implements _FetchInProgress {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) {
+    return fetchInProgress?.call();
   }
 
   @override
@@ -285,6 +350,18 @@ class _$_FetchInProgress implements _FetchInProgress {
     required TResult Function(_FetchFailure value) fetchFailure,
   }) {
     return fetchInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchInProgress?.call(this);
   }
 
   @override
@@ -341,6 +418,7 @@ class __$FetchSuccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FetchSuccess implements _FetchSuccess {
   const _$_FetchSuccess({required this.staticSelectionTypes});
 
@@ -355,16 +433,15 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FetchSuccess &&
-            (identical(other.staticSelectionTypes, staticSelectionTypes) ||
-                const DeepCollectionEquality()
-                    .equals(other.staticSelectionTypes, staticSelectionTypes)));
+        (other.runtimeType == runtimeType &&
+            other is _FetchSuccess &&
+            const DeepCollectionEquality()
+                .equals(other.staticSelectionTypes, staticSelectionTypes));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(staticSelectionTypes);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(staticSelectionTypes));
 
   @JsonKey(ignore: true)
   @override
@@ -383,6 +460,20 @@ class _$_FetchSuccess implements _FetchSuccess {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchSuccess(staticSelectionTypes);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) {
+    return fetchSuccess?.call(staticSelectionTypes);
   }
 
   @override
@@ -417,6 +508,18 @@ class _$_FetchSuccess implements _FetchSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -437,8 +540,7 @@ abstract class _FetchSuccess implements StaticSelectionListState {
       {required List<FieldTypeStaticSelectionGetEntity>
           staticSelectionTypes}) = _$_FetchSuccess;
 
-  List<FieldTypeStaticSelectionGetEntity> get staticSelectionTypes =>
-      throw _privateConstructorUsedError;
+  List<FieldTypeStaticSelectionGetEntity> get staticSelectionTypes;
   @JsonKey(ignore: true)
   _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
@@ -464,6 +566,7 @@ class __$FetchSuccessNotFoundCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   const _$_FetchSuccessNotFound();
 
@@ -474,7 +577,8 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FetchSuccessNotFound);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _FetchSuccessNotFound);
   }
 
   @override
@@ -492,6 +596,20 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchSuccessNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) {
+    return fetchSuccessNotFound?.call();
   }
 
   @override
@@ -522,6 +640,18 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
     required TResult Function(_FetchFailure value) fetchFailure,
   }) {
     return fetchSuccessNotFound(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchSuccessNotFound?.call(this);
   }
 
   @override
@@ -578,6 +708,7 @@ class __$FetchFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FetchFailure implements _FetchFailure {
   const _$_FetchFailure({required this.error});
 
@@ -592,14 +723,14 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FetchFailure &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _FetchFailure &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -618,6 +749,20 @@ class _$_FetchFailure implements _FetchFailure {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? fetchInProgress,
+    TResult Function(
+            List<FieldTypeStaticSelectionGetEntity> staticSelectionTypes)?
+        fetchSuccess,
+    TResult Function()? fetchSuccessNotFound,
+    TResult Function(String error)? fetchFailure,
+  }) {
+    return fetchFailure?.call(error);
   }
 
   @override
@@ -652,6 +797,18 @@ class _$_FetchFailure implements _FetchFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_FetchInProgress value)? fetchInProgress,
+    TResult Function(_FetchSuccess value)? fetchSuccess,
+    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -670,7 +827,7 @@ class _$_FetchFailure implements _FetchFailure {
 abstract class _FetchFailure implements StaticSelectionListState {
   const factory _FetchFailure({required String error}) = _$_FetchFailure;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
   _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
       throw _privateConstructorUsedError;

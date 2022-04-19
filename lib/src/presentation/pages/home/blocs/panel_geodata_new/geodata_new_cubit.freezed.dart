@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_new_cubit.dart';
 
@@ -49,6 +50,14 @@ mixin _$GeodataNewState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+        loadedCategories,
+    TResult Function(String? error)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<CategoryGetEntity> categories, int? selected)?
@@ -62,6 +71,13 @@ mixin _$GeodataNewState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_LoadedCategories value) loadedCategories,
     required TResult Function(_Failure value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadedCategories value)? loadedCategories,
+    TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -108,6 +124,7 @@ class __$LoadingCopyWithImpl<$Res> extends _$GeodataNewStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -118,7 +135,8 @@ class _$_Loading implements _Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -133,6 +151,17 @@ class _$_Loading implements _Loading {
     required TResult Function(String? error) failure,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+        loadedCategories,
+    TResult Function(String? error)? failure,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -158,6 +187,16 @@ class _$_Loading implements _Loading {
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadedCategories value)? loadedCategories,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -217,6 +256,7 @@ class __$LoadedCategoriesCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_LoadedCategories implements _LoadedCategories {
   const _$_LoadedCategories(this.categories, {this.selected});
 
@@ -233,20 +273,18 @@ class _$_LoadedCategories implements _LoadedCategories {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LoadedCategories &&
-            (identical(other.categories, categories) ||
-                const DeepCollectionEquality()
-                    .equals(other.categories, categories)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)));
+        (other.runtimeType == runtimeType &&
+            other is _LoadedCategories &&
+            const DeepCollectionEquality()
+                .equals(other.categories, categories) &&
+            const DeepCollectionEquality().equals(other.selected, selected));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(categories) ^
-      const DeepCollectionEquality().hash(selected);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(categories),
+      const DeepCollectionEquality().hash(selected));
 
   @JsonKey(ignore: true)
   @override
@@ -262,6 +300,17 @@ class _$_LoadedCategories implements _LoadedCategories {
     required TResult Function(String? error) failure,
   }) {
     return loadedCategories(categories, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+        loadedCategories,
+    TResult Function(String? error)? failure,
+  }) {
+    return loadedCategories?.call(categories, selected);
   }
 
   @override
@@ -291,6 +340,16 @@ class _$_LoadedCategories implements _LoadedCategories {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadedCategories value)? loadedCategories,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return loadedCategories?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_LoadedCategories value)? loadedCategories,
@@ -308,8 +367,8 @@ abstract class _LoadedCategories implements GeodataNewState {
   const factory _LoadedCategories(List<CategoryGetEntity> categories,
       {int? selected}) = _$_LoadedCategories;
 
-  List<CategoryGetEntity> get categories => throw _privateConstructorUsedError;
-  int? get selected => throw _privateConstructorUsedError;
+  List<CategoryGetEntity> get categories;
+  int? get selected;
   @JsonKey(ignore: true)
   _$LoadedCategoriesCopyWith<_LoadedCategories> get copyWith =>
       throw _privateConstructorUsedError;
@@ -345,6 +404,7 @@ class __$FailureCopyWithImpl<$Res> extends _$GeodataNewStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure([this.error]);
 
@@ -359,14 +419,14 @@ class _$_Failure implements _Failure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Failure &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _Failure &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -382,6 +442,17 @@ class _$_Failure implements _Failure {
     required TResult Function(String? error) failure,
   }) {
     return failure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+        loadedCategories,
+    TResult Function(String? error)? failure,
+  }) {
+    return failure?.call(error);
   }
 
   @override
@@ -411,6 +482,16 @@ class _$_Failure implements _Failure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_LoadedCategories value)? loadedCategories,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_LoadedCategories value)? loadedCategories,
@@ -427,7 +508,7 @@ class _$_Failure implements _Failure {
 abstract class _Failure implements GeodataNewState {
   const factory _Failure([String? error]) = _$_Failure;
 
-  String? get error => throw _privateConstructorUsedError;
+  String? get error;
   @JsonKey(ignore: true)
   _$FailureCopyWith<_Failure> get copyWith =>
       throw _privateConstructorUsedError;

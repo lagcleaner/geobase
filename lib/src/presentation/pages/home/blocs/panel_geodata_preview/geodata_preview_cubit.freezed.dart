@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_preview_cubit.dart';
 
@@ -46,6 +47,13 @@ mixin _$GeodataPreviewState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? error)? failure,
+    TResult Function(GeodataGetEntity geodata)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(String? error)? failure,
@@ -58,6 +66,13 @@ mixin _$GeodataPreviewState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Failure value) failure,
     required TResult Function(_Loaded value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -105,6 +120,7 @@ class __$LoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -115,7 +131,8 @@ class _$_Loading implements _Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -129,6 +146,16 @@ class _$_Loading implements _Loading {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? error)? failure,
+    TResult Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -153,6 +180,16 @@ class _$_Loading implements _Loading {
     required TResult Function(_Loaded value) loaded,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -205,6 +242,7 @@ class __$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure([this.error]);
 
@@ -219,14 +257,14 @@ class _$_Failure implements _Failure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Failure &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _Failure &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -241,6 +279,16 @@ class _$_Failure implements _Failure {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return failure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? error)? failure,
+    TResult Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return failure?.call(error);
   }
 
   @override
@@ -269,6 +317,16 @@ class _$_Failure implements _Failure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -285,7 +343,7 @@ class _$_Failure implements _Failure {
 abstract class _Failure implements GeodataPreviewState {
   const factory _Failure([String? error]) = _$_Failure;
 
-  String? get error => throw _privateConstructorUsedError;
+  String? get error;
   @JsonKey(ignore: true)
   _$FailureCopyWith<_Failure> get copyWith =>
       throw _privateConstructorUsedError;
@@ -322,6 +380,7 @@ class __$LoadedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loaded implements _Loaded {
   const _$_Loaded(this.geodata);
 
@@ -336,14 +395,14 @@ class _$_Loaded implements _Loaded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Loaded &&
-            (identical(other.geodata, geodata) ||
-                const DeepCollectionEquality().equals(other.geodata, geodata)));
+        (other.runtimeType == runtimeType &&
+            other is _Loaded &&
+            const DeepCollectionEquality().equals(other.geodata, geodata));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(geodata);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(geodata));
 
   @JsonKey(ignore: true)
   @override
@@ -358,6 +417,16 @@ class _$_Loaded implements _Loaded {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return loaded(geodata);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(String? error)? failure,
+    TResult Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return loaded?.call(geodata);
   }
 
   @override
@@ -386,6 +455,16 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Failure value)? failure,
+    TResult Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -402,7 +481,7 @@ class _$_Loaded implements _Loaded {
 abstract class _Loaded implements GeodataPreviewState {
   const factory _Loaded(GeodataGetEntity geodata) = _$_Loaded;
 
-  GeodataGetEntity get geodata => throw _privateConstructorUsedError;
+  GeodataGetEntity get geodata;
   @JsonKey(ignore: true)
   _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
 }

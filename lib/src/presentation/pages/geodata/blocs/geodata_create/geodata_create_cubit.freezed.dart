@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_create_cubit.dart';
 
@@ -60,6 +61,15 @@ mixin _$GeodataCreateState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
@@ -78,6 +88,15 @@ mixin _$GeodataCreateState {
     required TResult Function(_GeodataCreateState value) inputData,
     required TResult Function(_GeodataLoadingCategoriesErrorState value)
         failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -127,6 +146,7 @@ class __$InitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -137,7 +157,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -154,6 +175,18 @@ class _$_Initial implements _Initial {
     required TResult Function(Failure failure) failure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -184,6 +217,18 @@ class _$_Initial implements _Initial {
         failure,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+  }) {
+    return initial?.call(this);
   }
 
   @override
@@ -225,6 +270,7 @@ class __$LoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -235,7 +281,8 @@ class _$_Loading implements _Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -252,6 +299,18 @@ class _$_Loading implements _Loading {
     required TResult Function(Failure failure) failure,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -282,6 +341,18 @@ class _$_Loading implements _Loading {
         failure,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -341,6 +412,7 @@ class __$GeodataCategorySelectionStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GeodataCategorySelectionState
     implements _GeodataCategorySelectionState {
   const _$_GeodataCategorySelectionState({required this.categories});
@@ -356,15 +428,15 @@ class _$_GeodataCategorySelectionState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GeodataCategorySelectionState &&
-            (identical(other.categories, categories) ||
-                const DeepCollectionEquality()
-                    .equals(other.categories, categories)));
+        (other.runtimeType == runtimeType &&
+            other is _GeodataCategorySelectionState &&
+            const DeepCollectionEquality()
+                .equals(other.categories, categories));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(categories);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(categories));
 
   @JsonKey(ignore: true)
   @override
@@ -383,6 +455,18 @@ class _$_GeodataCategorySelectionState
     required TResult Function(Failure failure) failure,
   }) {
     return categorySelection(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return categorySelection?.call(categories);
   }
 
   @override
@@ -417,6 +501,18 @@ class _$_GeodataCategorySelectionState
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+  }) {
+    return categorySelection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -437,7 +533,7 @@ abstract class _GeodataCategorySelectionState implements GeodataCreateState {
           {required List<CategoryGetEntity> categories}) =
       _$_GeodataCategorySelectionState;
 
-  List<CategoryGetEntity> get categories => throw _privateConstructorUsedError;
+  List<CategoryGetEntity> get categories;
   @JsonKey(ignore: true)
   _$GeodataCategorySelectionStateCopyWith<_GeodataCategorySelectionState>
       get copyWith => throw _privateConstructorUsedError;
@@ -476,6 +572,7 @@ class __$GeodataCreateStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GeodataCreateState implements _GeodataCreateState {
   const _$_GeodataCreateState({required this.fetchData});
 
@@ -490,15 +587,14 @@ class _$_GeodataCreateState implements _GeodataCreateState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GeodataCreateState &&
-            (identical(other.fetchData, fetchData) ||
-                const DeepCollectionEquality()
-                    .equals(other.fetchData, fetchData)));
+        (other.runtimeType == runtimeType &&
+            other is _GeodataCreateState &&
+            const DeepCollectionEquality().equals(other.fetchData, fetchData));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fetchData);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(fetchData));
 
   @JsonKey(ignore: true)
   @override
@@ -516,6 +612,18 @@ class _$_GeodataCreateState implements _GeodataCreateState {
     required TResult Function(Failure failure) failure,
   }) {
     return inputData(fetchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return inputData?.call(fetchData);
   }
 
   @override
@@ -550,6 +658,18 @@ class _$_GeodataCreateState implements _GeodataCreateState {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+  }) {
+    return inputData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -569,7 +689,7 @@ abstract class _GeodataCreateState implements GeodataCreateState {
   const factory _GeodataCreateState(
       {required GeodataCreateInitialData fetchData}) = _$_GeodataCreateState;
 
-  GeodataCreateInitialData get fetchData => throw _privateConstructorUsedError;
+  GeodataCreateInitialData get fetchData;
   @JsonKey(ignore: true)
   _$GeodataCreateStateCopyWith<_GeodataCreateState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -620,6 +740,7 @@ class __$GeodataLoadingCategoriesErrorStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_GeodataLoadingCategoriesErrorState
     implements _GeodataLoadingCategoriesErrorState {
   const _$_GeodataLoadingCategoriesErrorState({required this.failure});
@@ -635,14 +756,14 @@ class _$_GeodataLoadingCategoriesErrorState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GeodataLoadingCategoriesErrorState &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _GeodataLoadingCategoriesErrorState &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -662,6 +783,18 @@ class _$_GeodataLoadingCategoriesErrorState
     required TResult Function(Failure failure) failure,
   }) {
     return failure(this.failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CategoryGetEntity> categories)? categorySelection,
+    TResult Function(GeodataCreateInitialData fetchData)? inputData,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return failure?.call(this.failure);
   }
 
   @override
@@ -696,6 +829,18 @@ class _$_GeodataLoadingCategoriesErrorState
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_GeodataCategorySelectionState value)? categorySelection,
+    TResult Function(_GeodataCreateState value)? inputData,
+    TResult Function(_GeodataLoadingCategoriesErrorState value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
@@ -716,7 +861,7 @@ abstract class _GeodataLoadingCategoriesErrorState
   const factory _GeodataLoadingCategoriesErrorState(
       {required Failure failure}) = _$_GeodataLoadingCategoriesErrorState;
 
-  Failure get failure => throw _privateConstructorUsedError;
+  Failure get failure;
   @JsonKey(ignore: true)
   _$GeodataLoadingCategoriesErrorStateCopyWith<
           _GeodataLoadingCategoriesErrorState>

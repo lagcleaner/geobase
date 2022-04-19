@@ -87,6 +87,7 @@ Future<String?> _imgFromCamera() async {
     );
     return file?.path;
   }
+  return null;
 }
 
 Future<String?> _imgFromGallery() async {
@@ -100,6 +101,7 @@ Future<String?> _imgFromGallery() async {
     );
     return file?.path;
   }
+  return null;
 }
 
 Future<String?> _showPicker(BuildContext context) async {

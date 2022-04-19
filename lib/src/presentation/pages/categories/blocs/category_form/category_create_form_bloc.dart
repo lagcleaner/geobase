@@ -18,14 +18,14 @@ class CategoryCreateFormBloc extends CategoryFormBloc {
   Future<void> onSubmitting() async {
     final response = await categoryService.createCategory(
       CategoryPostEntity(
-        name: name.state.value!,
+        name: name.state.value,
         color: color.state.value?.value,
         description: description.state.value,
         icon: icon.state.value!,
         columns: columns.value
             .map(
               (e) => ColumnPostEntity(
-                name: e.columnName.value!,
+                name: e.columnName.value,
                 typeId: e.type.value!.id,
               ),
             )

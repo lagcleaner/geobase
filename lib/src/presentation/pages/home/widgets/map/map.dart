@@ -30,11 +30,11 @@ class GeoBaseMap extends StatelessWidget {
                 maxZoom: 18.0,
                 minZoom: 4.0,
                 screenSize: MediaQuery.of(context).size,
-                onTap: (_) {
+                onTap: (_, __) {
                   context.read<MarkerCubit>().clearTemporaryMarker();
                   context.read<SlidingUpPanelCubit>().closePanel();
                 },
-                onLongPress: (posx) {
+                onLongPress: (_, posx) {
                   context.read<MapCubit>().savePosition(posx);
                   context.read<MarkerCubit>().onMapLongPress(posx);
                   if (state.mapMode.categoryUsed != null) {

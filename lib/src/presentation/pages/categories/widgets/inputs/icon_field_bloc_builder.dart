@@ -31,7 +31,7 @@ class IconFieldBlocBuilder extends StatelessWidget {
         super(key: key);
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
-  final InputFieldBloc<String, dynamic> iconFieldBloc;
+  final InputFieldBloc<String?, dynamic> iconFieldBloc;
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.errorBuilder}
   final FieldBlocErrorBuilder? errorBuilder;
@@ -125,7 +125,7 @@ class IconFieldBlocBuilderBase extends StatefulWidget {
   }) : super(key: key);
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
-  final InputFieldBloc<String, dynamic> iconFieldBloc;
+  final InputFieldBloc<String?, dynamic> iconFieldBloc;
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.errorBuilder}
   final FieldBlocErrorBuilder? errorBuilder;

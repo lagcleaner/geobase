@@ -83,7 +83,7 @@ class CategoryEditFormBloc extends CategoryFormBloc {
           color.updateInitialValue(Color(category.color!));
         }
         icon.updateInitialValue(category.icon);
-        description.updateInitialValue(category.description);
+        description.updateInitialValue(category.description??'');
         for (final col in category.columns) {
           columns.addFieldBloc(
             ColumnFieldBloc(
@@ -143,7 +143,7 @@ class CategoryEditFormBloc extends CategoryFormBloc {
     final response = await categoryService.editCategory(
       CategoryPutEntity(
         id: categoryId!,
-        name: name.state.value!,
+        name: name.state.value,
         color: color.state.value?.value,
         description: description.state.value,
         icon: icon.state.value!,
@@ -151,7 +151,7 @@ class CategoryEditFormBloc extends CategoryFormBloc {
             .where((e) => e.column != null)
             .map(
               (e) => ColumnPutEntity(
-                name: e.columnName.value!,
+                name: e.columnName.value,
                 typeId: e.type.value!.id,
                 categoryId: e.column!.categoryId,
                 id: e.column!.id,
@@ -162,7 +162,7 @@ class CategoryEditFormBloc extends CategoryFormBloc {
             .where((e) => e.column == null)
             .map(
               (e) => ColumnPostEntity(
-                name: e.columnName.value!,
+                name: e.columnName.value,
                 typeId: e.type.value!.id,
                 categoryId: categoryId,
               ),

@@ -76,4 +76,5 @@ Future<String?> _showPicker() async {
     );
     return file?.path;
   }
+  return null;
 }

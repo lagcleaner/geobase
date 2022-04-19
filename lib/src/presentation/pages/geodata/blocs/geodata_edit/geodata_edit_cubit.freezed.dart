@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_edit_cubit.dart';
 
@@ -46,6 +47,13 @@ mixin _$GeodataEditState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(GeodataEditInitialData fetchData)? edit,
+    TResult Function(Failure failure)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(GeodataEditInitialData fetchData)? edit,
@@ -58,6 +66,13 @@ mixin _$GeodataEditState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_EditData value) edit,
     required TResult Function(_Failure value) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_EditData value)? edit,
+    TResult Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,6 +119,7 @@ class __$InitialCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -114,7 +130,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -128,6 +145,16 @@ class _$_Initial implements _Initial {
     required TResult Function(Failure failure) failure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(GeodataEditInitialData fetchData)? edit,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -152,6 +179,16 @@ class _$_Initial implements _Initial {
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_EditData value)? edit,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return initial?.call(this);
   }
 
   @override
@@ -203,6 +240,7 @@ class __$EditDataCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_EditData implements _EditData {
   const _$_EditData({required this.fetchData});
 
@@ -217,15 +255,14 @@ class _$_EditData implements _EditData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EditData &&
-            (identical(other.fetchData, fetchData) ||
-                const DeepCollectionEquality()
-                    .equals(other.fetchData, fetchData)));
+        (other.runtimeType == runtimeType &&
+            other is _EditData &&
+            const DeepCollectionEquality().equals(other.fetchData, fetchData));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fetchData);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(fetchData));
 
   @JsonKey(ignore: true)
   @override
@@ -240,6 +277,16 @@ class _$_EditData implements _EditData {
     required TResult Function(Failure failure) failure,
   }) {
     return edit(fetchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(GeodataEditInitialData fetchData)? edit,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return edit?.call(fetchData);
   }
 
   @override
@@ -268,6 +315,16 @@ class _$_EditData implements _EditData {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_EditData value)? edit,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return edit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -285,7 +342,7 @@ abstract class _EditData implements GeodataEditState {
   const factory _EditData({required GeodataEditInitialData fetchData}) =
       _$_EditData;
 
-  GeodataEditInitialData get fetchData => throw _privateConstructorUsedError;
+  GeodataEditInitialData get fetchData;
   @JsonKey(ignore: true)
   _$EditDataCopyWith<_EditData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -330,6 +387,7 @@ class __$FailureCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure({required this.failure});
 
@@ -344,14 +402,14 @@ class _$_Failure implements _Failure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Failure &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _Failure &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -366,6 +424,16 @@ class _$_Failure implements _Failure {
     required TResult Function(Failure failure) failure,
   }) {
     return failure(this.failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(GeodataEditInitialData fetchData)? edit,
+    TResult Function(Failure failure)? failure,
+  }) {
+    return failure?.call(this.failure);
   }
 
   @override
@@ -394,6 +462,16 @@ class _$_Failure implements _Failure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_EditData value)? edit,
+    TResult Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -410,7 +488,7 @@ class _$_Failure implements _Failure {
 abstract class _Failure implements GeodataEditState {
   const factory _Failure({required Failure failure}) = _$_Failure;
 
-  Failure get failure => throw _privateConstructorUsedError;
+  Failure get failure;
   @JsonKey(ignore: true)
   _$FailureCopyWith<_Failure> get copyWith =>
       throw _privateConstructorUsedError;

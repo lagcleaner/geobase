@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
 
@@ -50,6 +51,13 @@ mixin _$Failure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? connection,
+    TResult Function(String? message)? permissionDenied,
+    TResult Function(String? message)? unhandled,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? connection,
     TResult Function(String? message)? permissionDenied,
@@ -62,6 +70,13 @@ mixin _$Failure {
     required TResult Function(ConnectionFailure value) connection,
     required TResult Function(PermissionDeniedFailure value) permissionDenied,
     required TResult Function(UnhandledFailure value) unhandled,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ConnectionFailure value)? connection,
+    TResult Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult Function(UnhandledFailure value)? unhandled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -139,6 +154,7 @@ class _$ConnectionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ConnectionFailure implements ConnectionFailure {
   const _$ConnectionFailure({this.message});
 
@@ -153,14 +169,14 @@ class _$ConnectionFailure implements ConnectionFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ConnectionFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is ConnectionFailure &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -175,6 +191,16 @@ class _$ConnectionFailure implements ConnectionFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return connection(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? connection,
+    TResult Function(String? message)? permissionDenied,
+    TResult Function(String? message)? unhandled,
+  }) {
+    return connection?.call(message);
   }
 
   @override
@@ -203,6 +229,16 @@ class _$ConnectionFailure implements ConnectionFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ConnectionFailure value)? connection,
+    TResult Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult Function(UnhandledFailure value)? unhandled,
+  }) {
+    return connection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -220,7 +256,7 @@ abstract class ConnectionFailure implements Failure {
   const factory ConnectionFailure({String? message}) = _$ConnectionFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $ConnectionFailureCopyWith<ConnectionFailure> get copyWith =>
@@ -262,6 +298,7 @@ class _$PermissionDeniedFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   const _$PermissionDeniedFailure({this.message});
 
@@ -276,14 +313,14 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PermissionDeniedFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is PermissionDeniedFailure &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -299,6 +336,16 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return permissionDenied(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? connection,
+    TResult Function(String? message)? permissionDenied,
+    TResult Function(String? message)? unhandled,
+  }) {
+    return permissionDenied?.call(message);
   }
 
   @override
@@ -327,6 +374,16 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ConnectionFailure value)? connection,
+    TResult Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult Function(UnhandledFailure value)? unhandled,
+  }) {
+    return permissionDenied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -345,7 +402,7 @@ abstract class PermissionDeniedFailure implements Failure {
       _$PermissionDeniedFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $PermissionDeniedFailureCopyWith<PermissionDeniedFailure> get copyWith =>
@@ -386,6 +443,7 @@ class _$UnhandledFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UnhandledFailure implements UnhandledFailure {
   const _$UnhandledFailure({this.message});
 
@@ -400,14 +458,14 @@ class _$UnhandledFailure implements UnhandledFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UnhandledFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is UnhandledFailure &&
+            const DeepCollectionEquality().equals(other.message, message));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
 
   @JsonKey(ignore: true)
   @override
@@ -422,6 +480,16 @@ class _$UnhandledFailure implements UnhandledFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return unhandled(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String? message)? connection,
+    TResult Function(String? message)? permissionDenied,
+    TResult Function(String? message)? unhandled,
+  }) {
+    return unhandled?.call(message);
   }
 
   @override
@@ -450,6 +518,16 @@ class _$UnhandledFailure implements UnhandledFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ConnectionFailure value)? connection,
+    TResult Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult Function(UnhandledFailure value)? unhandled,
+  }) {
+    return unhandled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -467,7 +545,7 @@ abstract class UnhandledFailure implements Failure {
   const factory UnhandledFailure({String? message}) = _$UnhandledFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   $UnhandledFailureCopyWith<UnhandledFailure> get copyWith =>

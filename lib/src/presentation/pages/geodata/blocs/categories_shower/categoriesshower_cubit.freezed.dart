@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'categoriesshower_cubit.dart';
 
@@ -40,6 +41,11 @@ mixin _$CategoriesShowerState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<CategoryGetEntity> categories, int? selected)? state,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(List<CategoryGetEntity> categories, int? selected)? state,
     required TResult orElse(),
@@ -48,6 +54,11 @@ mixin _$CategoriesShowerState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_State value) state,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_State value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -135,13 +146,14 @@ class __$StateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_State implements _State {
   const _$_State({this.categories = const [], this.selected = null});
 
-  @JsonKey(defaultValue: const [])
+  @JsonKey()
   @override
   final List<CategoryGetEntity> categories;
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final int? selected;
 
@@ -153,20 +165,18 @@ class _$_State implements _State {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _State &&
-            (identical(other.categories, categories) ||
-                const DeepCollectionEquality()
-                    .equals(other.categories, categories)) &&
-            (identical(other.selected, selected) ||
-                const DeepCollectionEquality()
-                    .equals(other.selected, selected)));
+        (other.runtimeType == runtimeType &&
+            other is _State &&
+            const DeepCollectionEquality()
+                .equals(other.categories, categories) &&
+            const DeepCollectionEquality().equals(other.selected, selected));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(categories) ^
-      const DeepCollectionEquality().hash(selected);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(categories),
+      const DeepCollectionEquality().hash(selected));
 
   @JsonKey(ignore: true)
   @override
@@ -180,6 +190,14 @@ class _$_State implements _State {
         state,
   }) {
     return state(categories, selected);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(List<CategoryGetEntity> categories, int? selected)? state,
+  }) {
+    return state?.call(categories, selected);
   }
 
   @override
@@ -204,6 +222,14 @@ class _$_State implements _State {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_State value)? state,
+  }) {
+    return state?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_State value)? state,
     required TResult orElse(),
@@ -220,9 +246,9 @@ abstract class _State implements CategoriesShowerState {
       _$_State;
 
   @override
-  List<CategoryGetEntity> get categories => throw _privateConstructorUsedError;
+  List<CategoryGetEntity> get categories;
   @override
-  int? get selected => throw _privateConstructorUsedError;
+  int? get selected;
   @override
   @JsonKey(ignore: true)
   _$StateCopyWith<_State> get copyWith => throw _privateConstructorUsedError;

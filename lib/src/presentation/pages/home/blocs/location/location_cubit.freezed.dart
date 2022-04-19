@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'location_cubit.dart';
 
@@ -46,6 +47,13 @@ mixin _$LocationState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Failure? failureAtTrying)? disable,
+    TResult Function(LatLng location)? enable,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Failure? failureAtTrying)? disable,
@@ -58,6 +66,13 @@ mixin _$LocationState {
     required TResult Function(_LoadingLocation value) loading,
     required TResult Function(_LocationDisable value) disable,
     required TResult Function(_LocationEnable value) enable,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadingLocation value)? loading,
+    TResult Function(_LocationDisable value)? disable,
+    TResult Function(_LocationEnable value)? enable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +122,7 @@ class __$LoadingLocationCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_LoadingLocation implements _LoadingLocation {
   const _$_LoadingLocation();
 
@@ -117,7 +133,8 @@ class _$_LoadingLocation implements _LoadingLocation {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoadingLocation);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadingLocation);
   }
 
   @override
@@ -131,6 +148,16 @@ class _$_LoadingLocation implements _LoadingLocation {
     required TResult Function(LatLng location) enable,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Failure? failureAtTrying)? disable,
+    TResult Function(LatLng location)? enable,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -155,6 +182,16 @@ class _$_LoadingLocation implements _LoadingLocation {
     required TResult Function(_LocationEnable value) enable,
   }) {
     return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadingLocation value)? loading,
+    TResult Function(_LocationDisable value)? disable,
+    TResult Function(_LocationEnable value)? enable,
+  }) {
+    return loading?.call(this);
   }
 
   @override
@@ -222,6 +259,7 @@ class __$LocationDisableCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_LocationDisable implements _LocationDisable {
   const _$_LocationDisable([this.failureAtTrying]);
 
@@ -236,16 +274,15 @@ class _$_LocationDisable implements _LocationDisable {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LocationDisable &&
-            (identical(other.failureAtTrying, failureAtTrying) ||
-                const DeepCollectionEquality()
-                    .equals(other.failureAtTrying, failureAtTrying)));
+        (other.runtimeType == runtimeType &&
+            other is _LocationDisable &&
+            const DeepCollectionEquality()
+                .equals(other.failureAtTrying, failureAtTrying));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failureAtTrying);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failureAtTrying));
 
   @JsonKey(ignore: true)
   @override
@@ -260,6 +297,16 @@ class _$_LocationDisable implements _LocationDisable {
     required TResult Function(LatLng location) enable,
   }) {
     return disable(failureAtTrying);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Failure? failureAtTrying)? disable,
+    TResult Function(LatLng location)? enable,
+  }) {
+    return disable?.call(failureAtTrying);
   }
 
   @override
@@ -288,6 +335,16 @@ class _$_LocationDisable implements _LocationDisable {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadingLocation value)? loading,
+    TResult Function(_LocationDisable value)? disable,
+    TResult Function(_LocationEnable value)? enable,
+  }) {
+    return disable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadingLocation value)? loading,
     TResult Function(_LocationDisable value)? disable,
@@ -305,7 +362,7 @@ abstract class _LocationDisable implements LocationState {
   const factory _LocationDisable([Failure? failureAtTrying]) =
       _$_LocationDisable;
 
-  Failure? get failureAtTrying => throw _privateConstructorUsedError;
+  Failure? get failureAtTrying;
   @JsonKey(ignore: true)
   _$LocationDisableCopyWith<_LocationDisable> get copyWith =>
       throw _privateConstructorUsedError;
@@ -344,6 +401,7 @@ class __$LocationEnableCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_LocationEnable implements _LocationEnable {
   const _$_LocationEnable({required this.location});
 
@@ -358,15 +416,14 @@ class _$_LocationEnable implements _LocationEnable {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LocationEnable &&
-            (identical(other.location, location) ||
-                const DeepCollectionEquality()
-                    .equals(other.location, location)));
+        (other.runtimeType == runtimeType &&
+            other is _LocationEnable &&
+            const DeepCollectionEquality().equals(other.location, location));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(location);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(location));
 
   @JsonKey(ignore: true)
   @override
@@ -381,6 +438,16 @@ class _$_LocationEnable implements _LocationEnable {
     required TResult Function(LatLng location) enable,
   }) {
     return enable(location);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(Failure? failureAtTrying)? disable,
+    TResult Function(LatLng location)? enable,
+  }) {
+    return enable?.call(location);
   }
 
   @override
@@ -409,6 +476,16 @@ class _$_LocationEnable implements _LocationEnable {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadingLocation value)? loading,
+    TResult Function(_LocationDisable value)? disable,
+    TResult Function(_LocationEnable value)? enable,
+  }) {
+    return enable?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadingLocation value)? loading,
     TResult Function(_LocationDisable value)? disable,
@@ -425,7 +502,7 @@ class _$_LocationEnable implements _LocationEnable {
 abstract class _LocationEnable implements LocationState {
   const factory _LocationEnable({required LatLng location}) = _$_LocationEnable;
 
-  LatLng get location => throw _privateConstructorUsedError;
+  LatLng get location;
   @JsonKey(ignore: true)
   _$LocationEnableCopyWith<_LocationEnable> get copyWith =>
       throw _privateConstructorUsedError;

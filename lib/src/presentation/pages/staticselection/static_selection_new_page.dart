@@ -136,8 +136,8 @@ class _OptionsInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formBloc = context.read<StaticSelectionCreateFormBloc>();
-    return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-        ListFieldBlocState<TextFieldBloc>>(
+    return BlocBuilder<ListFieldBloc<TextFieldBloc, dynamic>,
+        ListFieldBlocState<TextFieldBloc, dynamic>>(
       bloc: formBloc.options,
       builder: (context, state) {
         return Column(

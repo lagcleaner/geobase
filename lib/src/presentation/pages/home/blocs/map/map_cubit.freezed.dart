@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'map_cubit.dart';
 
@@ -56,6 +57,17 @@ mixin _$MapState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            MapController mapController,
+            MapConfigurationEntity mapConfiguration,
+            MapModeEntity mapMode,
+            bool loadingConfigs,
+            Failure? failure)?
+        state,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             MapController mapController,
@@ -70,6 +82,11 @@ mixin _$MapState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_MapState value) state,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MapState value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -209,6 +226,7 @@ class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_MapState implements _MapState {
   const _$_MapState(
       {required this.mapController,
@@ -223,10 +241,10 @@ class _$_MapState implements _MapState {
   final MapConfigurationEntity mapConfiguration;
   @override
   final MapModeEntity mapMode;
-  @JsonKey(defaultValue: false)
+  @JsonKey()
   @override
   final bool loadingConfigs;
-  @JsonKey(defaultValue: null)
+  @JsonKey()
   @override
   final Failure? failure;
 
@@ -238,31 +256,26 @@ class _$_MapState implements _MapState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _MapState &&
-            (identical(other.mapController, mapController) ||
-                const DeepCollectionEquality()
-                    .equals(other.mapController, mapController)) &&
-            (identical(other.mapConfiguration, mapConfiguration) ||
-                const DeepCollectionEquality()
-                    .equals(other.mapConfiguration, mapConfiguration)) &&
-            (identical(other.mapMode, mapMode) ||
-                const DeepCollectionEquality()
-                    .equals(other.mapMode, mapMode)) &&
-            (identical(other.loadingConfigs, loadingConfigs) ||
-                const DeepCollectionEquality()
-                    .equals(other.loadingConfigs, loadingConfigs)) &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _MapState &&
+            const DeepCollectionEquality()
+                .equals(other.mapController, mapController) &&
+            const DeepCollectionEquality()
+                .equals(other.mapConfiguration, mapConfiguration) &&
+            const DeepCollectionEquality().equals(other.mapMode, mapMode) &&
+            const DeepCollectionEquality()
+                .equals(other.loadingConfigs, loadingConfigs) &&
+            const DeepCollectionEquality().equals(other.failure, failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(mapController) ^
-      const DeepCollectionEquality().hash(mapConfiguration) ^
-      const DeepCollectionEquality().hash(mapMode) ^
-      const DeepCollectionEquality().hash(loadingConfigs) ^
-      const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(mapController),
+      const DeepCollectionEquality().hash(mapConfiguration),
+      const DeepCollectionEquality().hash(mapMode),
+      const DeepCollectionEquality().hash(loadingConfigs),
+      const DeepCollectionEquality().hash(failure));
 
   @JsonKey(ignore: true)
   @override
@@ -281,6 +294,21 @@ class _$_MapState implements _MapState {
         state,
   }) {
     return state(
+        mapController, mapConfiguration, mapMode, loadingConfigs, failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(
+            MapController mapController,
+            MapConfigurationEntity mapConfiguration,
+            MapModeEntity mapMode,
+            bool loadingConfigs,
+            Failure? failure)?
+        state,
+  }) {
+    return state?.call(
         mapController, mapConfiguration, mapMode, loadingConfigs, failure);
   }
 
@@ -313,6 +341,14 @@ class _$_MapState implements _MapState {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MapState value)? state,
+  }) {
+    return state?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MapState value)? state,
     required TResult orElse(),
@@ -333,16 +369,15 @@ abstract class _MapState implements MapState {
       Failure? failure}) = _$_MapState;
 
   @override
-  MapController get mapController => throw _privateConstructorUsedError;
+  MapController get mapController;
   @override
-  MapConfigurationEntity get mapConfiguration =>
-      throw _privateConstructorUsedError;
+  MapConfigurationEntity get mapConfiguration;
   @override
-  MapModeEntity get mapMode => throw _privateConstructorUsedError;
+  MapModeEntity get mapMode;
   @override
-  bool get loadingConfigs => throw _privateConstructorUsedError;
+  bool get loadingConfigs;
   @override
-  Failure? get failure => throw _privateConstructorUsedError;
+  Failure? get failure;
   @override
   @JsonKey(ignore: true)
   _$MapStateCopyWith<_MapState> get copyWith =>

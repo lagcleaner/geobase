@@ -15,6 +15,7 @@ extension ReflectableExtension on Reflectable {
         return cm;
       }
     }
+    return null;
   }
 
   MethodMirror? getStaticMethodWhere(
@@ -32,5 +33,6 @@ extension ReflectableExtension on Reflectable {
         return mm.value;
       }
     }
+    return null;
   }
 }

@@ -140,7 +140,7 @@ class _SourceSelector extends StatelessWidget {
       decoration: TextFieldDecorations.decoration(
         labelText: 'Protocolo',
       ),
-      itemBuilder: (context, value) => value.name,
+      itemBuilder: (context, value) => FieldItem(child: Text(value.name)),
     );
   }
 }
@@ -202,14 +202,14 @@ class _WMSLayersInput extends StatelessWidget {
     return CanShowFieldBlocBuilder(
       fieldBloc: formBloc.wmsLayers,
       builder: (context, show) {
-        return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-            ListFieldBlocState<TextFieldBloc>>(
+        return BlocBuilder<ListFieldBloc<TextFieldBloc, dynamic>,
+            ListFieldBlocState<TextFieldBloc, dynamic>>(
           bloc: formBloc.wmsLayers,
           builder: (context, state) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (show ?? false) ...[
+                if (show) ...[
                   const Divider(),
                   Text(
                     'Capas del mapa*',
@@ -248,14 +248,14 @@ class _SubdomainsInput extends StatelessWidget {
     return CanShowFieldBlocBuilder(
       fieldBloc: formBloc.subdomains,
       builder: (context, show) {
-        return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-            ListFieldBlocState<TextFieldBloc>>(
+        return BlocBuilder<ListFieldBloc<TextFieldBloc, dynamic>,
+            ListFieldBlocState<TextFieldBloc, dynamic>>(
           bloc: formBloc.subdomains,
           builder: (context, state) {
             return Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (show ?? false) ...[
+                if (show) ...[
                   const Divider(),
                   Text(
                     'Subdominios*',

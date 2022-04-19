@@ -16,6 +16,7 @@ extension _BeamStateParams on BeamState {
     final lat = double.tryParse(queryParameters[LAT_PARAM] ?? '');
     final lng = double.tryParse(queryParameters[LNG_PARAM] ?? '');
     if (lat != null && lng != null) return LatLng(lat, lng);
+    return null;
   }
 
   int? get dataId {
