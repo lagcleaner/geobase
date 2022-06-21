@@ -111,6 +111,7 @@ class CategoriesSQLiteProvider implements ICategoriesProvider {
         .where("name LIKE '%$nameSubstring%'")
         //also: instr(column, 'cats') > 0
         .toList();
+    //FIXME: REMOVE THESE LINES
     final r = await ColumnDBModel().select().toList();
     log(r.toString());
     final result = <CategoryGetModel>[];
