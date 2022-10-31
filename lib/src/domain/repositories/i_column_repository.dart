@@ -14,7 +14,7 @@ abstract class IColumnRepository {
   );
 
   Future<Either<Failure, int>> editColumn(
-    ColumnPutEntity newColumn,
+    ColumnPutEntity column,
   );
 
   Future<Either<Failure, Unit>> removeColumn(int columnId);

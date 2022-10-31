@@ -44,15 +44,15 @@ class StaticSelectionFieldInputWidget extends FieldInputWidget {
 
 List<String> getOptions(dynamic jsonList) {
   List<String>? options;
-  dynamic _jsonList = jsonList;
+  dynamic jsonListMutable = jsonList;
 
-  if (_jsonList == null) return [];
-  if (_jsonList is String?) {
-    _jsonList = json.decode(_jsonList!);
-    if (_jsonList == null) return [];
+  if (jsonListMutable == null) return [];
+  if (jsonListMutable is String?) {
+    jsonListMutable = json.decode(jsonListMutable!);
+    if (jsonListMutable == null) return [];
   }
-  if (_jsonList is List?) {
-    options = _jsonList!.map((e) => e as String).toList();
+  if (jsonListMutable is List?) {
+    options = jsonListMutable!.map((e) => e as String).toList();
   }
   return options ?? [];
 }

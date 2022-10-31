@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'location_cubit.dart';
@@ -11,31 +12,7 @@ part of 'location_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$LocationStateTearOff {
-  const _$LocationStateTearOff();
-
-  _LoadingLocation loading() {
-    return const _LoadingLocation();
-  }
-
-  _LocationDisable disable([Failure? failureAtTrying]) {
-    return _LocationDisable(
-      failureAtTrying,
-    );
-  }
-
-  _LocationEnable enable({required LatLng location}) {
-    return _LocationEnable(
-      location: location,
-    );
-  }
-}
-
-/// @nodoc
-const $LocationState = _$LocationStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$LocationState {
@@ -48,9 +25,9 @@ mixin _$LocationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Failure? failureAtTrying)? disable,
-    TResult Function(LatLng location)? enable,
+    TResult? Function()? loading,
+    TResult? Function(Failure? failureAtTrying)? disable,
+    TResult? Function(LatLng location)? enable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,9 +47,9 @@ mixin _$LocationState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadingLocation value)? loading,
-    TResult Function(_LocationDisable value)? disable,
-    TResult Function(_LocationEnable value)? enable,
+    TResult? Function(_LoadingLocation value)? loading,
+    TResult? Function(_LocationDisable value)? disable,
+    TResult? Function(_LocationEnable value)? enable,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -89,36 +66,34 @@ mixin _$LocationState {
 abstract class $LocationStateCopyWith<$Res> {
   factory $LocationStateCopyWith(
           LocationState value, $Res Function(LocationState) then) =
-      _$LocationStateCopyWithImpl<$Res>;
+      _$LocationStateCopyWithImpl<$Res, LocationState>;
 }
 
 /// @nodoc
-class _$LocationStateCopyWithImpl<$Res>
+class _$LocationStateCopyWithImpl<$Res, $Val extends LocationState>
     implements $LocationStateCopyWith<$Res> {
   _$LocationStateCopyWithImpl(this._value, this._then);
 
-  final LocationState _value;
   // ignore: unused_field
-  final $Res Function(LocationState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$LoadingLocationCopyWith<$Res> {
-  factory _$LoadingLocationCopyWith(
-          _LoadingLocation value, $Res Function(_LoadingLocation) then) =
-      __$LoadingLocationCopyWithImpl<$Res>;
+abstract class _$$_LoadingLocationCopyWith<$Res> {
+  factory _$$_LoadingLocationCopyWith(
+          _$_LoadingLocation value, $Res Function(_$_LoadingLocation) then) =
+      __$$_LoadingLocationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingLocationCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res>
-    implements _$LoadingLocationCopyWith<$Res> {
-  __$LoadingLocationCopyWithImpl(
-      _LoadingLocation _value, $Res Function(_LoadingLocation) _then)
-      : super(_value, (v) => _then(v as _LoadingLocation));
-
-  @override
-  _LoadingLocation get _value => super._value as _LoadingLocation;
+class __$$_LoadingLocationCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_LoadingLocation>
+    implements _$$_LoadingLocationCopyWith<$Res> {
+  __$$_LoadingLocationCopyWithImpl(
+      _$_LoadingLocation _value, $Res Function(_$_LoadingLocation) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -134,7 +109,7 @@ class _$_LoadingLocation implements _LoadingLocation {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _LoadingLocation);
+        (other.runtimeType == runtimeType && other is _$_LoadingLocation);
   }
 
   @override
@@ -153,9 +128,9 @@ class _$_LoadingLocation implements _LoadingLocation {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Failure? failureAtTrying)? disable,
-    TResult Function(LatLng location)? enable,
+    TResult? Function()? loading,
+    TResult? Function(Failure? failureAtTrying)? disable,
+    TResult? Function(LatLng location)? enable,
   }) {
     return loading?.call();
   }
@@ -187,9 +162,9 @@ class _$_LoadingLocation implements _LoadingLocation {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadingLocation value)? loading,
-    TResult Function(_LocationDisable value)? disable,
-    TResult Function(_LocationEnable value)? enable,
+    TResult? Function(_LoadingLocation value)? loading,
+    TResult? Function(_LocationDisable value)? disable,
+    TResult? Function(_LocationEnable value)? enable,
   }) {
     return loading?.call(this);
   }
@@ -214,32 +189,31 @@ abstract class _LoadingLocation implements LocationState {
 }
 
 /// @nodoc
-abstract class _$LocationDisableCopyWith<$Res> {
-  factory _$LocationDisableCopyWith(
-          _LocationDisable value, $Res Function(_LocationDisable) then) =
-      __$LocationDisableCopyWithImpl<$Res>;
+abstract class _$$_LocationDisableCopyWith<$Res> {
+  factory _$$_LocationDisableCopyWith(
+          _$_LocationDisable value, $Res Function(_$_LocationDisable) then) =
+      __$$_LocationDisableCopyWithImpl<$Res>;
+  @useResult
   $Res call({Failure? failureAtTrying});
 
   $FailureCopyWith<$Res>? get failureAtTrying;
 }
 
 /// @nodoc
-class __$LocationDisableCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res>
-    implements _$LocationDisableCopyWith<$Res> {
-  __$LocationDisableCopyWithImpl(
-      _LocationDisable _value, $Res Function(_LocationDisable) _then)
-      : super(_value, (v) => _then(v as _LocationDisable));
+class __$$_LocationDisableCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_LocationDisable>
+    implements _$$_LocationDisableCopyWith<$Res> {
+  __$$_LocationDisableCopyWithImpl(
+      _$_LocationDisable _value, $Res Function(_$_LocationDisable) _then)
+      : super(_value, _then);
 
-  @override
-  _LocationDisable get _value => super._value as _LocationDisable;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? failureAtTrying = freezed,
   }) {
-    return _then(_LocationDisable(
-      failureAtTrying == freezed
+    return _then(_$_LocationDisable(
+      freezed == failureAtTrying
           ? _value.failureAtTrying
           : failureAtTrying // ignore: cast_nullable_to_non_nullable
               as Failure?,
@@ -247,6 +221,7 @@ class __$LocationDisableCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FailureCopyWith<$Res>? get failureAtTrying {
     if (_value.failureAtTrying == null) {
       return null;
@@ -275,19 +250,19 @@ class _$_LocationDisable implements _LocationDisable {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationDisable &&
-            const DeepCollectionEquality()
-                .equals(other.failureAtTrying, failureAtTrying));
+            other is _$_LocationDisable &&
+            (identical(other.failureAtTrying, failureAtTrying) ||
+                other.failureAtTrying == failureAtTrying));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(failureAtTrying));
+  int get hashCode => Object.hash(runtimeType, failureAtTrying);
 
   @JsonKey(ignore: true)
   @override
-  _$LocationDisableCopyWith<_LocationDisable> get copyWith =>
-      __$LocationDisableCopyWithImpl<_LocationDisable>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_LocationDisableCopyWith<_$_LocationDisable> get copyWith =>
+      __$$_LocationDisableCopyWithImpl<_$_LocationDisable>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -302,9 +277,9 @@ class _$_LocationDisable implements _LocationDisable {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Failure? failureAtTrying)? disable,
-    TResult Function(LatLng location)? enable,
+    TResult? Function()? loading,
+    TResult? Function(Failure? failureAtTrying)? disable,
+    TResult? Function(LatLng location)? enable,
   }) {
     return disable?.call(failureAtTrying);
   }
@@ -336,9 +311,9 @@ class _$_LocationDisable implements _LocationDisable {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadingLocation value)? loading,
-    TResult Function(_LocationDisable value)? disable,
-    TResult Function(_LocationEnable value)? enable,
+    TResult? Function(_LoadingLocation value)? loading,
+    TResult? Function(_LocationDisable value)? disable,
+    TResult? Function(_LocationEnable value)? enable,
   }) {
     return disable?.call(this);
   }
@@ -359,40 +334,39 @@ class _$_LocationDisable implements _LocationDisable {
 }
 
 abstract class _LocationDisable implements LocationState {
-  const factory _LocationDisable([Failure? failureAtTrying]) =
+  const factory _LocationDisable([final Failure? failureAtTrying]) =
       _$_LocationDisable;
 
   Failure? get failureAtTrying;
   @JsonKey(ignore: true)
-  _$LocationDisableCopyWith<_LocationDisable> get copyWith =>
+  _$$_LocationDisableCopyWith<_$_LocationDisable> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$LocationEnableCopyWith<$Res> {
-  factory _$LocationEnableCopyWith(
-          _LocationEnable value, $Res Function(_LocationEnable) then) =
-      __$LocationEnableCopyWithImpl<$Res>;
+abstract class _$$_LocationEnableCopyWith<$Res> {
+  factory _$$_LocationEnableCopyWith(
+          _$_LocationEnable value, $Res Function(_$_LocationEnable) then) =
+      __$$_LocationEnableCopyWithImpl<$Res>;
+  @useResult
   $Res call({LatLng location});
 }
 
 /// @nodoc
-class __$LocationEnableCopyWithImpl<$Res>
-    extends _$LocationStateCopyWithImpl<$Res>
-    implements _$LocationEnableCopyWith<$Res> {
-  __$LocationEnableCopyWithImpl(
-      _LocationEnable _value, $Res Function(_LocationEnable) _then)
-      : super(_value, (v) => _then(v as _LocationEnable));
+class __$$_LocationEnableCopyWithImpl<$Res>
+    extends _$LocationStateCopyWithImpl<$Res, _$_LocationEnable>
+    implements _$$_LocationEnableCopyWith<$Res> {
+  __$$_LocationEnableCopyWithImpl(
+      _$_LocationEnable _value, $Res Function(_$_LocationEnable) _then)
+      : super(_value, _then);
 
-  @override
-  _LocationEnable get _value => super._value as _LocationEnable;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? location = freezed,
+    Object? location = null,
   }) {
-    return _then(_LocationEnable(
-      location: location == freezed
+    return _then(_$_LocationEnable(
+      location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as LatLng,
@@ -417,18 +391,19 @@ class _$_LocationEnable implements _LocationEnable {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LocationEnable &&
-            const DeepCollectionEquality().equals(other.location, location));
+            other is _$_LocationEnable &&
+            (identical(other.location, location) ||
+                other.location == location));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(location));
+  int get hashCode => Object.hash(runtimeType, location);
 
   @JsonKey(ignore: true)
   @override
-  _$LocationEnableCopyWith<_LocationEnable> get copyWith =>
-      __$LocationEnableCopyWithImpl<_LocationEnable>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_LocationEnableCopyWith<_$_LocationEnable> get copyWith =>
+      __$$_LocationEnableCopyWithImpl<_$_LocationEnable>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -443,9 +418,9 @@ class _$_LocationEnable implements _LocationEnable {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(Failure? failureAtTrying)? disable,
-    TResult Function(LatLng location)? enable,
+    TResult? Function()? loading,
+    TResult? Function(Failure? failureAtTrying)? disable,
+    TResult? Function(LatLng location)? enable,
   }) {
     return enable?.call(location);
   }
@@ -477,9 +452,9 @@ class _$_LocationEnable implements _LocationEnable {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_LoadingLocation value)? loading,
-    TResult Function(_LocationDisable value)? disable,
-    TResult Function(_LocationEnable value)? enable,
+    TResult? Function(_LoadingLocation value)? loading,
+    TResult? Function(_LocationDisable value)? disable,
+    TResult? Function(_LocationEnable value)? enable,
   }) {
     return enable?.call(this);
   }
@@ -500,10 +475,11 @@ class _$_LocationEnable implements _LocationEnable {
 }
 
 abstract class _LocationEnable implements LocationState {
-  const factory _LocationEnable({required LatLng location}) = _$_LocationEnable;
+  const factory _LocationEnable({required final LatLng location}) =
+      _$_LocationEnable;
 
   LatLng get location;
   @JsonKey(ignore: true)
-  _$LocationEnableCopyWith<_LocationEnable> get copyWith =>
+  _$$_LocationEnableCopyWith<_$_LocationEnable> get copyWith =>
       throw _privateConstructorUsedError;
 }

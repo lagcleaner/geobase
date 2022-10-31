@@ -14,7 +14,7 @@ abstract class IFieldValueRepository {
   // );
 
   Future<Either<Failure, int>> editFieldValue(
-    FieldValuePutEntity newFieldValue,
+    FieldValuePutEntity fieldValue,
   );
 
   // Future<Either<Failure, Unit>> removeFieldValue(int fieldValueId);

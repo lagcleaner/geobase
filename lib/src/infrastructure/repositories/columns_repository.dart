@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/domain/repositories/i_column_repository.dart';

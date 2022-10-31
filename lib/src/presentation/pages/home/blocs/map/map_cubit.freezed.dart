@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'map_cubit.dart';
@@ -11,30 +12,7 @@ part of 'map_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MapStateTearOff {
-  const _$MapStateTearOff();
-
-  _MapState state(
-      {required MapController mapController,
-      required MapConfigurationEntity mapConfiguration,
-      required MapModeEntity mapMode,
-      bool loadingConfigs = false,
-      Failure? failure = null}) {
-    return _MapState(
-      mapController: mapController,
-      mapConfiguration: mapConfiguration,
-      mapMode: mapMode,
-      loadingConfigs: loadingConfigs,
-      failure: failure,
-    );
-  }
-}
-
-/// @nodoc
-const $MapState = _$MapStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MapState {
@@ -44,7 +22,6 @@ mixin _$MapState {
   MapModeEntity get mapMode => throw _privateConstructorUsedError;
   bool get loadingConfigs => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -58,7 +35,7 @@ mixin _$MapState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             MapController mapController,
             MapConfigurationEntity mapConfiguration,
             MapModeEntity mapMode,
@@ -86,7 +63,7 @@ mixin _$MapState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MapState value)? state,
+    TResult? Function(_MapState value)? state,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,7 +81,8 @@ mixin _$MapState {
 /// @nodoc
 abstract class $MapStateCopyWith<$Res> {
   factory $MapStateCopyWith(MapState value, $Res Function(MapState) then) =
-      _$MapStateCopyWithImpl<$Res>;
+      _$MapStateCopyWithImpl<$Res, MapState>;
+  @useResult
   $Res call(
       {MapController mapController,
       MapConfigurationEntity mapConfiguration,
@@ -116,62 +94,68 @@ abstract class $MapStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MapStateCopyWithImpl<$Res> implements $MapStateCopyWith<$Res> {
+class _$MapStateCopyWithImpl<$Res, $Val extends MapState>
+    implements $MapStateCopyWith<$Res> {
   _$MapStateCopyWithImpl(this._value, this._then);
 
-  final MapState _value;
   // ignore: unused_field
-  final $Res Function(MapState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mapController = freezed,
-    Object? mapConfiguration = freezed,
-    Object? mapMode = freezed,
-    Object? loadingConfigs = freezed,
+    Object? mapController = null,
+    Object? mapConfiguration = null,
+    Object? mapMode = null,
+    Object? loadingConfigs = null,
     Object? failure = freezed,
   }) {
     return _then(_value.copyWith(
-      mapController: mapController == freezed
+      mapController: null == mapController
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
               as MapController,
-      mapConfiguration: mapConfiguration == freezed
+      mapConfiguration: null == mapConfiguration
           ? _value.mapConfiguration
           : mapConfiguration // ignore: cast_nullable_to_non_nullable
               as MapConfigurationEntity,
-      mapMode: mapMode == freezed
+      mapMode: null == mapMode
           ? _value.mapMode
           : mapMode // ignore: cast_nullable_to_non_nullable
               as MapModeEntity,
-      loadingConfigs: loadingConfigs == freezed
+      loadingConfigs: null == loadingConfigs
           ? _value.loadingConfigs
           : loadingConfigs // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FailureCopyWith<$Res>? get failure {
     if (_value.failure == null) {
       return null;
     }
 
     return $FailureCopyWith<$Res>(_value.failure!, (value) {
-      return _then(_value.copyWith(failure: value));
+      return _then(_value.copyWith(failure: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$MapStateCopyWith<$Res> implements $MapStateCopyWith<$Res> {
-  factory _$MapStateCopyWith(_MapState value, $Res Function(_MapState) then) =
-      __$MapStateCopyWithImpl<$Res>;
+abstract class _$$_MapStateCopyWith<$Res> implements $MapStateCopyWith<$Res> {
+  factory _$$_MapStateCopyWith(
+          _$_MapState value, $Res Function(_$_MapState) then) =
+      __$$_MapStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {MapController mapController,
       MapConfigurationEntity mapConfiguration,
@@ -184,40 +168,40 @@ abstract class _$MapStateCopyWith<$Res> implements $MapStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MapStateCopyWithImpl<$Res> extends _$MapStateCopyWithImpl<$Res>
-    implements _$MapStateCopyWith<$Res> {
-  __$MapStateCopyWithImpl(_MapState _value, $Res Function(_MapState) _then)
-      : super(_value, (v) => _then(v as _MapState));
+class __$$_MapStateCopyWithImpl<$Res>
+    extends _$MapStateCopyWithImpl<$Res, _$_MapState>
+    implements _$$_MapStateCopyWith<$Res> {
+  __$$_MapStateCopyWithImpl(
+      _$_MapState _value, $Res Function(_$_MapState) _then)
+      : super(_value, _then);
 
-  @override
-  _MapState get _value => super._value as _MapState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? mapController = freezed,
-    Object? mapConfiguration = freezed,
-    Object? mapMode = freezed,
-    Object? loadingConfigs = freezed,
+    Object? mapController = null,
+    Object? mapConfiguration = null,
+    Object? mapMode = null,
+    Object? loadingConfigs = null,
     Object? failure = freezed,
   }) {
-    return _then(_MapState(
-      mapController: mapController == freezed
+    return _then(_$_MapState(
+      mapController: null == mapController
           ? _value.mapController
           : mapController // ignore: cast_nullable_to_non_nullable
               as MapController,
-      mapConfiguration: mapConfiguration == freezed
+      mapConfiguration: null == mapConfiguration
           ? _value.mapConfiguration
           : mapConfiguration // ignore: cast_nullable_to_non_nullable
               as MapConfigurationEntity,
-      mapMode: mapMode == freezed
+      mapMode: null == mapMode
           ? _value.mapMode
           : mapMode // ignore: cast_nullable_to_non_nullable
               as MapModeEntity,
-      loadingConfigs: loadingConfigs == freezed
+      loadingConfigs: null == loadingConfigs
           ? _value.loadingConfigs
           : loadingConfigs // ignore: cast_nullable_to_non_nullable
               as bool,
-      failure: failure == freezed
+      failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure?,
@@ -241,11 +225,11 @@ class _$_MapState implements _MapState {
   final MapConfigurationEntity mapConfiguration;
   @override
   final MapModeEntity mapMode;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool loadingConfigs;
-  @JsonKey()
   @override
+  @JsonKey()
   final Failure? failure;
 
   @override
@@ -257,30 +241,26 @@ class _$_MapState implements _MapState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MapState &&
-            const DeepCollectionEquality()
-                .equals(other.mapController, mapController) &&
-            const DeepCollectionEquality()
-                .equals(other.mapConfiguration, mapConfiguration) &&
-            const DeepCollectionEquality().equals(other.mapMode, mapMode) &&
-            const DeepCollectionEquality()
-                .equals(other.loadingConfigs, loadingConfigs) &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+            other is _$_MapState &&
+            (identical(other.mapController, mapController) ||
+                other.mapController == mapController) &&
+            (identical(other.mapConfiguration, mapConfiguration) ||
+                other.mapConfiguration == mapConfiguration) &&
+            (identical(other.mapMode, mapMode) || other.mapMode == mapMode) &&
+            (identical(other.loadingConfigs, loadingConfigs) ||
+                other.loadingConfigs == loadingConfigs) &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(mapController),
-      const DeepCollectionEquality().hash(mapConfiguration),
-      const DeepCollectionEquality().hash(mapMode),
-      const DeepCollectionEquality().hash(loadingConfigs),
-      const DeepCollectionEquality().hash(failure));
+  int get hashCode => Object.hash(runtimeType, mapController, mapConfiguration,
+      mapMode, loadingConfigs, failure);
 
   @JsonKey(ignore: true)
   @override
-  _$MapStateCopyWith<_MapState> get copyWith =>
-      __$MapStateCopyWithImpl<_MapState>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_MapStateCopyWith<_$_MapState> get copyWith =>
+      __$$_MapStateCopyWithImpl<_$_MapState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -300,7 +280,7 @@ class _$_MapState implements _MapState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(
+    TResult? Function(
             MapController mapController,
             MapConfigurationEntity mapConfiguration,
             MapModeEntity mapMode,
@@ -342,7 +322,7 @@ class _$_MapState implements _MapState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_MapState value)? state,
+    TResult? Function(_MapState value)? state,
   }) {
     return state?.call(this);
   }
@@ -362,11 +342,11 @@ class _$_MapState implements _MapState {
 
 abstract class _MapState implements MapState {
   const factory _MapState(
-      {required MapController mapController,
-      required MapConfigurationEntity mapConfiguration,
-      required MapModeEntity mapMode,
-      bool loadingConfigs,
-      Failure? failure}) = _$_MapState;
+      {required final MapController mapController,
+      required final MapConfigurationEntity mapConfiguration,
+      required final MapModeEntity mapMode,
+      final bool loadingConfigs,
+      final Failure? failure}) = _$_MapState;
 
   @override
   MapController get mapController;
@@ -380,6 +360,6 @@ abstract class _MapState implements MapState {
   Failure? get failure;
   @override
   @JsonKey(ignore: true)
-  _$MapStateCopyWith<_MapState> get copyWith =>
+  _$$_MapStateCopyWith<_$_MapState> get copyWith =>
       throw _privateConstructorUsedError;
 }

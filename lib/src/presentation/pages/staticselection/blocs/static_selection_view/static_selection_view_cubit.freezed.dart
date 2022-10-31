@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'static_selection_view_cubit.dart';
@@ -11,32 +12,7 @@ part of 'static_selection_view_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$StaticSelectionViewStateTearOff {
-  const _$StaticSelectionViewStateTearOff();
-
-  _FetchInProgress fetchInProgress() {
-    return const _FetchInProgress();
-  }
-
-  _FetchSuccess fetchSuccess(
-      {required FieldTypeStaticSelectionGetEntity staticSelection}) {
-    return _FetchSuccess(
-      staticSelection: staticSelection,
-    );
-  }
-
-  _FetchFailure fetchFailure({required String error}) {
-    return _FetchFailure(
-      error: error,
-    );
-  }
-}
-
-/// @nodoc
-const $StaticSelectionViewState = _$StaticSelectionViewStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$StaticSelectionViewState {
@@ -50,10 +26,10 @@ mixin _$StaticSelectionViewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchInProgress,
-    TResult Function(FieldTypeStaticSelectionGetEntity staticSelection)?
+    TResult? Function()? fetchInProgress,
+    TResult? Function(FieldTypeStaticSelectionGetEntity staticSelection)?
         fetchSuccess,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function(String error)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,9 +50,9 @@ mixin _$StaticSelectionViewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -93,36 +69,35 @@ mixin _$StaticSelectionViewState {
 abstract class $StaticSelectionViewStateCopyWith<$Res> {
   factory $StaticSelectionViewStateCopyWith(StaticSelectionViewState value,
           $Res Function(StaticSelectionViewState) then) =
-      _$StaticSelectionViewStateCopyWithImpl<$Res>;
+      _$StaticSelectionViewStateCopyWithImpl<$Res, StaticSelectionViewState>;
 }
 
 /// @nodoc
-class _$StaticSelectionViewStateCopyWithImpl<$Res>
+class _$StaticSelectionViewStateCopyWithImpl<$Res,
+        $Val extends StaticSelectionViewState>
     implements $StaticSelectionViewStateCopyWith<$Res> {
   _$StaticSelectionViewStateCopyWithImpl(this._value, this._then);
 
-  final StaticSelectionViewState _value;
   // ignore: unused_field
-  final $Res Function(StaticSelectionViewState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$FetchInProgressCopyWith<$Res> {
-  factory _$FetchInProgressCopyWith(
-          _FetchInProgress value, $Res Function(_FetchInProgress) then) =
-      __$FetchInProgressCopyWithImpl<$Res>;
+abstract class _$$_FetchInProgressCopyWith<$Res> {
+  factory _$$_FetchInProgressCopyWith(
+          _$_FetchInProgress value, $Res Function(_$_FetchInProgress) then) =
+      __$$_FetchInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchInProgressCopyWithImpl<$Res>
-    extends _$StaticSelectionViewStateCopyWithImpl<$Res>
-    implements _$FetchInProgressCopyWith<$Res> {
-  __$FetchInProgressCopyWithImpl(
-      _FetchInProgress _value, $Res Function(_FetchInProgress) _then)
-      : super(_value, (v) => _then(v as _FetchInProgress));
-
-  @override
-  _FetchInProgress get _value => super._value as _FetchInProgress;
+class __$$_FetchInProgressCopyWithImpl<$Res>
+    extends _$StaticSelectionViewStateCopyWithImpl<$Res, _$_FetchInProgress>
+    implements _$$_FetchInProgressCopyWith<$Res> {
+  __$$_FetchInProgressCopyWithImpl(
+      _$_FetchInProgress _value, $Res Function(_$_FetchInProgress) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -138,7 +113,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FetchInProgress);
+        (other.runtimeType == runtimeType && other is _$_FetchInProgress);
   }
 
   @override
@@ -158,10 +133,10 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchInProgress,
-    TResult Function(FieldTypeStaticSelectionGetEntity staticSelection)?
+    TResult? Function()? fetchInProgress,
+    TResult? Function(FieldTypeStaticSelectionGetEntity staticSelection)?
         fetchSuccess,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchInProgress?.call();
   }
@@ -194,9 +169,9 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchInProgress?.call(this);
   }
@@ -221,30 +196,29 @@ abstract class _FetchInProgress implements StaticSelectionViewState {
 }
 
 /// @nodoc
-abstract class _$FetchSuccessCopyWith<$Res> {
-  factory _$FetchSuccessCopyWith(
-          _FetchSuccess value, $Res Function(_FetchSuccess) then) =
-      __$FetchSuccessCopyWithImpl<$Res>;
+abstract class _$$_FetchSuccessCopyWith<$Res> {
+  factory _$$_FetchSuccessCopyWith(
+          _$_FetchSuccess value, $Res Function(_$_FetchSuccess) then) =
+      __$$_FetchSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({FieldTypeStaticSelectionGetEntity staticSelection});
 }
 
 /// @nodoc
-class __$FetchSuccessCopyWithImpl<$Res>
-    extends _$StaticSelectionViewStateCopyWithImpl<$Res>
-    implements _$FetchSuccessCopyWith<$Res> {
-  __$FetchSuccessCopyWithImpl(
-      _FetchSuccess _value, $Res Function(_FetchSuccess) _then)
-      : super(_value, (v) => _then(v as _FetchSuccess));
+class __$$_FetchSuccessCopyWithImpl<$Res>
+    extends _$StaticSelectionViewStateCopyWithImpl<$Res, _$_FetchSuccess>
+    implements _$$_FetchSuccessCopyWith<$Res> {
+  __$$_FetchSuccessCopyWithImpl(
+      _$_FetchSuccess _value, $Res Function(_$_FetchSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchSuccess get _value => super._value as _FetchSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? staticSelection = freezed,
+    Object? staticSelection = null,
   }) {
-    return _then(_FetchSuccess(
-      staticSelection: staticSelection == freezed
+    return _then(_$_FetchSuccess(
+      staticSelection: null == staticSelection
           ? _value.staticSelection
           : staticSelection // ignore: cast_nullable_to_non_nullable
               as FieldTypeStaticSelectionGetEntity,
@@ -269,19 +243,19 @@ class _$_FetchSuccess implements _FetchSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchSuccess &&
-            const DeepCollectionEquality()
-                .equals(other.staticSelection, staticSelection));
+            other is _$_FetchSuccess &&
+            (identical(other.staticSelection, staticSelection) ||
+                other.staticSelection == staticSelection));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(staticSelection));
+  int get hashCode => Object.hash(runtimeType, staticSelection);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
-      __$FetchSuccessCopyWithImpl<_FetchSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
+      __$$_FetchSuccessCopyWithImpl<_$_FetchSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -297,10 +271,10 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchInProgress,
-    TResult Function(FieldTypeStaticSelectionGetEntity staticSelection)?
+    TResult? Function()? fetchInProgress,
+    TResult? Function(FieldTypeStaticSelectionGetEntity staticSelection)?
         fetchSuccess,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchSuccess?.call(staticSelection);
   }
@@ -333,9 +307,9 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchSuccess?.call(this);
   }
@@ -357,40 +331,39 @@ class _$_FetchSuccess implements _FetchSuccess {
 
 abstract class _FetchSuccess implements StaticSelectionViewState {
   const factory _FetchSuccess(
-          {required FieldTypeStaticSelectionGetEntity staticSelection}) =
+          {required final FieldTypeStaticSelectionGetEntity staticSelection}) =
       _$_FetchSuccess;
 
   FieldTypeStaticSelectionGetEntity get staticSelection;
   @JsonKey(ignore: true)
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FetchFailureCopyWith<$Res> {
-  factory _$FetchFailureCopyWith(
-          _FetchFailure value, $Res Function(_FetchFailure) then) =
-      __$FetchFailureCopyWithImpl<$Res>;
+abstract class _$$_FetchFailureCopyWith<$Res> {
+  factory _$$_FetchFailureCopyWith(
+          _$_FetchFailure value, $Res Function(_$_FetchFailure) then) =
+      __$$_FetchFailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$FetchFailureCopyWithImpl<$Res>
-    extends _$StaticSelectionViewStateCopyWithImpl<$Res>
-    implements _$FetchFailureCopyWith<$Res> {
-  __$FetchFailureCopyWithImpl(
-      _FetchFailure _value, $Res Function(_FetchFailure) _then)
-      : super(_value, (v) => _then(v as _FetchFailure));
+class __$$_FetchFailureCopyWithImpl<$Res>
+    extends _$StaticSelectionViewStateCopyWithImpl<$Res, _$_FetchFailure>
+    implements _$$_FetchFailureCopyWith<$Res> {
+  __$$_FetchFailureCopyWithImpl(
+      _$_FetchFailure _value, $Res Function(_$_FetchFailure) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchFailure get _value => super._value as _FetchFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
-    return _then(_FetchFailure(
-      error: error == freezed
+    return _then(_$_FetchFailure(
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -415,18 +388,18 @@ class _$_FetchFailure implements _FetchFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchFailure &&
-            const DeepCollectionEquality().equals(other.error, error));
+            other is _$_FetchFailure &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
-      __$FetchFailureCopyWithImpl<_FetchFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
+      __$$_FetchFailureCopyWithImpl<_$_FetchFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -442,10 +415,10 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? fetchInProgress,
-    TResult Function(FieldTypeStaticSelectionGetEntity staticSelection)?
+    TResult? Function()? fetchInProgress,
+    TResult? Function(FieldTypeStaticSelectionGetEntity staticSelection)?
         fetchSuccess,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchFailure?.call(error);
   }
@@ -478,9 +451,9 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchFailure?.call(this);
   }
@@ -501,10 +474,10 @@ class _$_FetchFailure implements _FetchFailure {
 }
 
 abstract class _FetchFailure implements StaticSelectionViewState {
-  const factory _FetchFailure({required String error}) = _$_FetchFailure;
+  const factory _FetchFailure({required final String error}) = _$_FetchFailure;
 
   String get error;
   @JsonKey(ignore: true)
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

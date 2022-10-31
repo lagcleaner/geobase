@@ -16,7 +16,7 @@ MapConfigurationModel _$MapConfigurationModelFromJson(
 Map<String, dynamic> _$MapConfigurationModelToJson(
         MapConfigurationModel instance) =>
     <String, dynamic>{
-      'sourceType': _$MapSourceEnumMap[instance.sourceType],
+      'sourceType': _$MapSourceEnumMap[instance.sourceType]!,
       'properties': instance.properties,
     };
 

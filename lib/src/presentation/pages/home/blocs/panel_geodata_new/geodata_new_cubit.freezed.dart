@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_new_cubit.dart';
@@ -11,33 +12,7 @@ part of 'geodata_new_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GeodataNewStateTearOff {
-  const _$GeodataNewStateTearOff();
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _LoadedCategories loadedCategories(List<CategoryGetEntity> categories,
-      {int? selected}) {
-    return _LoadedCategories(
-      categories,
-      selected: selected,
-    );
-  }
-
-  _Failure failure([String? error]) {
-    return _Failure(
-      error,
-    );
-  }
-}
-
-/// @nodoc
-const $GeodataNewState = _$GeodataNewStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GeodataNewState {
@@ -51,10 +26,10 @@ mixin _$GeodataNewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryGetEntity> categories, int? selected)?
         loadedCategories,
-    TResult Function(String? error)? failure,
+    TResult? Function(String? error)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -75,9 +50,9 @@ mixin _$GeodataNewState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadedCategories value)? loadedCategories,
-    TResult Function(_Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadedCategories value)? loadedCategories,
+    TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -94,33 +69,33 @@ mixin _$GeodataNewState {
 abstract class $GeodataNewStateCopyWith<$Res> {
   factory $GeodataNewStateCopyWith(
           GeodataNewState value, $Res Function(GeodataNewState) then) =
-      _$GeodataNewStateCopyWithImpl<$Res>;
+      _$GeodataNewStateCopyWithImpl<$Res, GeodataNewState>;
 }
 
 /// @nodoc
-class _$GeodataNewStateCopyWithImpl<$Res>
+class _$GeodataNewStateCopyWithImpl<$Res, $Val extends GeodataNewState>
     implements $GeodataNewStateCopyWith<$Res> {
   _$GeodataNewStateCopyWithImpl(this._value, this._then);
 
-  final GeodataNewState _value;
   // ignore: unused_field
-  final $Res Function(GeodataNewState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$GeodataNewStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$GeodataNewStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -136,7 +111,7 @@ class _$_Loading implements _Loading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Loading);
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -156,10 +131,10 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryGetEntity> categories, int? selected)?
         loadedCategories,
-    TResult Function(String? error)? failure,
+    TResult? Function(String? error)? failure,
   }) {
     return loading?.call();
   }
@@ -192,9 +167,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadedCategories value)? loadedCategories,
-    TResult Function(_Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadedCategories value)? loadedCategories,
+    TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -219,35 +194,34 @@ abstract class _Loading implements GeodataNewState {
 }
 
 /// @nodoc
-abstract class _$LoadedCategoriesCopyWith<$Res> {
-  factory _$LoadedCategoriesCopyWith(
-          _LoadedCategories value, $Res Function(_LoadedCategories) then) =
-      __$LoadedCategoriesCopyWithImpl<$Res>;
+abstract class _$$_LoadedCategoriesCopyWith<$Res> {
+  factory _$$_LoadedCategoriesCopyWith(
+          _$_LoadedCategories value, $Res Function(_$_LoadedCategories) then) =
+      __$$_LoadedCategoriesCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<CategoryGetEntity> categories, int? selected});
 }
 
 /// @nodoc
-class __$LoadedCategoriesCopyWithImpl<$Res>
-    extends _$GeodataNewStateCopyWithImpl<$Res>
-    implements _$LoadedCategoriesCopyWith<$Res> {
-  __$LoadedCategoriesCopyWithImpl(
-      _LoadedCategories _value, $Res Function(_LoadedCategories) _then)
-      : super(_value, (v) => _then(v as _LoadedCategories));
+class __$$_LoadedCategoriesCopyWithImpl<$Res>
+    extends _$GeodataNewStateCopyWithImpl<$Res, _$_LoadedCategories>
+    implements _$$_LoadedCategoriesCopyWith<$Res> {
+  __$$_LoadedCategoriesCopyWithImpl(
+      _$_LoadedCategories _value, $Res Function(_$_LoadedCategories) _then)
+      : super(_value, _then);
 
-  @override
-  _LoadedCategories get _value => super._value as _LoadedCategories;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categories = freezed,
+    Object? categories = null,
     Object? selected = freezed,
   }) {
-    return _then(_LoadedCategories(
-      categories == freezed
-          ? _value.categories
+    return _then(_$_LoadedCategories(
+      null == categories
+          ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryGetEntity>,
-      selected: selected == freezed
+      selected: freezed == selected
           ? _value.selected
           : selected // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -258,10 +232,17 @@ class __$LoadedCategoriesCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LoadedCategories implements _LoadedCategories {
-  const _$_LoadedCategories(this.categories, {this.selected});
+  const _$_LoadedCategories(final List<CategoryGetEntity> categories,
+      {this.selected})
+      : _categories = categories;
 
+  final List<CategoryGetEntity> _categories;
   @override
-  final List<CategoryGetEntity> categories;
+  List<CategoryGetEntity> get categories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
   @override
   final int? selected;
 
@@ -274,22 +255,22 @@ class _$_LoadedCategories implements _LoadedCategories {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _LoadedCategories &&
+            other is _$_LoadedCategories &&
             const DeepCollectionEquality()
-                .equals(other.categories, categories) &&
-            const DeepCollectionEquality().equals(other.selected, selected));
+                .equals(other._categories, _categories) &&
+            (identical(other.selected, selected) ||
+                other.selected == selected));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(categories),
-      const DeepCollectionEquality().hash(selected));
+      runtimeType, const DeepCollectionEquality().hash(_categories), selected);
 
   @JsonKey(ignore: true)
   @override
-  _$LoadedCategoriesCopyWith<_LoadedCategories> get copyWith =>
-      __$LoadedCategoriesCopyWithImpl<_LoadedCategories>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_LoadedCategoriesCopyWith<_$_LoadedCategories> get copyWith =>
+      __$$_LoadedCategoriesCopyWithImpl<_$_LoadedCategories>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -305,10 +286,10 @@ class _$_LoadedCategories implements _LoadedCategories {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryGetEntity> categories, int? selected)?
         loadedCategories,
-    TResult Function(String? error)? failure,
+    TResult? Function(String? error)? failure,
   }) {
     return loadedCategories?.call(categories, selected);
   }
@@ -341,9 +322,9 @@ class _$_LoadedCategories implements _LoadedCategories {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadedCategories value)? loadedCategories,
-    TResult Function(_Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadedCategories value)? loadedCategories,
+    TResult? Function(_Failure value)? failure,
   }) {
     return loadedCategories?.call(this);
   }
@@ -364,38 +345,39 @@ class _$_LoadedCategories implements _LoadedCategories {
 }
 
 abstract class _LoadedCategories implements GeodataNewState {
-  const factory _LoadedCategories(List<CategoryGetEntity> categories,
-      {int? selected}) = _$_LoadedCategories;
+  const factory _LoadedCategories(final List<CategoryGetEntity> categories,
+      {final int? selected}) = _$_LoadedCategories;
 
   List<CategoryGetEntity> get categories;
   int? get selected;
   @JsonKey(ignore: true)
-  _$LoadedCategoriesCopyWith<_LoadedCategories> get copyWith =>
+  _$$_LoadedCategoriesCopyWith<_$_LoadedCategories> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({String? error});
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$GeodataNewStateCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$GeodataNewStateCopyWithImpl<$Res, _$_Failure>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, _then);
 
-  @override
-  _Failure get _value => super._value as _Failure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_Failure(
-      error == freezed
+    return _then(_$_Failure(
+      freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -420,18 +402,18 @@ class _$_Failure implements _Failure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Failure &&
-            const DeepCollectionEquality().equals(other.error, error));
+            other is _$_Failure &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -447,10 +429,10 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<CategoryGetEntity> categories, int? selected)?
+    TResult? Function()? loading,
+    TResult? Function(List<CategoryGetEntity> categories, int? selected)?
         loadedCategories,
-    TResult Function(String? error)? failure,
+    TResult? Function(String? error)? failure,
   }) {
     return failure?.call(error);
   }
@@ -483,9 +465,9 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_LoadedCategories value)? loadedCategories,
-    TResult Function(_Failure value)? failure,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_LoadedCategories value)? loadedCategories,
+    TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -506,10 +488,10 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements GeodataNewState {
-  const factory _Failure([String? error]) = _$_Failure;
+  const factory _Failure([final String? error]) = _$_Failure;
 
   String? get error;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'marker_cubit.dart';
@@ -11,30 +12,7 @@ part of 'marker_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MarkerStateTearOff {
-  const _$MarkerStateTearOff();
-
-  _Failure failure(Failure failure) {
-    return _Failure(
-      failure,
-    );
-  }
-
-  _Filtered filteredOut(
-      {required Set<IMarkable> markers,
-      required Set<IMarkable> temporalMarkers}) {
-    return _Filtered(
-      markers: markers,
-      temporalMarkers: temporalMarkers,
-    );
-  }
-}
-
-/// @nodoc
-const $MarkerState = _$MarkerStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MarkerState {
@@ -48,8 +26,8 @@ mixin _$MarkerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+    TResult? Function(Failure failure)? failure,
+    TResult? Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
         filteredOut,
   }) =>
       throw _privateConstructorUsedError;
@@ -69,8 +47,8 @@ mixin _$MarkerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Filtered value)? filteredOut,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Filtered value)? filteredOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,42 +64,45 @@ mixin _$MarkerState {
 abstract class $MarkerStateCopyWith<$Res> {
   factory $MarkerStateCopyWith(
           MarkerState value, $Res Function(MarkerState) then) =
-      _$MarkerStateCopyWithImpl<$Res>;
+      _$MarkerStateCopyWithImpl<$Res, MarkerState>;
 }
 
 /// @nodoc
-class _$MarkerStateCopyWithImpl<$Res> implements $MarkerStateCopyWith<$Res> {
+class _$MarkerStateCopyWithImpl<$Res, $Val extends MarkerState>
+    implements $MarkerStateCopyWith<$Res> {
   _$MarkerStateCopyWithImpl(this._value, this._then);
 
-  final MarkerState _value;
   // ignore: unused_field
-  final $Res Function(MarkerState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({Failure failure});
 
   $FailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$MarkerStateCopyWithImpl<$Res, _$_Failure>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, _then);
 
-  @override
-  _Failure get _value => super._value as _Failure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = freezed,
+    Object? failure = null,
   }) {
-    return _then(_Failure(
-      failure == freezed
+    return _then(_$_Failure(
+      null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure,
@@ -129,6 +110,7 @@ class __$FailureCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FailureCopyWith<$Res> get failure {
     return $FailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
@@ -153,18 +135,18 @@ class _$_Failure implements _Failure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Failure &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+            other is _$_Failure &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
+  int get hashCode => Object.hash(runtimeType, failure);
 
   @JsonKey(ignore: true)
   @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -180,8 +162,8 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+    TResult? Function(Failure failure)? failure,
+    TResult? Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
         filteredOut,
   }) {
     return failure?.call(this.failure);
@@ -213,8 +195,8 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Filtered value)? filteredOut,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Filtered value)? filteredOut,
   }) {
     return failure?.call(this);
   }
@@ -234,42 +216,44 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements MarkerState {
-  const factory _Failure(Failure failure) = _$_Failure;
+  const factory _Failure(final Failure failure) = _$_Failure;
 
   Failure get failure;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FilteredCopyWith<$Res> {
-  factory _$FilteredCopyWith(_Filtered value, $Res Function(_Filtered) then) =
-      __$FilteredCopyWithImpl<$Res>;
+abstract class _$$_FilteredCopyWith<$Res> {
+  factory _$$_FilteredCopyWith(
+          _$_Filtered value, $Res Function(_$_Filtered) then) =
+      __$$_FilteredCopyWithImpl<$Res>;
+  @useResult
   $Res call({Set<IMarkable> markers, Set<IMarkable> temporalMarkers});
 }
 
 /// @nodoc
-class __$FilteredCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
-    implements _$FilteredCopyWith<$Res> {
-  __$FilteredCopyWithImpl(_Filtered _value, $Res Function(_Filtered) _then)
-      : super(_value, (v) => _then(v as _Filtered));
+class __$$_FilteredCopyWithImpl<$Res>
+    extends _$MarkerStateCopyWithImpl<$Res, _$_Filtered>
+    implements _$$_FilteredCopyWith<$Res> {
+  __$$_FilteredCopyWithImpl(
+      _$_Filtered _value, $Res Function(_$_Filtered) _then)
+      : super(_value, _then);
 
-  @override
-  _Filtered get _value => super._value as _Filtered;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? markers = freezed,
-    Object? temporalMarkers = freezed,
+    Object? markers = null,
+    Object? temporalMarkers = null,
   }) {
-    return _then(_Filtered(
-      markers: markers == freezed
-          ? _value.markers
+    return _then(_$_Filtered(
+      markers: null == markers
+          ? _value._markers
           : markers // ignore: cast_nullable_to_non_nullable
               as Set<IMarkable>,
-      temporalMarkers: temporalMarkers == freezed
-          ? _value.temporalMarkers
+      temporalMarkers: null == temporalMarkers
+          ? _value._temporalMarkers
           : temporalMarkers // ignore: cast_nullable_to_non_nullable
               as Set<IMarkable>,
     ));
@@ -279,12 +263,25 @@ class __$FilteredCopyWithImpl<$Res> extends _$MarkerStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Filtered implements _Filtered {
-  const _$_Filtered({required this.markers, required this.temporalMarkers});
+  const _$_Filtered(
+      {required final Set<IMarkable> markers,
+      required final Set<IMarkable> temporalMarkers})
+      : _markers = markers,
+        _temporalMarkers = temporalMarkers;
 
+  final Set<IMarkable> _markers;
   @override
-  final Set<IMarkable> markers;
+  Set<IMarkable> get markers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_markers);
+  }
+
+  final Set<IMarkable> _temporalMarkers;
   @override
-  final Set<IMarkable> temporalMarkers;
+  Set<IMarkable> get temporalMarkers {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_temporalMarkers);
+  }
 
   @override
   String toString() {
@@ -295,22 +292,23 @@ class _$_Filtered implements _Filtered {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Filtered &&
-            const DeepCollectionEquality().equals(other.markers, markers) &&
+            other is _$_Filtered &&
+            const DeepCollectionEquality().equals(other._markers, _markers) &&
             const DeepCollectionEquality()
-                .equals(other.temporalMarkers, temporalMarkers));
+                .equals(other._temporalMarkers, _temporalMarkers));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(markers),
-      const DeepCollectionEquality().hash(temporalMarkers));
+      const DeepCollectionEquality().hash(_markers),
+      const DeepCollectionEquality().hash(_temporalMarkers));
 
   @JsonKey(ignore: true)
   @override
-  _$FilteredCopyWith<_Filtered> get copyWith =>
-      __$FilteredCopyWithImpl<_Filtered>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FilteredCopyWith<_$_Filtered> get copyWith =>
+      __$$_FilteredCopyWithImpl<_$_Filtered>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -326,8 +324,8 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Failure failure)? failure,
-    TResult Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
+    TResult? Function(Failure failure)? failure,
+    TResult? Function(Set<IMarkable> markers, Set<IMarkable> temporalMarkers)?
         filteredOut,
   }) {
     return filteredOut?.call(markers, temporalMarkers);
@@ -359,8 +357,8 @@ class _$_Filtered implements _Filtered {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Failure value)? failure,
-    TResult Function(_Filtered value)? filteredOut,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Filtered value)? filteredOut,
   }) {
     return filteredOut?.call(this);
   }
@@ -381,12 +379,12 @@ class _$_Filtered implements _Filtered {
 
 abstract class _Filtered implements MarkerState {
   const factory _Filtered(
-      {required Set<IMarkable> markers,
-      required Set<IMarkable> temporalMarkers}) = _$_Filtered;
+      {required final Set<IMarkable> markers,
+      required final Set<IMarkable> temporalMarkers}) = _$_Filtered;
 
   Set<IMarkable> get markers;
   Set<IMarkable> get temporalMarkers;
   @JsonKey(ignore: true)
-  _$FilteredCopyWith<_Filtered> get copyWith =>
+  _$$_FilteredCopyWith<_$_Filtered> get copyWith =>
       throw _privateConstructorUsedError;
 }

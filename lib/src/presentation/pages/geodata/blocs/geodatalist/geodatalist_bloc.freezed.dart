@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodatalist_bloc.dart';
@@ -11,26 +12,11 @@ part of 'geodatalist_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GeodataListEventTearOff {
-  const _$GeodataListEventTearOff();
-
-  _Fetched fetched({int? categoryId}) {
-    return _Fetched(
-      categoryId: categoryId,
-    );
-  }
-}
-
-/// @nodoc
-const $GeodataListEvent = _$GeodataListEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GeodataListEvent {
   int? get categoryId => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int? categoryId) fetched,
@@ -38,7 +24,7 @@ mixin _$GeodataListEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? categoryId)? fetched,
+    TResult? Function(int? categoryId)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +40,7 @@ mixin _$GeodataListEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Fetched value)? fetched,
+    TResult? Function(_Fetched value)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -73,56 +59,60 @@ mixin _$GeodataListEvent {
 abstract class $GeodataListEventCopyWith<$Res> {
   factory $GeodataListEventCopyWith(
           GeodataListEvent value, $Res Function(GeodataListEvent) then) =
-      _$GeodataListEventCopyWithImpl<$Res>;
+      _$GeodataListEventCopyWithImpl<$Res, GeodataListEvent>;
+  @useResult
   $Res call({int? categoryId});
 }
 
 /// @nodoc
-class _$GeodataListEventCopyWithImpl<$Res>
+class _$GeodataListEventCopyWithImpl<$Res, $Val extends GeodataListEvent>
     implements $GeodataListEventCopyWith<$Res> {
   _$GeodataListEventCopyWithImpl(this._value, this._then);
 
-  final GeodataListEvent _value;
   // ignore: unused_field
-  final $Res Function(GeodataListEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? categoryId = freezed,
   }) {
     return _then(_value.copyWith(
-      categoryId: categoryId == freezed
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$FetchedCopyWith<$Res>
+abstract class _$$_FetchedCopyWith<$Res>
     implements $GeodataListEventCopyWith<$Res> {
-  factory _$FetchedCopyWith(_Fetched value, $Res Function(_Fetched) then) =
-      __$FetchedCopyWithImpl<$Res>;
+  factory _$$_FetchedCopyWith(
+          _$_Fetched value, $Res Function(_$_Fetched) then) =
+      __$$_FetchedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int? categoryId});
 }
 
 /// @nodoc
-class __$FetchedCopyWithImpl<$Res> extends _$GeodataListEventCopyWithImpl<$Res>
-    implements _$FetchedCopyWith<$Res> {
-  __$FetchedCopyWithImpl(_Fetched _value, $Res Function(_Fetched) _then)
-      : super(_value, (v) => _then(v as _Fetched));
+class __$$_FetchedCopyWithImpl<$Res>
+    extends _$GeodataListEventCopyWithImpl<$Res, _$_Fetched>
+    implements _$$_FetchedCopyWith<$Res> {
+  __$$_FetchedCopyWithImpl(_$_Fetched _value, $Res Function(_$_Fetched) _then)
+      : super(_value, _then);
 
-  @override
-  _Fetched get _value => super._value as _Fetched;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? categoryId = freezed,
   }) {
-    return _then(_Fetched(
-      categoryId: categoryId == freezed
+    return _then(_$_Fetched(
+      categoryId: freezed == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int?,
@@ -147,19 +137,19 @@ class _$_Fetched implements _Fetched {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Fetched &&
-            const DeepCollectionEquality()
-                .equals(other.categoryId, categoryId));
+            other is _$_Fetched &&
+            (identical(other.categoryId, categoryId) ||
+                other.categoryId == categoryId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(categoryId));
+  int get hashCode => Object.hash(runtimeType, categoryId);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchedCopyWith<_Fetched> get copyWith =>
-      __$FetchedCopyWithImpl<_Fetched>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchedCopyWith<_$_Fetched> get copyWith =>
+      __$$_FetchedCopyWithImpl<_$_Fetched>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -172,7 +162,7 @@ class _$_Fetched implements _Fetched {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int? categoryId)? fetched,
+    TResult? Function(int? categoryId)? fetched,
   }) {
     return fetched?.call(categoryId);
   }
@@ -200,7 +190,7 @@ class _$_Fetched implements _Fetched {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Fetched value)? fetched,
+    TResult? Function(_Fetched value)? fetched,
   }) {
     return fetched?.call(this);
   }
@@ -219,47 +209,15 @@ class _$_Fetched implements _Fetched {
 }
 
 abstract class _Fetched implements GeodataListEvent {
-  const factory _Fetched({int? categoryId}) = _$_Fetched;
+  const factory _Fetched({final int? categoryId}) = _$_Fetched;
 
   @override
   int? get categoryId;
   @override
   @JsonKey(ignore: true)
-  _$FetchedCopyWith<_Fetched> get copyWith =>
+  _$$_FetchedCopyWith<_$_Fetched> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$GeodataListStateTearOff {
-  const _$GeodataListStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _FetchInProgress fetchInProgress() {
-    return const _FetchInProgress();
-  }
-
-  _FetchSuccess fetchSuccess({required List<GeodataGetEntity> geodataList}) {
-    return _FetchSuccess(
-      geodataList: geodataList,
-    );
-  }
-
-  _FetchSuccessNotFound fetchSuccessNotFound() {
-    return const _FetchSuccessNotFound();
-  }
-
-  _FetchFailure fetchFailure({required String error}) {
-    return _FetchFailure(
-      error: error,
-    );
-  }
-}
-
-/// @nodoc
-const $GeodataListState = _$GeodataListStateTearOff();
 
 /// @nodoc
 mixin _$GeodataListState {
@@ -274,11 +232,11 @@ mixin _$GeodataListState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -302,11 +260,11 @@ mixin _$GeodataListState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -325,33 +283,33 @@ mixin _$GeodataListState {
 abstract class $GeodataListStateCopyWith<$Res> {
   factory $GeodataListStateCopyWith(
           GeodataListState value, $Res Function(GeodataListState) then) =
-      _$GeodataListStateCopyWithImpl<$Res>;
+      _$GeodataListStateCopyWithImpl<$Res, GeodataListState>;
 }
 
 /// @nodoc
-class _$GeodataListStateCopyWithImpl<$Res>
+class _$GeodataListStateCopyWithImpl<$Res, $Val extends GeodataListState>
     implements $GeodataListStateCopyWith<$Res> {
   _$GeodataListStateCopyWithImpl(this._value, this._then);
 
-  final GeodataListState _value;
   // ignore: unused_field
-  final $Res Function(GeodataListState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$GeodataListStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$GeodataListStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -367,7 +325,7 @@ class _$_Initial implements _Initial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -388,11 +346,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return initial?.call();
   }
@@ -428,11 +386,11 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return initial?.call(this);
   }
@@ -459,22 +417,19 @@ abstract class _Initial implements GeodataListState {
 }
 
 /// @nodoc
-abstract class _$FetchInProgressCopyWith<$Res> {
-  factory _$FetchInProgressCopyWith(
-          _FetchInProgress value, $Res Function(_FetchInProgress) then) =
-      __$FetchInProgressCopyWithImpl<$Res>;
+abstract class _$$_FetchInProgressCopyWith<$Res> {
+  factory _$$_FetchInProgressCopyWith(
+          _$_FetchInProgress value, $Res Function(_$_FetchInProgress) then) =
+      __$$_FetchInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchInProgressCopyWithImpl<$Res>
-    extends _$GeodataListStateCopyWithImpl<$Res>
-    implements _$FetchInProgressCopyWith<$Res> {
-  __$FetchInProgressCopyWithImpl(
-      _FetchInProgress _value, $Res Function(_FetchInProgress) _then)
-      : super(_value, (v) => _then(v as _FetchInProgress));
-
-  @override
-  _FetchInProgress get _value => super._value as _FetchInProgress;
+class __$$_FetchInProgressCopyWithImpl<$Res>
+    extends _$GeodataListStateCopyWithImpl<$Res, _$_FetchInProgress>
+    implements _$$_FetchInProgressCopyWith<$Res> {
+  __$$_FetchInProgressCopyWithImpl(
+      _$_FetchInProgress _value, $Res Function(_$_FetchInProgress) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -490,7 +445,7 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FetchInProgress);
+        (other.runtimeType == runtimeType && other is _$_FetchInProgress);
   }
 
   @override
@@ -511,11 +466,11 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchInProgress?.call();
   }
@@ -551,11 +506,11 @@ class _$_FetchInProgress implements _FetchInProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchInProgress?.call(this);
   }
@@ -582,31 +537,30 @@ abstract class _FetchInProgress implements GeodataListState {
 }
 
 /// @nodoc
-abstract class _$FetchSuccessCopyWith<$Res> {
-  factory _$FetchSuccessCopyWith(
-          _FetchSuccess value, $Res Function(_FetchSuccess) then) =
-      __$FetchSuccessCopyWithImpl<$Res>;
+abstract class _$$_FetchSuccessCopyWith<$Res> {
+  factory _$$_FetchSuccessCopyWith(
+          _$_FetchSuccess value, $Res Function(_$_FetchSuccess) then) =
+      __$$_FetchSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<GeodataGetEntity> geodataList});
 }
 
 /// @nodoc
-class __$FetchSuccessCopyWithImpl<$Res>
-    extends _$GeodataListStateCopyWithImpl<$Res>
-    implements _$FetchSuccessCopyWith<$Res> {
-  __$FetchSuccessCopyWithImpl(
-      _FetchSuccess _value, $Res Function(_FetchSuccess) _then)
-      : super(_value, (v) => _then(v as _FetchSuccess));
+class __$$_FetchSuccessCopyWithImpl<$Res>
+    extends _$GeodataListStateCopyWithImpl<$Res, _$_FetchSuccess>
+    implements _$$_FetchSuccessCopyWith<$Res> {
+  __$$_FetchSuccessCopyWithImpl(
+      _$_FetchSuccess _value, $Res Function(_$_FetchSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchSuccess get _value => super._value as _FetchSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? geodataList = freezed,
+    Object? geodataList = null,
   }) {
-    return _then(_FetchSuccess(
-      geodataList: geodataList == freezed
-          ? _value.geodataList
+    return _then(_$_FetchSuccess(
+      geodataList: null == geodataList
+          ? _value._geodataList
           : geodataList // ignore: cast_nullable_to_non_nullable
               as List<GeodataGetEntity>,
     ));
@@ -616,10 +570,15 @@ class __$FetchSuccessCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_FetchSuccess implements _FetchSuccess {
-  const _$_FetchSuccess({required this.geodataList});
+  const _$_FetchSuccess({required final List<GeodataGetEntity> geodataList})
+      : _geodataList = geodataList;
 
+  final List<GeodataGetEntity> _geodataList;
   @override
-  final List<GeodataGetEntity> geodataList;
+  List<GeodataGetEntity> get geodataList {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_geodataList);
+  }
 
   @override
   String toString() {
@@ -630,19 +589,20 @@ class _$_FetchSuccess implements _FetchSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchSuccess &&
+            other is _$_FetchSuccess &&
             const DeepCollectionEquality()
-                .equals(other.geodataList, geodataList));
+                .equals(other._geodataList, _geodataList));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(geodataList));
+      runtimeType, const DeepCollectionEquality().hash(_geodataList));
 
   @JsonKey(ignore: true)
   @override
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
-      __$FetchSuccessCopyWithImpl<_FetchSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
+      __$$_FetchSuccessCopyWithImpl<_$_FetchSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -659,11 +619,11 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchSuccess?.call(geodataList);
   }
@@ -699,11 +659,11 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchSuccess?.call(this);
   }
@@ -726,32 +686,29 @@ class _$_FetchSuccess implements _FetchSuccess {
 }
 
 abstract class _FetchSuccess implements GeodataListState {
-  const factory _FetchSuccess({required List<GeodataGetEntity> geodataList}) =
-      _$_FetchSuccess;
+  const factory _FetchSuccess(
+      {required final List<GeodataGetEntity> geodataList}) = _$_FetchSuccess;
 
   List<GeodataGetEntity> get geodataList;
   @JsonKey(ignore: true)
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FetchSuccessNotFoundCopyWith<$Res> {
-  factory _$FetchSuccessNotFoundCopyWith(_FetchSuccessNotFound value,
-          $Res Function(_FetchSuccessNotFound) then) =
-      __$FetchSuccessNotFoundCopyWithImpl<$Res>;
+abstract class _$$_FetchSuccessNotFoundCopyWith<$Res> {
+  factory _$$_FetchSuccessNotFoundCopyWith(_$_FetchSuccessNotFound value,
+          $Res Function(_$_FetchSuccessNotFound) then) =
+      __$$_FetchSuccessNotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchSuccessNotFoundCopyWithImpl<$Res>
-    extends _$GeodataListStateCopyWithImpl<$Res>
-    implements _$FetchSuccessNotFoundCopyWith<$Res> {
-  __$FetchSuccessNotFoundCopyWithImpl(
-      _FetchSuccessNotFound _value, $Res Function(_FetchSuccessNotFound) _then)
-      : super(_value, (v) => _then(v as _FetchSuccessNotFound));
-
-  @override
-  _FetchSuccessNotFound get _value => super._value as _FetchSuccessNotFound;
+class __$$_FetchSuccessNotFoundCopyWithImpl<$Res>
+    extends _$GeodataListStateCopyWithImpl<$Res, _$_FetchSuccessNotFound>
+    implements _$$_FetchSuccessNotFoundCopyWith<$Res> {
+  __$$_FetchSuccessNotFoundCopyWithImpl(_$_FetchSuccessNotFound _value,
+      $Res Function(_$_FetchSuccessNotFound) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -767,7 +724,7 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _FetchSuccessNotFound);
+        (other.runtimeType == runtimeType && other is _$_FetchSuccessNotFound);
   }
 
   @override
@@ -788,11 +745,11 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchSuccessNotFound?.call();
   }
@@ -828,11 +785,11 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchSuccessNotFound?.call(this);
   }
@@ -859,30 +816,29 @@ abstract class _FetchSuccessNotFound implements GeodataListState {
 }
 
 /// @nodoc
-abstract class _$FetchFailureCopyWith<$Res> {
-  factory _$FetchFailureCopyWith(
-          _FetchFailure value, $Res Function(_FetchFailure) then) =
-      __$FetchFailureCopyWithImpl<$Res>;
+abstract class _$$_FetchFailureCopyWith<$Res> {
+  factory _$$_FetchFailureCopyWith(
+          _$_FetchFailure value, $Res Function(_$_FetchFailure) then) =
+      __$$_FetchFailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$FetchFailureCopyWithImpl<$Res>
-    extends _$GeodataListStateCopyWithImpl<$Res>
-    implements _$FetchFailureCopyWith<$Res> {
-  __$FetchFailureCopyWithImpl(
-      _FetchFailure _value, $Res Function(_FetchFailure) _then)
-      : super(_value, (v) => _then(v as _FetchFailure));
+class __$$_FetchFailureCopyWithImpl<$Res>
+    extends _$GeodataListStateCopyWithImpl<$Res, _$_FetchFailure>
+    implements _$$_FetchFailureCopyWith<$Res> {
+  __$$_FetchFailureCopyWithImpl(
+      _$_FetchFailure _value, $Res Function(_$_FetchFailure) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchFailure get _value => super._value as _FetchFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
-    return _then(_FetchFailure(
-      error: error == freezed
+    return _then(_$_FetchFailure(
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -907,18 +863,18 @@ class _$_FetchFailure implements _FetchFailure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FetchFailure &&
-            const DeepCollectionEquality().equals(other.error, error));
+            other is _$_FetchFailure &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
-      __$FetchFailureCopyWithImpl<_FetchFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
+      __$$_FetchFailureCopyWithImpl<_$_FetchFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -935,11 +891,11 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? fetchInProgress,
-    TResult Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
-    TResult Function()? fetchSuccessNotFound,
-    TResult Function(String error)? fetchFailure,
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<GeodataGetEntity> geodataList)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) {
     return fetchFailure?.call(error);
   }
@@ -975,11 +931,11 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_FetchInProgress value)? fetchInProgress,
-    TResult Function(_FetchSuccess value)? fetchSuccess,
-    TResult Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
-    TResult Function(_FetchFailure value)? fetchFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
   }) {
     return fetchFailure?.call(this);
   }
@@ -1002,10 +958,10 @@ class _$_FetchFailure implements _FetchFailure {
 }
 
 abstract class _FetchFailure implements GeodataListState {
-  const factory _FetchFailure({required String error}) = _$_FetchFailure;
+  const factory _FetchFailure({required final String error}) = _$_FetchFailure;
 
   String get error;
   @JsonKey(ignore: true)
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -537,7 +537,6 @@ class CategoryDBModel extends TableBase {
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD CHILD
-
     } else {
       obj = null;
     }
@@ -587,8 +586,8 @@ class CategoryDBModel extends TableBase {
 
   /// saveAll method saves the sent List<CategoryDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
-  static Future<List<dynamic>> saveAll(
-      List<CategoryDBModel> categorydbmodels) async {
+  static Future<List<dynamic>> saveAll(List<CategoryDBModel> categorydbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -596,7 +595,10 @@ class CategoryDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < categorydbmodels.length; i++) {
         if (categorydbmodels[i].category_id == null) {
           categorydbmodels[i].category_id = result![i] as int;
@@ -639,11 +641,14 @@ class CategoryDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(
-      List<CategoryDBModel> categorydbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<CategoryDBModel> categorydbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnCategoryDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO Category (category_id, name, description, color, icon)  VALUES (?,?,?,?,?)',
-        categorydbmodels);
+        categorydbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -1042,7 +1047,6 @@ class CategoryDBModelFilterBuilder extends ConjunctionBase {
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD CHILD
-
     } else {
       obj = null;
     }
@@ -1546,7 +1550,6 @@ class GeodataDBModel extends TableBase {
               await obj.getCategoryDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -1596,8 +1599,8 @@ class GeodataDBModel extends TableBase {
 
   /// saveAll method saves the sent List<GeodataDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
-  static Future<List<dynamic>> saveAll(
-      List<GeodataDBModel> geodatadbmodels) async {
+  static Future<List<dynamic>> saveAll(List<GeodataDBModel> geodatadbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -1605,7 +1608,10 @@ class GeodataDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < geodatadbmodels.length; i++) {
         if (geodatadbmodels[i].geodata_id == null) {
           geodatadbmodels[i].geodata_id = result![i] as int;
@@ -1648,11 +1654,14 @@ class GeodataDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(
-      List<GeodataDBModel> geodatadbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<GeodataDBModel> geodatadbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnGeodataDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO Geodata (geodata_id, longitude, latitude, category_id)  VALUES (?,?,?,?)',
-        geodatadbmodels);
+        geodatadbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -2025,7 +2034,6 @@ class GeodataDBModelFilterBuilder extends ConjunctionBase {
               await obj.getCategoryDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -2564,7 +2572,6 @@ class ColumnDBModel extends TableBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -2614,8 +2621,8 @@ class ColumnDBModel extends TableBase {
 
   /// saveAll method saves the sent List<ColumnDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
-  static Future<List<dynamic>> saveAll(
-      List<ColumnDBModel> columndbmodels) async {
+  static Future<List<dynamic>> saveAll(List<ColumnDBModel> columndbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -2623,7 +2630,10 @@ class ColumnDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < columndbmodels.length; i++) {
         if (columndbmodels[i].column_id == null) {
           columndbmodels[i].column_id = result![i] as int;
@@ -2665,10 +2675,14 @@ class ColumnDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(List<ColumnDBModel> columndbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<ColumnDBModel> columndbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnColumnDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO Column (column_id, name, category_id, field_type_id)  VALUES (?,?,?,?)',
-        columndbmodels);
+        columndbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -3047,7 +3061,6 @@ class ColumnDBModelFilterBuilder extends ConjunctionBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -3580,7 +3593,6 @@ class FieldTypeDBModel extends TableBase {
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD CHILD
-
     } else {
       obj = null;
     }
@@ -3631,8 +3643,8 @@ class FieldTypeDBModel extends TableBase {
 
   /// saveAll method saves the sent List<FieldTypeDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
-  static Future<List<dynamic>> saveAll(
-      List<FieldTypeDBModel> fieldtypedbmodels) async {
+  static Future<List<dynamic>> saveAll(List<FieldTypeDBModel> fieldtypedbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -3640,7 +3652,10 @@ class FieldTypeDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < fieldtypedbmodels.length; i++) {
         if (fieldtypedbmodels[i].field_type_id == null) {
           fieldtypedbmodels[i].field_type_id = result![i] as int;
@@ -3683,11 +3698,14 @@ class FieldTypeDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(
-      List<FieldTypeDBModel> fieldtypedbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<FieldTypeDBModel> fieldtypedbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnFieldTypeDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO FieldType (field_type_id, name, meta_type, render_class)  VALUES (?,?,?,?)',
-        fieldtypedbmodels);
+        fieldtypedbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -4117,7 +4135,6 @@ class FieldTypeDBModelFilterBuilder extends ConjunctionBase {
                       loadParents: false /*, loadedFields:_loadedFields*/);
         }
       } // END RELATIONSHIPS PRELOAD CHILD
-
     } else {
       obj = null;
     }
@@ -4550,7 +4567,6 @@ class StaticSelectionDBModel extends TableBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -4603,7 +4619,10 @@ class StaticSelectionDBModel extends TableBase {
   /// saveAll method saves the sent List<StaticSelectionDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
   static Future<List<dynamic>> saveAll(
-      List<StaticSelectionDBModel> staticselectiondbmodels) async {
+      List<StaticSelectionDBModel> staticselectiondbmodels,
+      {bool? exclusive,
+      bool? noResult,
+      bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -4611,7 +4630,10 @@ class StaticSelectionDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < staticselectiondbmodels.length; i++) {
         if (staticselectiondbmodels[i].static_selection_id == null) {
           staticselectiondbmodels[i].static_selection_id = result![i] as int;
@@ -4656,10 +4678,16 @@ class StaticSelectionDBModel extends TableBase {
   /// Returns a BoolCommitResult
   @override
   Future<BoolCommitResult> upsertAll(
-      List<StaticSelectionDBModel> staticselectiondbmodels) async {
+      List<StaticSelectionDBModel> staticselectiondbmodels,
+      {bool? exclusive,
+      bool? noResult,
+      bool? continueOnError}) async {
     final results = await _mnStaticSelectionDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO StaticSelection (static_selection_id, options, field_type_id)  VALUES (?,?,?)',
-        staticselectiondbmodels);
+        staticselectiondbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -4997,7 +5025,6 @@ class StaticSelectionDBModelFilterBuilder extends ConjunctionBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -5425,7 +5452,6 @@ class MediaDBModel extends TableBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -5475,7 +5501,8 @@ class MediaDBModel extends TableBase {
 
   /// saveAll method saves the sent List<MediaDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
-  static Future<List<dynamic>> saveAll(List<MediaDBModel> mediadbmodels) async {
+  static Future<List<dynamic>> saveAll(List<MediaDBModel> mediadbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -5483,7 +5510,10 @@ class MediaDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < mediadbmodels.length; i++) {
         if (mediadbmodels[i].media_id == null) {
           mediadbmodels[i].media_id = result![i] as int;
@@ -5525,10 +5555,14 @@ class MediaDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(List<MediaDBModel> mediadbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<MediaDBModel> mediadbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnMediaDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO Media (media_id, extensions, field_type_id)  VALUES (?,?,?)',
-        mediadbmodels);
+        mediadbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -5856,7 +5890,6 @@ class MediaDBModelFilterBuilder extends ConjunctionBase {
               await obj.getFieldTypeDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -6330,7 +6363,6 @@ class FieldValueDBModel extends TableBase {
               await obj.getColumnDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }
@@ -6382,7 +6414,10 @@ class FieldValueDBModel extends TableBase {
   /// saveAll method saves the sent List<FieldValueDBModel> as a bulk in one transaction
   /// Returns a <List<BoolResult>>
   static Future<List<dynamic>> saveAll(
-      List<FieldValueDBModel> fieldvaluedbmodels) async {
+      List<FieldValueDBModel> fieldvaluedbmodels,
+      {bool? exclusive,
+      bool? noResult,
+      bool? continueOnError}) async {
     List<dynamic>? result = [];
     // If there is no open transaction, start one
     final isStartedBatch = await GeobaseModel().batchStart();
@@ -6390,7 +6425,10 @@ class FieldValueDBModel extends TableBase {
       await obj.save(ignoreBatch: false);
     }
     if (!isStartedBatch) {
-      result = await GeobaseModel().batchCommit();
+      result = await GeobaseModel().batchCommit(
+          exclusive: exclusive,
+          noResult: noResult,
+          continueOnError: continueOnError);
       for (int i = 0; i < fieldvaluedbmodels.length; i++) {
         if (fieldvaluedbmodels[i].field_value_id == null) {
           fieldvaluedbmodels[i].field_value_id = result![i] as int;
@@ -6434,11 +6472,14 @@ class FieldValueDBModel extends TableBase {
   /// upsertAll() method is faster then saveAll() method. upsertAll() should be used when you are sure that the primary key is greater than zero
   /// Returns a BoolCommitResult
   @override
-  Future<BoolCommitResult> upsertAll(
-      List<FieldValueDBModel> fieldvaluedbmodels) async {
+  Future<BoolCommitResult> upsertAll(List<FieldValueDBModel> fieldvaluedbmodels,
+      {bool? exclusive, bool? noResult, bool? continueOnError}) async {
     final results = await _mnFieldValueDBModel.rawInsertAll(
         'INSERT OR REPLACE INTO FieldValue (field_value_id, value, geodata_id, column_id)  VALUES (?,?,?,?)',
-        fieldvaluedbmodels);
+        fieldvaluedbmodels,
+        exclusive: exclusive,
+        noResult: noResult,
+        continueOnError: continueOnError);
     return results;
   }
 
@@ -6780,7 +6821,6 @@ class FieldValueDBModelFilterBuilder extends ConjunctionBase {
               await obj.getColumnDBModel(loadParents: loadParents);
         }
       } // END RELATIONSHIPS PRELOAD
-
     } else {
       obj = null;
     }

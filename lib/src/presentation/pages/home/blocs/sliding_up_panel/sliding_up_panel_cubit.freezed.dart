@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'sliding_up_panel_cubit.dart';
@@ -11,35 +12,7 @@ part of 'sliding_up_panel_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SlidingUpPanelStateTearOff {
-  const _$SlidingUpPanelStateTearOff();
-
-  _Collapsed collapsed() {
-    return const _Collapsed();
-  }
-
-  _Hiden hiden() {
-    return const _Hiden();
-  }
-
-  _DetailsPanel detailsPanel({required int geodataId}) {
-    return _DetailsPanel(
-      geodataId: geodataId,
-    );
-  }
-
-  _AddNewPanel newPanel({required LatLng ubication}) {
-    return _AddNewPanel(
-      ubication: ubication,
-    );
-  }
-}
-
-/// @nodoc
-const $SlidingUpPanelState = _$SlidingUpPanelStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SlidingUpPanelState {
@@ -53,10 +26,10 @@ mixin _$SlidingUpPanelState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? hiden,
-    TResult Function(int geodataId)? detailsPanel,
-    TResult Function(LatLng ubication)? newPanel,
+    TResult? Function()? collapsed,
+    TResult? Function()? hiden,
+    TResult? Function(int geodataId)? detailsPanel,
+    TResult? Function(LatLng ubication)? newPanel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,10 +51,10 @@ mixin _$SlidingUpPanelState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Collapsed value)? collapsed,
-    TResult Function(_Hiden value)? hiden,
-    TResult Function(_DetailsPanel value)? detailsPanel,
-    TResult Function(_AddNewPanel value)? newPanel,
+    TResult? Function(_Collapsed value)? collapsed,
+    TResult? Function(_Hiden value)? hiden,
+    TResult? Function(_DetailsPanel value)? detailsPanel,
+    TResult? Function(_AddNewPanel value)? newPanel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -99,35 +72,34 @@ mixin _$SlidingUpPanelState {
 abstract class $SlidingUpPanelStateCopyWith<$Res> {
   factory $SlidingUpPanelStateCopyWith(
           SlidingUpPanelState value, $Res Function(SlidingUpPanelState) then) =
-      _$SlidingUpPanelStateCopyWithImpl<$Res>;
+      _$SlidingUpPanelStateCopyWithImpl<$Res, SlidingUpPanelState>;
 }
 
 /// @nodoc
-class _$SlidingUpPanelStateCopyWithImpl<$Res>
+class _$SlidingUpPanelStateCopyWithImpl<$Res, $Val extends SlidingUpPanelState>
     implements $SlidingUpPanelStateCopyWith<$Res> {
   _$SlidingUpPanelStateCopyWithImpl(this._value, this._then);
 
-  final SlidingUpPanelState _value;
   // ignore: unused_field
-  final $Res Function(SlidingUpPanelState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$CollapsedCopyWith<$Res> {
-  factory _$CollapsedCopyWith(
-          _Collapsed value, $Res Function(_Collapsed) then) =
-      __$CollapsedCopyWithImpl<$Res>;
+abstract class _$$_CollapsedCopyWith<$Res> {
+  factory _$$_CollapsedCopyWith(
+          _$_Collapsed value, $Res Function(_$_Collapsed) then) =
+      __$$_CollapsedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$CollapsedCopyWithImpl<$Res>
-    extends _$SlidingUpPanelStateCopyWithImpl<$Res>
-    implements _$CollapsedCopyWith<$Res> {
-  __$CollapsedCopyWithImpl(_Collapsed _value, $Res Function(_Collapsed) _then)
-      : super(_value, (v) => _then(v as _Collapsed));
-
-  @override
-  _Collapsed get _value => super._value as _Collapsed;
+class __$$_CollapsedCopyWithImpl<$Res>
+    extends _$SlidingUpPanelStateCopyWithImpl<$Res, _$_Collapsed>
+    implements _$$_CollapsedCopyWith<$Res> {
+  __$$_CollapsedCopyWithImpl(
+      _$_Collapsed _value, $Res Function(_$_Collapsed) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -143,7 +115,7 @@ class _$_Collapsed implements _Collapsed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Collapsed);
+        (other.runtimeType == runtimeType && other is _$_Collapsed);
   }
 
   @override
@@ -163,10 +135,10 @@ class _$_Collapsed implements _Collapsed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? hiden,
-    TResult Function(int geodataId)? detailsPanel,
-    TResult Function(LatLng ubication)? newPanel,
+    TResult? Function()? collapsed,
+    TResult? Function()? hiden,
+    TResult? Function(int geodataId)? detailsPanel,
+    TResult? Function(LatLng ubication)? newPanel,
   }) {
     return collapsed?.call();
   }
@@ -200,10 +172,10 @@ class _$_Collapsed implements _Collapsed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Collapsed value)? collapsed,
-    TResult Function(_Hiden value)? hiden,
-    TResult Function(_DetailsPanel value)? detailsPanel,
-    TResult Function(_AddNewPanel value)? newPanel,
+    TResult? Function(_Collapsed value)? collapsed,
+    TResult? Function(_Hiden value)? hiden,
+    TResult? Function(_DetailsPanel value)? detailsPanel,
+    TResult? Function(_AddNewPanel value)? newPanel,
   }) {
     return collapsed?.call(this);
   }
@@ -229,19 +201,17 @@ abstract class _Collapsed implements SlidingUpPanelState {
 }
 
 /// @nodoc
-abstract class _$HidenCopyWith<$Res> {
-  factory _$HidenCopyWith(_Hiden value, $Res Function(_Hiden) then) =
-      __$HidenCopyWithImpl<$Res>;
+abstract class _$$_HidenCopyWith<$Res> {
+  factory _$$_HidenCopyWith(_$_Hiden value, $Res Function(_$_Hiden) then) =
+      __$$_HidenCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$HidenCopyWithImpl<$Res> extends _$SlidingUpPanelStateCopyWithImpl<$Res>
-    implements _$HidenCopyWith<$Res> {
-  __$HidenCopyWithImpl(_Hiden _value, $Res Function(_Hiden) _then)
-      : super(_value, (v) => _then(v as _Hiden));
-
-  @override
-  _Hiden get _value => super._value as _Hiden;
+class __$$_HidenCopyWithImpl<$Res>
+    extends _$SlidingUpPanelStateCopyWithImpl<$Res, _$_Hiden>
+    implements _$$_HidenCopyWith<$Res> {
+  __$$_HidenCopyWithImpl(_$_Hiden _value, $Res Function(_$_Hiden) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -257,7 +227,7 @@ class _$_Hiden implements _Hiden {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Hiden);
+        (other.runtimeType == runtimeType && other is _$_Hiden);
   }
 
   @override
@@ -277,10 +247,10 @@ class _$_Hiden implements _Hiden {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? hiden,
-    TResult Function(int geodataId)? detailsPanel,
-    TResult Function(LatLng ubication)? newPanel,
+    TResult? Function()? collapsed,
+    TResult? Function()? hiden,
+    TResult? Function(int geodataId)? detailsPanel,
+    TResult? Function(LatLng ubication)? newPanel,
   }) {
     return hiden?.call();
   }
@@ -314,10 +284,10 @@ class _$_Hiden implements _Hiden {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Collapsed value)? collapsed,
-    TResult Function(_Hiden value)? hiden,
-    TResult Function(_DetailsPanel value)? detailsPanel,
-    TResult Function(_AddNewPanel value)? newPanel,
+    TResult? Function(_Collapsed value)? collapsed,
+    TResult? Function(_Hiden value)? hiden,
+    TResult? Function(_DetailsPanel value)? detailsPanel,
+    TResult? Function(_AddNewPanel value)? newPanel,
   }) {
     return hiden?.call(this);
   }
@@ -343,30 +313,29 @@ abstract class _Hiden implements SlidingUpPanelState {
 }
 
 /// @nodoc
-abstract class _$DetailsPanelCopyWith<$Res> {
-  factory _$DetailsPanelCopyWith(
-          _DetailsPanel value, $Res Function(_DetailsPanel) then) =
-      __$DetailsPanelCopyWithImpl<$Res>;
+abstract class _$$_DetailsPanelCopyWith<$Res> {
+  factory _$$_DetailsPanelCopyWith(
+          _$_DetailsPanel value, $Res Function(_$_DetailsPanel) then) =
+      __$$_DetailsPanelCopyWithImpl<$Res>;
+  @useResult
   $Res call({int geodataId});
 }
 
 /// @nodoc
-class __$DetailsPanelCopyWithImpl<$Res>
-    extends _$SlidingUpPanelStateCopyWithImpl<$Res>
-    implements _$DetailsPanelCopyWith<$Res> {
-  __$DetailsPanelCopyWithImpl(
-      _DetailsPanel _value, $Res Function(_DetailsPanel) _then)
-      : super(_value, (v) => _then(v as _DetailsPanel));
+class __$$_DetailsPanelCopyWithImpl<$Res>
+    extends _$SlidingUpPanelStateCopyWithImpl<$Res, _$_DetailsPanel>
+    implements _$$_DetailsPanelCopyWith<$Res> {
+  __$$_DetailsPanelCopyWithImpl(
+      _$_DetailsPanel _value, $Res Function(_$_DetailsPanel) _then)
+      : super(_value, _then);
 
-  @override
-  _DetailsPanel get _value => super._value as _DetailsPanel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? geodataId = freezed,
+    Object? geodataId = null,
   }) {
-    return _then(_DetailsPanel(
-      geodataId: geodataId == freezed
+    return _then(_$_DetailsPanel(
+      geodataId: null == geodataId
           ? _value.geodataId
           : geodataId // ignore: cast_nullable_to_non_nullable
               as int,
@@ -391,18 +360,19 @@ class _$_DetailsPanel implements _DetailsPanel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DetailsPanel &&
-            const DeepCollectionEquality().equals(other.geodataId, geodataId));
+            other is _$_DetailsPanel &&
+            (identical(other.geodataId, geodataId) ||
+                other.geodataId == geodataId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(geodataId));
+  int get hashCode => Object.hash(runtimeType, geodataId);
 
   @JsonKey(ignore: true)
   @override
-  _$DetailsPanelCopyWith<_DetailsPanel> get copyWith =>
-      __$DetailsPanelCopyWithImpl<_DetailsPanel>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_DetailsPanelCopyWith<_$_DetailsPanel> get copyWith =>
+      __$$_DetailsPanelCopyWithImpl<_$_DetailsPanel>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -418,10 +388,10 @@ class _$_DetailsPanel implements _DetailsPanel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? hiden,
-    TResult Function(int geodataId)? detailsPanel,
-    TResult Function(LatLng ubication)? newPanel,
+    TResult? Function()? collapsed,
+    TResult? Function()? hiden,
+    TResult? Function(int geodataId)? detailsPanel,
+    TResult? Function(LatLng ubication)? newPanel,
   }) {
     return detailsPanel?.call(geodataId);
   }
@@ -455,10 +425,10 @@ class _$_DetailsPanel implements _DetailsPanel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Collapsed value)? collapsed,
-    TResult Function(_Hiden value)? hiden,
-    TResult Function(_DetailsPanel value)? detailsPanel,
-    TResult Function(_AddNewPanel value)? newPanel,
+    TResult? Function(_Collapsed value)? collapsed,
+    TResult? Function(_Hiden value)? hiden,
+    TResult? Function(_DetailsPanel value)? detailsPanel,
+    TResult? Function(_AddNewPanel value)? newPanel,
   }) {
     return detailsPanel?.call(this);
   }
@@ -480,39 +450,38 @@ class _$_DetailsPanel implements _DetailsPanel {
 }
 
 abstract class _DetailsPanel implements SlidingUpPanelState {
-  const factory _DetailsPanel({required int geodataId}) = _$_DetailsPanel;
+  const factory _DetailsPanel({required final int geodataId}) = _$_DetailsPanel;
 
   int get geodataId;
   @JsonKey(ignore: true)
-  _$DetailsPanelCopyWith<_DetailsPanel> get copyWith =>
+  _$$_DetailsPanelCopyWith<_$_DetailsPanel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$AddNewPanelCopyWith<$Res> {
-  factory _$AddNewPanelCopyWith(
-          _AddNewPanel value, $Res Function(_AddNewPanel) then) =
-      __$AddNewPanelCopyWithImpl<$Res>;
+abstract class _$$_AddNewPanelCopyWith<$Res> {
+  factory _$$_AddNewPanelCopyWith(
+          _$_AddNewPanel value, $Res Function(_$_AddNewPanel) then) =
+      __$$_AddNewPanelCopyWithImpl<$Res>;
+  @useResult
   $Res call({LatLng ubication});
 }
 
 /// @nodoc
-class __$AddNewPanelCopyWithImpl<$Res>
-    extends _$SlidingUpPanelStateCopyWithImpl<$Res>
-    implements _$AddNewPanelCopyWith<$Res> {
-  __$AddNewPanelCopyWithImpl(
-      _AddNewPanel _value, $Res Function(_AddNewPanel) _then)
-      : super(_value, (v) => _then(v as _AddNewPanel));
+class __$$_AddNewPanelCopyWithImpl<$Res>
+    extends _$SlidingUpPanelStateCopyWithImpl<$Res, _$_AddNewPanel>
+    implements _$$_AddNewPanelCopyWith<$Res> {
+  __$$_AddNewPanelCopyWithImpl(
+      _$_AddNewPanel _value, $Res Function(_$_AddNewPanel) _then)
+      : super(_value, _then);
 
-  @override
-  _AddNewPanel get _value => super._value as _AddNewPanel;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? ubication = freezed,
+    Object? ubication = null,
   }) {
-    return _then(_AddNewPanel(
-      ubication: ubication == freezed
+    return _then(_$_AddNewPanel(
+      ubication: null == ubication
           ? _value.ubication
           : ubication // ignore: cast_nullable_to_non_nullable
               as LatLng,
@@ -537,18 +506,19 @@ class _$_AddNewPanel implements _AddNewPanel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _AddNewPanel &&
-            const DeepCollectionEquality().equals(other.ubication, ubication));
+            other is _$_AddNewPanel &&
+            (identical(other.ubication, ubication) ||
+                other.ubication == ubication));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(ubication));
+  int get hashCode => Object.hash(runtimeType, ubication);
 
   @JsonKey(ignore: true)
   @override
-  _$AddNewPanelCopyWith<_AddNewPanel> get copyWith =>
-      __$AddNewPanelCopyWithImpl<_AddNewPanel>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_AddNewPanelCopyWith<_$_AddNewPanel> get copyWith =>
+      __$$_AddNewPanelCopyWithImpl<_$_AddNewPanel>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -564,10 +534,10 @@ class _$_AddNewPanel implements _AddNewPanel {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? collapsed,
-    TResult Function()? hiden,
-    TResult Function(int geodataId)? detailsPanel,
-    TResult Function(LatLng ubication)? newPanel,
+    TResult? Function()? collapsed,
+    TResult? Function()? hiden,
+    TResult? Function(int geodataId)? detailsPanel,
+    TResult? Function(LatLng ubication)? newPanel,
   }) {
     return newPanel?.call(ubication);
   }
@@ -601,10 +571,10 @@ class _$_AddNewPanel implements _AddNewPanel {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Collapsed value)? collapsed,
-    TResult Function(_Hiden value)? hiden,
-    TResult Function(_DetailsPanel value)? detailsPanel,
-    TResult Function(_AddNewPanel value)? newPanel,
+    TResult? Function(_Collapsed value)? collapsed,
+    TResult? Function(_Hiden value)? hiden,
+    TResult? Function(_DetailsPanel value)? detailsPanel,
+    TResult? Function(_AddNewPanel value)? newPanel,
   }) {
     return newPanel?.call(this);
   }
@@ -626,10 +596,11 @@ class _$_AddNewPanel implements _AddNewPanel {
 }
 
 abstract class _AddNewPanel implements SlidingUpPanelState {
-  const factory _AddNewPanel({required LatLng ubication}) = _$_AddNewPanel;
+  const factory _AddNewPanel({required final LatLng ubication}) =
+      _$_AddNewPanel;
 
   LatLng get ubication;
   @JsonKey(ignore: true)
-  _$AddNewPanelCopyWith<_AddNewPanel> get copyWith =>
+  _$$_AddNewPanelCopyWith<_$_AddNewPanel> get copyWith =>
       throw _privateConstructorUsedError;
 }
