@@ -14,9 +14,9 @@ import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key? key,
+    super.key,
     this.initialLocation,
-  }) : super(key: key);
+  });
 
   final LatLng? initialLocation;
 
@@ -44,10 +44,9 @@ class HomePage extends StatelessWidget {
 
 class _InternalHomePage extends StatelessWidget {
   const _InternalHomePage({
-    Key? key,
     required this.initialLocation,
     required this.panelHeight,
-  }) : super(key: key);
+  });
 
   final LatLng? initialLocation;
 
@@ -142,9 +141,8 @@ class _InternalHomePage extends StatelessWidget {
 
 class _SlidingUpPanelWidget extends StatelessWidget {
   const _SlidingUpPanelWidget({
-    Key? key,
     required this.panelHeight,
-  }) : super(key: key);
+  });
 
   final double panelHeight;
 
@@ -174,9 +172,7 @@ class _SlidingUpPanelWidget extends StatelessWidget {
 }
 
 class _MapScreen extends StatelessWidget {
-  const _MapScreen({
-    Key? key,
-  }) : super(key: key);
+  const _MapScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -196,9 +192,7 @@ class _MapScreen extends StatelessWidget {
 }
 
 class _GeodataListButton extends StatelessWidget {
-  const _GeodataListButton({
-    Key? key,
-  }) : super(key: key);
+  const _GeodataListButton();
 
   @override
   Widget build(BuildContext context) {
@@ -212,9 +206,7 @@ class _GeodataListButton extends StatelessWidget {
 }
 
 class _FiltersButton extends StatelessWidget {
-  const _FiltersButton({
-    Key? key,
-  }) : super(key: key);
+  const _FiltersButton();
 
   @override
   Widget build(BuildContext context) {
@@ -275,9 +267,7 @@ class _FiltersButton extends StatelessWidget {
 }
 
 class _GotoLocationButton extends StatelessWidget {
-  const _GotoLocationButton({
-    Key? key,
-  }) : super(key: key);
+  const _GotoLocationButton();
 
   @override
   Widget build(BuildContext context) {
@@ -319,10 +309,9 @@ class _GotoLocationButton extends StatelessWidget {
 
 class _FloatingActionButtonWidget extends StatelessWidget {
   const _FloatingActionButtonWidget({
-    Key? key,
     required this.onPressed,
     required this.iconData,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final IconData iconData;

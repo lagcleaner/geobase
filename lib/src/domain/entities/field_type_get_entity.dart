@@ -13,11 +13,11 @@ abstract class FieldTypeEntity {
 class FieldTypeGetEntity extends FieldTypeEntity {
   FieldTypeGetEntity({
     required this.id,
-    required String name,
-    required String metaType,
+    required super.name,
+    required super.metaType,
     required this.renderClass,
     this.extradata,
-  }) : super(name: name, metaType: metaType);
+  });
 
   final int id;
 

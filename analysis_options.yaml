@@ -1,4 +1,4 @@
-include: package:lint/analysis_options.yaml
+include: package:lints/recommended.yaml
 
 analyzer:
   exclude:
@@ -26,3 +26,4 @@ linter:
     sort_constructors_first: true
     sort_pub_dependencies: false
     unawaited_futures: true
+    avoid_dynamic_calls: false

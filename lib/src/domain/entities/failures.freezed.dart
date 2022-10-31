@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
 
@@ -10,43 +12,23 @@ part of 'failures.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$FailureTearOff {
-  const _$FailureTearOff();
-
-  ConnectionFailure connection({String? message}) {
-    return ConnectionFailure(
-      message: message,
-    );
-  }
-
-  PermissionDeniedFailure permissionDenied({String? message}) {
-    return PermissionDeniedFailure(
-      message: message,
-    );
-  }
-
-  UnhandledFailure unhandled({String? message}) {
-    return UnhandledFailure(
-      message: message,
-    );
-  }
-}
-
-/// @nodoc
-const $Failure = _$FailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Failure {
   String? get message => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) connection,
     required TResult Function(String? message) permissionDenied,
     required TResult Function(String? message) unhandled,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? connection,
+    TResult? Function(String? message)? permissionDenied,
+    TResult? Function(String? message)? unhandled,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,6 +47,13 @@ mixin _$Failure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionFailure value)? connection,
+    TResult? Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult? Function(UnhandledFailure value)? unhandled,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -80,57 +69,61 @@ mixin _$Failure {
 /// @nodoc
 abstract class $FailureCopyWith<$Res> {
   factory $FailureCopyWith(Failure value, $Res Function(Failure) then) =
-      _$FailureCopyWithImpl<$Res>;
+      _$FailureCopyWithImpl<$Res, Failure>;
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$FailureCopyWithImpl<$Res> implements $FailureCopyWith<$Res> {
+class _$FailureCopyWithImpl<$Res, $Val extends Failure>
+    implements $FailureCopyWith<$Res> {
   _$FailureCopyWithImpl(this._value, this._then);
 
-  final Failure _value;
   // ignore: unused_field
-  final $Res Function(Failure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class $ConnectionFailureCopyWith<$Res>
+abstract class _$$ConnectionFailureCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory $ConnectionFailureCopyWith(
-          ConnectionFailure value, $Res Function(ConnectionFailure) then) =
-      _$ConnectionFailureCopyWithImpl<$Res>;
+  factory _$$ConnectionFailureCopyWith(
+          _$ConnectionFailure value, $Res Function(_$ConnectionFailure) then) =
+      __$$ConnectionFailureCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$ConnectionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
-    implements $ConnectionFailureCopyWith<$Res> {
-  _$ConnectionFailureCopyWithImpl(
-      ConnectionFailure _value, $Res Function(ConnectionFailure) _then)
-      : super(_value, (v) => _then(v as ConnectionFailure));
+class __$$ConnectionFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$ConnectionFailure>
+    implements _$$ConnectionFailureCopyWith<$Res> {
+  __$$ConnectionFailureCopyWithImpl(
+      _$ConnectionFailure _value, $Res Function(_$ConnectionFailure) _then)
+      : super(_value, _then);
 
-  @override
-  ConnectionFailure get _value => super._value as ConnectionFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(ConnectionFailure(
-      message: message == freezed
+    return _then(_$ConnectionFailure(
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -139,6 +132,7 @@ class _$ConnectionFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ConnectionFailure implements ConnectionFailure {
   const _$ConnectionFailure({this.message});
 
@@ -153,19 +147,19 @@ class _$ConnectionFailure implements ConnectionFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ConnectionFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$ConnectionFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $ConnectionFailureCopyWith<ConnectionFailure> get copyWith =>
-      _$ConnectionFailureCopyWithImpl<ConnectionFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$ConnectionFailureCopyWith<_$ConnectionFailure> get copyWith =>
+      __$$ConnectionFailureCopyWithImpl<_$ConnectionFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -175,6 +169,16 @@ class _$ConnectionFailure implements ConnectionFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return connection(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? connection,
+    TResult? Function(String? message)? permissionDenied,
+    TResult? Function(String? message)? unhandled,
+  }) {
+    return connection?.call(message);
   }
 
   @override
@@ -203,6 +207,16 @@ class _$ConnectionFailure implements ConnectionFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionFailure value)? connection,
+    TResult? Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult? Function(UnhandledFailure value)? unhandled,
+  }) {
+    return connection?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -217,43 +231,43 @@ class _$ConnectionFailure implements ConnectionFailure {
 }
 
 abstract class ConnectionFailure implements Failure {
-  const factory ConnectionFailure({String? message}) = _$ConnectionFailure;
+  const factory ConnectionFailure({final String? message}) =
+      _$ConnectionFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
-  $ConnectionFailureCopyWith<ConnectionFailure> get copyWith =>
+  _$$ConnectionFailureCopyWith<_$ConnectionFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PermissionDeniedFailureCopyWith<$Res>
+abstract class _$$PermissionDeniedFailureCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory $PermissionDeniedFailureCopyWith(PermissionDeniedFailure value,
-          $Res Function(PermissionDeniedFailure) then) =
-      _$PermissionDeniedFailureCopyWithImpl<$Res>;
+  factory _$$PermissionDeniedFailureCopyWith(_$PermissionDeniedFailure value,
+          $Res Function(_$PermissionDeniedFailure) then) =
+      __$$PermissionDeniedFailureCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$PermissionDeniedFailureCopyWithImpl<$Res>
-    extends _$FailureCopyWithImpl<$Res>
-    implements $PermissionDeniedFailureCopyWith<$Res> {
-  _$PermissionDeniedFailureCopyWithImpl(PermissionDeniedFailure _value,
-      $Res Function(PermissionDeniedFailure) _then)
-      : super(_value, (v) => _then(v as PermissionDeniedFailure));
+class __$$PermissionDeniedFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$PermissionDeniedFailure>
+    implements _$$PermissionDeniedFailureCopyWith<$Res> {
+  __$$PermissionDeniedFailureCopyWithImpl(_$PermissionDeniedFailure _value,
+      $Res Function(_$PermissionDeniedFailure) _then)
+      : super(_value, _then);
 
-  @override
-  PermissionDeniedFailure get _value => super._value as PermissionDeniedFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(PermissionDeniedFailure(
-      message: message == freezed
+    return _then(_$PermissionDeniedFailure(
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -262,6 +276,7 @@ class _$PermissionDeniedFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   const _$PermissionDeniedFailure({this.message});
 
@@ -276,19 +291,19 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is PermissionDeniedFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$PermissionDeniedFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $PermissionDeniedFailureCopyWith<PermissionDeniedFailure> get copyWith =>
-      _$PermissionDeniedFailureCopyWithImpl<PermissionDeniedFailure>(
+  @pragma('vm:prefer-inline')
+  _$$PermissionDeniedFailureCopyWith<_$PermissionDeniedFailure> get copyWith =>
+      __$$PermissionDeniedFailureCopyWithImpl<_$PermissionDeniedFailure>(
           this, _$identity);
 
   @override
@@ -299,6 +314,16 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return permissionDenied(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? connection,
+    TResult? Function(String? message)? permissionDenied,
+    TResult? Function(String? message)? unhandled,
+  }) {
+    return permissionDenied?.call(message);
   }
 
   @override
@@ -327,6 +352,16 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionFailure value)? connection,
+    TResult? Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult? Function(UnhandledFailure value)? unhandled,
+  }) {
+    return permissionDenied?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -341,43 +376,43 @@ class _$PermissionDeniedFailure implements PermissionDeniedFailure {
 }
 
 abstract class PermissionDeniedFailure implements Failure {
-  const factory PermissionDeniedFailure({String? message}) =
+  const factory PermissionDeniedFailure({final String? message}) =
       _$PermissionDeniedFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
-  $PermissionDeniedFailureCopyWith<PermissionDeniedFailure> get copyWith =>
+  _$$PermissionDeniedFailureCopyWith<_$PermissionDeniedFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UnhandledFailureCopyWith<$Res>
+abstract class _$$UnhandledFailureCopyWith<$Res>
     implements $FailureCopyWith<$Res> {
-  factory $UnhandledFailureCopyWith(
-          UnhandledFailure value, $Res Function(UnhandledFailure) then) =
-      _$UnhandledFailureCopyWithImpl<$Res>;
+  factory _$$UnhandledFailureCopyWith(
+          _$UnhandledFailure value, $Res Function(_$UnhandledFailure) then) =
+      __$$UnhandledFailureCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
-class _$UnhandledFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
-    implements $UnhandledFailureCopyWith<$Res> {
-  _$UnhandledFailureCopyWithImpl(
-      UnhandledFailure _value, $Res Function(UnhandledFailure) _then)
-      : super(_value, (v) => _then(v as UnhandledFailure));
+class __$$UnhandledFailureCopyWithImpl<$Res>
+    extends _$FailureCopyWithImpl<$Res, _$UnhandledFailure>
+    implements _$$UnhandledFailureCopyWith<$Res> {
+  __$$UnhandledFailureCopyWithImpl(
+      _$UnhandledFailure _value, $Res Function(_$UnhandledFailure) _then)
+      : super(_value, _then);
 
-  @override
-  UnhandledFailure get _value => super._value as UnhandledFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(UnhandledFailure(
-      message: message == freezed
+    return _then(_$UnhandledFailure(
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -386,6 +421,7 @@ class _$UnhandledFailureCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UnhandledFailure implements UnhandledFailure {
   const _$UnhandledFailure({this.message});
 
@@ -400,19 +436,19 @@ class _$UnhandledFailure implements UnhandledFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is UnhandledFailure &&
-            (identical(other.message, message) ||
-                const DeepCollectionEquality().equals(other.message, message)));
+        (other.runtimeType == runtimeType &&
+            other is _$UnhandledFailure &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
-  $UnhandledFailureCopyWith<UnhandledFailure> get copyWith =>
-      _$UnhandledFailureCopyWithImpl<UnhandledFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$UnhandledFailureCopyWith<_$UnhandledFailure> get copyWith =>
+      __$$UnhandledFailureCopyWithImpl<_$UnhandledFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -422,6 +458,16 @@ class _$UnhandledFailure implements UnhandledFailure {
     required TResult Function(String? message) unhandled,
   }) {
     return unhandled(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? message)? connection,
+    TResult? Function(String? message)? permissionDenied,
+    TResult? Function(String? message)? unhandled,
+  }) {
+    return unhandled?.call(message);
   }
 
   @override
@@ -450,6 +496,16 @@ class _$UnhandledFailure implements UnhandledFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ConnectionFailure value)? connection,
+    TResult? Function(PermissionDeniedFailure value)? permissionDenied,
+    TResult? Function(UnhandledFailure value)? unhandled,
+  }) {
+    return unhandled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ConnectionFailure value)? connection,
     TResult Function(PermissionDeniedFailure value)? permissionDenied,
@@ -464,12 +520,12 @@ class _$UnhandledFailure implements UnhandledFailure {
 }
 
 abstract class UnhandledFailure implements Failure {
-  const factory UnhandledFailure({String? message}) = _$UnhandledFailure;
+  const factory UnhandledFailure({final String? message}) = _$UnhandledFailure;
 
   @override
-  String? get message => throw _privateConstructorUsedError;
+  String? get message;
   @override
   @JsonKey(ignore: true)
-  $UnhandledFailureCopyWith<UnhandledFailure> get copyWith =>
+  _$$UnhandledFailureCopyWith<_$UnhandledFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

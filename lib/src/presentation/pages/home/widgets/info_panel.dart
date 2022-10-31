@@ -9,10 +9,10 @@ import 'package:geobase/src/presentation/pages/home/blocs/panel_geodata_preview/
 
 class SlideUpInformationalPanel extends StatelessWidget {
   const SlideUpInformationalPanel({
-    Key? key,
+    super.key,
     required this.geodataId,
     required this.panelHeight,
-  }) : super(key: key);
+  });
 
   final int geodataId;
   final double panelHeight;
@@ -31,10 +31,9 @@ class SlideUpInformationalPanel extends StatelessWidget {
 
 class _InternalPanel extends StatelessWidget {
   const _InternalPanel({
-    Key? key,
     required this.geodataId,
     required this.panelHeight,
-  }) : super(key: key);
+  });
 
   final int geodataId;
   final double panelHeight;

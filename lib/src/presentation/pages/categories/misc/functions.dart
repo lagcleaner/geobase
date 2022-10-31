@@ -39,20 +39,23 @@ TextStyle? getDefaultTextStyle({
             .textTheme
             .subtitle1
             ?.copyWith(color: Theme.of(context).disabledColor);
-String? getErrorText({
+
+String? getErrorText<V, S, E>({
   required BuildContext context,
-  required FieldBlocState? fieldBlocState,
+  required FieldBlocState<V, S, E>? fieldBlocState,
   required FieldBlocErrorBuilder? errorBuilder,
   required FieldBloc fieldBloc,
 }) {
-  if (fieldBlocState != null && fieldBlocState.canShowError) {
+  if (fieldBlocState != null &&
+      fieldBlocState.canShowError &&
+      fieldBlocState.error != null) {
     if (errorBuilder != null) {
-      return errorBuilder(context, fieldBlocState.error);
+      return errorBuilder(context, fieldBlocState.error!);
     } else {
       return FieldBlocBuilder.defaultErrorBuilder(
         // ignore: curly_braces_in_flow_control_structures
         context,
-        fieldBlocState.error,
+        fieldBlocState.error!,
         fieldBloc,
       );
     }

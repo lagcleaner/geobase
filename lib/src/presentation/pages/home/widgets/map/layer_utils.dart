@@ -8,13 +8,13 @@ import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/pages/home/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/home/misc/cached_tile_provider.dart';
 
-LayerOptions mapLayerOptions(
+Widget mapLayerOptions(
   BuildContext context,
   MapConfigurationEntity configs,
 ) {
-  if (configs.mapSourceType == MapSource.Empty) return MarkerLayerOptions();
+  if (configs.mapSourceType == MapSource.Empty) return MarkerLayer();
 
-  return TileLayerOptions(
+  return TileLayer(
     urlTemplate: configs.options.getCastedOrDefault(
       MAP_SOURCE_URL_TEMPLATE,
       defaultValue: null,
@@ -54,7 +54,7 @@ LayerOptions mapLayerOptions(
         )
         .map((e) => e as String)
         .toList(),
-    tileProvider: const CachedTileProvider(),
+    tileProvider: CachedTileProvider(),
     additionalOptions: configs.options.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,
       defaultValue: null,

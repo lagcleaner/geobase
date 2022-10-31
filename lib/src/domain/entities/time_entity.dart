@@ -22,16 +22,16 @@ class TimeEntity {
   String toString() => toVisualString();
 
   String toVisualString() {
-    String _getStringWithLeftZerosIfNeeded(int value) {
+    String getStringWithLeftZerosIfNeeded(int value) {
       if (value < 10) {
         return '0$value';
       }
       return value.toString();
     }
 
-    final _periodOffset = hour < 12 ? 0 : 12;
-    final _hourOfPeriod = hour == 0 || hour == 12 ? 12 : hour - _periodOffset;
+    final periodOffset = hour < 12 ? 0 : 12;
+    final hourOfPeriod = hour == 0 || hour == 12 ? 12 : hour - periodOffset;
 
-    return '${_getStringWithLeftZerosIfNeeded(_hourOfPeriod % 12)}:${_getStringWithLeftZerosIfNeeded(minute)} ${hour >= 12 ? 'pm' : 'am'}';
+    return '${getStringWithLeftZerosIfNeeded(hourOfPeriod % 12)}:${getStringWithLeftZerosIfNeeded(minute)} ${hour >= 12 ? 'pm' : 'am'}';
   }
 }

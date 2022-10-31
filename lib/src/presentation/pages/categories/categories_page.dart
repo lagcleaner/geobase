@@ -5,11 +5,11 @@ import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
-import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart';
 
 class CategoriesPage extends StatelessWidget {
-  const CategoriesPage({Key? key}) : super(key: key);
+  const CategoriesPage({super.key});
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -29,7 +29,7 @@ class CategoriesPage extends StatelessWidget {
 }
 
 class _CategoriesPageInternal extends StatelessWidget {
-  const _CategoriesPageInternal({Key? key}) : super(key: key);
+  const _CategoriesPageInternal();
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +40,9 @@ class _CategoriesPageInternal extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Lista de Categorías'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: _Body(),
         floatingActionButton: const _FloatingActionButton(),
@@ -53,9 +52,7 @@ class _CategoriesPageInternal extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  _Body({
-    Key? key,
-  }) : super(key: key);
+  _Body();
 
   final Key queryWidgetKey = const Key('queryWidgetKey');
   final queryController = TextEditingController();
@@ -176,9 +173,8 @@ class _Body extends StatelessWidget {
 
 class _CategoryWidget extends StatelessWidget {
   const _CategoryWidget({
-    Key? key,
     required this.category,
-  }) : super(key: key);
+  });
 
   final CategoryGetEntity category;
 
@@ -233,10 +229,10 @@ class _CategoryWidget extends StatelessWidget {
 
 class _QueryInput extends StatelessWidget {
   const _QueryInput({
-    Key? key,
+    super.key,
     required this.controller,
     required this.focusNode,
-  }) : super(key: key);
+  });
 
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -279,9 +275,7 @@ class _QueryInput extends StatelessWidget {
 }
 
 class _FloatingActionButton extends StatelessWidget {
-  const _FloatingActionButton({
-    Key? key,
-  }) : super(key: key);
+  const _FloatingActionButton();
 
   @override
   Widget build(BuildContext context) {

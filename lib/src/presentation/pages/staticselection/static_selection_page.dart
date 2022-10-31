@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/staticselection/blocs/static_selection_list/static_selection_list_cubit.dart';
 
 class StaticSelectionListPage extends StatelessWidget {
-  const StaticSelectionListPage({Key? key}) : super(key: key);
+  const StaticSelectionListPage({super.key});
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -26,7 +27,7 @@ class StaticSelectionListPage extends StatelessWidget {
 }
 
 class _StaticSelectionListInternalPage extends StatelessWidget {
-  const _StaticSelectionListInternalPage({Key? key}) : super(key: key);
+  const _StaticSelectionListInternalPage();
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +38,9 @@ class _StaticSelectionListInternalPage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Selecciones Estáticas'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
           actions: [
             IconButton(
               onPressed: () => context.read<StaticSelectionListCubit>().fetch(),
@@ -59,7 +59,7 @@ class _StaticSelectionListInternalPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({Key? key}) : super(key: key);
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
@@ -151,9 +151,8 @@ class _Body extends StatelessWidget {
 
 class _StaticSelectionWidget extends StatelessWidget {
   const _StaticSelectionWidget({
-    Key? key,
     required this.staticSelection,
-  }) : super(key: key);
+  });
 
   final FieldTypeStaticSelectionGetEntity staticSelection;
 
@@ -191,9 +190,7 @@ class _StaticSelectionWidget extends StatelessWidget {
 }
 
 class _FloatingActionButton extends StatelessWidget {
-  const _FloatingActionButton({
-    Key? key,
-  }) : super(key: key);
+  const _FloatingActionButton();
 
   @override
   Widget build(BuildContext context) {

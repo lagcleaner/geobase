@@ -52,7 +52,8 @@ class MapCubit extends Cubit<MapState> {
         );
       },
     );
-    await state.mapController.onReady;
+    //TODO: TEST IF THIS HAS NO PROBLEMS
+    // await state.mapController.onReady;
 
     if (initialLocation != null) {
       state.mapController.move(initialLocation!, 16.0);
@@ -76,7 +77,8 @@ class MapCubit extends Cubit<MapState> {
   }
 
   Future<void> markerTouched(IMarkable marker) async {
-    await state.mapController.onReady;
+    //TODO: TEST IF THIS HAS NO PROBLEMS
+    // await state.mapController.onReady;
     state.mapController.move(marker.location, 16.0);
 
     /// stored the last location touched to start at this point next time...

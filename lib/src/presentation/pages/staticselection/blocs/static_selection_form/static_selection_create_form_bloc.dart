@@ -27,9 +27,10 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
 
   Future<String?> _nameIsTaken(String? value) async {
     final either = await fieldTypeService.loadAll();
-    either.fold(
+    return either.fold(
       (failure) {
         emitFailure(failureResponse: failure.message);
+        return null;
       },
       (types) {
         return types.any((e) => e.name == value) ? 'The name is taken.' : null;
@@ -45,7 +46,7 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
     ],
   );
 
-  final ListFieldBloc<TextFieldBloc> options = ListFieldBloc();
+  final ListFieldBloc<TextFieldBloc, dynamic> options = ListFieldBloc();
 
   @override
   Future<void> onLoading() async {
@@ -59,9 +60,9 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
   Future<void> onSubmitting() async {
     final result = await service.createStaticSelection(
       FieldTypeStaticSelectionPostEntity(
-        name: name.value!,
+        name: name.value,
         options: options.value
-            .map((e) => e.value!)
+            .map((e) => e.value)
             .where((e) => e.isNotEmpty)
             .toList(),
       ),
@@ -78,7 +79,7 @@ class StaticSelectionCreateFormBloc extends FormBloc<Unit, String> {
 }
 
 String? Function(String?) valueIsRepeated(
-  ListFieldBloc<TextFieldBloc> listBloc,
+  ListFieldBloc<TextFieldBloc, dynamic> listBloc,
   TextFieldBloc self,
 ) {
   return (String? value) {
@@ -86,5 +87,6 @@ String? Function(String?) valueIsRepeated(
         listBloc.value.any((e) => e.value == value && self != e)) {
       return 'Los valores no pueden repetirse.';
     }
+    return null;
   };
 }

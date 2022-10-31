@@ -9,9 +9,9 @@ import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 
 class CategoryViewPage extends StatelessWidget {
   const CategoryViewPage({
-    Key? key,
+    super.key,
     required this.categoryId,
-  }) : super(key: key);
+  });
 
   final int categoryId;
 
@@ -36,9 +36,8 @@ class CategoryViewPage extends StatelessWidget {
 
 class _CategoryViewPageInternal extends StatelessWidget {
   const _CategoryViewPageInternal({
-    Key? key,
     required this.categoryId,
-  }) : super(key: key);
+  });
 
   final int categoryId;
 
@@ -46,10 +45,9 @@ class _CategoryViewPageInternal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
+      appBar: GeoAppBar(
         title: const Text('Detalles de la Categoría'),
         iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(
@@ -68,9 +66,8 @@ class _CategoryViewPageInternal extends StatelessWidget {
 
 class _CategoryViewBody extends StatelessWidget {
   const _CategoryViewBody({
-    Key? key,
     required this.categoryId,
-  }) : super(key: key);
+  });
 
   final int categoryId;
 
@@ -102,9 +99,8 @@ class _CategoryViewBody extends StatelessWidget {
 
 class _CategoryViewBodyFetchSucessBottom extends StatelessWidget {
   const _CategoryViewBodyFetchSucessBottom({
-    Key? key,
     required this.categoryId,
-  }) : super(key: key);
+  });
 
   final int categoryId;
 
@@ -169,9 +165,7 @@ class _CategoryViewBodyFetchSucessBottom extends StatelessWidget {
 }
 
 class _CategoryViewBodyFetchInProgress extends StatelessWidget {
-  const _CategoryViewBodyFetchInProgress({
-    Key? key,
-  }) : super(key: key);
+  const _CategoryViewBodyFetchInProgress();
 
   @override
   Widget build(BuildContext context) {
@@ -186,9 +180,8 @@ class _CategoryViewBodyFetchInProgress extends StatelessWidget {
 
 class _CategoryViewBodyFetchSuccess extends StatelessWidget {
   const _CategoryViewBodyFetchSuccess({
-    Key? key,
     required this.category,
-  }) : super(key: key);
+  });
 
   final CategoryGetEntity category;
 
@@ -212,9 +205,8 @@ class _CategoryViewBodyFetchSuccess extends StatelessWidget {
 
 class _CategoryViewBasicInfo extends StatelessWidget {
   const _CategoryViewBasicInfo({
-    Key? key,
     required this.category,
-  }) : super(key: key);
+  });
 
   final CategoryGetEntity category;
 

@@ -6,7 +6,7 @@ class ColumnFieldBloc extends GroupFieldBloc {
     required this.columnName,
     required this.type,
     this.column,
-  }) : super([columnName, type]);
+  }) : super(fieldBlocs: [columnName, type]);
 
   final ColumnGetEntity? column;
   final TextFieldBloc columnName;

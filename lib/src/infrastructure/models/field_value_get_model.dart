@@ -3,11 +3,11 @@ import 'package:geobase/src/infrastructure/models/field_value_model.dart';
 
 class FieldValueGetModel extends FieldValueModel {
   FieldValueGetModel({
-    required dynamic value,
+    required super.value,
     required this.id,
     required this.geodataId,
     required this.column,
-  }) : super(value: value);
+  });
 
   final int id;
 

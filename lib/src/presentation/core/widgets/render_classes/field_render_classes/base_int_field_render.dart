@@ -17,13 +17,13 @@ class BaseIntFieldRender implements IFieldRenderClass {
   static final BaseIntFieldRender _instance = BaseIntFieldRender._internal();
 
   @override
-  InputBloc<FieldValueEntity> getInputBloc(
+  LyInput<FieldValueEntity> getInputBloc(
     FieldValueEntity fieldValue,
   ) {
-    return InputBloc<FieldValueEntity>(
+    return LyInput<FieldValueEntity>(
       pureValue: fieldValue,
-      validationType: ValidationType.explicit,
-      validator: ListValidator([
+      validationType: LyValidationType.explicit,
+      validator: LyListValidator([
         FieldValueValidator.from(StringValidator.required),
         FieldValueValidator.from(StringValidator.integer),
       ]),
@@ -33,7 +33,7 @@ class BaseIntFieldRender implements IFieldRenderClass {
   @override
   Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> fieldInputBloc,
+    LyInput<FieldValueEntity> fieldInputBloc,
   ) {
     return IntFieldInputWidget(
       key: Key('FieldInput${column.name}${column.id}'),

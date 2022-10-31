@@ -5,13 +5,14 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/app.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/category_form_widget.dart';
 
 class CategoryNewPage extends StatelessWidget {
   const CategoryNewPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -31,7 +32,7 @@ class CategoryNewPage extends StatelessWidget {
 }
 
 class _CategoryCreatePageInternal extends StatelessWidget {
-  const _CategoryCreatePageInternal({Key? key}) : super(key: key);
+  const _CategoryCreatePageInternal();
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +40,9 @@ class _CategoryCreatePageInternal extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Nueva Categoría'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: FormBlocListener<CategoryCreateFormBloc, Unit, String>(
           formBloc: context.read<CategoryCreateFormBloc>(),

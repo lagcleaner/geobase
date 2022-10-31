@@ -8,20 +8,16 @@ import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_
 
 class StaticSelectionFieldInputWidget extends FieldInputWidget {
   const StaticSelectionFieldInputWidget({
-    Key? key,
-    required ColumnGetEntity column,
-    required InputBloc<FieldValueEntity> inputBloc,
-  }) : super(
-          key: key,
-          column: column,
-          inputBloc: inputBloc,
-        );
+    super.key,
+    required super.column,
+    required super.inputBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
     final List<String> items = getOptions(column.type.extradata?['options']);
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: inputBloc,
+    return LyInputBuilder<FieldValueEntity>(
+      lyInput: inputBloc,
       builder: (context, state) {
         final value = state.value.value as String?;
         if (value != null && !items.contains(value)) {
@@ -48,15 +44,15 @@ class StaticSelectionFieldInputWidget extends FieldInputWidget {
 
 List<String> getOptions(dynamic jsonList) {
   List<String>? options;
-  dynamic _jsonList = jsonList;
+  dynamic jsonListMutable = jsonList;
 
-  if (_jsonList == null) return [];
-  if (_jsonList is String?) {
-    _jsonList = json.decode(_jsonList!);
-    if (_jsonList == null) return [];
+  if (jsonListMutable == null) return [];
+  if (jsonListMutable is String?) {
+    jsonListMutable = json.decode(jsonListMutable!);
+    if (jsonListMutable == null) return [];
   }
-  if (_jsonList is List?) {
-    options = _jsonList!.map((e) => e as String).toList();
+  if (jsonListMutable is List?) {
+    options = jsonListMutable!.map((e) => e as String).toList();
   }
   return options ?? [];
 }

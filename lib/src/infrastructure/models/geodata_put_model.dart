@@ -3,12 +3,12 @@ import 'package:geobase/src/infrastructure/models/geodata_model.dart';
 
 class GeodataPutModel extends GeodataModel {
   GeodataPutModel({
-    required double latitude,
-    required double longitude,
+    required super.latitude,
+    required super.longitude,
     required this.id,
     required this.categoryId,
     required this.fieldValues,
-  }) : super(latitude: latitude, longitude: longitude);
+  });
 
   final int id;
 

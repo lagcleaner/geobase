@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_edit_cubit.dart';
 
@@ -10,31 +12,7 @@ part of 'geodata_edit_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GeodataEditStateTearOff {
-  const _$GeodataEditStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _EditData edit({required GeodataEditInitialData fetchData}) {
-    return _EditData(
-      fetchData: fetchData,
-    );
-  }
-
-  _Failure failure({required Failure failure}) {
-    return _Failure(
-      failure: failure,
-    );
-  }
-}
-
-/// @nodoc
-const $GeodataEditState = _$GeodataEditStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GeodataEditState {
@@ -43,6 +21,13 @@ mixin _$GeodataEditState {
     required TResult Function() initial,
     required TResult Function(GeodataEditInitialData fetchData) edit,
     required TResult Function(Failure failure) failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(GeodataEditInitialData fetchData)? edit,
+    TResult? Function(Failure failure)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +46,13 @@ mixin _$GeodataEditState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_EditData value)? edit,
+    TResult? Function(_Failure value)? failure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -74,36 +66,37 @@ mixin _$GeodataEditState {
 abstract class $GeodataEditStateCopyWith<$Res> {
   factory $GeodataEditStateCopyWith(
           GeodataEditState value, $Res Function(GeodataEditState) then) =
-      _$GeodataEditStateCopyWithImpl<$Res>;
+      _$GeodataEditStateCopyWithImpl<$Res, GeodataEditState>;
 }
 
 /// @nodoc
-class _$GeodataEditStateCopyWithImpl<$Res>
+class _$GeodataEditStateCopyWithImpl<$Res, $Val extends GeodataEditState>
     implements $GeodataEditStateCopyWith<$Res> {
   _$GeodataEditStateCopyWithImpl(this._value, this._then);
 
-  final GeodataEditState _value;
   // ignore: unused_field
-  final $Res Function(GeodataEditState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$GeodataEditStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -114,7 +107,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -128,6 +122,16 @@ class _$_Initial implements _Initial {
     required TResult Function(Failure failure) failure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(GeodataEditInitialData fetchData)? edit,
+    TResult? Function(Failure failure)? failure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -156,6 +160,16 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_EditData value)? edit,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -174,27 +188,29 @@ abstract class _Initial implements GeodataEditState {
 }
 
 /// @nodoc
-abstract class _$EditDataCopyWith<$Res> {
-  factory _$EditDataCopyWith(_EditData value, $Res Function(_EditData) then) =
-      __$EditDataCopyWithImpl<$Res>;
+abstract class _$$_EditDataCopyWith<$Res> {
+  factory _$$_EditDataCopyWith(
+          _$_EditData value, $Res Function(_$_EditData) then) =
+      __$$_EditDataCopyWithImpl<$Res>;
+  @useResult
   $Res call({GeodataEditInitialData fetchData});
 }
 
 /// @nodoc
-class __$EditDataCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
-    implements _$EditDataCopyWith<$Res> {
-  __$EditDataCopyWithImpl(_EditData _value, $Res Function(_EditData) _then)
-      : super(_value, (v) => _then(v as _EditData));
+class __$$_EditDataCopyWithImpl<$Res>
+    extends _$GeodataEditStateCopyWithImpl<$Res, _$_EditData>
+    implements _$$_EditDataCopyWith<$Res> {
+  __$$_EditDataCopyWithImpl(
+      _$_EditData _value, $Res Function(_$_EditData) _then)
+      : super(_value, _then);
 
-  @override
-  _EditData get _value => super._value as _EditData;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fetchData = freezed,
+    Object? fetchData = null,
   }) {
-    return _then(_EditData(
-      fetchData: fetchData == freezed
+    return _then(_$_EditData(
+      fetchData: null == fetchData
           ? _value.fetchData
           : fetchData // ignore: cast_nullable_to_non_nullable
               as GeodataEditInitialData,
@@ -203,6 +219,7 @@ class __$EditDataCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_EditData implements _EditData {
   const _$_EditData({required this.fetchData});
 
@@ -217,20 +234,20 @@ class _$_EditData implements _EditData {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _EditData &&
+        (other.runtimeType == runtimeType &&
+            other is _$_EditData &&
             (identical(other.fetchData, fetchData) ||
-                const DeepCollectionEquality()
-                    .equals(other.fetchData, fetchData)));
+                other.fetchData == fetchData));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(fetchData);
+  int get hashCode => Object.hash(runtimeType, fetchData);
 
   @JsonKey(ignore: true)
   @override
-  _$EditDataCopyWith<_EditData> get copyWith =>
-      __$EditDataCopyWithImpl<_EditData>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_EditDataCopyWith<_$_EditData> get copyWith =>
+      __$$_EditDataCopyWithImpl<_$_EditData>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -240,6 +257,16 @@ class _$_EditData implements _EditData {
     required TResult Function(Failure failure) failure,
   }) {
     return edit(fetchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(GeodataEditInitialData fetchData)? edit,
+    TResult? Function(Failure failure)? failure,
+  }) {
+    return edit?.call(fetchData);
   }
 
   @override
@@ -268,6 +295,16 @@ class _$_EditData implements _EditData {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_EditData value)? edit,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return edit?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -282,39 +319,40 @@ class _$_EditData implements _EditData {
 }
 
 abstract class _EditData implements GeodataEditState {
-  const factory _EditData({required GeodataEditInitialData fetchData}) =
+  const factory _EditData({required final GeodataEditInitialData fetchData}) =
       _$_EditData;
 
-  GeodataEditInitialData get fetchData => throw _privateConstructorUsedError;
+  GeodataEditInitialData get fetchData;
   @JsonKey(ignore: true)
-  _$EditDataCopyWith<_EditData> get copyWith =>
+  _$$_EditDataCopyWith<_$_EditData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({Failure failure});
 
   $FailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$GeodataEditStateCopyWithImpl<$Res, _$_Failure>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, _then);
 
-  @override
-  _Failure get _value => super._value as _Failure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = freezed,
+    Object? failure = null,
   }) {
-    return _then(_Failure(
-      failure: failure == freezed
+    return _then(_$_Failure(
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as Failure,
@@ -322,6 +360,7 @@ class __$FailureCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FailureCopyWith<$Res> get failure {
     return $FailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
@@ -330,6 +369,7 @@ class __$FailureCopyWithImpl<$Res> extends _$GeodataEditStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure({required this.failure});
 
@@ -344,19 +384,19 @@ class _$_Failure implements _Failure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Failure &&
-            (identical(other.failure, failure) ||
-                const DeepCollectionEquality().equals(other.failure, failure)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failure);
+  int get hashCode => Object.hash(runtimeType, failure);
 
   @JsonKey(ignore: true)
   @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -366,6 +406,16 @@ class _$_Failure implements _Failure {
     required TResult Function(Failure failure) failure,
   }) {
     return failure(this.failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(GeodataEditInitialData fetchData)? edit,
+    TResult? Function(Failure failure)? failure,
+  }) {
+    return failure?.call(this.failure);
   }
 
   @override
@@ -394,6 +444,16 @@ class _$_Failure implements _Failure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_EditData value)? edit,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_EditData value)? edit,
@@ -408,10 +468,10 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements GeodataEditState {
-  const factory _Failure({required Failure failure}) = _$_Failure;
+  const factory _Failure({required final Failure failure}) = _$_Failure;
 
-  Failure get failure => throw _privateConstructorUsedError;
+  Failure get failure;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }

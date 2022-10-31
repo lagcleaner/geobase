@@ -38,25 +38,28 @@ abstract class CategoryFormBloc extends FormBloc<Unit, String> {
   );
   final TextFieldBloc description = TextFieldBloc();
 
-  final InputFieldBloc<Color?, dynamic> color = InputFieldBloc();
+  final InputFieldBloc<Color?, dynamic> color = InputFieldBloc(
+    initialValue: null,
+  );
 
-  final InputFieldBloc<String, dynamic> icon = InputFieldBloc(
+  final InputFieldBloc<String?, dynamic> icon = InputFieldBloc(
+    initialValue: null,
     validators: [
       StringValidator.required,
     ],
   );
 
-  final ListFieldBloc<ColumnFieldBloc> columns = ListFieldBloc();
+  final ListFieldBloc<ColumnFieldBloc, dynamic> columns = ListFieldBloc();
 
   // validators
 
-  Future<String?> categoryNameTakenAsyncValidator(String? value) async {
-    if (value?.isEmpty ?? true) return null;
+  Future<String?> categoryNameTakenAsyncValidator(String? name) async {
+    // if (name?.isEmpty ?? true) return null;
     final allCat = await categoryService.loadCategoriesWhere();
     return allCat.fold(
       (failure) => null,
       (categories) => categories.any(
-        (element) => element.name.toLowerCase() == value?.toLowerCase(),
+        (element) => element.name.toLowerCase() == name?.toLowerCase(),
       )
           ? 'Ya existe otra categoría con este nombre'
           : null,
@@ -64,7 +67,7 @@ abstract class CategoryFormBloc extends FormBloc<Unit, String> {
   }
 
   String? columnNameTakenValidator(String? name) {
-    if (name?.isEmpty ?? true) return null;
+    // if (name?.isEmpty ?? true) return null;
     return columns.state.fieldBlocs.any((e) => e.columnName.state.value == name)
         ? 'No puede haber columnas con igual nombre.'
         : null;

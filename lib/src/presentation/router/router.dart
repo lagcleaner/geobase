@@ -22,10 +22,7 @@ class Routes {
     initialPath: '/map',
   );
 
-  static void _listener(
-    RouteInformation routeInformation,
-    BeamLocation<RouteInformationSerializable> location,
-  ) {
+  static void _listener(RouteInformation routeInformation, BeamerDelegate delegate){
     log('BeamTo: ${routeInformation.location}');
   }
 

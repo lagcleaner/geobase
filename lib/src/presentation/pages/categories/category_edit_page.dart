@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/category_form/category_edit_form_bloc.dart';
 import 'package:geobase/src/presentation/pages/categories/widgets/category_form_widget.dart';
 
 class CategoryEditPage extends StatelessWidget {
   const CategoryEditPage({
-    Key? key,
+    super.key,
     required this.categoryId,
-  }) : super(key: key);
+  });
 
   final int categoryId;
 
@@ -35,7 +36,7 @@ class CategoryEditPage extends StatelessWidget {
 }
 
 class _CategoryEditPageInternal extends StatelessWidget {
-  const _CategoryEditPageInternal({Key? key}) : super(key: key);
+  const _CategoryEditPageInternal();
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +44,9 @@ class _CategoryEditPageInternal extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Editar Categoría'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: FormBlocListener<CategoryEditFormBloc, Unit, String>(
           formBloc: context.read<CategoryEditFormBloc>(),

@@ -6,14 +6,14 @@ import 'package:latlong2/latlong.dart';
 
 class GeodataGetEntity extends GeodataEntity implements IMarkable {
   GeodataGetEntity({
-    required double latitude,
-    required double longitude,
+    required super. latitude,
+    required super. longitude,
     required this.id,
     required this.category,
     required this.color,
     required this.icon,
     required this.fields,
-  }) : super(latitude: latitude, longitude: longitude);
+  }) ;
 
   @override
   final int id;

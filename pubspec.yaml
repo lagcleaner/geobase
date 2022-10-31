@@ -5,51 +5,49 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.18.2 <3.0.0'
+  flutter: '>=3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  dartz: ^0.10.0
-  flash: ^1.5.1
-  flutter_bloc: ^7.3.0
-  flutter_image: ^4.0.1
-  flutter_map: ^0.13.1
-  flutter_lyform: ^0.5.0
-  freezed_annotation: ^0.14.1
+  dartz: ^0.10.1
+  file_picker: ^4.6.1
+  flash: ^2.0.5
+  flutter_bloc: ^8.1.1
+  flutter_image: ^4.1.4
+  flutter_map: ^3.0.0
+  flutter_lyform: ^0.13.0+1
+  flutter_riverpod: ^2.0.2
+  flutter_form_bloc: ^0.30.1
+  flutter_iconpicker: ^3.2.1
+  freezed_annotation: ^2.2.0
   get_it: ^7.2.0
-  injectable: ^1.3.0
-  json_annotation: ^4.0.1
-  latlong2: ^0.8.0
-  location: ^4.3.0
-  shared_preferences: ^2.0.5
+  injectable: ^1.5.3
+  json_annotation: ^4.7.0
+  latlong2: ^0.8.1
+  location: ^4.4.0
+  shared_preferences: ^2.0.15
   sliding_up_panel: ^2.0.0+1
-  rxdart: ^0.27.2
-  beamer:
-    git:
-      url: https://github.com/slovnicki/beamer.git
-      path: package
-      ref: 2015b04c79bf139d2df32ea62cba9f5d489433b2
-  flutter_colorpicker: ^0.6.0
-  path_provider: ^2.0.7
-  sqfentity: ^2.0.0
-  sqfentity_gen: ^2.0.0
-  reflectable: ^3.0.1
-  flutter_form_bloc: ^0.20.6
-  flutter_iconpicker: ^3.1.2
-  image_picker: ^0.8.4+4
-  file_picker: ^4.2.4
+  rxdart: ^0.27.5
+  beamer: ^1.5.3
+  flutter_colorpicker: ^1.0.3
+  path_provider: ^2.0.11
+  sqfentity: ^2.3.0+5
+  sqfentity_gen: ^2.3.0+4
+  reflectable: ^3.0.10
+  image_picker: ^0.8.6
   open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.11.5
-  build_verify: ^2.0.0
-  lint: ^1.6.0
-  freezed: ^0.14.1
-  injectable_generator: ^1.2.0
-  json_serializable: ^4.0.2
+  build_runner: ^2.3.0
+  build_verify: ^3.0.0
+  flutter_lints: ^2.0.1
+  freezed: ^2.2.0
+  injectable_generator: ^1.5.4
+  json_serializable: ^6.5.3
   # customization
   # flutter_native_splash
   # flutter_launcher_icons

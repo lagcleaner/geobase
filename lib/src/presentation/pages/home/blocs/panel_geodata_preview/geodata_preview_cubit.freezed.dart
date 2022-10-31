@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'geodata_preview_cubit.dart';
 
@@ -10,31 +12,7 @@ part of 'geodata_preview_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GeodataPreviewStateTearOff {
-  const _$GeodataPreviewStateTearOff();
-
-  _Loading loading() {
-    return const _Loading();
-  }
-
-  _Failure failure([String? error]) {
-    return _Failure(
-      error,
-    );
-  }
-
-  _Loaded loaded(GeodataGetEntity geodata) {
-    return _Loaded(
-      geodata,
-    );
-  }
-}
-
-/// @nodoc
-const $GeodataPreviewState = _$GeodataPreviewStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GeodataPreviewState {
@@ -43,6 +21,13 @@ mixin _$GeodataPreviewState {
     required TResult Function() loading,
     required TResult Function(String? error) failure,
     required TResult Function(GeodataGetEntity geodata) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(String? error)? failure,
+    TResult? Function(GeodataGetEntity geodata)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +46,13 @@ mixin _$GeodataPreviewState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Loaded value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -74,37 +66,37 @@ mixin _$GeodataPreviewState {
 abstract class $GeodataPreviewStateCopyWith<$Res> {
   factory $GeodataPreviewStateCopyWith(
           GeodataPreviewState value, $Res Function(GeodataPreviewState) then) =
-      _$GeodataPreviewStateCopyWithImpl<$Res>;
+      _$GeodataPreviewStateCopyWithImpl<$Res, GeodataPreviewState>;
 }
 
 /// @nodoc
-class _$GeodataPreviewStateCopyWithImpl<$Res>
+class _$GeodataPreviewStateCopyWithImpl<$Res, $Val extends GeodataPreviewState>
     implements $GeodataPreviewStateCopyWith<$Res> {
   _$GeodataPreviewStateCopyWithImpl(this._value, this._then);
 
-  final GeodataPreviewState _value;
   // ignore: unused_field
-  final $Res Function(GeodataPreviewState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$LoadingCopyWith<$Res> {
-  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
-      __$LoadingCopyWithImpl<$Res>;
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res>
-    extends _$GeodataPreviewStateCopyWithImpl<$Res>
-    implements _$LoadingCopyWith<$Res> {
-  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
-      : super(_value, (v) => _then(v as _Loading));
-
-  @override
-  _Loading get _value => super._value as _Loading;
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$GeodataPreviewStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
+
 class _$_Loading implements _Loading {
   const _$_Loading();
 
@@ -115,7 +107,8 @@ class _$_Loading implements _Loading {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Loading);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
   }
 
   @override
@@ -129,6 +122,16 @@ class _$_Loading implements _Loading {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(String? error)? failure,
+    TResult? Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return loading?.call();
   }
 
   @override
@@ -157,6 +160,16 @@ class _$_Loading implements _Loading {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -175,28 +188,28 @@ abstract class _Loading implements GeodataPreviewState {
 }
 
 /// @nodoc
-abstract class _$FailureCopyWith<$Res> {
-  factory _$FailureCopyWith(_Failure value, $Res Function(_Failure) then) =
-      __$FailureCopyWithImpl<$Res>;
+abstract class _$$_FailureCopyWith<$Res> {
+  factory _$$_FailureCopyWith(
+          _$_Failure value, $Res Function(_$_Failure) then) =
+      __$$_FailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({String? error});
 }
 
 /// @nodoc
-class __$FailureCopyWithImpl<$Res>
-    extends _$GeodataPreviewStateCopyWithImpl<$Res>
-    implements _$FailureCopyWith<$Res> {
-  __$FailureCopyWithImpl(_Failure _value, $Res Function(_Failure) _then)
-      : super(_value, (v) => _then(v as _Failure));
+class __$$_FailureCopyWithImpl<$Res>
+    extends _$GeodataPreviewStateCopyWithImpl<$Res, _$_Failure>
+    implements _$$_FailureCopyWith<$Res> {
+  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
+      : super(_value, _then);
 
-  @override
-  _Failure get _value => super._value as _Failure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(_Failure(
-      error == freezed
+    return _then(_$_Failure(
+      freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -205,6 +218,7 @@ class __$FailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Failure implements _Failure {
   const _$_Failure([this.error]);
 
@@ -219,19 +233,19 @@ class _$_Failure implements _Failure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Failure &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Failure &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
-  _$FailureCopyWith<_Failure> get copyWith =>
-      __$FailureCopyWithImpl<_Failure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -241,6 +255,16 @@ class _$_Failure implements _Failure {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return failure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(String? error)? failure,
+    TResult? Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return failure?.call(error);
   }
 
   @override
@@ -269,6 +293,16 @@ class _$_Failure implements _Failure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return failure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -283,37 +317,36 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements GeodataPreviewState {
-  const factory _Failure([String? error]) = _$_Failure;
+  const factory _Failure([final String? error]) = _$_Failure;
 
-  String? get error => throw _privateConstructorUsedError;
+  String? get error;
   @JsonKey(ignore: true)
-  _$FailureCopyWith<_Failure> get copyWith =>
+  _$$_FailureCopyWith<_$_Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$LoadedCopyWith<$Res> {
-  factory _$LoadedCopyWith(_Loaded value, $Res Function(_Loaded) then) =
-      __$LoadedCopyWithImpl<$Res>;
+abstract class _$$_LoadedCopyWith<$Res> {
+  factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
+      __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({GeodataGetEntity geodata});
 }
 
 /// @nodoc
-class __$LoadedCopyWithImpl<$Res>
-    extends _$GeodataPreviewStateCopyWithImpl<$Res>
-    implements _$LoadedCopyWith<$Res> {
-  __$LoadedCopyWithImpl(_Loaded _value, $Res Function(_Loaded) _then)
-      : super(_value, (v) => _then(v as _Loaded));
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$GeodataPreviewStateCopyWithImpl<$Res, _$_Loaded>
+    implements _$$_LoadedCopyWith<$Res> {
+  __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
+      : super(_value, _then);
 
-  @override
-  _Loaded get _value => super._value as _Loaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? geodata = freezed,
+    Object? geodata = null,
   }) {
-    return _then(_Loaded(
-      geodata == freezed
+    return _then(_$_Loaded(
+      null == geodata
           ? _value.geodata
           : geodata // ignore: cast_nullable_to_non_nullable
               as GeodataGetEntity,
@@ -322,6 +355,7 @@ class __$LoadedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Loaded implements _Loaded {
   const _$_Loaded(this.geodata);
 
@@ -336,19 +370,19 @@ class _$_Loaded implements _Loaded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Loaded &&
-            (identical(other.geodata, geodata) ||
-                const DeepCollectionEquality().equals(other.geodata, geodata)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Loaded &&
+            (identical(other.geodata, geodata) || other.geodata == geodata));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(geodata);
+  int get hashCode => Object.hash(runtimeType, geodata);
 
   @JsonKey(ignore: true)
   @override
-  _$LoadedCopyWith<_Loaded> get copyWith =>
-      __$LoadedCopyWithImpl<_Loaded>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -358,6 +392,16 @@ class _$_Loaded implements _Loaded {
     required TResult Function(GeodataGetEntity geodata) loaded,
   }) {
     return loaded(geodata);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(String? error)? failure,
+    TResult? Function(GeodataGetEntity geodata)? loaded,
+  }) {
+    return loaded?.call(geodata);
   }
 
   @override
@@ -386,6 +430,16 @@ class _$_Loaded implements _Loaded {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Failure value)? failure,
+    TResult? Function(_Loaded value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Failure value)? failure,
@@ -400,9 +454,10 @@ class _$_Loaded implements _Loaded {
 }
 
 abstract class _Loaded implements GeodataPreviewState {
-  const factory _Loaded(GeodataGetEntity geodata) = _$_Loaded;
+  const factory _Loaded(final GeodataGetEntity geodata) = _$_Loaded;
 
-  GeodataGetEntity get geodata => throw _privateConstructorUsedError;
+  GeodataGetEntity get geodata;
   @JsonKey(ignore: true)
-  _$LoadedCopyWith<_Loaded> get copyWith => throw _privateConstructorUsedError;
+  _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -5,7 +5,6 @@ import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
-import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
@@ -13,10 +12,10 @@ import 'package:latlong2/latlong.dart';
 
 class GeodataNewPage extends StatelessWidget {
   const GeodataNewPage({
-    Key? key,
+    super.key,
     this.ubication,
     this.categoryId,
-  }) : super(key: key);
+  });
 
   final LatLng? ubication;
   final int? categoryId;
@@ -53,9 +52,7 @@ class GeodataNewPage extends StatelessWidget {
 }
 
 class _GeodataCreatePageInternal extends StatelessWidget {
-  const _GeodataCreatePageInternal({
-    Key? key,
-  }) : super(key: key);
+  const _GeodataCreatePageInternal();
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +60,9 @@ class _GeodataCreatePageInternal extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Nuevo Punto de Interés'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: BlocBuilder<GeodataCreateCubit, GeodataCreateState>(
           bloc: context.read<GeodataCreateCubit>(),
@@ -102,10 +98,9 @@ class _GeodataCreatePageInternal extends StatelessWidget {
 
 class _GeodataCategorySelectionBody extends StatelessWidget {
   const _GeodataCategorySelectionBody({
-    Key? key,
     required this.categories,
     required this.onSelectedCategory,
-  }) : super(key: key);
+  });
 
   final Function(int categoryId) onSelectedCategory;
   final List<CategoryGetEntity> categories;
@@ -168,11 +163,11 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
 }
 
 class _GeodataCreateFormBody extends StatelessWidget {
-  const _GeodataCreateFormBody({Key? key}) : super(key: key);
+  const _GeodataCreateFormBody();
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocListener<IGeodataCreateFormBloc, void, Failure>(
+    return LyFormListener<IGeodataCreateFormBloc, void, Failure>(
       bloc: context.read<IGeodataCreateFormBloc>(),
       onSuccess: (_) => NotificationHelper.showSuccessSnackbar(
         context,

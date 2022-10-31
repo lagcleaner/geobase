@@ -9,7 +9,7 @@ import 'package:geobase/src/presentation/pages/categories/widgets/inputs/autorem
 import 'package:geobase/src/presentation/pages/staticselection/blocs/static_selection_form/static_selection_create_form_bloc.dart';
 
 class StaticSelectionNewPage extends StatelessWidget {
-  const StaticSelectionNewPage({Key? key}) : super(key: key);
+  const StaticSelectionNewPage({super.key});
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -29,16 +29,15 @@ class StaticSelectionNewPage extends StatelessWidget {
 }
 
 class _StaticSelectionNewInternalPage extends StatelessWidget {
-  const _StaticSelectionNewInternalPage({Key? key}) : super(key: key);
+  const _StaticSelectionNewInternalPage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
+      appBar: GeoAppBar(
         title: const Text('Nueva Selección'),
         iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
       ),
       body: const _Body(),
     );
@@ -46,9 +45,7 @@ class _StaticSelectionNewInternalPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +70,7 @@ class _Body extends StatelessWidget {
 }
 
 class _StaticSelectionCreateForm extends StatelessWidget {
-  const _StaticSelectionCreateForm({Key? key}) : super(key: key);
+  const _StaticSelectionCreateForm();
 
   @override
   Widget build(BuildContext context) {
@@ -90,9 +87,7 @@ class _StaticSelectionCreateForm extends StatelessWidget {
 }
 
 class _Inputs extends StatelessWidget {
-  const _Inputs({
-    Key? key,
-  }) : super(key: key);
+  const _Inputs();
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +110,7 @@ class _Inputs extends StatelessWidget {
 }
 
 class _NameInput extends StatelessWidget {
-  const _NameInput({Key? key}) : super(key: key);
+  const _NameInput();
 
   @override
   Widget build(BuildContext context) {
@@ -131,13 +126,13 @@ class _NameInput extends StatelessWidget {
 }
 
 class _OptionsInput extends StatelessWidget {
-  const _OptionsInput({Key? key}) : super(key: key);
+  const _OptionsInput();
 
   @override
   Widget build(BuildContext context) {
     final formBloc = context.read<StaticSelectionCreateFormBloc>();
-    return BlocBuilder<ListFieldBloc<TextFieldBloc>,
-        ListFieldBlocState<TextFieldBloc>>(
+    return BlocBuilder<ListFieldBloc<TextFieldBloc, dynamic>,
+        ListFieldBlocState<TextFieldBloc, dynamic>>(
       bloc: formBloc.options,
       builder: (context, state) {
         return Column(

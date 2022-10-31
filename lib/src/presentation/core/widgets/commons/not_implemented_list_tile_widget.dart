@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:geobase/src/domain/entities/column_get_entity.dart';
 
 class NotImplementedListTile extends StatelessWidget {
   const NotImplementedListTile({
-    Key? key,
+    super.key,
     required this.column,
-  }) : super(key: key);
+  });
 
   final ColumnGetEntity column;
 

@@ -5,8 +5,8 @@ class ColumnPutModel extends ColumnModel {
     required this.id,
     required this.categoryId,
     required this.typeId,
-    required String name,
-  }) : super(name: name);
+    required super.name,
+  });
 
   final int id;
 

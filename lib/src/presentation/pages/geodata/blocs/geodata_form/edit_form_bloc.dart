@@ -7,13 +7,13 @@ import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 
-abstract class IGeodataEditFormBloc extends IGeodataFormBloc {
-  InputBloc<int> get geodataId;
+abstract class IGeodataEditFormBloc extends GeodataFormBloc {
+  LyInput<int> get geodataId;
 
   GeodataGetEntity get defaultData;
 
   @override
-  List<InputBloc> get inputs => [
+  List<LyInput> get inputs => [
         geodataId,
         categoryId,
         latitude,
@@ -40,20 +40,20 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   GeodataGetEntity get defaultData => initialData.data;
 
   @override
-  late final InputBloc<int> categoryId = InputBloc(
+  late final LyInput<int> categoryId = LyInput(
     pureValue: category.id,
   );
 
   @override
-  late final InputBloc<int> geodataId = InputBloc(
+  late final LyInput<int> geodataId = LyInput(
     pureValue: defaultData.id,
   );
 
   @override
-  late final InputBloc<String> latitude = InputBloc<String>(
+  late final LyInput<String> latitude = LyInput<String>(
     pureValue: defaultData.location.latitude.toString(),
-    validationType: ValidationType.explicit,
-    validator: ListValidator(
+    validationType: LyValidationType.explicit,
+    validator: LyListValidator(
       [
         StringValidator.required,
         StringValidator.number,
@@ -67,10 +67,10 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   );
 
   @override
-  late final InputBloc<String> longitude = InputBloc<String>(
+  late final LyInput<String> longitude = LyInput<String>(
     pureValue: defaultData.location.longitude.toString(),
-    validationType: ValidationType.explicit,
-    validator: ListValidator(
+    validationType: LyValidationType.explicit,
+    validator: LyListValidator(
       [
         StringValidator.required,
         StringValidator.number,
@@ -84,7 +84,7 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
   );
 
   @override
-  late final Map<ColumnGetEntity, InputBloc<FieldValueEntity>> fieldValues =
+  late final Map<ColumnGetEntity, LyInput<FieldValueEntity>> fieldValues =
       Map.fromEntries(
     defaultData.fields.map(
       (e) => MapEntry(
@@ -102,8 +102,10 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
     ),
   );
 
+ 
+  
   @override
-  Future<FormBlocState<Unit, Failure>> onSubmmit() async {
+  Stream<LyFormState<Unit, Failure>> onSubmit() async* {
     final response = await geodataService.editGeodata(
       GeodataPutEntity(
         id: geodataId.state.value,
@@ -115,9 +117,9 @@ class GeodataEditFormBloc extends IGeodataEditFormBloc {
             .toList(),
       ),
     );
-    return response.fold(
-      (error) => FormErrorState(error),
-      (_) => const FormSuccessState(unit),
+yield response.fold(
+      (error) => LyFormErrorState(error, inputStates),
+      (_) => LyFormSuccessState(unit, inputStates),
     );
   }
 }

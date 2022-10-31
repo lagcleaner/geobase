@@ -1,7 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
@@ -9,9 +8,9 @@ import 'package:geobase/src/presentation/pages/staticselection/blocs/static_sele
 
 class StaticSelectionViewPage extends StatelessWidget {
   const StaticSelectionViewPage({
-    Key? key,
+    super.key,
     required this.fieldTypeId,
-  }) : super(key: key);
+  });
 
   final int fieldTypeId;
 
@@ -37,9 +36,8 @@ class StaticSelectionViewPage extends StatelessWidget {
 
 class _StaticSelectioViewInternalPage extends StatelessWidget {
   const _StaticSelectioViewInternalPage({
-    Key? key,
     required this.fieldTypeId,
-  }) : super(key: key);
+  });
 
   final int fieldTypeId;
 
@@ -47,10 +45,9 @@ class _StaticSelectioViewInternalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
+      appBar: GeoAppBar(
         title: const Text('Detalles de la Selección Estática'),
         iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(
@@ -69,9 +66,8 @@ class _StaticSelectioViewInternalPage extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   const _Body({
-    Key? key,
     required this.fieldTypeId,
-  }) : super(key: key);
+  });
 
   final int fieldTypeId;
 
@@ -101,9 +97,8 @@ class _Body extends StatelessWidget {
 
 class _StaticSelectionViewBodyFetchFailure extends StatelessWidget {
   const _StaticSelectionViewBodyFetchFailure({
-    Key? key,
     required this.fieldTypeId,
-  }) : super(key: key);
+  });
 
   final int fieldTypeId;
 
@@ -130,9 +125,8 @@ class _StaticSelectionViewBodyFetchFailure extends StatelessWidget {
 
 class _StaticSelectionViewBodyFetchSucessBottom extends StatelessWidget {
   const _StaticSelectionViewBodyFetchSucessBottom({
-    Key? key,
     required this.fieldTypeId,
-  }) : super(key: key);
+  });
 
   final int fieldTypeId;
 
@@ -202,9 +196,7 @@ class _StaticSelectionViewBodyFetchSucessBottom extends StatelessWidget {
 }
 
 class _StaticSelectionViewBodyFetchInProgress extends StatelessWidget {
-  const _StaticSelectionViewBodyFetchInProgress({
-    Key? key,
-  }) : super(key: key);
+  const _StaticSelectionViewBodyFetchInProgress();
 
   @override
   Widget build(BuildContext context) {
@@ -219,9 +211,8 @@ class _StaticSelectionViewBodyFetchInProgress extends StatelessWidget {
 
 class _StaticSelectionViewBodyFetchSuccess extends StatelessWidget {
   const _StaticSelectionViewBodyFetchSuccess({
-    Key? key,
     required this.staticSelection,
-  }) : super(key: key);
+  });
 
   final FieldTypeStaticSelectionGetEntity staticSelection;
 
@@ -244,9 +235,8 @@ class _StaticSelectionViewBodyFetchSuccess extends StatelessWidget {
 
 class _StaticSelectionViewBasicInfo extends StatelessWidget {
   const _StaticSelectionViewBasicInfo({
-    Key? key,
     required this.staticSelection,
-  }) : super(key: key);
+  });
 
   final FieldTypeStaticSelectionGetEntity staticSelection;
 

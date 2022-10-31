@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'categorylist_bloc.dart';
 
@@ -10,29 +12,19 @@ part of 'categorylist_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CategoryListEventTearOff {
-  const _$CategoryListEventTearOff();
-
-  _Fetched fetched({required String query}) {
-    return _Fetched(
-      query: query,
-    );
-  }
-}
-
-/// @nodoc
-const $CategoryListEvent = _$CategoryListEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$CategoryListEvent {
   String get query => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) fetched,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +36,11 @@ mixin _$CategoryListEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetched value) fetched,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetched value)? fetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,56 +59,60 @@ mixin _$CategoryListEvent {
 abstract class $CategoryListEventCopyWith<$Res> {
   factory $CategoryListEventCopyWith(
           CategoryListEvent value, $Res Function(CategoryListEvent) then) =
-      _$CategoryListEventCopyWithImpl<$Res>;
+      _$CategoryListEventCopyWithImpl<$Res, CategoryListEvent>;
+  @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class _$CategoryListEventCopyWithImpl<$Res>
+class _$CategoryListEventCopyWithImpl<$Res, $Val extends CategoryListEvent>
     implements $CategoryListEventCopyWith<$Res> {
   _$CategoryListEventCopyWithImpl(this._value, this._then);
 
-  final CategoryListEvent _value;
   // ignore: unused_field
-  final $Res Function(CategoryListEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? query = freezed,
+    Object? query = null,
   }) {
     return _then(_value.copyWith(
-      query: query == freezed
+      query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$FetchedCopyWith<$Res>
+abstract class _$$_FetchedCopyWith<$Res>
     implements $CategoryListEventCopyWith<$Res> {
-  factory _$FetchedCopyWith(_Fetched value, $Res Function(_Fetched) then) =
-      __$FetchedCopyWithImpl<$Res>;
+  factory _$$_FetchedCopyWith(
+          _$_Fetched value, $Res Function(_$_Fetched) then) =
+      __$$_FetchedCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$FetchedCopyWithImpl<$Res> extends _$CategoryListEventCopyWithImpl<$Res>
-    implements _$FetchedCopyWith<$Res> {
-  __$FetchedCopyWithImpl(_Fetched _value, $Res Function(_Fetched) _then)
-      : super(_value, (v) => _then(v as _Fetched));
+class __$$_FetchedCopyWithImpl<$Res>
+    extends _$CategoryListEventCopyWithImpl<$Res, _$_Fetched>
+    implements _$$_FetchedCopyWith<$Res> {
+  __$$_FetchedCopyWithImpl(_$_Fetched _value, $Res Function(_$_Fetched) _then)
+      : super(_value, _then);
 
-  @override
-  _Fetched get _value => super._value as _Fetched;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? query = freezed,
+    Object? query = null,
   }) {
-    return _then(_Fetched(
-      query: query == freezed
+    return _then(_$_Fetched(
+      query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
               as String,
@@ -120,6 +121,7 @@ class __$FetchedCopyWithImpl<$Res> extends _$CategoryListEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Fetched implements _Fetched {
   const _$_Fetched({required this.query});
 
@@ -134,19 +136,19 @@ class _$_Fetched implements _Fetched {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Fetched &&
-            (identical(other.query, query) ||
-                const DeepCollectionEquality().equals(other.query, query)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Fetched &&
+            (identical(other.query, query) || other.query == query));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(query);
+  int get hashCode => Object.hash(runtimeType, query);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchedCopyWith<_Fetched> get copyWith =>
-      __$FetchedCopyWithImpl<_Fetched>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchedCopyWith<_$_Fetched> get copyWith =>
+      __$$_FetchedCopyWithImpl<_$_Fetched>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -154,6 +156,14 @@ class _$_Fetched implements _Fetched {
     required TResult Function(String query) fetched,
   }) {
     return fetched(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String query)? fetched,
+  }) {
+    return fetched?.call(query);
   }
 
   @override
@@ -178,6 +188,14 @@ class _$_Fetched implements _Fetched {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetched value)? fetched,
+  }) {
+    return fetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetched value)? fetched,
     required TResult orElse(),
@@ -190,47 +208,15 @@ class _$_Fetched implements _Fetched {
 }
 
 abstract class _Fetched implements CategoryListEvent {
-  const factory _Fetched({required String query}) = _$_Fetched;
+  const factory _Fetched({required final String query}) = _$_Fetched;
 
   @override
-  String get query => throw _privateConstructorUsedError;
+  String get query;
   @override
   @JsonKey(ignore: true)
-  _$FetchedCopyWith<_Fetched> get copyWith =>
+  _$$_FetchedCopyWith<_$_Fetched> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$CategoryListStateTearOff {
-  const _$CategoryListStateTearOff();
-
-  _Initial initial() {
-    return const _Initial();
-  }
-
-  _FetchInProgress fetchInProgress() {
-    return const _FetchInProgress();
-  }
-
-  _FetchSuccess fetchSuccess({required List<CategoryGetEntity> categories}) {
-    return _FetchSuccess(
-      categories: categories,
-    );
-  }
-
-  _FetchSuccessNotFound fetchSuccessNotFound() {
-    return const _FetchSuccessNotFound();
-  }
-
-  _FetchFailure fetchFailure({required String error}) {
-    return _FetchFailure(
-      error: error,
-    );
-  }
-}
-
-/// @nodoc
-const $CategoryListState = _$CategoryListStateTearOff();
 
 /// @nodoc
 mixin _$CategoryListState {
@@ -241,6 +227,15 @@ mixin _$CategoryListState {
     required TResult Function(List<CategoryGetEntity> categories) fetchSuccess,
     required TResult Function() fetchSuccessNotFound,
     required TResult Function(String error) fetchFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -263,6 +258,15 @@ mixin _$CategoryListState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -278,36 +282,37 @@ mixin _$CategoryListState {
 abstract class $CategoryListStateCopyWith<$Res> {
   factory $CategoryListStateCopyWith(
           CategoryListState value, $Res Function(CategoryListState) then) =
-      _$CategoryListStateCopyWithImpl<$Res>;
+      _$CategoryListStateCopyWithImpl<$Res, CategoryListState>;
 }
 
 /// @nodoc
-class _$CategoryListStateCopyWithImpl<$Res>
+class _$CategoryListStateCopyWithImpl<$Res, $Val extends CategoryListState>
     implements $CategoryListStateCopyWith<$Res> {
   _$CategoryListStateCopyWithImpl(this._value, this._then);
 
-  final CategoryListState _value;
   // ignore: unused_field
-  final $Res Function(CategoryListState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$CategoryListStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
-
-  @override
-  _Initial get _value => super._value as _Initial;
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$CategoryListStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -318,7 +323,8 @@ class _$_Initial implements _Initial {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Initial);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
   }
 
   @override
@@ -334,6 +340,18 @@ class _$_Initial implements _Initial {
     required TResult Function(String error) fetchFailure,
   }) {
     return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
+  }) {
+    return initial?.call();
   }
 
   @override
@@ -366,6 +384,18 @@ class _$_Initial implements _Initial {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -386,25 +416,23 @@ abstract class _Initial implements CategoryListState {
 }
 
 /// @nodoc
-abstract class _$FetchInProgressCopyWith<$Res> {
-  factory _$FetchInProgressCopyWith(
-          _FetchInProgress value, $Res Function(_FetchInProgress) then) =
-      __$FetchInProgressCopyWithImpl<$Res>;
+abstract class _$$_FetchInProgressCopyWith<$Res> {
+  factory _$$_FetchInProgressCopyWith(
+          _$_FetchInProgress value, $Res Function(_$_FetchInProgress) then) =
+      __$$_FetchInProgressCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchInProgressCopyWithImpl<$Res>
-    extends _$CategoryListStateCopyWithImpl<$Res>
-    implements _$FetchInProgressCopyWith<$Res> {
-  __$FetchInProgressCopyWithImpl(
-      _FetchInProgress _value, $Res Function(_FetchInProgress) _then)
-      : super(_value, (v) => _then(v as _FetchInProgress));
-
-  @override
-  _FetchInProgress get _value => super._value as _FetchInProgress;
+class __$$_FetchInProgressCopyWithImpl<$Res>
+    extends _$CategoryListStateCopyWithImpl<$Res, _$_FetchInProgress>
+    implements _$$_FetchInProgressCopyWith<$Res> {
+  __$$_FetchInProgressCopyWithImpl(
+      _$_FetchInProgress _value, $Res Function(_$_FetchInProgress) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
+
 class _$_FetchInProgress implements _FetchInProgress {
   const _$_FetchInProgress();
 
@@ -415,7 +443,8 @@ class _$_FetchInProgress implements _FetchInProgress {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FetchInProgress);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchInProgress);
   }
 
   @override
@@ -431,6 +460,18 @@ class _$_FetchInProgress implements _FetchInProgress {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
+  }) {
+    return fetchInProgress?.call();
   }
 
   @override
@@ -463,6 +504,18 @@ class _$_FetchInProgress implements _FetchInProgress {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -483,31 +536,30 @@ abstract class _FetchInProgress implements CategoryListState {
 }
 
 /// @nodoc
-abstract class _$FetchSuccessCopyWith<$Res> {
-  factory _$FetchSuccessCopyWith(
-          _FetchSuccess value, $Res Function(_FetchSuccess) then) =
-      __$FetchSuccessCopyWithImpl<$Res>;
+abstract class _$$_FetchSuccessCopyWith<$Res> {
+  factory _$$_FetchSuccessCopyWith(
+          _$_FetchSuccess value, $Res Function(_$_FetchSuccess) then) =
+      __$$_FetchSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<CategoryGetEntity> categories});
 }
 
 /// @nodoc
-class __$FetchSuccessCopyWithImpl<$Res>
-    extends _$CategoryListStateCopyWithImpl<$Res>
-    implements _$FetchSuccessCopyWith<$Res> {
-  __$FetchSuccessCopyWithImpl(
-      _FetchSuccess _value, $Res Function(_FetchSuccess) _then)
-      : super(_value, (v) => _then(v as _FetchSuccess));
+class __$$_FetchSuccessCopyWithImpl<$Res>
+    extends _$CategoryListStateCopyWithImpl<$Res, _$_FetchSuccess>
+    implements _$$_FetchSuccessCopyWith<$Res> {
+  __$$_FetchSuccessCopyWithImpl(
+      _$_FetchSuccess _value, $Res Function(_$_FetchSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchSuccess get _value => super._value as _FetchSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categories = freezed,
+    Object? categories = null,
   }) {
-    return _then(_FetchSuccess(
-      categories: categories == freezed
-          ? _value.categories
+    return _then(_$_FetchSuccess(
+      categories: null == categories
+          ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryGetEntity>,
     ));
@@ -515,11 +567,17 @@ class __$FetchSuccessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$_FetchSuccess implements _FetchSuccess {
-  const _$_FetchSuccess({required this.categories});
 
+class _$_FetchSuccess implements _FetchSuccess {
+  const _$_FetchSuccess({required final List<CategoryGetEntity> categories})
+      : _categories = categories;
+
+  final List<CategoryGetEntity> _categories;
   @override
-  final List<CategoryGetEntity> categories;
+  List<CategoryGetEntity> get categories {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
 
   @override
   String toString() {
@@ -529,20 +587,21 @@ class _$_FetchSuccess implements _FetchSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FetchSuccess &&
-            (identical(other.categories, categories) ||
-                const DeepCollectionEquality()
-                    .equals(other.categories, categories)));
+        (other.runtimeType == runtimeType &&
+            other is _$_FetchSuccess &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(categories);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
-      __$FetchSuccessCopyWithImpl<_FetchSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
+      __$$_FetchSuccessCopyWithImpl<_$_FetchSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -554,6 +613,18 @@ class _$_FetchSuccess implements _FetchSuccess {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchSuccess(categories);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
+  }) {
+    return fetchSuccess?.call(categories);
   }
 
   @override
@@ -586,6 +657,18 @@ class _$_FetchSuccess implements _FetchSuccess {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -602,35 +685,33 @@ class _$_FetchSuccess implements _FetchSuccess {
 }
 
 abstract class _FetchSuccess implements CategoryListState {
-  const factory _FetchSuccess({required List<CategoryGetEntity> categories}) =
-      _$_FetchSuccess;
+  const factory _FetchSuccess(
+      {required final List<CategoryGetEntity> categories}) = _$_FetchSuccess;
 
-  List<CategoryGetEntity> get categories => throw _privateConstructorUsedError;
+  List<CategoryGetEntity> get categories;
   @JsonKey(ignore: true)
-  _$FetchSuccessCopyWith<_FetchSuccess> get copyWith =>
+  _$$_FetchSuccessCopyWith<_$_FetchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FetchSuccessNotFoundCopyWith<$Res> {
-  factory _$FetchSuccessNotFoundCopyWith(_FetchSuccessNotFound value,
-          $Res Function(_FetchSuccessNotFound) then) =
-      __$FetchSuccessNotFoundCopyWithImpl<$Res>;
+abstract class _$$_FetchSuccessNotFoundCopyWith<$Res> {
+  factory _$$_FetchSuccessNotFoundCopyWith(_$_FetchSuccessNotFound value,
+          $Res Function(_$_FetchSuccessNotFound) then) =
+      __$$_FetchSuccessNotFoundCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$FetchSuccessNotFoundCopyWithImpl<$Res>
-    extends _$CategoryListStateCopyWithImpl<$Res>
-    implements _$FetchSuccessNotFoundCopyWith<$Res> {
-  __$FetchSuccessNotFoundCopyWithImpl(
-      _FetchSuccessNotFound _value, $Res Function(_FetchSuccessNotFound) _then)
-      : super(_value, (v) => _then(v as _FetchSuccessNotFound));
-
-  @override
-  _FetchSuccessNotFound get _value => super._value as _FetchSuccessNotFound;
+class __$$_FetchSuccessNotFoundCopyWithImpl<$Res>
+    extends _$CategoryListStateCopyWithImpl<$Res, _$_FetchSuccessNotFound>
+    implements _$$_FetchSuccessNotFoundCopyWith<$Res> {
+  __$$_FetchSuccessNotFoundCopyWithImpl(_$_FetchSuccessNotFound _value,
+      $Res Function(_$_FetchSuccessNotFound) _then)
+      : super(_value, _then);
 }
 
 /// @nodoc
+
 class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
   const _$_FetchSuccessNotFound();
 
@@ -641,7 +722,8 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _FetchSuccessNotFound);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_FetchSuccessNotFound);
   }
 
   @override
@@ -657,6 +739,18 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchSuccessNotFound();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
+  }) {
+    return fetchSuccessNotFound?.call();
   }
 
   @override
@@ -689,6 +783,18 @@ class _$_FetchSuccessNotFound implements _FetchSuccessNotFound {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchSuccessNotFound?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -709,30 +815,29 @@ abstract class _FetchSuccessNotFound implements CategoryListState {
 }
 
 /// @nodoc
-abstract class _$FetchFailureCopyWith<$Res> {
-  factory _$FetchFailureCopyWith(
-          _FetchFailure value, $Res Function(_FetchFailure) then) =
-      __$FetchFailureCopyWithImpl<$Res>;
+abstract class _$$_FetchFailureCopyWith<$Res> {
+  factory _$$_FetchFailureCopyWith(
+          _$_FetchFailure value, $Res Function(_$_FetchFailure) then) =
+      __$$_FetchFailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$FetchFailureCopyWithImpl<$Res>
-    extends _$CategoryListStateCopyWithImpl<$Res>
-    implements _$FetchFailureCopyWith<$Res> {
-  __$FetchFailureCopyWithImpl(
-      _FetchFailure _value, $Res Function(_FetchFailure) _then)
-      : super(_value, (v) => _then(v as _FetchFailure));
+class __$$_FetchFailureCopyWithImpl<$Res>
+    extends _$CategoryListStateCopyWithImpl<$Res, _$_FetchFailure>
+    implements _$$_FetchFailureCopyWith<$Res> {
+  __$$_FetchFailureCopyWithImpl(
+      _$_FetchFailure _value, $Res Function(_$_FetchFailure) _then)
+      : super(_value, _then);
 
-  @override
-  _FetchFailure get _value => super._value as _FetchFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
-    return _then(_FetchFailure(
-      error: error == freezed
+    return _then(_$_FetchFailure(
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
@@ -741,6 +846,7 @@ class __$FetchFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_FetchFailure implements _FetchFailure {
   const _$_FetchFailure({required this.error});
 
@@ -755,19 +861,19 @@ class _$_FetchFailure implements _FetchFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FetchFailure &&
-            (identical(other.error, error) ||
-                const DeepCollectionEquality().equals(other.error, error)));
+        (other.runtimeType == runtimeType &&
+            other is _$_FetchFailure &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
-      __$FetchFailureCopyWithImpl<_FetchFailure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
+      __$$_FetchFailureCopyWithImpl<_$_FetchFailure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -779,6 +885,18 @@ class _$_FetchFailure implements _FetchFailure {
     required TResult Function(String error) fetchFailure,
   }) {
     return fetchFailure(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? fetchInProgress,
+    TResult? Function(List<CategoryGetEntity> categories)? fetchSuccess,
+    TResult? Function()? fetchSuccessNotFound,
+    TResult? Function(String error)? fetchFailure,
+  }) {
+    return fetchFailure?.call(error);
   }
 
   @override
@@ -811,6 +929,18 @@ class _$_FetchFailure implements _FetchFailure {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_FetchInProgress value)? fetchInProgress,
+    TResult? Function(_FetchSuccess value)? fetchSuccess,
+    TResult? Function(_FetchSuccessNotFound value)? fetchSuccessNotFound,
+    TResult? Function(_FetchFailure value)? fetchFailure,
+  }) {
+    return fetchFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_FetchInProgress value)? fetchInProgress,
@@ -827,10 +957,10 @@ class _$_FetchFailure implements _FetchFailure {
 }
 
 abstract class _FetchFailure implements CategoryListState {
-  const factory _FetchFailure({required String error}) = _$_FetchFailure;
+  const factory _FetchFailure({required final String error}) = _$_FetchFailure;
 
-  String get error => throw _privateConstructorUsedError;
+  String get error;
   @JsonKey(ignore: true)
-  _$FetchFailureCopyWith<_FetchFailure> get copyWith =>
+  _$$_FetchFailureCopyWith<_$_FetchFailure> get copyWith =>
       throw _privateConstructorUsedError;
 }

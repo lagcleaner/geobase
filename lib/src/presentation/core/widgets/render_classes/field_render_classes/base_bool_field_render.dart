@@ -16,10 +16,10 @@ class BaseBoolFieldRender implements IFieldRenderClass {
   static final BaseBoolFieldRender _instance = BaseBoolFieldRender._internal();
 
   @override
-  InputBloc<FieldValueEntity> getInputBloc(
+  LyInput<FieldValueEntity> getInputBloc(
     FieldValueEntity fieldValue,
   ) {
-    return InputBloc<FieldValueEntity>(
+    return LyInput<FieldValueEntity>(
       pureValue: fieldValue,
     );
   }
@@ -27,7 +27,7 @@ class BaseBoolFieldRender implements IFieldRenderClass {
   @override
   Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> fieldInputBloc,
+    LyInput<FieldValueEntity> fieldInputBloc,
   ) {
     return BoolFieldInputWidget(
       key: Key('FieldInput${column.name}${column.id}'),

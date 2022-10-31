@@ -16,6 +16,7 @@ class MapConfigurationFormBloc
     required this.readerService,
     required this.writterService,
   }) : super(isLoading: true) {
+    
     addFieldBlocs(
       fieldBlocs: [
         source,
@@ -65,9 +66,9 @@ class MapConfigurationFormBloc
     ],
   );
 
-  final ListFieldBloc<TextFieldBloc> wmsLayers = ListFieldBloc();
+  final ListFieldBloc<TextFieldBloc, dynamic> wmsLayers = ListFieldBloc();
 
-  final ListFieldBloc<TextFieldBloc> subdomains = ListFieldBloc();
+  final ListFieldBloc<TextFieldBloc, dynamic> subdomains = ListFieldBloc();
 
   final IMapConfigurationReaderService readerService;
 
@@ -81,7 +82,7 @@ class MapConfigurationFormBloc
           fieldBlocs: [
             wmsBaseUrl
               ..updateInitialValue(
-                configs.options[MAP_SOURCE_WMS_BASE_URL] as String?,
+                (configs.options[MAP_SOURCE_WMS_BASE_URL] as String?) ?? '',
               ),
             wmsFormat
               ..updateInitialValue(
@@ -108,7 +109,7 @@ class MapConfigurationFormBloc
           fieldBlocs: [
             urlTemplate
               ..updateInitialValue(
-                configs.options[MAP_SOURCE_URL_TEMPLATE] as String?,
+                (configs.options[MAP_SOURCE_URL_TEMPLATE] as String?) ?? '',
               ),
           ],
         );
@@ -118,7 +119,7 @@ class MapConfigurationFormBloc
           fieldBlocs: [
             urlTemplate
               ..updateInitialValue(
-                configs.options[MAP_SOURCE_URL_TEMPLATE] as String?,
+                (configs.options[MAP_SOURCE_URL_TEMPLATE] as String?) ?? '',
               ),
             subdomains,
           ],

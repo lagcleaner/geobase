@@ -17,13 +17,13 @@ class MediaImageFieldRender implements IFieldRenderClass {
   static final MediaImageFieldRender _instance =
       MediaImageFieldRender._internal();
   @override
-  InputBloc<FieldValueEntity> getInputBloc(
+  LyInput<FieldValueEntity> getInputBloc(
     FieldValueEntity fieldValue,
   ) {
-    return InputBloc<FieldValueEntity>(
+    return LyInput<FieldValueEntity>(
       pureValue: fieldValue,
-      validationType: ValidationType.explicit,
-      validator: ListValidator([
+      validationType: LyValidationType.explicit,
+      validator: LyListValidator([
         FieldValueValidator.from(DynamicValidator.required),
       ]),
     );
@@ -32,7 +32,7 @@ class MediaImageFieldRender implements IFieldRenderClass {
   @override
   Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> fieldInputBloc,
+    LyInput<FieldValueEntity> fieldInputBloc,
   ) {
     return MediaImageFieldInputWidget(
       key: Key('FieldInput${column.name}${column.id}'),

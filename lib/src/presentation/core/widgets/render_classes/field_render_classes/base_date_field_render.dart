@@ -17,15 +17,15 @@ class BaseDateFieldRender implements IFieldRenderClass {
   static final BaseDateFieldRender _instance = BaseDateFieldRender._internal();
 
   @override
-  InputBloc<FieldValueEntity> getInputBloc(
+  LyInput<FieldValueEntity> getInputBloc(
     FieldValueEntity fieldValue,
   ) {
-    return InputBloc<FieldValueEntity>(
+    return LyInput<FieldValueEntity>(
       pureValue: fieldValue.copyWithValue(
         fieldValue.value ?? DateTime.now().toString().split(' ')[0],
       ),
-      validationType: ValidationType.explicit,
-      validator: ListValidator([
+      validationType: LyValidationType.explicit,
+      validator: LyListValidator([
         FieldValueValidator.from(StringValidator.required),
       ]),
     );
@@ -34,7 +34,7 @@ class BaseDateFieldRender implements IFieldRenderClass {
   @override
   Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> fieldInputBloc,
+    LyInput<FieldValueEntity> fieldInputBloc,
   ) {
     return DateFieldInputWidget(
       key: Key('FieldInput${column.name}${column.id}'),

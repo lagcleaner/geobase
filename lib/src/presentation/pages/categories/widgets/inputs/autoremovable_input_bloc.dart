@@ -4,11 +4,11 @@ import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 
 class AutoremovableListFieldBlocInput extends StatelessWidget {
   const AutoremovableListFieldBlocInput({
-    Key? key,
+    super.key,
     required this.bloc,
     required this.index,
     required this.label,
-  }) : super(key: key);
+  });
 
   final TextFieldBloc bloc;
   final int index;
