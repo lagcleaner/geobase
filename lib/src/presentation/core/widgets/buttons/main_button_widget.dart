@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({
-    Key? key,
+    super.key,
     this.child,
     this.text,
     required this.onPressed,
     this.color,
     this.side,
-  })  : assert(child != null || text != null),
-        super(key: key);
+  }) : assert(child != null || text != null);
 
   const MainButton.danger({
-    Key? key,
+    super.key,
     this.child,
     this.text,
     required this.onPressed,
     this.side,
   })  : color = const Color(0xFFE53935),
-        assert(child != null || text != null),
-        super(key: key);
+        assert(child != null || text != null);
 
-  const MainButton.loading({Key? key})
+  const MainButton.loading({super.key})
       : onPressed = null,
         text = null,
         color = null,
@@ -29,8 +27,7 @@ class MainButton extends StatelessWidget {
           color: Colors.white,
           strokeWidth: 2,
         ),
-        side = null,
-        super(key: key);
+        side = null;
 
   final Widget? child;
   final String? text;

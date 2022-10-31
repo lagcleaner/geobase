@@ -3,7 +3,7 @@ import 'package:geobase/src/presentation/core/widgets/basic_inputs/utils.dart';
 
 class TextInputWidget extends StatelessWidget {
   const TextInputWidget({
-    Key? key,
+    super.key,
     this.controller,
     this.onChanged,
     this.onTap,
@@ -13,7 +13,7 @@ class TextInputWidget extends StatelessWidget {
     this.labelText,
     this.focusNode,
     this.keyboardType = TextInputType.text,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final TextInputType keyboardType;

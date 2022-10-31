@@ -5,7 +5,7 @@ import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
 
 class ColorFieldBlocBuilder extends StatelessWidget {
   const ColorFieldBlocBuilder({
-    Key? key,
+    super.key,
     required this.colorFieldBloc,
     // ignore: tighten_type_of_initializing_formals
     this.enableOnlyWhenFormBlocCanSubmit = false,
@@ -26,8 +26,7 @@ class ColorFieldBlocBuilder extends StatelessWidget {
     this.nextFocusNode,
     this.focusNode,
     this.style,
-  })  : assert(enableOnlyWhenFormBlocCanSubmit != null),
-        super(key: key);
+  }) : assert(enableOnlyWhenFormBlocCanSubmit != null);
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   final InputFieldBloc<Color?, dynamic> colorFieldBloc;
@@ -101,7 +100,7 @@ class ColorFieldBlocBuilder extends StatelessWidget {
 
 class ColorFieldBlocBuilderBase extends StatefulWidget {
   const ColorFieldBlocBuilderBase({
-    Key? key,
+    super.key,
     required this.colorFieldBloc,
     this.errorBuilder,
     this.enableOnlyWhenFormBlocCanSubmit,
@@ -121,7 +120,7 @@ class ColorFieldBlocBuilderBase extends StatefulWidget {
     this.builder,
     required this.useRootNavigator,
     this.routeSettings,
-  }) : super(key: key);
+  });
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   final InputFieldBloc<Color?, dynamic> colorFieldBloc;

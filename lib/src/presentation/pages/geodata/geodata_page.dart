@@ -6,14 +6,14 @@ import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/utils/shorten_str.dart';
-import 'package:geobase/src/presentation/core/widgets/commons/dropdown_field.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 import 'package:geobase/src/presentation/pages/geodata/misc/misc.dart';
 
 class GeodataPage extends StatelessWidget {
   const GeodataPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -33,7 +33,7 @@ class GeodataPage extends StatelessWidget {
 }
 
 class _GeodataPageInternal extends StatelessWidget {
-  const _GeodataPageInternal({Key? key}) : super(key: key);
+  const _GeodataPageInternal();
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +44,9 @@ class _GeodataPageInternal extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Datos Almacenados'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: const _Body(),
         floatingActionButton: BlocProvider<CategoriesShowerCubit>(
@@ -61,9 +60,9 @@ class _GeodataPageInternal extends StatelessWidget {
 
 class _Body extends StatelessWidget {
   const _Body({
-    Key? key,
+    // ignore: unused_element
     this.queryWidgetKey = const Key('queryWidgetKey'),
-  }) : super(key: key);
+  });
 
   final Key queryWidgetKey;
   // final queryController = TextEditingController();
@@ -168,9 +167,8 @@ class _Body extends StatelessWidget {
 
 class _GeodataWidget extends StatelessWidget {
   const _GeodataWidget({
-    Key? key,
     required this.geodata,
-  }) : super(key: key);
+  });
 
   final GeodataGetEntity geodata;
 
@@ -230,8 +228,8 @@ class _GeodataWidget extends StatelessWidget {
 
 class _QueryInput extends StatelessWidget {
   const _QueryInput({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -288,9 +286,7 @@ class _QueryInput extends StatelessWidget {
 }
 
 class _FloatingActionButton extends StatelessWidget {
-  const _FloatingActionButton({
-    Key? key,
-  }) : super(key: key);
+  const _FloatingActionButton();
 
   @override
   Widget build(BuildContext context) {

@@ -4,9 +4,9 @@ import 'package:geobase/src/presentation/core/widgets/buttons/main_button_widget
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({
-    Key? key,
+    super.key,
     required this.wrongUrl,
-  }) : super(key: key);
+  });
 
   final String wrongUrl;
 

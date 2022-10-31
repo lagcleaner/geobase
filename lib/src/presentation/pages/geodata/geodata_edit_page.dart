@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
-
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
@@ -12,9 +11,9 @@ import 'package:geobase/src/presentation/pages/geodata/widgets/widgets.dart';
 
 class GeodataEditPage extends StatelessWidget {
   const GeodataEditPage({
-    Key? key,
+    super.key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
 
@@ -41,9 +40,8 @@ class GeodataEditPage extends StatelessWidget {
 
 class _GeodataEditPageInternal extends StatelessWidget {
   const _GeodataEditPageInternal({
-    Key? key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
   @override
@@ -52,10 +50,9 @@ class _GeodataEditPageInternal extends StatelessWidget {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Editar información del Punto'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: BlocBuilder<GeodataEditCubit, GeodataEditState>(
           bloc: context.read(),
@@ -85,15 +82,14 @@ class _GeodataEditPageInternal extends StatelessWidget {
 
 class _GeodataEditFormBody extends StatelessWidget {
   const _GeodataEditFormBody({
-    Key? key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
 
   @override
   Widget build(BuildContext context) {
-    return FormBlocListener<IGeodataEditFormBloc, void, Failure>(
+    return LyFormListener<IGeodataEditFormBloc, void, Failure>(
       bloc: context.read<IGeodataEditFormBloc>(),
       onSuccess: (_) => NotificationHelper.showSuccessSnackbar(
         context,

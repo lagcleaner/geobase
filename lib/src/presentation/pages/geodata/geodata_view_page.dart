@@ -13,9 +13,9 @@ import 'package:geobase/src/presentation/router/locations.dart';
 
 class GeodataViewPage extends StatelessWidget {
   const GeodataViewPage({
-    Key? key,
+    super.key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
 
@@ -40,19 +40,17 @@ class GeodataViewPage extends StatelessWidget {
 
 class _GeodataViewPageInternal extends StatelessWidget {
   const _GeodataViewPageInternal({
-    Key? key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
+      appBar: GeoAppBar(
         title: const Text('Detalles del Punto'),
         iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(
@@ -70,9 +68,8 @@ class _GeodataViewPageInternal extends StatelessWidget {
 
 class _GeodataViewBody extends StatelessWidget {
   const _GeodataViewBody({
-    Key? key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
 
@@ -102,8 +99,7 @@ class _GeodataViewBody extends StatelessWidget {
 }
 
 class _GeodataViewBodyFetchSuccess extends StatelessWidget {
-  const _GeodataViewBodyFetchSuccess({Key? key, required this.geodata})
-      : super(key: key);
+  const _GeodataViewBodyFetchSuccess({required this.geodata});
 
   final GeodataGetEntity geodata;
 
@@ -125,9 +121,7 @@ class _GeodataViewBodyFetchSuccess extends StatelessWidget {
 }
 
 class _GeodataViewBodyFetchInProgress extends StatelessWidget {
-  const _GeodataViewBodyFetchInProgress({
-    Key? key,
-  }) : super(key: key);
+  const _GeodataViewBodyFetchInProgress();
 
   @override
   Widget build(BuildContext context) {
@@ -141,8 +135,7 @@ class _GeodataViewBodyFetchInProgress extends StatelessWidget {
 }
 
 class _GeodataViewBasicInfo extends StatelessWidget {
-  const _GeodataViewBasicInfo({Key? key, required this.geodata})
-      : super(key: key);
+  const _GeodataViewBasicInfo({required this.geodata});
 
   final GeodataGetEntity geodata;
 
@@ -239,9 +232,8 @@ class _GeodataViewBasicInfo extends StatelessWidget {
 
 class _GeodataViewBodyFetchSucessBottom extends StatelessWidget {
   const _GeodataViewBodyFetchSucessBottom({
-    Key? key,
     required this.geodataId,
-  }) : super(key: key);
+  });
 
   final int geodataId;
 

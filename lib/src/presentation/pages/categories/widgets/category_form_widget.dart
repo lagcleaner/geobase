@@ -8,9 +8,9 @@ import 'package:geobase/src/presentation/pages/categories/widgets/inputs/inputs.
 
 class CategoryForm<FBloc extends CategoryFormBloc> extends StatelessWidget {
   const CategoryForm({
-    Key? key,
+    super.key,
     required this.submitButtonText,
-  }) : super(key: key);
+  });
 
   final String submitButtonText;
 
@@ -31,8 +31,8 @@ class CategoryForm<FBloc extends CategoryFormBloc> extends StatelessWidget {
 
 class _Inputs<FBloc extends CategoryFormBloc> extends StatelessWidget {
   const _Inputs({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class _Inputs<FBloc extends CategoryFormBloc> extends StatelessWidget {
 }
 
 class _NameInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
-  const _NameInput({Key? key}) : super(key: key);
+  const _NameInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _NameInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
 
 class _DescriptionInput<FBloc extends CategoryFormBloc>
     extends StatelessWidget {
-  const _DescriptionInput({Key? key}) : super(key: key);
+  const _DescriptionInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class _DescriptionInput<FBloc extends CategoryFormBloc>
 }
 
 class _ColorInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
-  const _ColorInput({Key? key}) : super(key: key);
+  const _ColorInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ class _ColorInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
 }
 
 class _IconInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
-  const _IconInput({Key? key}) : super(key: key);
+  const _IconInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class _IconInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
 }
 
 class _FieldsInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
-  const _FieldsInput({Key? key}) : super(key: key);
+  const _FieldsInput({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -166,11 +166,10 @@ class _FieldsInput<FBloc extends CategoryFormBloc> extends StatelessWidget {
 
 class _ColumnCardInput extends StatelessWidget {
   const _ColumnCardInput({
-    Key? key,
     required this.columnIndex,
     required this.columnField,
     required this.onRemoveMember,
-  }) : super(key: key);
+  });
 
   final int columnIndex;
 

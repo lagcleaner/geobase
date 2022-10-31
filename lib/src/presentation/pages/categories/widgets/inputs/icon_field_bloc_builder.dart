@@ -6,7 +6,7 @@ import 'package:geobase/src/presentation/pages/categories/misc/functions.dart';
 
 class IconFieldBlocBuilder extends StatelessWidget {
   const IconFieldBlocBuilder({
-    Key? key,
+    super.key,
     required this.iconFieldBloc,
     // ignore: tighten_type_of_initializing_formals
     this.enableOnlyWhenFormBlocCanSubmit = false,
@@ -27,8 +27,7 @@ class IconFieldBlocBuilder extends StatelessWidget {
     this.nextFocusNode,
     this.focusNode,
     this.style,
-  })  : assert(enableOnlyWhenFormBlocCanSubmit != null),
-        super(key: key);
+  }) : assert(enableOnlyWhenFormBlocCanSubmit != null);
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   final InputFieldBloc<String?, dynamic> iconFieldBloc;
@@ -102,7 +101,7 @@ class IconFieldBlocBuilder extends StatelessWidget {
 
 class IconFieldBlocBuilderBase extends StatefulWidget {
   const IconFieldBlocBuilderBase({
-    Key? key,
+    super.key,
     required this.iconFieldBloc,
     this.errorBuilder,
     this.enableOnlyWhenFormBlocCanSubmit,
@@ -122,7 +121,7 @@ class IconFieldBlocBuilderBase extends StatefulWidget {
     this.builder,
     required this.useRootNavigator,
     this.routeSettings,
-  }) : super(key: key);
+  });
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   final InputFieldBloc<String?, dynamic> iconFieldBloc;

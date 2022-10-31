@@ -3,10 +3,10 @@ import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 
 class FailureAndRetryWidget extends StatelessWidget {
   const FailureAndRetryWidget({
-    Key? key,
+    super.key,
     required this.errorText,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final String errorText;
   final Function() onPressed;

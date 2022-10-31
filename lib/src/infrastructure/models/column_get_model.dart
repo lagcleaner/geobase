@@ -5,9 +5,9 @@ class ColumnGetModel extends ColumnModel {
   ColumnGetModel({
     required this.id,
     required this.categoryId,
-    required String name,
+    required super.name,
     required this.type,
-  }) : super(name: name);
+  });
 
   final int id;
 

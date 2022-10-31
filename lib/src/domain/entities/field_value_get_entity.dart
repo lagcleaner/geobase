@@ -3,11 +3,11 @@ import 'package:geobase/src/domain/entities/field_value_entity.dart';
 
 class FieldValueGetEntity extends FieldValueEntity {
   FieldValueGetEntity({
-    required dynamic value,
+    required super.value,
     required this.id,
     required this.geodataId,
     required this.column,
-  }) : super(value: value);
+  });
 
   final int id;
 

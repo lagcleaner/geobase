@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
-
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/geodata/blocs/blocs.dart';
 
-class GeodataForm<T extends IGeodataFormBloc> extends StatelessWidget {
+class GeodataForm<T extends GeodataFormBloc> extends StatelessWidget {
   const GeodataForm({
-    Key? key,
+    super.key,
     required this.submmitButtonText,
-  }) : super(key: key);
+  });
 
   final String submmitButtonText;
 
@@ -27,11 +26,11 @@ class GeodataForm<T extends IGeodataFormBloc> extends StatelessWidget {
   }
 }
 
-class _Inputs<T extends IGeodataFormBloc> extends StatelessWidget {
+class _Inputs<T extends GeodataFormBloc> extends StatelessWidget {
   const _Inputs({
-    Key? key,
+    super.key,
     required this.formBloc,
-  }) : super(key: key);
+  });
 
   final T formBloc;
 
@@ -69,14 +68,14 @@ class _Inputs<T extends IGeodataFormBloc> extends StatelessWidget {
   }
 }
 
-class _LatitudeInput<T extends IGeodataFormBloc> extends StatefulWidget {
-  const _LatitudeInput({Key? key}) : super(key: key);
+class _LatitudeInput<T extends GeodataFormBloc> extends StatefulWidget {
+  const _LatitudeInput({super.key});
 
   @override
   State<_LatitudeInput<T>> createState() => _LatitudeInputState<T>();
 }
 
-class _LatitudeInputState<T extends IGeodataFormBloc>
+class _LatitudeInputState<T extends GeodataFormBloc>
     extends State<_LatitudeInput<T>> {
   late final TextEditingController _controller;
 
@@ -89,8 +88,8 @@ class _LatitudeInputState<T extends IGeodataFormBloc>
   @override
   Widget build(BuildContext context) {
     final formBloc = context.read<T>();
-    return InputBlocBuilder<String>(
-      bloc: formBloc.latitude,
+    return LyInputBuilder<String>(
+      lyInput: formBloc.latitude,
       builder: (context, state) => TextInputWidget(
         controller: _controller..setValue(state.value),
         labelText: 'Latitud*',
@@ -103,14 +102,14 @@ class _LatitudeInputState<T extends IGeodataFormBloc>
   }
 }
 
-class _LongitudeInput<T extends IGeodataFormBloc> extends StatefulWidget {
-  const _LongitudeInput({Key? key}) : super(key: key);
+class _LongitudeInput<T extends GeodataFormBloc> extends StatefulWidget {
+  const _LongitudeInput({super.key});
 
   @override
   State<_LongitudeInput<T>> createState() => _LongitudeInputState<T>();
 }
 
-class _LongitudeInputState<T extends IGeodataFormBloc>
+class _LongitudeInputState<T extends GeodataFormBloc>
     extends State<_LongitudeInput<T>> {
   late final TextEditingController _controller;
 
@@ -123,8 +122,8 @@ class _LongitudeInputState<T extends IGeodataFormBloc>
   @override
   Widget build(BuildContext context) {
     final formBloc = context.read<T>();
-    return InputBlocBuilder<String>(
-      bloc: formBloc.longitude,
+    return LyInputBuilder<String>(
+      lyInput: formBloc.longitude,
       builder: (context, state) => TextInputWidget(
         controller: _controller..setValue(state.value),
         labelText: 'Longitud*',

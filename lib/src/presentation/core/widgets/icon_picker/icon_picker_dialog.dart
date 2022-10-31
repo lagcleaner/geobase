@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class MyIconPickerDialog extends StatefulWidget {
   const MyIconPickerDialog({
-    Key? key,
+    super.key,
     this.title,
     this.cancelBtn,
     this.iconCollection,
     this.enableSearch = true,
     this.searchHint,
-  }) : super(key: key);
+  });
 
   final String? title;
   final String? cancelBtn;
@@ -18,10 +18,10 @@ class MyIconPickerDialog extends StatefulWidget {
   final Map<String, IconData>? iconCollection;
 
   @override
-  _IconPickerDialogState createState() => _IconPickerDialogState();
+  IconPickerDialogState createState() => IconPickerDialogState();
 }
 
-class _IconPickerDialogState extends State<MyIconPickerDialog> {
+class IconPickerDialogState extends State<MyIconPickerDialog> {
   final TextEditingController _oCtrlSearchQuery = TextEditingController();
   List<MapEntry<String, IconData>> _mIconsShow = [];
   int _iQtIcons = -1;

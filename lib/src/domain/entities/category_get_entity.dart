@@ -4,17 +4,12 @@ import 'package:geobase/src/domain/entities/column_get_entity.dart';
 class CategoryGetEntity extends CategoryEntity {
   CategoryGetEntity({
     required this.id,
-    required String name,
-    required String? description,
-    required int? color,
-    required String icon,
+    required super.name,
+    required super.description,
+    required super.color,
+    required super.icon,
     required this.columns,
-  }) : super(
-          name: name,
-          description: description,
-          color: color,
-          icon: icon,
-        );
+  });
 
   final int id;
 

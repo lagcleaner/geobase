@@ -18,13 +18,13 @@ class MediaAudioFieldRender implements IFieldRenderClass {
       MediaAudioFieldRender._internal();
 
   @override
-  InputBloc<FieldValueEntity> getInputBloc(
+  LyInput<FieldValueEntity> getInputBloc(
     FieldValueEntity fieldValue,
   ) {
-    return InputBloc<FieldValueEntity>(
+    return LyInput<FieldValueEntity>(
       pureValue: fieldValue,
-      validationType: ValidationType.explicit,
-      validator: ListValidator([
+      validationType: LyValidationType.explicit,
+      validator: LyListValidator([
         FieldValueValidator.from(DynamicValidator.required),
       ]),
     );
@@ -33,7 +33,7 @@ class MediaAudioFieldRender implements IFieldRenderClass {
   @override
   Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> fieldInputBloc,
+    LyInput<FieldValueEntity> fieldInputBloc,
   ) {
     return MediaAudioFieldInputWidget(
       key: Key('FieldInput${column.name}${column.id}'),

@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_lyform/flutter_lyform.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
@@ -8,19 +9,15 @@ import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_
 
 class MediaFieldInputWidget extends FieldInputWidget {
   const MediaFieldInputWidget({
-    Key? key,
-    required ColumnGetEntity column,
-    required InputBloc<FieldValueEntity> inputBloc,
-  }) : super(
-          key: key,
-          column: column,
-          inputBloc: inputBloc,
-        );
+    super.key,
+    required super.column,
+    required super.inputBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: inputBloc,
+    return LyInputBuilder<FieldValueEntity>(
+      lyInput: inputBloc,
       builder: (context, state) {
         return ListTile(
           key: key,

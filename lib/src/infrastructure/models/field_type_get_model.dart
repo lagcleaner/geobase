@@ -12,12 +12,12 @@ abstract class FieldTypeModel {
 
 class FieldTypeGetModel extends FieldTypeModel {
   FieldTypeGetModel({
-    required String name,
-    required String metaType,
+    required super.name,
+    required super.metaType,
     required this.renderClass,
     required this.id,
     this.extradata,
-  }) : super(name: name, metaType: metaType);
+  });
 
   final int id;
 

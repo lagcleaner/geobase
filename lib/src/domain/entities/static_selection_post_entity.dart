@@ -3,9 +3,9 @@ import 'package:geobase/src/infrastructure/providers/providers.dart';
 
 class FieldTypeStaticSelectionPostEntity extends FieldTypeEntity {
   FieldTypeStaticSelectionPostEntity({
-    required String name,
+    required super.name,
     required this.options,
-  }) : super(name: name, metaType: STATICSELECTION_METATYPE_NAME);
+  }) : super(metaType: STATICSELECTION_METATYPE_NAME);
 
   final List<String> options;
 }

@@ -12,7 +12,7 @@ import 'package:geobase/src/presentation/pages/categories/widgets/inputs/autorem
 import 'package:geobase/src/presentation/pages/options/blocs/map_configuration_forms/map_configuration_form_bloc.dart';
 
 class MapServerPage extends StatelessWidget {
-  const MapServerPage({Key? key}) : super(key: key);
+  const MapServerPage({super.key});
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -29,16 +29,15 @@ class MapServerPage extends StatelessWidget {
 }
 
 class _MapServerInternalPage extends StatelessWidget {
-  const _MapServerInternalPage({Key? key}) : super(key: key);
+  const _MapServerInternalPage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
+      appBar: GeoAppBar(
         title: const Text('Servidor de Mapas'),
         iconTheme: Theme.of(context).iconTheme,
-        centerTitle: true,
       ),
       body: BlocProvider<MapConfigurationFormBloc>(
         create: (context) => getIt<MapConfigurationFormBloc>(),
@@ -49,9 +48,7 @@ class _MapServerInternalPage extends StatelessWidget {
 }
 
 class _SourceOptionsForm extends StatelessWidget {
-  const _SourceOptionsForm({
-    Key? key,
-  }) : super(key: key);
+  const _SourceOptionsForm();
 
   @override
   Widget build(BuildContext context) {
@@ -101,9 +98,7 @@ class _SourceOptionsForm extends StatelessWidget {
 }
 
 class _Inputs extends StatelessWidget {
-  const _Inputs({
-    Key? key,
-  }) : super(key: key);
+  const _Inputs();
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +122,7 @@ class _Inputs extends StatelessWidget {
 }
 
 class _SourceSelector extends StatelessWidget {
-  const _SourceSelector({
-    Key? key,
-  }) : super(key: key);
+  const _SourceSelector();
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +139,7 @@ class _SourceSelector extends StatelessWidget {
 }
 
 class _UrlTemplateInput extends StatelessWidget {
-  const _UrlTemplateInput({Key? key}) : super(key: key);
+  const _UrlTemplateInput();
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +155,7 @@ class _UrlTemplateInput extends StatelessWidget {
 }
 
 class _WMSBaseUrlInput extends StatelessWidget {
-  const _WMSBaseUrlInput({Key? key}) : super(key: key);
+  const _WMSBaseUrlInput();
 
   @override
   Widget build(BuildContext context) {
@@ -178,7 +171,7 @@ class _WMSBaseUrlInput extends StatelessWidget {
 }
 
 class _WMSFormatInput extends StatelessWidget {
-  const _WMSFormatInput({Key? key}) : super(key: key);
+  const _WMSFormatInput();
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +187,7 @@ class _WMSFormatInput extends StatelessWidget {
 }
 
 class _WMSLayersInput extends StatelessWidget {
-  const _WMSLayersInput({Key? key}) : super(key: key);
+  const _WMSLayersInput();
 
   @override
   Widget build(BuildContext context) {
@@ -238,9 +231,7 @@ class _WMSLayersInput extends StatelessWidget {
 }
 
 class _SubdomainsInput extends StatelessWidget {
-  const _SubdomainsInput({
-    Key? key,
-  }) : super(key: key);
+  const _SubdomainsInput();
 
   @override
   Widget build(BuildContext context) {

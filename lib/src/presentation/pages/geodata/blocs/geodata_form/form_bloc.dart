@@ -4,16 +4,19 @@ import 'package:geobase/src/domain/entities/entities.dart';
 
 export '../utils/utils.dart';
 
-abstract class IGeodataFormBloc extends FormBloc<Unit, Failure> {
-  InputBloc<int> get categoryId;
-  InputBloc<String> get latitude;
-  InputBloc<String> get longitude;
-  Map<ColumnGetEntity, InputBloc<FieldValueEntity>> get fieldValues;
+abstract class GeodataFormBloc extends LyForm<Unit, Failure> {
+  GeodataFormBloc() {
+    addInputs(inputs);
+  }
+
+  LyInput<int> get categoryId;
+  LyInput<String> get latitude;
+  LyInput<String> get longitude;
+  Map<ColumnGetEntity, LyInput<FieldValueEntity>> get fieldValues;
 
   CategoryGetEntity get category;
 
-  @override
-  List<InputBloc> get inputs => [
+  List<LyInput> get inputs => [
         categoryId,
         latitude,
         longitude,

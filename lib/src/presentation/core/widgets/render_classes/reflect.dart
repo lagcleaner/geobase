@@ -40,7 +40,7 @@ class FieldRenderResolver {
     return instance as IFieldRenderClass;
   }
 
-  static InputBloc<FieldValueEntity>? getInputBloc(
+  static LyInput<FieldValueEntity>? getInputBloc(
     ColumnGetEntity column,
     FieldValueEntity fieldValue,
   ) {
@@ -56,7 +56,7 @@ class FieldRenderResolver {
 
   static Widget getInputWidget(
     ColumnGetEntity column,
-    InputBloc<FieldValueEntity> inputBloc,
+    LyInput<FieldValueEntity> inputBloc,
   ) {
     try {
       final instance = _getInstance(column.type.renderClass);

@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
-import 'package:geobase/src/domain/services/interfaces/interfaces.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/category_form/category_form_bloc.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/column/column_field_bloc.dart';
@@ -14,13 +13,9 @@ class CategoryEditFormBloc extends CategoryFormBloc {
   CategoryEditFormBloc({
     // ignore: tighten_type_of_initializing_formals
     @factoryParam this.categoryId,
-    required ICategoryService categoryService,
-    required IFieldTypeService fieldTypeService,
-  })  : assert(categoryId != null),
-        super(
-          categoryService: categoryService,
-          fieldTypeService: fieldTypeService,
-        );
+    required super.categoryService,
+    required super.fieldTypeService,
+  }) : assert(categoryId != null);
 
   final int? categoryId;
 
@@ -70,7 +65,8 @@ class CategoryEditFormBloc extends CategoryFormBloc {
     //
     final fieldTypes = await hasRelatedData
         ? null
-        : (await fieldTypeService.loadAll()).foldRight(null, (r, _) => r);
+        : (await fieldTypeService.loadAll())
+            .foldRight(<FieldTypeGetEntity>[], (r, empty) => r);
     //
     final eitherValue = await categoryService.getCategory(categoryId!);
     await eitherValue.fold(

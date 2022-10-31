@@ -10,19 +10,15 @@ import 'package:image_picker/image_picker.dart';
 
 class MediaImageFieldInputWidget extends FieldInputWidget {
   const MediaImageFieldInputWidget({
-    Key? key,
-    required ColumnGetEntity column,
-    required InputBloc<FieldValueEntity> inputBloc,
-  }) : super(
-          key: key,
-          column: column,
-          inputBloc: inputBloc,
-        );
+    super.key,
+    required super.column,
+    required super.inputBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: inputBloc,
+    return LyInputBuilder<FieldValueEntity>(
+      lyInput: inputBloc,
       builder: (context, state) {
         return ListTile(
           title: Text(

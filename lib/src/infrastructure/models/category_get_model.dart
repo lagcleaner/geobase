@@ -4,17 +4,12 @@ import 'package:geobase/src/infrastructure/models/column_get_model.dart';
 class CategoryGetModel extends CategoryModel {
   CategoryGetModel({
     required this.id,
-    required String name,
-    required String? description,
-    required int? color,
-    required String icon,
+    required super.name,
+    required super.description,
+    required super.color,
+    required super.icon,
     required this.columns,
-  }) : super(
-          name: name,
-          description: description,
-          color: color,
-          icon: icon,
-        );
+  });
 
   final int id;
 

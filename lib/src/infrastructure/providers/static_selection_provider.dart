@@ -38,7 +38,7 @@ class StaticSelectionSQLiteProvider
         FieldTypeStaticSelectionGetModel(
           name: fieldType!.name!,
           metaType: fieldType.meta_type!,
-          fieldTypeId: ss.field_type_id!,
+          id: ss.field_type_id!,
           renderClass: fieldType.render_class!,
           options: (json.decode(ss.options!) as List?)
                   ?.map((e) => e as String)
@@ -61,7 +61,7 @@ class StaticSelectionSQLiteProvider
     return FieldTypeStaticSelectionGetModel(
       name: ss.plFieldTypeDBModel!.name!,
       metaType: ss.plFieldTypeDBModel!.meta_type!,
-      fieldTypeId: ss.field_type_id!,
+      id: ss.field_type_id!,
       renderClass: ss.plFieldTypeDBModel!.render_class!,
       options: (json.decode(ss.options!) as List?)
               ?.map((e) => e as String)

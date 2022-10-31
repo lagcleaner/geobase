@@ -5,19 +5,15 @@ import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_
 
 class BoolFieldInputWidget extends FieldInputWidget {
   const BoolFieldInputWidget({
-    Key? key,
-    required ColumnGetEntity column,
-    required InputBloc<FieldValueEntity> inputBloc,
-  }) : super(
-          key: key,
-          column: column,
-          inputBloc: inputBloc,
-        );
+    super.key,
+    required super.column,
+    required super.inputBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: inputBloc,
+    return LyInputBuilder<FieldValueEntity>(
+      lyInput: inputBloc,
       builder: (contex, state) => CheckboxListTile(
         key: key,
         controlAffinity: ListTileControlAffinity.leading,

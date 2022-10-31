@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 
 class DropdownButtonFormFieldWidget<T> extends StatelessWidget {
   const DropdownButtonFormFieldWidget({
-    Key? key,
+    super.key,
     required this.items,
     required this.onChanged,
     required this.labelText,
@@ -12,7 +11,7 @@ class DropdownButtonFormFieldWidget<T> extends StatelessWidget {
     this.value,
     this.prefixIcon,
     this.suffixIcon,
-  }) : super(key: key);
+  });
 
   final List<DropdownMenuItem<T>> items;
   final ValueChanged<T?> onChanged;

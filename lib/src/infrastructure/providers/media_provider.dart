@@ -37,7 +37,7 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
         FieldTypeMediaGetModel(
           name: fieldType!.name!,
           metaType: fieldType.meta_type!,
-          fieldTypeId: media.field_type_id!,
+          id: media.field_type_id!,
           renderClass: fieldType.render_class!,
           extensions: (json.decode(media.extensions!) as List?)
                   ?.map((e) => e as String)
@@ -60,7 +60,7 @@ class MediaSQLiteProvider implements IFieldTypeMediaProvider {
     return FieldTypeMediaGetModel(
       name: media.plFieldTypeDBModel!.name!,
       metaType: media.plFieldTypeDBModel!.meta_type!,
-      fieldTypeId: media.field_type_id!,
+      id: media.field_type_id!,
       renderClass: media.plFieldTypeDBModel!.render_class!,
       extensions: (json.decode(media.extensions!) as List?)
               ?.map((e) => e as String)

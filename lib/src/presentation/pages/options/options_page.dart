@@ -1,8 +1,9 @@
 import 'package:beamer/beamer.dart';
 import 'package:geobase/src/presentation/core/app.dart';
+import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 
 class OptionsPage extends StatelessWidget {
-  const OptionsPage({Key? key}) : super(key: key);
+  const OptionsPage({super.key});
 
   static BeamPage getPage(BuildContext context) {
     return const BeamPage(
@@ -19,7 +20,7 @@ class OptionsPage extends StatelessWidget {
 }
 
 class _OptionsInternalPage extends StatelessWidget {
-  const _OptionsInternalPage({Key? key}) : super(key: key);
+  const _OptionsInternalPage();
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,9 @@ class _OptionsInternalPage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).canvasColor,
-        appBar: AppBar(
+        appBar: GeoAppBar(
           title: const Text('Opciones'),
           iconTheme: Theme.of(context).iconTheme,
-          centerTitle: true,
         ),
         body: const _Body(),
       ),
@@ -42,9 +42,7 @@ class _OptionsInternalPage extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
+  const _Body();
 
   @override
   Widget build(BuildContext context) {

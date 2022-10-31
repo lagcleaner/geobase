@@ -3,9 +3,9 @@ import 'package:geobase/src/domain/entities/entities.dart';
 
 abstract class FieldViewWidget extends StatelessWidget {
   const FieldViewWidget({
-    Key? key,
+    super.key,
     required this.fieldValue,
-  }) : super(key: key);
+  });
 
   final FieldValueGetEntity fieldValue;
 }

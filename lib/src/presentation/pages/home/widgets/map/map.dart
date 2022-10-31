@@ -12,7 +12,7 @@ import 'package:latlong2/latlong.dart';
 export 'layer_utils.dart';
 
 class GeoBaseMap extends StatelessWidget {
-  const GeoBaseMap({Key? key}) : super(key: key);
+  const GeoBaseMap({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,6 @@ class GeoBaseMap extends StatelessWidget {
             FlutterMap(
               mapController: state.mapController,
               options: MapOptions(
-                controller: state.mapController,
                 center: LatLng(23.1255, -82.37),
                 zoom: 14.0,
                 maxZoom: 18.0,
@@ -50,7 +49,8 @@ class GeoBaseMap extends StatelessWidget {
                   }
                 },
               ),
-              layers: [
+
+              children: [
                 mapLayerOptions(context, state.mapConfiguration),
                 markerLayerOptions(context),
                 liveLocationLayerOptions(context)
@@ -77,10 +77,10 @@ class GeoBaseMap extends StatelessWidget {
     );
   }
 
-  LayerOptions markerLayerOptions(BuildContext context) {
+  Widget markerLayerOptions(BuildContext context) {
     return context.watch<MarkerCubit>().state.map(
-          failure: (failure) => MarkerLayerOptions(),
-          filteredOut: (markerState) => MarkerLayerOptions(
+          failure: (failure) => MarkerLayer(),
+          filteredOut: (markerState) => MarkerLayer(
             // rotateAlignment: Alignment.center,
             rotate: true,
             markers: (markerState.markers)
@@ -123,13 +123,13 @@ class GeoBaseMap extends StatelessWidget {
         );
   }
 
-  LayerOptions liveLocationLayerOptions(BuildContext context) =>
+  Widget liveLocationLayerOptions(BuildContext context) =>
       context.watch<LocationCubit>().state.map(
-            loading: (_) => MarkerLayerOptions(),
-            disable: (_) => MarkerLayerOptions(),
+            loading: (_) => MarkerLayer(),
+            disable: (_) => MarkerLayer(),
             enable: (enableState) {
               context.read<MapCubit>().savePosition(enableState.location);
-              return MarkerLayerOptions(
+              return MarkerLayer(
                 rotate: true,
                 markers: [
                   Marker(
@@ -150,9 +150,8 @@ class GeoBaseMap extends StatelessWidget {
 
 class _FailureGetTilesAndRetry extends StatelessWidget {
   const _FailureGetTilesAndRetry({
-    Key? key,
     required this.message,
-  }) : super(key: key);
+  });
 
   final String message;
   @override

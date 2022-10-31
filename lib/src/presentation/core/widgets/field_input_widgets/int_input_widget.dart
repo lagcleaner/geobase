@@ -7,10 +7,10 @@ import 'package:geobase/src/presentation/core/widgets/field_input_widgets/field_
 
 class IntFieldInputWidget extends FieldInputWidget {
   const IntFieldInputWidget({
-    Key? key,
-    required ColumnGetEntity column,
-    required InputBloc<FieldValueEntity> inputBloc,
-  }) : super(key: key, column: column, inputBloc: inputBloc);
+    super.key,
+    required super.column,
+    required super.inputBloc,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +24,13 @@ class IntFieldInputWidget extends FieldInputWidget {
 
 class _InternalTextInput extends StatefulWidget {
   const _InternalTextInput({
-    Key? key,
+    super. key,
     required this.column,
     required this.bloc,
-  }) : super(key: key);
+  }) ;
 
   final ColumnGetEntity column;
-  final InputBloc<FieldValueEntity> bloc;
+  final LyInput<FieldValueEntity> bloc;
 
   @override
   State<_InternalTextInput> createState() => _InternalTextInputState();
@@ -47,8 +47,8 @@ class _InternalTextInputState extends State<_InternalTextInput> {
 
   @override
   Widget build(BuildContext context) {
-    return InputBlocBuilder<FieldValueEntity>(
-      bloc: widget.bloc,
+    return LyInputBuilder<FieldValueEntity>(
+      lyInput: widget.bloc,
       builder: (context, state) {
         return TextInputWidget(
           labelText: widget.column.name,
