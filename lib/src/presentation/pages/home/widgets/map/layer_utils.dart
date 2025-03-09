@@ -12,7 +12,7 @@ Widget mapLayerOptions(
   BuildContext context,
   MapConfigurationEntity configs,
 ) {
-  if (configs.mapSourceType == MapSource.Empty) return MarkerLayer();
+  if (configs.mapSourceType == MapSource.Empty) return MarkerLayer(markers: []);
 
   return TileLayer(
     urlTemplate: configs.options.getCastedOrDefault(
@@ -57,9 +57,9 @@ Widget mapLayerOptions(
     tileProvider: CachedTileProvider(),
     additionalOptions: configs.options.getCastedOrDefault(
       MAP_SOURCE_ADITIONAL_OPTIONS,
-      defaultValue: null,
+      defaultValue: {},
     ),
-    errorTileCallback: (tile, error) {
+    errorTileCallback: (tile, obj, error) {
       context.read<MapCubit>().onErrorTile(error);
     },
   );

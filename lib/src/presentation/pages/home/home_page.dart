@@ -291,7 +291,7 @@ class _GotoLocationButton extends StatelessWidget {
             enable: (enable) => () {
               context.read<MapCubit>().state.mapController.move(
                     enable.location,
-                    context.read<MapCubit>().state.mapController.zoom,
+                    context.read<MapCubit>().state.mapController.camera.zoom,
                   );
             },
           ),

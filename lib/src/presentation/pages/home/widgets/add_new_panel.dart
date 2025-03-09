@@ -42,12 +42,12 @@ class _InternalPanel extends StatelessWidget {
               const Icon(Icons.maximize_rounded),
               Text(
                 'Nuevo Punto',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               Text(
                 '(${ubication.latitude.toStringAsFixed(6)}, ${ubication.longitude.toStringAsFixed(6)})',
-                style: Theme.of(context).textTheme.subtitle2,
-                textScaleFactor: 0.95,
+                style: Theme.of(context).textTheme.titleMedium,
+                textScaler: TextScaler.linear(0.95),
               ),
             ],
           ),
@@ -62,8 +62,8 @@ class _InternalPanel extends StatelessWidget {
                       children: [
                         Text(
                           'Seleccione una categoría para el nuevo punto.',
-                          style: Theme.of(context).textTheme.subtitle2,
-                          textScaleFactor: 0.95,
+                          style: Theme.of(context).textTheme.titleMedium,
+                          textScaler: TextScaler.linear(0.95),
                         ),
                         DropdownButtonFormFieldWidget<int>(
                           labelText: 'Seleccione una Categoría',

@@ -141,7 +141,7 @@ class _OptionsInput extends StatelessWidget {
             const Divider(),
             Text(
               'Opciones*',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             ListView.builder(
               shrinkWrap: true,

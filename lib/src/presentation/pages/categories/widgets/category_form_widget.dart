@@ -190,7 +190,7 @@ class _ColumnCardInput extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 'Columna #${columnIndex + 1}',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
             TextFieldBlocBuilder(

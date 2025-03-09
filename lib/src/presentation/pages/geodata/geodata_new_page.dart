@@ -115,7 +115,7 @@ class _GeodataCategorySelectionBody extends StatelessWidget {
             child: Center(
               child: Text(
                 'Seleccione una categoría para el nuevo punto.',
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.headlineSmall,
                 textScaleFactor: 0.9,
               ),
             ),

@@ -181,9 +181,9 @@ class _CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = category.color != null
-        ? Color(category.color!).withOpacity(0.5)
+        ? Color(category.color!).withAlpha(127)
         : Colors.white;
-    final subtitle2 = Theme.of(context).textTheme.subtitle2;
+    final titleMedium = Theme.of(context).textTheme.titleMedium;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Card(
@@ -196,8 +196,8 @@ class _CategoryWidget extends StatelessWidget {
           child: ListTile(
             title: SelectableText(
               category.name,
-              style: subtitle2?.copyWith(
-                color: subtitle2.color?.getContrastColor(color),
+              style: titleMedium?.copyWith(
+                color: titleMedium.color?.getContrastColor(color),
               ),
             ),
             subtitle: SelectableText(category.description ?? ''),

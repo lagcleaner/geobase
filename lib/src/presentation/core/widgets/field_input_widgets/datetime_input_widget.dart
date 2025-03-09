@@ -14,7 +14,7 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
   @override
   Widget build(BuildContext context) {
     return LyInputBuilder<FieldValueEntity>(
-      lyInput: inputBloc  ,
+      lyInput: inputBloc,
       builder: (context, state) {
         return GestureDetector(
           onTap: () async {
@@ -40,10 +40,10 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
                       primary: Theme.of(context)
                           .primaryColor, // header background color
                       onPrimary: Theme.of(context)
-                          .backgroundColor, // header text color
-                      onSurface: Theme.of(context).textTheme.bodyText1?.color ??
+                          .colorScheme.surface, // header text color
+                      onSurface: Theme.of(context).textTheme.bodySmall?.color ??
                           Colors.black, // body text color
-                      background: Theme.of(context).backgroundColor,
+                      surface: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                   child: child ?? const SizedBox(),
@@ -71,11 +71,11 @@ class DateTimeFieldInputWidget extends FieldInputWidget {
                         primary: Theme.of(context)
                             .primaryColor, // header background color
                         onPrimary: Theme.of(context)
-                            .backgroundColor, // header text color
+                            .colorScheme.surface, // header text color
                         onSurface:
-                            Theme.of(context).textTheme.bodyText1?.color ??
+                            Theme.of(context).textTheme.bodySmall?.color ??
                                 Colors.black, // body text color
-                        background: Theme.of(context).backgroundColor,
+                        surface: Theme.of(context).colorScheme.surface,
                       ),
                     ),
                     child: child ?? const SizedBox(),

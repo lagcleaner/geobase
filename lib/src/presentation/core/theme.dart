@@ -27,42 +27,44 @@ const TextStyle titleTextStyle = TextStyle(
 const TextStyle bodyTextStyle = TextStyle(color: subtitlesColor);
 
 final TextTheme textTheme = light.textTheme.copyWith(
-  headline4: titleTextStyle.copyWith(fontSize: 24),
-  headline5: titleTextStyle.copyWith(fontSize: 22),
-  headline6: titleTextStyle.copyWith(fontSize: 20),
-  subtitle1: titleTextStyle.copyWith(fontSize: 17),
-  subtitle2: titleTextStyle.copyWith(fontSize: 16),
-  bodyText1: bodyTextStyle.copyWith(fontSize: 18),
-  bodyText2: bodyTextStyle.copyWith(fontSize: 15),
-  button: bodyTextStyle,
+  headlineLarge: titleTextStyle.copyWith(fontSize: 24),
+  headlineMedium: titleTextStyle.copyWith(fontSize: 22),
+  headlineSmall: titleTextStyle.copyWith(fontSize: 20),
+  titleLarge: titleTextStyle.copyWith(fontSize: 17),
+  titleMedium: titleTextStyle.copyWith(fontSize: 16),
+  titleSmall: titleTextStyle.copyWith(fontSize: 15),
+  bodyLarge: bodyTextStyle.copyWith(fontSize: 18),
+  bodyMedium: bodyTextStyle.copyWith(fontSize: 15),
+  bodySmall: bodyTextStyle,
 );
 
 final TextTheme primaryTextTheme = textTheme.copyWith(
-  headline4: titleTextStyle.copyWith(color: Colors.white),
-  headline5: titleTextStyle.copyWith(color: Colors.white),
-  headline6: titleTextStyle.copyWith(color: Colors.white),
-  subtitle1: titleTextStyle.copyWith(color: Colors.white),
-  subtitle2: titleTextStyle.copyWith(color: Colors.white),
-  bodyText1: bodyTextStyle.copyWith(color: Colors.white),
-  bodyText2: bodyTextStyle.copyWith(color: Colors.white),
-  button: bodyTextStyle.copyWith(color: Colors.white),
+  headlineLarge: titleTextStyle.copyWith(color: Colors.white),
+  headlineMedium: titleTextStyle.copyWith(color: Colors.white),
+  headlineSmall: titleTextStyle.copyWith(color: Colors.white),
+  titleLarge: titleTextStyle.copyWith(color: Colors.white),
+  titleMedium: titleTextStyle.copyWith(color: Colors.white),
+  titleSmall: bodyTextStyle.copyWith(color: Colors.white),
+  bodyLarge: bodyTextStyle.copyWith(color: Colors.white),
+  bodyMedium: bodyTextStyle.copyWith(color: Colors.white),
+  bodySmall: bodyTextStyle.copyWith(color: Colors.white),
 );
 
 final ThemeData geobaseLightTheme = light.copyWith(
   dialogTheme: light.dialogTheme.copyWith(
     backgroundColor: backgroundColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-    titleTextStyle: textTheme.headline6,
-    contentTextStyle: textTheme.subtitle1,
+    titleTextStyle: textTheme.headlineSmall,
+    contentTextStyle: textTheme.titleLarge,
   ),
   progressIndicatorTheme: light.progressIndicatorTheme.copyWith(),
   checkboxTheme: light.checkboxTheme.copyWith(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-    fillColor: MaterialStateProperty.all(primaryBrandColor),
+    fillColor: WidgetStateProperty.all(primaryBrandColor),
     materialTapTargetSize: MaterialTapTargetSize.padded,
   ),
   radioTheme: light.radioTheme.copyWith(
-    fillColor: MaterialStateProperty.all(primaryBrandColor),
+    fillColor: WidgetStateProperty.all(primaryBrandColor),
     materialTapTargetSize: MaterialTapTargetSize.padded,
   ),
   dividerTheme: light.dividerTheme.copyWith(
@@ -78,7 +80,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
   highlightColor: highlightColor,
   scaffoldBackgroundColor: backgroundColor,
   canvasColor: backgroundColor,
-  backgroundColor: backgroundColor,
+  // backgroundColor: backgroundColor,
 
   buttonTheme: light.buttonTheme.copyWith(
     buttonColor: primaryBrandColor,
@@ -90,7 +92,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
   textTheme: textTheme,
   primaryTextTheme: primaryTextTheme,
   // ignore: deprecated_member_use
-  accentTextTheme: primaryTextTheme,
+  // accentTextTheme: primaryTextTheme,
   iconTheme: light.iconTheme.copyWith(
     color: primaryBrandColor,
   ),
@@ -120,7 +122,7 @@ final ThemeData geobaseLightTheme = light.copyWith(
     ),
     errorBorder: OutlineInputBorder(
       borderSide: BorderSide(
-        color: light.errorColor,
+        color: light.colorScheme.error,
       ),
       borderRadius: const BorderRadius.all(Radius.circular(18)),
     ),
@@ -145,15 +147,15 @@ final ThemeData geobaseLightTheme = light.copyWith(
   ),
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: light.outlinedButtonTheme.style?.copyWith(
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
           side: const BorderSide(color: primaryBrandColor),
         ),
       ),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      textStyle: WidgetStateProperty.all<TextStyle>(
         bodyTextStyle.copyWith(
-          color: light.backgroundColor,
+          color: light.colorScheme.surface,
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -167,17 +169,17 @@ final ThemeData geobaseLightTheme = light.copyWith(
   // ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: light.elevatedButtonTheme.style?.copyWith(
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(18.0),
           side: BorderSide(color: light.primaryColor),
         ),
       ),
-      foregroundColor: MaterialStateProperty.all<Color>(Colors.white70),
-      backgroundColor: MaterialStateProperty.all<Color>(primaryBrandColor),
-      textStyle: MaterialStateProperty.all<TextStyle>(
+      foregroundColor: WidgetStateProperty.all<Color>(Colors.white70),
+      backgroundColor: WidgetStateProperty.all<Color>(primaryBrandColor),
+      textStyle: WidgetStateProperty.all<TextStyle>(
         bodyTextStyle.copyWith(
-          color: light.backgroundColor,
+          color: light.colorScheme.surface,
           fontWeight: FontWeight.w700,
         ),
       ),

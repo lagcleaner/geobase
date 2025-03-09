@@ -34,10 +34,10 @@ TextStyle? getDefaultTextStyle({
   required bool isEnabled,
 }) =>
     isEnabled
-        ? Theme.of(context).textTheme.subtitle1
+        ? Theme.of(context).textTheme.titleLarge
         : Theme.of(context)
             .textTheme
-            .subtitle1
+            .titleLarge
             ?.copyWith(color: Theme.of(context).disabledColor);
 
 String? getErrorText<V, S, E>({

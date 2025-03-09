@@ -36,10 +36,10 @@ class DateFieldInputWidget extends FieldInputWidget {
                       primary: Theme.of(context)
                           .primaryColor, // header background color
                       onPrimary: Theme.of(context)
-                          .backgroundColor, // header text color
-                      onSurface: Theme.of(context).textTheme.bodyText1?.color ??
+                          .colorScheme.surface, // header text color
+                      onSurface: Theme.of(context).textTheme.bodySmall?.color ??
                           Colors.black, // body text color
-                      background: Theme.of(context).backgroundColor,
+                      surface: Theme.of(context).colorScheme.surface,
                     ),
                   ),
                   child: child ?? const SizedBox(),

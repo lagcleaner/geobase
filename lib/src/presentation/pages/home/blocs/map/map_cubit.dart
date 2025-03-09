@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_map/plugin_api.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
@@ -65,7 +65,7 @@ class MapCubit extends Cubit<MapState> {
           if (uprefs.initialLat != null && uprefs.initialLng != null) {
             state.mapController.move(
               LatLng(uprefs.initialLat!, uprefs.initialLng!),
-              state.mapController.zoom,
+              state.mapController.camera.zoom,
             );
             emit(
               state.copyWith(mapMode: uprefs.mapMode ?? const MapModeEntity()),

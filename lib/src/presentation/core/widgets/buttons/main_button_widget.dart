@@ -37,7 +37,7 @@ class MainButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyleButton = Theme.of(context).primaryTextTheme.button;
+    final textStyleButton = Theme.of(context).textTheme.bodyMedium;
     return ConstrainedBox(
       constraints: BoxConstraints.tightForFinite(
         height: 50,

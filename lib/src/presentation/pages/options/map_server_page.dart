@@ -206,7 +206,7 @@ class _WMSLayersInput extends StatelessWidget {
                   const Divider(),
                   Text(
                     'Capas del mapa*',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   ListView.builder(
                     shrinkWrap: true,
@@ -250,7 +250,7 @@ class _SubdomainsInput extends StatelessWidget {
                   const Divider(),
                   Text(
                     'Subdominios*',
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   ListView.builder(
                     shrinkWrap: true,

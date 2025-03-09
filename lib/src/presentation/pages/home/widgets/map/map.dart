@@ -24,11 +24,11 @@ class GeoBaseMap extends StatelessWidget {
             FlutterMap(
               mapController: state.mapController,
               options: MapOptions(
-                center: LatLng(23.1255, -82.37),
-                zoom: 14.0,
+                initialCenter: LatLng(23.1255, -82.37),
+                initialZoom: 14.0,
                 maxZoom: 18.0,
                 minZoom: 4.0,
-                screenSize: MediaQuery.of(context).size,
+                // screenSize: MediaQuery.of(context).size,
                 onTap: (_, __) {
                   context.read<MarkerCubit>().clearTemporaryMarker();
                   context.read<SlidingUpPanelCubit>().closePanel();
@@ -49,7 +49,6 @@ class GeoBaseMap extends StatelessWidget {
                   }
                 },
               ),
-
               children: [
                 mapLayerOptions(context, state.mapConfiguration),
                 markerLayerOptions(context),
@@ -79,7 +78,7 @@ class GeoBaseMap extends StatelessWidget {
 
   Widget markerLayerOptions(BuildContext context) {
     return context.watch<MarkerCubit>().state.map(
-          failure: (failure) => MarkerLayer(),
+          failure: (failure) => MarkerLayer(markers: []),
           filteredOut: (markerState) => MarkerLayer(
             // rotateAlignment: Alignment.center,
             rotate: true,
@@ -88,7 +87,7 @@ class GeoBaseMap extends StatelessWidget {
                   (e) => Marker(
                     key: e.id != null ? Key(e.id.toString()) : UniqueKey(),
                     point: e.location,
-                    builder: (context) => IconButton(
+                    child: IconButton(
                       icon: Icon(
                         e.icon != null
                             ? IconCodeUtils.decode(e.icon)
@@ -108,7 +107,7 @@ class GeoBaseMap extends StatelessWidget {
                     (e) => Marker(
                       key: UniqueKey(),
                       point: e.location,
-                      builder: (context) => Icon(
+                      child: Icon(
                         e.icon != null
                             ? IconCodeUtils.decode(e.icon)
                             : Icons.circle,
@@ -125,8 +124,8 @@ class GeoBaseMap extends StatelessWidget {
 
   Widget liveLocationLayerOptions(BuildContext context) =>
       context.watch<LocationCubit>().state.map(
-            loading: (_) => MarkerLayer(),
-            disable: (_) => MarkerLayer(),
+            loading: (_) => MarkerLayer(markers: []),
+            disable: (_) => MarkerLayer(markers: []),
             enable: (enableState) {
               context.read<MapCubit>().savePosition(enableState.location);
               return MarkerLayer(
@@ -134,10 +133,10 @@ class GeoBaseMap extends StatelessWidget {
                 markers: [
                   Marker(
                     point: enableState.location,
-                    builder: (context) => IconButton(
+                    child:  IconButton(
                       icon: Icon(
                         Icons.location_on_outlined,
-                        color: Colors.black.withOpacity(.7),
+                        color: Colors.black.withAlpha(177),
                       ),
                       onPressed: () {},
                     ),
@@ -168,7 +167,7 @@ class _FailureGetTilesAndRetry extends StatelessWidget {
           ),
           Text(
             'Su conexión con el servidor de mapas es inestable o inexistente.',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           Icon(

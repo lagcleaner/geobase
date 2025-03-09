@@ -37,7 +37,7 @@ class NotFoundPage extends StatelessWidget {
                 children: [
                   Text(
                     wrongUrl,
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 50),

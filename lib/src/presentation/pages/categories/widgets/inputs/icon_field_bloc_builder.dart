@@ -199,7 +199,7 @@ class _IconFieldBlocBuilderBaseState extends State<IconFieldBlocBuilderBase> {
   Future<void> _showPicker(BuildContext context) async {
     FocusScope.of(context).unfocus();
 
-    final IconData? iconPicked = await FlutterIconPicker.showIconPicker(
+    final IconData? iconPicked = await showIconPicker(
       context,
       iconPackModes: [IconPack.material],
       title: const Text('Seleccione un Icono'),

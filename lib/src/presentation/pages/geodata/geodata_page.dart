@@ -175,9 +175,9 @@ class _GeodataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = geodata.color != null
-        ? Color(geodata.color!).withOpacity(0.5)
+        ? Color(geodata.color!).withAlpha(127)
         : Colors.white;
-    final subtitle2 = Theme.of(context).textTheme.subtitle2;
+    final titleMedium = Theme.of(context).textTheme.titleMedium;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Card(
@@ -190,8 +190,8 @@ class _GeodataWidget extends StatelessWidget {
           child: ListTile(
             title: SelectableText(
               '${geodata.category.name}\n${geodata.location.visualString()}',
-              style: subtitle2?.copyWith(
-                color: subtitle2.color?.getContrastColor(color),
+              style: titleMedium?.copyWith(
+                color: titleMedium.color?.getContrastColor(color),
               ),
             ),
             subtitle: SelectableText(
