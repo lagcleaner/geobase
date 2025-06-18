@@ -13,7 +13,7 @@ abstract class FieldTypeEntity {
   Map<String, dynamic> toJson() {
     return {
       'name':name,
-      'metatype': metaType,
+      'metaType': metaType,
     };
   }
 }
@@ -58,18 +58,10 @@ class FieldTypeGetEntity extends FieldTypeEntity {
 
     return {
       ...super.toJson(),
+      'id': id,
       'renderClass':renderClass,
       'extradata': extradata,
     };
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'metaType': metaType,
-      'renderClass': renderClass,
-      if (extradata != null) 'extradata': extradata,
-    };
-  }
 }

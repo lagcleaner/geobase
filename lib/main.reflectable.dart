@@ -13,24 +13,26 @@ import 'package:geobase/src/presentation/core/widgets/render_classes/field_rende
     as prefix4;
 import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/base_int_field_render.dart'
     as prefix5;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/base_string_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/base_qr_field_render.dart'
     as prefix6;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/field_render_class.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/base_string_field_render.dart'
     as prefix7;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/form_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/field_render_class.dart'
     as prefix8;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_audio_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/form_field_render.dart'
     as prefix9;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_audio_field_render.dart'
     as prefix10;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_file_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_field_render.dart'
     as prefix11;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_image_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_file_field_render.dart'
     as prefix12;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_video_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_image_field_render.dart'
     as prefix13;
-import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/staticselection_field_render.dart'
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/media_video_field_render.dart'
     as prefix14;
+import 'package:geobase/src/presentation/core/widgets/render_classes/field_render_classes/staticselection_field_render.dart'
+    as prefix15;
 import 'package:geobase/src/presentation/core/widgets/render_classes/reflect.dart'
     as prefix0;
 
@@ -65,7 +67,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {r'': (bool b) => () => b ? prefix1.BaseBoolFieldRender() : null},
             -1,
             0,
-            const <int>[6],
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
@@ -83,7 +85,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {r'': (bool b) => () => b ? prefix2.BaseDateFieldRender() : null},
             -1,
             1,
-            const <int>[6],
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
@@ -104,7 +106,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             },
             -1,
             2,
-            const <int>[6],
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
@@ -122,7 +124,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {r'': (bool b) => () => b ? prefix4.BaseDoubleFieldRender() : null},
             -1,
             3,
-            const <int>[6],
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
@@ -140,12 +142,12 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {r'': (bool b) => () => b ? prefix5.BaseIntFieldRender() : null},
             -1,
             4,
-            const <int>[6],
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
-            r'BaseStringFieldRender',
-            r'.BaseStringFieldRender',
+            r'BaseQRFieldRender',
+            r'.BaseQRFieldRender',
             134217735,
             5,
             const prefix0.FieldRenderReflectable(),
@@ -155,17 +157,35 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             {},
             {},
-            {r'': (bool b) => () => b ? prefix6.BaseStringFieldRender() : null},
+            {r'': (bool b) => () => b ? prefix6.BaseQRFieldRender() : null},
             -1,
             5,
-            const <int>[6],
+            const <int>[7],
+            null,
+            {}),
+        r.NonGenericClassMirrorImpl(
+            r'BaseStringFieldRender',
+            r'.BaseStringFieldRender',
+            134217735,
+            6,
+            const prefix0.FieldRenderReflectable(),
+            const <int>[-1],
+            null,
+            null,
+            -1,
+            {},
+            {},
+            {r'': (bool b) => () => b ? prefix7.BaseStringFieldRender() : null},
+            -1,
+            6,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'IFieldRenderClass',
             r'.IFieldRenderClass',
             134218247,
-            6,
+            7,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -175,7 +195,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             -1,
-            6,
+            7,
             const <int>[],
             null,
             {}),
@@ -183,7 +203,7 @@ final _data = <r.Reflectable, r.ReflectorData>{
             r'FormFieldRender',
             r'.FormFieldRender',
             134217735,
-            7,
+            8,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -191,17 +211,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             {},
             {},
-            {r'': (bool b) => () => b ? prefix8.FormFieldRender() : null},
+            {r'': (bool b) => () => b ? prefix9.FormFieldRender() : null},
             -1,
-            7,
-            const <int>[6],
+            8,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'MediaAudioFieldRender',
             r'.MediaAudioFieldRender',
             134217735,
-            8,
+            9,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -209,17 +229,19 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             {},
             {},
-            {r'': (bool b) => () => b ? prefix9.MediaAudioFieldRender() : null},
+            {
+              r'': (bool b) => () => b ? prefix10.MediaAudioFieldRender() : null
+            },
             -1,
-            8,
-            const <int>[6],
+            9,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'MediaFieldRender',
             r'.MediaFieldRender',
             134217735,
-            9,
+            10,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -227,17 +249,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             {},
             {},
-            {r'': (bool b) => () => b ? prefix10.MediaFieldRender() : null},
+            {r'': (bool b) => () => b ? prefix11.MediaFieldRender() : null},
             -1,
-            9,
-            const <int>[6],
+            10,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'MediaFileFieldRender',
             r'.MediaFileFieldRender',
             134217735,
-            10,
+            11,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -245,17 +267,17 @@ final _data = <r.Reflectable, r.ReflectorData>{
             -1,
             {},
             {},
-            {r'': (bool b) => () => b ? prefix11.MediaFileFieldRender() : null},
+            {r'': (bool b) => () => b ? prefix12.MediaFileFieldRender() : null},
             -1,
-            10,
-            const <int>[6],
+            11,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'MediaImageFieldRender',
             r'.MediaImageFieldRender',
             134217735,
-            11,
+            12,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -264,18 +286,18 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => () => b ? prefix12.MediaImageFieldRender() : null
+              r'': (bool b) => () => b ? prefix13.MediaImageFieldRender() : null
             },
             -1,
-            11,
-            const <int>[6],
+            12,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'MediaVideoFieldRender',
             r'.MediaVideoFieldRender',
             134217735,
-            12,
+            13,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -284,18 +306,18 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {},
             {
-              r'': (bool b) => () => b ? prefix13.MediaVideoFieldRender() : null
+              r'': (bool b) => () => b ? prefix14.MediaVideoFieldRender() : null
             },
             -1,
-            12,
-            const <int>[6],
+            13,
+            const <int>[7],
             null,
             {}),
         r.NonGenericClassMirrorImpl(
             r'StaticSelectionFieldRender',
             r'.StaticSelectionFieldRender',
             134217735,
-            13,
+            14,
             const prefix0.FieldRenderReflectable(),
             const <int>[-1],
             null,
@@ -305,11 +327,11 @@ final _data = <r.Reflectable, r.ReflectorData>{
             {},
             {
               r'': (bool b) =>
-                  () => b ? prefix14.StaticSelectionFieldRender() : null
+                  () => b ? prefix15.StaticSelectionFieldRender() : null
             },
             -1,
-            13,
-            const <int>[6],
+            14,
+            const <int>[7],
             null,
             {})
       ],
@@ -321,17 +343,18 @@ final _data = <r.Reflectable, r.ReflectorData>{
         prefix3.BaseDateTimeFieldRender,
         prefix4.BaseDoubleFieldRender,
         prefix5.BaseIntFieldRender,
-        prefix6.BaseStringFieldRender,
-        prefix7.IFieldRenderClass,
-        prefix8.FormFieldRender,
-        prefix9.MediaAudioFieldRender,
-        prefix10.MediaFieldRender,
-        prefix11.MediaFileFieldRender,
-        prefix12.MediaImageFieldRender,
-        prefix13.MediaVideoFieldRender,
-        prefix14.StaticSelectionFieldRender
+        prefix6.BaseQRFieldRender,
+        prefix7.BaseStringFieldRender,
+        prefix8.IFieldRenderClass,
+        prefix9.FormFieldRender,
+        prefix10.MediaAudioFieldRender,
+        prefix11.MediaFieldRender,
+        prefix12.MediaFileFieldRender,
+        prefix13.MediaImageFieldRender,
+        prefix14.MediaVideoFieldRender,
+        prefix15.StaticSelectionFieldRender
       ],
-      14,
+      15,
       {},
       {},
       null,

@@ -40,19 +40,13 @@ class ColumnGetEntity extends ColumnEntity {
   Map<String, dynamic> toJson() {
     return {
       ...super.toJson(),
+      'categoryId':categoryId,
+      'formId': formId,
+      'id': id,
       'type': type.toJson(),
     };
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': super.name,
-      'id': id,
-      if (categoryId != null) 'categoryId': categoryId,
-      'type': type.toMap(),
-      if (formId != null) 'formId': formId,
-    };
-  }
 
   ColumnGetEntity copyWith({
     int? id,

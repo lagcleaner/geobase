@@ -185,7 +185,7 @@ extension GetItInjectableX on _i1.GetIt {
     final registerModule = _$RegisterModule();
     gh.lazySingleton<_i3.BlocObserver>(() => _i4.SimpleBlocObserver());
     gh.factory<_i5.CategoriesImporterCubit>(
-        () => _i5.CategoriesImporterCubit(gh<dynamic>()));
+        () => _i5.CategoriesImporterCubit());
     gh.lazySingleton<_i6.FieldRenderResolver>(() => _i6.FieldRenderResolver());
     gh.lazySingleton<_i7.ICategoriesProvider>(
         () => _i8.CategoriesSQLiteProvider());

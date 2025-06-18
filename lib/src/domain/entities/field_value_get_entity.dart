@@ -34,7 +34,7 @@ class FieldValueGetEntity extends FieldValueEntity {
       'value': value,
       'id': id,
       'geodataId': geodataId,
-      'column': column.toMap(),
+      'column': column.toJson(),
     };
   }
 

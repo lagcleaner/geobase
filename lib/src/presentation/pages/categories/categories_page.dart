@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geobase/injection.dart';
 import 'package:geobase/src/domain/entities/entities.dart';
+import 'package:geobase/src/domain/services/services.dart';
 import 'package:geobase/src/presentation/core/extensions/color_extension.dart';
 import 'package:geobase/src/presentation/core/utils/notification_helper.dart';
 import 'package:geobase/src/presentation/core/utils/utils.dart';
 import 'package:geobase/src/presentation/core/widgets/widgets.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/categories_exporter/categories_exporter_cubit.dart';
+import 'package:geobase/src/presentation/pages/categories/blocs/categories_importer/categories_importer_cubit.dart';
 import 'package:geobase/src/presentation/pages/categories/blocs/categorylist/categorylist_bloc.dart';
 
 class CategoriesPage extends StatelessWidget {
@@ -23,6 +25,7 @@ class CategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -31,6 +34,9 @@ class CategoriesPage extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => getIt<CategoriesExporterCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => CategoriesImporterCubit(),
         ),
       ],
       child: const _CategoriesPageInternal(),
@@ -340,7 +346,15 @@ class _FloatingActionButton extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Botón de Exportación
+        FloatingActionButton(
+          tooltip: 'Importar categorías',
+          heroTag: 'import_button',
+          child: const Icon(Icons.upload_file),
+          onPressed: () {
+            context.read<CategoriesImporterCubit>().importFromJson();
+          },
+        ),
+        const SizedBox(height: 16),
         FloatingActionButton(
           tooltip: 'Exportar categorías',
           heroTag: 'export_button',
@@ -354,7 +368,6 @@ class _FloatingActionButton extends StatelessWidget {
               context.read<CategoriesExporterCubit>().exportToJson(),
         ),
         const SizedBox(height: 16),
-        // Botón de Agregar (existente)
         FloatingActionButton(
           tooltip: 'Agregar Categoría',
           heroTag: 'add_button',

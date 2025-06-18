@@ -3,6 +3,7 @@ export 'base_date_field_render.dart';
 export 'base_datetime_field_render.dart';
 export 'base_double_field_render.dart';
 export 'base_int_field_render.dart';
+export 'base_qr_field_render.dart';
 export 'base_string_field_render.dart';
 export 'field_render_class.dart';
 export 'form_field_render.dart';

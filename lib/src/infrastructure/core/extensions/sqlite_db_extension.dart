@@ -13,6 +13,7 @@ const _baseTypeNames = [
   'String',
   'Date',
   'DateTime',
+  'QR',
 ];
 
 const _nameKey = 'name';

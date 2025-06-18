@@ -20,7 +20,7 @@ class CategoryGetEntity extends CategoryEntity {
     return {
       ...super.toJson(), // Incluye los campos de CategoryEntity
       'id': id,
-      'columns': columns
+      'columns': columns.map((e) => e.toJson()).toList(),
     };
   }
 }
